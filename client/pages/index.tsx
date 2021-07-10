@@ -1,8 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const [books, setBooks] = useState([])
+  useEffect(() => {
+    fetch('api/book').then(res => res.json()).then(books => setBooks(books))
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,6 +26,10 @@ export default function Home() {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
         </p>
+
+        <ul>
+          {books.map(({ id, title }) => <li id={id}>books #{id}: {title}</li>)}
+        </ul>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
