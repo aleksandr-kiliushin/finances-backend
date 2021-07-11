@@ -28,7 +28,7 @@ export default function Home() {
         </p>
 
         <ul>
-          {books.map(({ id, title }) => <li id={id}>books #{id}: {title}</li>)}
+          {books.map(({ id, title }) => <li key={id}>books #{id}: {title}</li>)}
         </ul>
 
         <div className={styles.grid}>
