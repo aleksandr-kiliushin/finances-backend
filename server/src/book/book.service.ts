@@ -6,7 +6,7 @@ export class BookService {
     return [
       { id: 1, title: 'JS: The definitive guide' },
       { id: 2, title: 'Clean code' },
-      { id: 3, title: 'Clean architecture' },
+      { id: 3, title: 'Clean arwefwechitecture' },
     ]
   }
 }
