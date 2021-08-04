@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "react-scripts start",
-		"dev": "(cd server && npm run start:dev) & (cd client && npm run start:dev)"
+		"client:dev": "npm run dev --prefix ./client",
+		"server:dev": "npm run dev --prefix ./server"
 	}
 }

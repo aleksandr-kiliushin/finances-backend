@@ -7,8 +7,7 @@
     "dev": "next dev",
     "export": "next export",
     "lint": "next lint",
-    "start": "next start",
-    "start:dev": "node server.js"
+    "start": "next start"
   },
   "dependencies": {
     "next": "11.0.1",
