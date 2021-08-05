@@ -1,6 +1,6 @@
 {
-	"scripts": {
-		"client:dev": "npm run dev --prefix ./client",
-		"server:dev": "npm run dev --prefix ./server"
-	}
+  "scripts": {
+    "dev:client": "npm run dev --prefix ./client",
+    "dev:server": "npm run dev --prefix ./server"
+  }
 }
