@@ -1,4 +1,4 @@
-import s from '#styles/Home.module.css'
+import s from '#styles/home.module.css'
 
 export default function Home() {
 	return <div className={s.Container}>hehe</div>
