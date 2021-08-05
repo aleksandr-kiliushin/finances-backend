@@ -1,8 +1,5 @@
 module.exports = {
   reactStrictMode: true,
-  images: {
-    loader: 'imgix',
-  },
   async rewrites() {
     return [
       {
