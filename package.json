@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev:client": "npm run dev --prefix ./client",
-    "dev:server": "npm run dev --prefix ./server"
+    "dev:client": "npm run dev --prefix client",
+    "dev:db": "./start-db.sh",
+    "dev:server": "npm run dev --prefix server"
   }
 }
