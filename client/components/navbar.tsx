@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 
 // styles
-import s from '#styles/navbar.module.css'
+import s from 'styles/navbar.module.css'
 
 export default function Header() {
 	return (
@@ -13,12 +13,12 @@ export default function Header() {
 				<a className={s.Link}>home</a>
 			</Link>
 
-			<Link href="/stats">
-				<a className={s.Link}>stats</a>
+			<Link href="/records">
+				<a className={s.Link}>records</a>
 			</Link>
 
-			<Link href="/history">
-				<a className={s.Link}>history</a>
+			<Link href="/stats">
+				<a className={s.Link}>stats</a>
 			</Link>
 
 			<Link href="/thrash">
