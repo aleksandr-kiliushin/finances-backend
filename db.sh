@@ -1,8 +1,7 @@
 #!/bin/bash
 # set -e
 
-# LOCAL_SERVER="finance-dev-db-server";
-LOCAL_SERVER="local-db-server-1";
+LOCAL_SERVER="finance-dev-db-server";
 LOCAL_PW="123";
 LOCAL_DB="finance";
 REMOTE_API_KEY="11774a77-e885-485b-858f-b1dec98828e4";
