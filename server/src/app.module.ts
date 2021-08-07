@@ -1,34 +1,15 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { RecordController } from 'src/record/record.controller'
+import { RecordService } from 'src/record/record.service'
+import { RecordModule } from 'src/record/record.module'
+import ormconfig from 'src/config/ormconfig'
+import { Record } from './record/record.entity'
 
+//todo: configure nest-cli to remove the dist folder before compiling.
 @Module({
-	imports: [
-		TypeOrmModule.forRoot({
-			type: 'postgres',
-			host: '127.0.0.1',
-			port: 5432,
-			username: 'postgres',
-			password: 'mysecretpassword',
-			database: 'my_database',
-			entities: ['**/*.entity{.ts}'],
-			migrationsTableName: 'migration',
-			migrations: ['src/migration/*.ts'],
-			cli: { migrationsDir: 'src/migration' },
-			ssl: false,
-		}),
-		// TypeOrmModule.forRoot({
-		// 	type: 'postgres',
-		// 	host: 'hattie.db.elephantsql.com',
-		// 	port: 5432,
-		// 	username: 'xwyksyfg',
-		// 	password: 'lVJxIokcu6b0e-IFty7LnTEsivCE0WSG',
-		// 	database: 'xwyksyfg',
-		// 	entities: ['**/*.entity{.ts}'],
-		// 	migrationsTableName: 'migration',
-		// 	migrations: ['src/migration/*.ts'],
-		// 	cli: { migrationsDir: 'src/migration' },
-		// 	ssl: false,
-		// }),
-	],
+	imports: [TypeOrmModule.forRoot(ormconfig), TypeOrmModule.forFeature([Record]), RecordModule],
+	controllers: [RecordController],
+	providers: [RecordService],
 })
 export class AppModule {}

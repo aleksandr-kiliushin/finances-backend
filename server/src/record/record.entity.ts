@@ -6,14 +6,17 @@ export class Record {
 	id: number
 
 	@Column()
-	type: 'income' | 'outcome'
+	type: 'expence' | 'income'
 
 	@Column()
 	amount: number
 
 	@Column()
+	category: string
+
+	@Column()
 	date: string
 
 	@Column({ default: false })
-	isTrashed: boolean
+	is_trashed: boolean
 }

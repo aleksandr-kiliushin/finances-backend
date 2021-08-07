@@ -21,8 +21,8 @@ export default function Header() {
 				<a className={s.Link}>stats</a>
 			</Link>
 
-			<Link href="/thrash">
-				<a className={s.Link}>thrash</a>
+			<Link href="/trash">
+				<a className={s.Link}>trash</a>
 			</Link>
 		</nav>
 	)
