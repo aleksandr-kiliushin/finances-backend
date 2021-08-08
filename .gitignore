@@ -12,7 +12,7 @@ client/.pnp.js
 # testing
 client/coverage
 
-# next.js
+# compiled and static output
 client/.next/
 client/out/
 
@@ -44,11 +44,14 @@ client/.vercel
 # compiled output
 server/dist
 
-# Logs
+# logs
 server/logs
 server/*.log
 server/npm-debug.log*
 
-# Tests
+# tests
 server/coverage
 server/.nyc_output
+
+# temporary files
+temp
