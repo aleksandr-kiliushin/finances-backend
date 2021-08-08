@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinTable } from 'typeorm'
+import { Category } from 'src/record/category.entity'
 
 @Entity()
 export class Record {
@@ -6,17 +7,14 @@ export class Record {
 	id: number
 
 	@Column()
-	type: 'expence' | 'income'
-
-	@Column()
 	amount: number
 
-	@Column()
-	category: string
+	@ManyToOne(type => Category)
+	category: Category
 
 	@Column()
 	date: string
 
 	@Column({ default: false })
-	is_trashed: boolean
+	isTrashed: boolean
 }

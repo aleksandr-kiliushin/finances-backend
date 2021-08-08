@@ -16,6 +16,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@comp-by-page/*": ["components/by-page/*"],
+			"@interfaces/*": ["../shared/interfaces/*"],
 			"@style-by-page/*": ["styles/by-page/*"]
 		}
 	},

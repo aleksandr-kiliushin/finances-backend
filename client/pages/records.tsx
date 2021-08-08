@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // components
 import Header from '@comp-by-page/records/header'
+import InputRow from '@comp-by-page/records/input-row'
 
 // styles
 import s from '@style-by-page/records.module.css'
@@ -18,11 +19,11 @@ export default function Records() {
 	return (
 		<div className={s.Table}>
 			<Header />
-
-			{records.map(({ amount, category, date, id }) => (
+			<InputRow />
+			{records.map(({ amount, category, date, id }: IRecord) => (
 				<div key={id} className={s.Row}>
 					<div className={s.Cell}>{amount}</div>
-					<div className={s.Cell}>{category}</div>
+					<div className={s.Cell}>{category.name}</div>
 					<div className={s.Cell}>{date}</div>
 					<div className={s.Cell}>edit</div>
 					<div className={s.Cell}>del</div>
@@ -31,3 +32,6 @@ export default function Records() {
 		</div>
 	)
 }
+
+// types
+import { IRecord } from '@interfaces/record'
