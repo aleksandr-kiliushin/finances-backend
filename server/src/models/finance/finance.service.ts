@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+
 import { Record } from './entities/record.entity'
 import { Category } from './entities/category.entity'
-import { IRecord } from '@interfaces/record'
+
+// types
+import { ICategory, IRecord } from '@interfaces/record'
 
 @Injectable()
 export class FinanceService {
@@ -12,13 +15,21 @@ export class FinanceService {
 		@InjectRepository(Record) private recordRepository: Repository<Record>,
 	) {}
 
-	getAll(): Promise<IRecord[]> {
+	getAllRecords(): Promise<IRecord[]> {
 		return this.recordRepository.find({
 			order: {
 				date: 'DESC',
 			},
 			relations: ['category'],
 		})
+	}
+
+	getCategoryRecords(id: number): Promise<IRecord[]> {
+		return this.recordRepository.find({ where: { category: id } })
+	}
+
+	getCategoryById(id: number): Promise<ICategory> {
+		return this.categoryRepository.findOne(id)
 	}
 
 	async createRecord(amount: number, category_id: number, date: string): Promise<IRecord> {

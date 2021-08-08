@@ -1,0 +1,22 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Category {
+  id: Int!
+  name: String!
+  records: [Record!]!
+  type: String!
+}
+
+type Query {
+  category(id: Int!): Category!
+}
+
+type Record {
+  amount: Int!
+  category: Category!
+  date: String!
+  id: Int!
+  isTrashed: Boolean!
+}
