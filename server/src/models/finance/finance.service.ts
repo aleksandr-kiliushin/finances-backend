@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { Record } from '@models/finance/entities/record.entity'
-import { Category } from '@models/finance/entities/category.entity'
+import { Record } from './entities/record.entity'
+import { Category } from './entities/category.entity'
 import { IRecord } from '@interfaces/record'
 
 @Injectable()
