@@ -54,4 +54,4 @@ server/coverage
 server/.nyc_output
 
 # temporary files
-temp
+# temp/
