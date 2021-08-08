@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinTable } from 'typeorm'
-import { Category } from 'src/record/category.entity'
+import { Category } from '@models/finance/entities/category.entity'
 
 @Entity()
 export class Record {

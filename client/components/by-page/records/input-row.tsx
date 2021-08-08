@@ -6,10 +6,10 @@ export default function InputRow() {
 	return (
 		<div className={s.Row}>
 			<div className={s.Cell}>
-				<input type="number" value="999999" style={{ width: '100%' }} />
+				<input onChange={() => {}} type="number" value="999999" style={{ width: '100%' }} />
 			</div>
 			<div className={s.Cell}>
-				<input list="categories" style={{ width: '100%' }} type="text" />
+				<input list="categories" onChange={() => {}} style={{ width: '100%' }} type="text" />
 				<datalist id="categories">
 					{[
 						{ id: 1, name: 'health' },

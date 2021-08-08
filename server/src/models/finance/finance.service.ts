@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { Record } from 'src/record/record.entity'
-import { Category } from 'src/record/category.entity'
+import { Record } from '@models/finance/entities/record.entity'
+import { Category } from '@models/finance/entities/category.entity'
 import { IRecord } from '@interfaces/record'
 
 @Injectable()
-export class RecordService {
+export class FinanceService {
 	constructor(
 		@InjectRepository(Category) private categoryRepository: Repository<Category>,
 		@InjectRepository(Record) private recordRepository: Repository<Record>,

@@ -12,7 +12,8 @@
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
-			"@interfaces/*": ["../shared/interfaces/*"]
+			"@interfaces/*": ["src/interfaces/*"],
+			"@models/*": ["src/models/*"]
 		}
 	}
 }
