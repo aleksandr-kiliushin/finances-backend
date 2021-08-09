@@ -3,11 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { FinanceRecordResolver } from './finance-record.resolver'
 import { FinanceRecordService } from './finance-record.service'
-// import { Category } from './entities/category.entity'
-import { FinanceRecord } from './entities/finance-record.entity'
+import { FinanceRecordEntity } from './entities/finance-record.entity'
 
 @Module({
-	imports: [TypeOrmModule.forFeature([FinanceRecord])],
+	imports: [TypeOrmModule.forFeature([FinanceRecordEntity])],
 	providers: [FinanceRecordResolver, FinanceRecordService],
 })
 export class FinanceRecordModule {}

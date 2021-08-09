@@ -1,16 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
-import { FinanceCategory } from '@models/finance-category/entities/finance-category.entity'
+import { FinanceCategoryEntity } from '@models/finance-category/entities/finance-category.entity'
 
-@Entity()
-export class FinanceRecord {
+@Entity('finance_record')
+export class FinanceRecordEntity {
 	@PrimaryGeneratedColumn()
 	id: number
 
 	@Column()
 	amount: number
 
-	@ManyToOne(type => FinanceCategory)
-	category: FinanceCategory
+	@ManyToOne(type => FinanceCategoryEntity)
+	category: FinanceCategoryEntity
 
 	@Column()
 	date: string

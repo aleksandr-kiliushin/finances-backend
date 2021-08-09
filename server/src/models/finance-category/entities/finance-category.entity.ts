@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
-@Entity()
-export class FinanceCategory {
+@Entity('finance_category')
+export class FinanceCategoryEntity {
 	@PrimaryGeneratedColumn()
 	id: number
 

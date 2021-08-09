@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { FinanceCategory } from './entities/finance-category.entity'
+import { FinanceCategoryEntity } from './entities/finance-category.entity'
 
 // types
 import { ICategory } from '@interfaces/finance'
@@ -10,8 +10,8 @@ import { ICategory } from '@interfaces/finance'
 @Injectable()
 export class FinanceCategoryService {
 	constructor(
-		@InjectRepository(FinanceCategory)
-		private categoryRepository: Repository<FinanceCategory>,
+		@InjectRepository(FinanceCategoryEntity)
+		private categoryRepository: Repository<FinanceCategoryEntity>,
 	) {}
 
 	getCategories(): Promise<ICategory[]> {
