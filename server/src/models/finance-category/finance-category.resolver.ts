@@ -3,13 +3,19 @@ import { Args, Int, Parent, Query, ResolveField, Resolver } from '@nestjs/graphq
 import { FinanceCategoryService } from './finance-category.service'
 import { FinanceCategoryModel } from './models/finance-category.model'
 
+// types
+import { IFinanceCategory } from '@interfaces/finance'
+
 @Resolver(of => FinanceCategoryModel)
 export class FinanceCategoryResolver {
 	constructor(private financeCategoryService: FinanceCategoryService) {}
 
 	@Query(returns => [FinanceCategoryModel])
-	async categories() {
-		return this.financeCategoryService.getCategories()
+	async categories(
+		@Args('ids', { type: () => [Int] })
+		ids: IFinanceCategory['id'][],
+	) {
+		return this.financeCategoryService.getCategories(ids)
 	}
 
 	// @Query(returns => Category)

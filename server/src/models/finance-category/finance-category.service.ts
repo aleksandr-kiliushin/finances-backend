@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { In, Repository } from 'typeorm'
 
 import { FinanceCategoryEntity } from './entities/finance-category.entity'
 
@@ -14,8 +14,17 @@ export class FinanceCategoryService {
 		private categoryRepository: Repository<FinanceCategoryEntity>,
 	) {}
 
-	getCategories(): Promise<IFinanceCategory[]> {
-		return this.categoryRepository.find()
+	/**
+	 * Returns an array of finance categories. * Allows to filter by "id".
+	 */
+	getCategories(ids: IFinanceCategory['id'][]): Promise<IFinanceCategory[]> {
+		let where = {}
+
+		if (ids.length) {
+			where = { ...where, id: In(ids) }
+		}
+
+		return this.categoryRepository.find({ where })
 	}
 
 	// getAllRecords(): Promise<IRecord[]> {

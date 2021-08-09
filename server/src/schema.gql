@@ -17,6 +17,6 @@ type FinanceRecordModel {
 }
 
 type Query {
-  categories: [FinanceCategoryModel!]!
+  categories(ids: [Int!]!): [FinanceCategoryModel!]!
   records: [FinanceRecordModel!]!
 }
