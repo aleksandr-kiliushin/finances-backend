@@ -5,7 +5,7 @@ import { Repository } from 'typeorm'
 import { FinanceCategoryEntity } from './entities/finance-category.entity'
 
 // types
-import { ICategory } from '@interfaces/finance'
+import { IFinanceCategory } from '@interfaces/finance'
 
 @Injectable()
 export class FinanceCategoryService {
@@ -14,7 +14,7 @@ export class FinanceCategoryService {
 		private categoryRepository: Repository<FinanceCategoryEntity>,
 	) {}
 
-	getCategories(): Promise<ICategory[]> {
+	getCategories(): Promise<IFinanceCategory[]> {
 		return this.categoryRepository.find()
 	}
 

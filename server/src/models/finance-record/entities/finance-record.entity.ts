@@ -1,20 +1,23 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 import { FinanceCategoryEntity } from '@models/finance-category/entities/finance-category.entity'
 
+// types
+import { IFinanceRecord } from '@interfaces/finance'
+
 @Entity('finance_record')
 export class FinanceRecordEntity {
-	@PrimaryGeneratedColumn()
-	id: number
-
-	@Column()
-	amount: number
+	@Column({ type: 'int' })
+	amount: IFinanceRecord['amount']
 
 	@ManyToOne(type => FinanceCategoryEntity)
 	category: FinanceCategoryEntity
 
-	@Column()
-	date: string
+	@Column({ type: 'varchar' })
+	date: IFinanceRecord['date']
 
-	@Column({ default: false })
-	isTrashed: boolean
+	@PrimaryGeneratedColumn()
+	id: IFinanceRecord['id']
+
+	@Column({ type: 'bool' })
+	isTrashed: IFinanceRecord['isTrashed']
 }

@@ -1,13 +1,13 @@
-export interface ICategory {
-  id: number;
-  name: string;
-  type: "expence" | "income";
+export interface IFinanceCategory {
+	id: number
+	name: string
+	type: 'expense' | 'income'
 }
 
-export interface IRecord {
-  amount: number;
-  category: ICategory;
-  date: string;
-  id: number;
-  isTrashed: boolean;
+export interface IFinanceRecord {
+	amount: number
+	category: IFinanceCategory
+	date: string
+	id: number
+	isTrashed: boolean
 }

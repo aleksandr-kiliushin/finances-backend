@@ -9,5 +9,5 @@ export class FinanceCategoryModel {
 	name: string
 
 	@Field()
-	type: 'expence' | 'income'
+	type: 'expense' | 'income'
 }

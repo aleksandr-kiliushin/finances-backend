@@ -1,13 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
+// types
+import { IFinanceCategory } from '@interfaces/finance'
+
 @Entity('finance_category')
 export class FinanceCategoryEntity {
 	@PrimaryGeneratedColumn()
-	id: number
+	id: IFinanceCategory['id']
 
-	@Column()
-	name: string
+	@Column({ type: 'varchar' })
+	name: IFinanceCategory['name']
 
-	@Column()
-	type: 'expence' | 'income'
+	@Column({ type: 'varchar' })
+	type: IFinanceCategory['type']
 }

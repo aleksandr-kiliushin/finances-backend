@@ -8,7 +8,7 @@ import InputRow from '@comp-by-page/records/input-row'
 import s from '@style-by-page/records.module.css'
 
 // types
-import { IRecord } from '@interfaces/finance'
+import { IFinanceRecord } from '@interfaces/finance'
 
 export default function Records() {
 	const [records, setRecords] = useState([])
@@ -23,7 +23,7 @@ export default function Records() {
 		<div className={s.Table}>
 			<Header />
 			<InputRow />
-			{records.map(({ amount, category, date, id }: IRecord) => (
+			{records.map(({ amount, category, date, id }: IFinanceRecord) => (
 				<div key={id} className={s.Row}>
 					<div className={s.Cell}>{amount}</div>
 					<div className={s.Cell}>{category.name}</div>

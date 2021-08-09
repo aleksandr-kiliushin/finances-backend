@@ -6,7 +6,7 @@ import { FinanceRecordEntity } from './entities/finance-record.entity'
 // import { FinanceCategory } from '@models/finance-category/entities/finance-category.entity'
 
 // types
-import { IRecord } from '@interfaces/finance'
+import { IFinanceRecord } from '@interfaces/finance'
 
 @Injectable()
 export class FinanceRecordService {
@@ -16,7 +16,7 @@ export class FinanceRecordService {
 		private financeRecordRepository: Repository<FinanceRecordEntity>,
 	) {}
 
-	getRecords(): Promise<IRecord[]> {
+	getRecords(): Promise<IFinanceRecord[]> {
 		return this.financeRecordRepository.find({
 			order: {
 				date: 'DESC',
