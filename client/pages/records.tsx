@@ -7,6 +7,9 @@ import InputRow from '@comp-by-page/records/input-row'
 // styles
 import s from '@style-by-page/records.module.css'
 
+// types
+import { IRecord } from '@interfaces/finance'
+
 export default function Records() {
 	const [records, setRecords] = useState([])
 
@@ -32,6 +35,3 @@ export default function Records() {
 		</div>
 	)
 }
-
-// types
-import { IRecord } from '@interfaces/record'

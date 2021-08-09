@@ -1,0 +1,12 @@
+import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
+
+import { FinanceCategoryResolver } from './finance-category.resolver'
+import { FinanceCategoryService } from './finance-category.service'
+import { FinanceCategory } from './entities/finance-category.entity'
+
+@Module({
+	imports: [TypeOrmModule.forFeature([FinanceCategory])],
+	providers: [FinanceCategoryResolver, FinanceCategoryService],
+})
+export class FinanceCategoryModule {}

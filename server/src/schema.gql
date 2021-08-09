@@ -2,21 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Category {
+type FinanceCategoryModel {
   id: Int!
   name: String!
-  records: [Record!]!
   type: String!
 }
 
-type Query {
-  category(id: Int!): Category!
-}
-
-type Record {
+type FinanceRecordModel {
   amount: Int!
-  category: Category!
+  category: FinanceCategoryModel!
   date: String!
   id: Int!
   isTrashed: Boolean!
+}
+
+type Query {
+  categories: [FinanceCategoryModel!]!
+  records: [FinanceRecordModel!]!
 }

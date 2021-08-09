@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 const ormconfigDev: TypeOrmModuleOptions = {
 	cli: { migrationsDir: 'src/migration' },
 	database: 'finance',
-	entities: ['dist/**/*.entity{ .ts,.js}'],
+	entities: ['dist/**/*.entity{.js,.ts}'],
 	host: '127.0.0.1',
 	migrations: ['src/migration/*.ts'],
 	migrationsTableName: 'migration',

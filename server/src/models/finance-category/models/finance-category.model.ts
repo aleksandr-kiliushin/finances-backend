@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql'
 
 @ObjectType()
-export class Category {
+export class FinanceCategoryModel {
 	@Field(type => Int)
 	id: number
 
