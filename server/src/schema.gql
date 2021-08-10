@@ -2,21 +2,42 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type FinanceCategoryModel {
+input CreateFinanceRecordInput {
+  amount: Float!
+  categoryId: Float!
+  date: String!
+}
+
+type FinanceCategoryDto {
   id: Int!
   name: String!
   type: String!
 }
 
-type FinanceRecordModel {
+type FinanceRecordDto {
   amount: Int!
-  category: FinanceCategoryModel!
+  category: FinanceCategoryDto!
   date: String!
   id: Int!
   isTrashed: Boolean!
 }
 
+type Mutation {
+  createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordInput!): FinanceRecordDto!
+  deleteFinanceRecord(recordId: Float!): FinanceRecordDto!
+  updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordInput!): FinanceRecordDto!
+}
+
 type Query {
-  categories(ids: [Int!]!): [FinanceCategoryModel!]!
-  records: [FinanceRecordModel!]!
+  categories(ids: [Int!]!): [FinanceCategoryDto!]!
+  financeRecord(recordId: Float!): FinanceRecordDto!
+  financeRecords: [FinanceRecordDto!]!
+}
+
+input UpdateFinanceRecordInput {
+  amount: Float
+  categoryId: Float
+  date: String
+  id: Float!
+  isTrashed: Boolean
 }

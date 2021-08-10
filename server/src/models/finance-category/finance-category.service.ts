@@ -11,12 +11,13 @@ import { IFinanceCategory } from '@interfaces/finance'
 export class FinanceCategoryService {
 	constructor(
 		@InjectRepository(FinanceCategoryEntity)
-		private categoryRepository: Repository<FinanceCategoryEntity>,
+		private financeCategoryRepository: Repository<FinanceCategoryEntity>,
 	) {}
 
-	/**
-	 * Returns an array of finance categories. * Allows to filter by "id".
-	 */
+	async getCategory(id: IFinanceCategory['id']): Promise<IFinanceCategory> {
+		return await this.financeCategoryRepository.findOneOrFail(id)
+	}
+
 	getCategories(ids: IFinanceCategory['id'][]): Promise<IFinanceCategory[]> {
 		let where = {}
 
@@ -24,7 +25,7 @@ export class FinanceCategoryService {
 			where = { ...where, id: In(ids) }
 		}
 
-		return this.categoryRepository.find({ where })
+		return this.financeCategoryRepository.find({ where })
 	}
 
 	// getAllRecords(): Promise<IRecord[]> {

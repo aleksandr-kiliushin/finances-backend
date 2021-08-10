@@ -15,9 +15,9 @@ export class FinanceRecordEntity {
 	@Column({ type: 'varchar' })
 	date: IFinanceRecord['date']
 
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn({ type: 'int' })
 	id: IFinanceRecord['id']
 
-	@Column({ type: 'bool' })
+	@Column({ type: 'bool', default: false })
 	isTrashed: IFinanceRecord['isTrashed']
 }
