@@ -16,8 +16,8 @@ export class FinanceRecordService {
 		private financeCategoryService: FinanceCategoryService,
 	) {}
 
-	getFinanceRecord(recordId: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-		return this.financeRecordRepository.findOneOrFail(recordId, {
+	getFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+		return this.financeRecordRepository.findOneOrFail(id, {
 			relations: ['category', 'category.type'],
 		})
 	}
@@ -27,7 +27,7 @@ export class FinanceRecordService {
 			order: {
 				date: 'DESC',
 			},
-			relations: ['category'],
+			relations: ['category', 'category.type'],
 		})
 	}
 
@@ -63,56 +63,11 @@ export class FinanceRecordService {
 		return this.financeRecordRepository.save(updatedRecord)
 	}
 
-	async deleteFinanceRecord(recordId: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-		const record = await this.getFinanceRecord(recordId)
+	async deleteFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+		const record = await this.getFinanceRecord(id)
 
-		await this.financeRecordRepository.delete(recordId)
+		await this.financeRecordRepository.delete(id)
 
 		return record
 	}
-
-	// getCategoryRecords(id: number): Promise<IRecord[]> {
-	// 	return this.recordRepository.find({ where: { category: id } })
-	// }
-
-	// getCategoryById(id: number): Promise<ICategory> {
-	// 	return this.categoryRepository.findOne(id)
-	// }
-
-	// createRecord(amount: number, category_id: number, date: string): Promise<IRecord> {
-	// 	const category = await this.categoryRepository.findOne(category_id)
-
-	// 	const newRecord = this.recordRepository.create({ amount, category, date })
-
-	// 	return this.recordRepository.save(newRecord)
-	// }
-
-	// updateRecord(
-	// 	amount: number,
-	// 	categoryId: number,
-	// 	date: string,
-	// 	id: number,
-	// ): Promise<IRecord> {
-	// 	const category = await this.categoryRepository.findOne(categoryId)
-
-	// 	const record = await this.recordRepository.findOne(id)
-
-	// 	record.amount = amount
-	// 	record.category = category
-	// 	record.date = date
-
-	// 	return this.recordRepository.save(record)
-	// }
-
-	// deleteRecord(id: number): Promise<IRecord> {
-	// 	const record = await this.recordRepository.findOne(id)
-	// Finance
-	// 	if (record.isTrashed) {
-	// 		return this.recordRepository.remove(record)
-	// 	}
-
-	// 	record.isTrashed = true
-
-	// 	return this.recordRepository.save(record)
-	// }
 }

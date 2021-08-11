@@ -42,7 +42,7 @@ type Mutation {
   createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto!): FinanceRecordDto!
   deleteFinanceCategory(id: Int!): FinanceCategoryDto!
   deleteFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
-  deleteFinanceRecord(recordId: Float!): FinanceRecordDto!
+  deleteFinanceRecord(id: Int!): FinanceRecordDto!
   updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryDto!): FinanceCategoryDto!
   updateFinanceCategoryType(createFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
   updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto!): FinanceRecordDto!
@@ -53,7 +53,7 @@ type Query {
   financeCategory(id: Int!): FinanceCategoryDto!
   financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
   financeCategoryTypes(ids: [Int!]!): [FinanceCategoryTypeDto!]!
-  financeRecord(recordId: Float!): FinanceRecordDto!
+  financeRecord(id: Int!): FinanceRecordDto!
   financeRecords: [FinanceRecordDto!]!
 }
 

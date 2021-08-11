@@ -3,8 +3,8 @@ module.exports = {
 	async rewrites() {
 		return [
 			{
-				source: '/api/:path*',
-				destination: 'http://[::1]:3080/api/:path*',
+				source: '/graphql/:path*',
+				destination: 'http://[::1]:3080/graphql/:path*',
 			},
 		]
 	},

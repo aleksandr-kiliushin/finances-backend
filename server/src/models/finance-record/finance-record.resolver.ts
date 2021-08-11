@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { FinanceRecordService } from './finance-record.service'
 import { FinanceRecordDto } from './dto/finance-record.dto'
@@ -11,10 +11,10 @@ export class FinanceRecordResolver {
 
 	@Query(returns => FinanceRecordDto, { name: 'financeRecord' })
 	getFinanceRecord(
-		@Args('recordId')
-		recordId: number,
+		@Args('id', { type: () => Int })
+		id: FinanceRecordDto['id'],
 	) {
-		return this.financeRecordService.getFinanceRecord(recordId)
+		return this.financeRecordService.getFinanceRecord(id)
 	}
 
 	@Query(returns => [FinanceRecordDto], { name: 'financeRecords' })
@@ -40,9 +40,9 @@ export class FinanceRecordResolver {
 
 	@Mutation(returns => FinanceRecordDto)
 	deleteFinanceRecord(
-		@Args('recordId')
-		recordId: number,
+		@Args('id', { type: () => Int })
+		id: FinanceRecordDto['id'],
 	) {
-		return this.financeRecordService.deleteFinanceRecord(recordId)
+		return this.financeRecordService.deleteFinanceRecord(id)
 	}
 }
