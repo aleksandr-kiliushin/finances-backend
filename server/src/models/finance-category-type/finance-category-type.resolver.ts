@@ -9,7 +9,7 @@ export class FinanceCategoryTypeResolver {
 	constructor(private financeCategoryTypeService: FinanceCategoryTypeService) {}
 
 	@Query(returns => FinanceCategoryTypeDto, { name: 'financeCategoryType' })
-	getFinanceFinanceCategoryType(
+	getFinanceCategoryType(
 		@Args('id', { type: () => [Int] })
 		id: FinanceCategoryTypeDto['id'],
 	) {
@@ -25,7 +25,7 @@ export class FinanceCategoryTypeResolver {
 	}
 
 	@Mutation(returns => FinanceCategoryTypeDto)
-	createFinanceFinanceCategoryType(
+	createFinanceCategoryType(
 		@Args('createFinanceCategoryTypeInput')
 		createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto,
 	) {
@@ -33,7 +33,7 @@ export class FinanceCategoryTypeResolver {
 	}
 
 	@Mutation(returns => FinanceCategoryTypeDto)
-	updateFinanceFinanceCategoryType(
+	updateFinanceCategoryType(
 		@Args('createFinanceCategoryTypeInput')
 		updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto,
 	) {
@@ -41,7 +41,7 @@ export class FinanceCategoryTypeResolver {
 	}
 
 	@Mutation(returns => FinanceCategoryTypeDto)
-	deleteFinanceFinanceCategoryType(
+	deleteFinanceCategoryType(
 		@Args('id')
 		id: number,
 	) {

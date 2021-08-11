@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateFinanceCategoryDto {
+  name: String!
+  typeId: Float!
+}
+
 input CreateFinanceCategoryTypeDto {
   name: String!
 }
@@ -15,7 +20,7 @@ input CreateFinanceRecordDto {
 type FinanceCategoryDto {
   id: Int!
   name: String!
-  type: FinanceCategoryDto!
+  type: FinanceCategoryTypeDto!
 }
 
 type FinanceCategoryTypeDto {
@@ -32,25 +37,35 @@ type FinanceRecordDto {
 }
 
 type Mutation {
-  createFinanceFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
+  createFinanceCategory(createFinanceCategoryInput: CreateFinanceCategoryDto!): FinanceCategoryDto!
+  createFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
   createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto!): FinanceRecordDto!
-  deleteFinanceFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
+  deleteFinanceCategory(id: Int!): FinanceCategoryDto!
+  deleteFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
   deleteFinanceRecord(recordId: Float!): FinanceRecordDto!
-  updateFinanceFinanceCategoryType(createFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
+  updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryDto!): FinanceCategoryDto!
+  updateFinanceCategoryType(createFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
   updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto!): FinanceRecordDto!
 }
 
 type Query {
-  categories(ids: [Int!]!): [FinanceCategoryDto!]!
+  financeCategories(ids: [Int!]!): [FinanceCategoryDto!]!
+  financeCategory(id: Int!): FinanceCategoryDto!
   financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
   financeCategoryTypes(ids: [Int!]!): [FinanceCategoryTypeDto!]!
   financeRecord(recordId: Float!): FinanceRecordDto!
   financeRecords: [FinanceRecordDto!]!
 }
 
+input UpdateFinanceCategoryDto {
+  id: Float!
+  name: String
+  typeId: Float
+}
+
 input UpdateFinanceCategoryTypeDto {
   id: Int!
-  name: String!
+  name: String
 }
 
 input UpdateFinanceRecordDto {

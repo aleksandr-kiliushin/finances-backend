@@ -7,7 +7,7 @@ import { IFinanceCategory } from '@interfaces/finance'
 
 @Entity('finance_category')
 export class FinanceCategoryEntity {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn({ type: 'int' })
 	id: IFinanceCategory['id']
 
 	@Column({ type: 'varchar' })

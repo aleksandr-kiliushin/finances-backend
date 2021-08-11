@@ -1,33 +1,51 @@
-import { Args, Int, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
+import { Args, Int, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 
 import { FinanceCategoryService } from './finance-category.service'
 import { FinanceCategoryDto } from './dto/finance-category.dto'
+import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
+import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
 
 @Resolver(of => FinanceCategoryDto)
 export class FinanceCategoryResolver {
 	constructor(private financeCategoryService: FinanceCategoryService) {}
 
-	@Query(returns => [FinanceCategoryDto], { name: 'categories' })
-	getCategories(
+	@Query(returns => FinanceCategoryDto, { name: 'financeCategory' })
+	getFinanceCategory(
+		@Args('id', { type: () => Int })
+		id: FinanceCategoryDto['id'],
+	) {
+		return this.financeCategoryService.getFinanceCategory(id)
+	}
+
+	@Query(returns => [FinanceCategoryDto], { name: 'financeCategories' })
+	getFinanceCategories(
 		@Args('ids', { type: () => [Int] })
 		ids: FinanceCategoryDto['id'][],
 	) {
-		return this.financeCategoryService.getCategories(ids)
+		return this.financeCategoryService.getFinanceCategories(ids)
 	}
 
-	// @Query(returns => Category)
-	// category(@Args('id', { type: () => Int }) id: number) {
-	// 	return this.financeService.getCategoryById(id)
-	// }
+	@Mutation(returns => FinanceCategoryDto)
+	createFinanceCategory(
+		@Args('createFinanceCategoryInput')
+		createFinanceCategoryInput: CreateFinanceCategoryDto,
+	) {
+		return this.financeCategoryService.createFinanceCategory(createFinanceCategoryInput)
+	}
 
-	// @ResolveField('records', returns => [Record])
-	// categoryRecords(@Parent() category: Category) {
-	// 	const { id } = category
-	// 	return this.financeService.getCategoryRecords(id)
-	// }
+	@Mutation(returns => FinanceCategoryDto)
+	updateFinanceCategory(
+		@Args('updateFinanceCategoryInput')
+		updateFinanceCategoryInput: UpdateFinanceCategoryDto,
+	) {
+		return this.financeCategoryService.updateFinanceCategory(updateFinanceCategoryInput)
+	}
 
-	// @Query(returns => [Record])
-	// records() {
-	// 	return this.financeService.getAllRecords()
-	// }
+	@Mutation(returns => FinanceCategoryDto)
+	deleteFinanceCategory(
+		@Args('id', { type: () => Int })
+		id: FinanceCategoryDto['id'],
+	) {
+		return this.financeCategoryService.deleteFinanceCategory(id)
+	}
 }

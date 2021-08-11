@@ -5,6 +5,6 @@ export class UpdateFinanceCategoryTypeDto {
 	@Field(type => Int)
 	id: number
 
-	@Field()
-	name: string
+	@Field({ nullable: true })
+	name?: string
 }

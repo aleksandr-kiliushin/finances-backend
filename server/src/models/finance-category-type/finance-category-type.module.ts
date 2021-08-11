@@ -5,6 +5,7 @@ import { FinanceCategoryTypeResolver } from './finance-category-type.resolver'
 import { FinanceCategoryTypeService } from './finance-category-type.service'
 
 @Module({
+	exports: [FinanceCategoryTypeService],
 	imports: [TypeOrmModule.forFeature([FinanceCategoryTypeEntity])],
 	providers: [FinanceCategoryTypeResolver, FinanceCategoryTypeService],
 })

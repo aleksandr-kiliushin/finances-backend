@@ -17,7 +17,9 @@ export class FinanceRecordService {
 	) {}
 
 	getFinanceRecord(recordId: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-		return this.financeRecordRepository.findOneOrFail(recordId)
+		return this.financeRecordRepository.findOneOrFail(recordId, {
+			relations: ['category', 'category.type'],
+		})
 	}
 
 	getFinanceRecords(): Promise<FinanceRecordEntity[]> {
@@ -25,7 +27,7 @@ export class FinanceRecordService {
 			order: {
 				date: 'DESC',
 			},
-			// relations: ['category'],
+			relations: ['category'],
 		})
 	}
 
@@ -34,7 +36,7 @@ export class FinanceRecordService {
 	): Promise<FinanceRecordEntity> {
 		const record = this.financeRecordRepository.create(createFinanceRecordInput as Object)
 
-		const category = await this.financeCategoryService.getCategory(
+		const category = await this.financeCategoryService.getFinanceCategory(
 			createFinanceRecordInput.categoryId,
 		)
 
@@ -50,13 +52,11 @@ export class FinanceRecordService {
 
 		const record = await this.getFinanceRecord(id)
 
-		const updatedRecord = {
-			...record,
-			...rest,
-		}
+		const updatedRecord = { ...record, ...rest }
 
 		if (categoryId) {
-			const category = await this.financeCategoryService.getCategory(categoryId)
+			const category = await this.financeCategoryService.getFinanceCategory(categoryId)
+
 			updatedRecord.category = category
 		}
 
