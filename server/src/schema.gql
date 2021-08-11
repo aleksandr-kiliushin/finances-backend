@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateFinanceCategoryTypeDto {
+  name: String!
+}
+
 input CreateFinanceRecordDto {
   amount: Float!
   categoryId: Float!
@@ -14,6 +18,11 @@ type FinanceCategoryDto {
   type: FinanceCategoryDto!
 }
 
+type FinanceCategoryTypeDto {
+  id: Int!
+  name: String!
+}
+
 type FinanceRecordDto {
   amount: Int!
   category: FinanceCategoryDto!
@@ -23,15 +32,25 @@ type FinanceRecordDto {
 }
 
 type Mutation {
+  createFinanceFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
   createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto!): FinanceRecordDto!
+  deleteFinanceFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
   deleteFinanceRecord(recordId: Float!): FinanceRecordDto!
+  updateFinanceFinanceCategoryType(createFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
   updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto!): FinanceRecordDto!
 }
 
 type Query {
   categories(ids: [Int!]!): [FinanceCategoryDto!]!
+  financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
+  financeCategoryTypes(ids: [Int!]!): [FinanceCategoryTypeDto!]!
   financeRecord(recordId: Float!): FinanceRecordDto!
   financeRecords: [FinanceRecordDto!]!
+}
+
+input UpdateFinanceCategoryTypeDto {
+  id: Int!
+  name: String!
 }
 
 input UpdateFinanceRecordDto {

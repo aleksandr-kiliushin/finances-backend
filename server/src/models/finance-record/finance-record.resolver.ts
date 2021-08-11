@@ -5,17 +5,12 @@ import { FinanceRecordDto } from './dto/finance-record.dto'
 import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
 import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 
-/**
- * The argument passed to the @Resolver() decorator is optional, but comes into
- * play when our graph becomes non-trivial. It's used to supply a parent object
- * used by field resolver functions as they traverse down through an object graph.
- */
 @Resolver(of => FinanceRecordDto)
 export class FinanceRecordResolver {
 	constructor(private financeRecordService: FinanceRecordService) {}
 
 	@Query(returns => FinanceRecordDto, { name: 'financeRecord' })
-	async getFinanceRecord(
+	getFinanceRecord(
 		@Args('recordId')
 		recordId: number,
 	) {
@@ -23,31 +18,31 @@ export class FinanceRecordResolver {
 	}
 
 	@Query(returns => [FinanceRecordDto], { name: 'financeRecords' })
-	async getFinanceRecords() {
+	getFinanceRecords() {
 		return this.financeRecordService.getFinanceRecords()
 	}
 
 	@Mutation(returns => FinanceRecordDto)
-	async createFinanceRecord(
+	createFinanceRecord(
 		@Args('createFinanceRecordInput')
 		createFinanceRecordInput: CreateFinanceRecordDto,
 	) {
-		return await this.financeRecordService.createFinanceRecord(createFinanceRecordInput)
+		return this.financeRecordService.createFinanceRecord(createFinanceRecordInput)
 	}
 
 	@Mutation(returns => FinanceRecordDto)
-	async updateFinanceRecord(
+	updateFinanceRecord(
 		@Args('updateFinanceRecordInput')
 		updateFinanceRecordInput: UpdateFinanceRecordDto,
 	) {
-		return await this.financeRecordService.updateFinanceRecord(updateFinanceRecordInput)
+		return this.financeRecordService.updateFinanceRecord(updateFinanceRecordInput)
 	}
 
 	@Mutation(returns => FinanceRecordDto)
-	async deleteFinanceRecord(
+	deleteFinanceRecord(
 		@Args('recordId')
 		recordId: number,
 	) {
-		return await this.financeRecordService.deleteFinanceRecord(recordId)
+		return this.financeRecordService.deleteFinanceRecord(recordId)
 	}
 }

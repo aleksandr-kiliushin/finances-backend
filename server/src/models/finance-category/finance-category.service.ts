@@ -11,15 +11,15 @@ export class FinanceCategoryService {
 		private financeCategoryRepository: Repository<FinanceCategoryEntity>,
 	) {}
 
-	async getCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
-		return await this.financeCategoryRepository.findOneOrFail(id)
+	getCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
+		return this.financeCategoryRepository.findOneOrFail(id)
 	}
 
 	getCategories(ids: FinanceCategoryEntity['id'][]): Promise<FinanceCategoryEntity[]> {
 		let where = {}
 
 		if (ids.length) {
-			where = { ...where, id: In(ids) }
+			where = { id: In(ids) }
 		}
 
 		return this.financeCategoryRepository.find({ where })
@@ -39,12 +39,12 @@ export class FinanceCategoryService {
 	// getCategoryById(id: number): Promise<ICategory> {
 	// 	return this.categoryRepository.findOne(id)
 	// }
-	// async createRecord(amount: number, category_id: number, date: string): Promise<IRecord> {
+	// createRecord(amount: number, category_id: number, date: string): Promise<IRecord> {
 	// 	const category = await this.categoryRepository.findOne(category_id)
 	// 	const newRecord = this.recordRepository.create({ amount, category, date })
 	// 	return this.recordRepository.save(newRecord)
 	// }
-	// async updateRecord(
+	// updateRecord(
 	// 	amount: number,
 	// 	categoryId: number,
 	// 	date: string,
@@ -57,7 +57,7 @@ export class FinanceCategoryService {
 	// 	record.date = date
 	// 	return this.recordRepository.save(record)
 	// }
-	// async deleteRecord(id: number): Promise<IRecord> {
+	// deleteRecord(id: number): Promise<IRecord> {
 	// 	const record = await this.recordRepository.findOne(id)
 	// 	if (record.isTrashed) {
 	// 		return this.recordRepository.remove(record)

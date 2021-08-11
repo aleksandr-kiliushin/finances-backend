@@ -16,8 +16,8 @@ export class FinanceRecordService {
 		private financeCategoryService: FinanceCategoryService,
 	) {}
 
-	async getFinanceRecord(recordId: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-		return await this.financeRecordRepository.findOneOrFail(recordId)
+	getFinanceRecord(recordId: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+		return this.financeRecordRepository.findOneOrFail(recordId)
 	}
 
 	getFinanceRecords(): Promise<FinanceRecordEntity[]> {
@@ -79,7 +79,7 @@ export class FinanceRecordService {
 	// 	return this.categoryRepository.findOne(id)
 	// }
 
-	// async createRecord(amount: number, category_id: number, date: string): Promise<IRecord> {
+	// createRecord(amount: number, category_id: number, date: string): Promise<IRecord> {
 	// 	const category = await this.categoryRepository.findOne(category_id)
 
 	// 	const newRecord = this.recordRepository.create({ amount, category, date })
@@ -87,7 +87,7 @@ export class FinanceRecordService {
 	// 	return this.recordRepository.save(newRecord)
 	// }
 
-	// async updateRecord(
+	// updateRecord(
 	// 	amount: number,
 	// 	categoryId: number,
 	// 	date: string,
@@ -104,7 +104,7 @@ export class FinanceRecordService {
 	// 	return this.recordRepository.save(record)
 	// }
 
-	// async deleteRecord(id: number): Promise<IRecord> {
+	// deleteRecord(id: number): Promise<IRecord> {
 	// 	const record = await this.recordRepository.findOne(id)
 	// Finance
 	// 	if (record.isTrashed) {
