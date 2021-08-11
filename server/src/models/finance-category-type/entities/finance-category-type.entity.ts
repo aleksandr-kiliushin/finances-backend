@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 
 // types
-import { IFinanceCategoryType } from '@interfaces/finance'
+import { IFinanceCategoryType } from '#interfaces/finance'
 
 @Entity('finance_category_type')
 export class FinanceCategoryTypeEntity {

@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql'
-import { FinanceCategoryTypeDto } from '@models/finance-category-type/dto/finance-category-type.dto'
+import { FinanceCategoryTypeDto } from '#models/finance-category-type/dto/finance-category-type.dto'
 
 @ObjectType()
 export class FinanceCategoryDto {

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { FinanceCategoryService } from '@models/finance-category/finance-category.service'
+import { FinanceCategoryService } from '#models/finance-category/finance-category.service'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
 import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'

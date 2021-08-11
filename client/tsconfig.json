@@ -15,10 +15,10 @@
 		"jsx": "preserve",
 		"baseUrl": ".",
 		"paths": {
-			"@comp-by-page/*": ["components/by-page/*"],
-			"@query/*": ["query/*"],
-			"@interfaces/*": ["../server/src/interfaces/*"],
-			"@style-by-page/*": ["styles/by-page/*"]
+			"#comp-by-page/*": ["components/by-page/*"],
+			"#queries/*": ["queries/*"],
+			"#interfaces/*": ["../server/src/interfaces/*"],
+			"#style-by-page/*": ["styles/by-page/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

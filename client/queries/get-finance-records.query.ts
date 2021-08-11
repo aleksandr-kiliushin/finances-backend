@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 // types
-import { IFinanceRecord } from '@interfaces/finance'
+import { IFinanceRecord } from '#interfaces/finance'
 
 export const FINANCE_RECORDS = gql`
 	query GetFinanceRecords($isTrashed: Boolean) {

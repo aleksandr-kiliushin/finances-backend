@@ -1,19 +1,19 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 
-// graphql
+// query
 import {
 	FINANCE_RECORDS,
 	IFinanceRecordsData,
 	IFinanceRecordsVars,
-} from '@query/get-finance-records'
+} from '#queries/get-finance-records.query'
 
 // components
-import Header from '@comp-by-page/records/header'
-import InputRow from '@comp-by-page/records/input-row'
+import Header from '#comp-by-page/records/header'
+import InputRow from '#comp-by-page/records/input-row'
 
 // styles
-import s from '@style-by-page/records.module.css'
+import s from '#style-by-page/records.module.css'
 
 export default function Records() {
 	const { data, error, loading } = useQuery<IFinanceRecordsData, IFinanceRecordsVars>(

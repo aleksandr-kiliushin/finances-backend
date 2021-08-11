@@ -12,8 +12,8 @@
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
-			"@interfaces/*": ["src/interfaces/*"],
-			"@models/*": ["src/models/*"]
+			"#interfaces/*": ["src/interfaces/*"],
+			"#models/*": ["src/models/*"]
 		}
 	}
 }

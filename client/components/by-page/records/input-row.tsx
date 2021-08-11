@@ -1,6 +1,6 @@
 import React from 'react'
 
-import s from '@style-by-page/records.module.css'
+import s from '#style-by-page/records.module.css'
 
 export default function InputRow() {
 	return (
