@@ -1,4 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useQuery } from '@apollo/client'
+
+// graphql
+import {
+	FINANCE_RECORDS,
+	IFinanceRecordsData,
+	IFinanceRecordsVars,
+} from '@query/get-finance-records'
 
 // components
 import Header from '@comp-by-page/records/header'
@@ -7,23 +15,22 @@ import InputRow from '@comp-by-page/records/input-row'
 // styles
 import s from '@style-by-page/records.module.css'
 
-// types
-import { IFinanceRecord } from '@interfaces/finance'
-
 export default function Records() {
-	const [records, setRecords] = useState([])
+	const { data, error, loading } = useQuery<IFinanceRecordsData, IFinanceRecordsVars>(
+		FINANCE_RECORDS,
+		{ variables: { isTrashed: false } },
+	)
 
-	useEffect(() => {
-		fetch('api/record')
-			.then(response => response.json())
-			.then(records => setRecords(records))
-	}, [])
+	if (error) return <div>error :(</div>
+	if (loading || !data) return <div>loading...</div>
+
+	const { financeRecords } = data
 
 	return (
 		<div className={s.Table}>
 			<Header />
 			<InputRow />
-			{records.map(({ amount, category, date, id }: IFinanceRecord) => (
+			{financeRecords.map(({ amount, category, date, id }) => (
 				<div key={id} className={s.Row}>
 					<div className={s.Cell}>{amount}</div>
 					<div className={s.Cell}>{category.name}</div>

@@ -4,6 +4,7 @@ import { FinanceRecordService } from './finance-record.service'
 import { FinanceRecordDto } from './dto/finance-record.dto'
 import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
 import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
+import { GetFinanceRecordsDto } from './dto/get-finance-records.dto'
 
 @Resolver(of => FinanceRecordDto)
 export class FinanceRecordResolver {
@@ -18,8 +19,11 @@ export class FinanceRecordResolver {
 	}
 
 	@Query(returns => [FinanceRecordDto], { name: 'financeRecords' })
-	getFinanceRecords() {
-		return this.financeRecordService.getFinanceRecords()
+	getFinanceRecords(
+		@Args('getFinanceRecordsArgs')
+		getFinanceRecordsArgs: GetFinanceRecordsDto,
+	) {
+		return this.financeRecordService.getFinanceRecords(getFinanceRecordsArgs)
 	}
 
 	@Mutation(returns => FinanceRecordDto)

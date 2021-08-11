@@ -6,6 +6,7 @@ import { FinanceCategoryService } from '@models/finance-category/finance-categor
 import { FinanceRecordEntity } from './entities/finance-record.entity'
 import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
+import { GetFinanceRecordsDto } from './dto/get-finance-records.dto'
 
 @Injectable()
 export class FinanceRecordService {
@@ -22,12 +23,13 @@ export class FinanceRecordService {
 		})
 	}
 
-	getFinanceRecords(): Promise<FinanceRecordEntity[]> {
+	getFinanceRecords(getFinanceRecordsArgs: GetFinanceRecordsDto): Promise<FinanceRecordEntity[]> {
 		return this.financeRecordRepository.find({
 			order: {
 				date: 'DESC',
 			},
 			relations: ['category', 'category.type'],
+			where: getFinanceRecordsArgs,
 		})
 	}
 

@@ -16,6 +16,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@comp-by-page/*": ["components/by-page/*"],
+			"@query/*": ["query/*"],
 			"@interfaces/*": ["../server/src/interfaces/*"],
 			"@style-by-page/*": ["styles/by-page/*"]
 		}
