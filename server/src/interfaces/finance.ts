@@ -1,7 +1,12 @@
 export interface IFinanceCategory {
 	id: number
 	name: string
-	type: 'expense' | 'income'
+	type: IFinanceCategoryType
+}
+
+export interface IFinanceCategoryType {
+	id: number
+	name: string
 }
 
 export interface IFinanceRecord {

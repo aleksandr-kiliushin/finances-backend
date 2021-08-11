@@ -4,8 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 
 import ormconfig from 'src/config/ormconfig'
 
-import { FinanceCategoryModule } from './models/finance-category/finance-category.module'
-import { FinanceRecordModule } from './models/finance-record/finance-record.module'
+import { FinanceCategoryModule } from '@models/finance-category/finance-category.module'
+import { FinanceRecordModule } from '@models/finance-record/finance-record.module'
+import { FinanceCategoryTypeModule } from '@models/finance-category-type/finance-category-type.module'
 
 @Module({
 	imports: [
@@ -15,6 +16,7 @@ import { FinanceRecordModule } from './models/finance-record/finance-record.modu
 			sortSchema: true,
 		}),
 		FinanceCategoryModule,
+		FinanceCategoryTypeModule,
 		FinanceRecordModule,
 	],
 })

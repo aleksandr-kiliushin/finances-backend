@@ -7,9 +7,6 @@ import { FinanceRecordEntity } from './entities/finance-record.entity'
 import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
 
-// types
-import { IFinanceRecord } from '@interfaces/finance'
-
 @Injectable()
 export class FinanceRecordService {
 	constructor(
@@ -19,11 +16,11 @@ export class FinanceRecordService {
 		private financeCategoryService: FinanceCategoryService,
 	) {}
 
-	async getFinanceRecord(recordId: IFinanceRecord['id']): Promise<IFinanceRecord> {
+	async getFinanceRecord(recordId: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
 		return await this.financeRecordRepository.findOneOrFail(recordId)
 	}
 
-	getFinanceRecords(): Promise<IFinanceRecord[]> {
+	getFinanceRecords(): Promise<FinanceRecordEntity[]> {
 		return this.financeRecordRepository.find({
 			order: {
 				date: 'DESC',
@@ -32,7 +29,9 @@ export class FinanceRecordService {
 		})
 	}
 
-	async createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto) {
+	async createFinanceRecord(
+		createFinanceRecordInput: CreateFinanceRecordDto,
+	): Promise<FinanceRecordEntity> {
 		const record = this.financeRecordRepository.create(createFinanceRecordInput as Object)
 
 		const category = await this.financeCategoryService.getCategory(
@@ -44,7 +43,9 @@ export class FinanceRecordService {
 		return this.financeRecordRepository.save(record)
 	}
 
-	async updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto) {
+	async updateFinanceRecord(
+		updateFinanceRecordInput: UpdateFinanceRecordDto,
+	): Promise<FinanceRecordEntity> {
 		const { id, categoryId, ...rest } = updateFinanceRecordInput
 
 		const record = await this.getFinanceRecord(id)
@@ -62,7 +63,7 @@ export class FinanceRecordService {
 		return this.financeRecordRepository.save(updatedRecord)
 	}
 
-	async deleteFinanceRecord(recordId: IFinanceRecord['id']): Promise<IFinanceRecord> {
+	async deleteFinanceRecord(recordId: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
 		const record = await this.getFinanceRecord(recordId)
 
 		await this.financeRecordRepository.delete(recordId)

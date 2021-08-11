@@ -11,7 +11,7 @@ input CreateFinanceRecordDto {
 type FinanceCategoryDto {
   id: Int!
   name: String!
-  type: String!
+  type: FinanceCategoryDto!
 }
 
 type FinanceRecordDto {

@@ -1,13 +1,10 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql'
 
 @ObjectType()
-export class FinanceCategoryDto {
+export class FinanceCategoryTypeDto {
 	@Field(type => Int)
 	id: number
 
 	@Field()
 	name: string
-
-	@Field(type => FinanceCategoryDto)
-	type: FinanceCategoryDto
 }

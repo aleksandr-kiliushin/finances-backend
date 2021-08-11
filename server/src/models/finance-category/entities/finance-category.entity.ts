@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
+
+import { FinanceCategoryTypeEntity } from '@models/finance-category-type/entities/finance-category-type.entity'
 
 // types
 import { IFinanceCategory } from '@interfaces/finance'
@@ -11,6 +13,6 @@ export class FinanceCategoryEntity {
 	@Column({ type: 'varchar' })
 	name: IFinanceCategory['name']
 
-	@Column({ type: 'varchar' })
-	type: IFinanceCategory['type']
+	@ManyToOne(type => FinanceCategoryTypeEntity)
+	type: FinanceCategoryTypeEntity
 }

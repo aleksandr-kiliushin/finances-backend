@@ -4,9 +4,6 @@ import { In, Repository } from 'typeorm'
 
 import { FinanceCategoryEntity } from './entities/finance-category.entity'
 
-// types
-import { IFinanceCategory } from '@interfaces/finance'
-
 @Injectable()
 export class FinanceCategoryService {
 	constructor(
@@ -14,11 +11,11 @@ export class FinanceCategoryService {
 		private financeCategoryRepository: Repository<FinanceCategoryEntity>,
 	) {}
 
-	async getCategory(id: IFinanceCategory['id']): Promise<IFinanceCategory> {
+	async getCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
 		return await this.financeCategoryRepository.findOneOrFail(id)
 	}
 
-	getCategories(ids: IFinanceCategory['id'][]): Promise<IFinanceCategory[]> {
+	getCategories(ids: FinanceCategoryEntity['id'][]): Promise<FinanceCategoryEntity[]> {
 		let where = {}
 
 		if (ids.length) {
