@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreateFinanceRecordInput {
+input CreateFinanceRecordDto {
   amount: Float!
   categoryId: Float!
   date: String!
@@ -23,9 +23,9 @@ type FinanceRecordDto {
 }
 
 type Mutation {
-  createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordInput!): FinanceRecordDto!
+  createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto!): FinanceRecordDto!
   deleteFinanceRecord(recordId: Float!): FinanceRecordDto!
-  updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordInput!): FinanceRecordDto!
+  updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto!): FinanceRecordDto!
 }
 
 type Query {
@@ -34,7 +34,7 @@ type Query {
   financeRecords: [FinanceRecordDto!]!
 }
 
-input UpdateFinanceRecordInput {
+input UpdateFinanceRecordDto {
   amount: Float
   categoryId: Float
   date: String

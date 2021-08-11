@@ -2,8 +2,8 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { FinanceRecordService } from './finance-record.service'
 import { FinanceRecordDto } from './dto/finance-record.dto'
-import { CreateFinanceRecordInput } from './dto/create-finance-record.input'
-import { UpdateFinanceRecordInput } from './dto/update-finance-record.input'
+import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
+import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 
 /**
  * The argument passed to the @Resolver() decorator is optional, but comes into
@@ -30,7 +30,7 @@ export class FinanceRecordResolver {
 	@Mutation(returns => FinanceRecordDto)
 	async createFinanceRecord(
 		@Args('createFinanceRecordInput')
-		createFinanceRecordInput: CreateFinanceRecordInput,
+		createFinanceRecordInput: CreateFinanceRecordDto,
 	) {
 		return await this.financeRecordService.createFinanceRecord(createFinanceRecordInput)
 	}
@@ -38,7 +38,7 @@ export class FinanceRecordResolver {
 	@Mutation(returns => FinanceRecordDto)
 	async updateFinanceRecord(
 		@Args('updateFinanceRecordInput')
-		updateFinanceRecordInput: UpdateFinanceRecordInput,
+		updateFinanceRecordInput: UpdateFinanceRecordDto,
 	) {
 		return await this.financeRecordService.updateFinanceRecord(updateFinanceRecordInput)
 	}

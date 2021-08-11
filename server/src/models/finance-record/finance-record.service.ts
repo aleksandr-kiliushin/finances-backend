@@ -5,8 +5,8 @@ import { Repository } from 'typeorm'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
 import { FinanceCategoryEntity } from '@models/finance-category/entities/finance-category.entity'
 
-import { UpdateFinanceRecordInput } from './dto/update-finance-record.input'
-import { CreateFinanceRecordInput } from './dto/create-finance-record.input'
+import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
+import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
 
 // types
 import { IFinanceRecord } from '@interfaces/finance'
@@ -34,7 +34,7 @@ export class FinanceRecordService {
 		})
 	}
 
-	async createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordInput) {
+	async createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto) {
 		const record = this.financeRecordRepository.create(createFinanceRecordInput as Object)
 
 		const category = await this.financeCategoryRepository.findOne(
@@ -46,7 +46,7 @@ export class FinanceRecordService {
 		return this.financeRecordRepository.save(record)
 	}
 
-	async updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordInput) {
+	async updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto) {
 		const { id, categoryId, ...rest } = updateFinanceRecordInput
 
 		const record = await this.getFinanceRecord(id)
