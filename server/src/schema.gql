@@ -1,0 +1,77 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateFinanceCategoryDto {
+  name: String!
+  typeId: Float!
+}
+
+input CreateFinanceCategoryTypeDto {
+  name: String!
+}
+
+input CreateFinanceRecordDto {
+  amount: Float!
+  categoryId: Float!
+  date: String!
+}
+
+type FinanceCategoryDto {
+  id: Int!
+  name: String!
+  type: FinanceCategoryTypeDto!
+}
+
+type FinanceCategoryTypeDto {
+  id: Int!
+  name: String!
+}
+
+type FinanceRecordDto {
+  amount: Int!
+  category: FinanceCategoryDto!
+  date: String!
+  id: Int!
+  isTrashed: Boolean!
+}
+
+type Mutation {
+  createFinanceCategory(createFinanceCategoryInput: CreateFinanceCategoryDto!): FinanceCategoryDto!
+  createFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
+  createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto!): FinanceRecordDto!
+  deleteFinanceCategory(id: Int!): FinanceCategoryDto!
+  deleteFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
+  deleteFinanceRecord(id: Int!): FinanceRecordDto!
+  updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryDto!): FinanceCategoryDto!
+  updateFinanceCategoryType(createFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
+  updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto!): FinanceRecordDto!
+}
+
+type Query {
+  financeCategories(ids: [Int!]!): [FinanceCategoryDto!]!
+  financeCategory(id: Int!): FinanceCategoryDto!
+  financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
+  financeCategoryTypes(ids: [Int!]!): [FinanceCategoryTypeDto!]!
+  financeRecord(id: Int!): FinanceRecordDto!
+  financeRecords: [FinanceRecordDto!]!
+}
+
+input UpdateFinanceCategoryDto {
+  id: Float!
+  name: String
+  typeId: Float
+}
+
+input UpdateFinanceCategoryTypeDto {
+  id: Int!
+  name: String
+}
+
+input UpdateFinanceRecordDto {
+  amount: Float
+  categoryId: Float
+  date: String
+  id: Float!
+  isTrashed: Boolean
+}
