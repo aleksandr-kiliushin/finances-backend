@@ -2,9 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
+import { FinanceCategoryService } from '@models/finance-category/finance-category.service'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
-import { FinanceCategoryEntity } from '@models/finance-category/entities/finance-category.entity'
-
 import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
 
@@ -17,8 +16,7 @@ export class FinanceRecordService {
 		@InjectRepository(FinanceRecordEntity)
 		private financeRecordRepository: Repository<FinanceRecordEntity>,
 
-		@InjectRepository(FinanceCategoryEntity)
-		private financeCategoryRepository: Repository<FinanceCategoryEntity>,
+		private financeCategoryService: FinanceCategoryService,
 	) {}
 
 	async getFinanceRecord(recordId: IFinanceRecord['id']): Promise<IFinanceRecord> {
@@ -37,7 +35,7 @@ export class FinanceRecordService {
 	async createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto) {
 		const record = this.financeRecordRepository.create(createFinanceRecordInput as Object)
 
-		const category = await this.financeCategoryRepository.findOne(
+		const category = await this.financeCategoryService.getCategory(
 			createFinanceRecordInput.categoryId,
 		)
 
@@ -57,7 +55,7 @@ export class FinanceRecordService {
 		}
 
 		if (categoryId) {
-			const category = await this.financeCategoryRepository.findOne(categoryId)
+			const category = await this.financeCategoryService.getCategory(categoryId)
 			updatedRecord.category = category
 		}
 
