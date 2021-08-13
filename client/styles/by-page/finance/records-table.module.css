@@ -11,18 +11,24 @@
 	height: 35px;
 	line-height: 35px;
 	text-align: center;
-	background-color: palegoldenrod;
+	background-color: whitesmoke;
 	border: 1px solid;
 }
 
 .AddRecordCell {
+	position: relative;
 	grid-column: span 2;
 }
 
 .Cell {
+	position: relative;
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
-	background-color: oldlace;
+	background-color: ghostwhite;
 	border: 1px solid;
+}
+
+.SvgAdd {
+	position: relative;
 }

@@ -6,7 +6,7 @@ import Link from 'next/link'
 // styles
 import s from 'styles/navbar.module.css'
 
-export default function Header() {
+export const Navbar = () => {
 	return (
 		<nav className={s.Navbar}>
 			<Link href="/">
@@ -15,10 +15,6 @@ export default function Header() {
 
 			<Link href="/records">
 				<a className={s.Link}>records</a>
-			</Link>
-
-			<Link href="/stats">
-				<a className={s.Link}>stats</a>
 			</Link>
 
 			<Link href="/trash">

@@ -18,9 +18,10 @@
 			"#comp-by-page/*": ["components/by-page/*"],
 			"#queries/*": ["queries/*"],
 			"#interfaces/*": ["../server/src/interfaces/*"],
-			"#style-by-page/*": ["styles/by-page/*"]
+			"#style-by-page/*": ["styles/by-page/*"],
+			"#svg/*": ["public/svg/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "custom.d.ts"],
 	"exclude": ["node_modules"]
 }

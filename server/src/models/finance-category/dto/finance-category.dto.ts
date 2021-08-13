@@ -3,12 +3,12 @@ import { FinanceCategoryTypeDto } from '#models/finance-category-type/dto/financ
 
 @ObjectType()
 export class FinanceCategoryDto {
-	@Field(type => Int)
+	@Field(() => Int)
 	id: number
 
 	@Field()
 	name: string
 
-	@Field(type => FinanceCategoryTypeDto)
+	@Field(() => FinanceCategoryTypeDto)
 	type: FinanceCategoryTypeDto
 }

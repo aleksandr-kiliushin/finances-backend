@@ -1,10 +1,18 @@
 import React from 'react'
 
-import s from '#style-by-page/records.module.css'
+// components
+import Image from 'next/image'
 
-export default function InputRow() {
+// svg
+import SvgCheckmark from '#svg/checkmark.svg'
+import SvgCross from '#svg/cross.svg'
+
+// style
+import s from '#style-by-page/finance/records-table.module.css'
+
+export const InputRow = () => {
 	return (
-		<div className={s.Row}>
+		<form className={s.Row}>
 			<div className={s.Cell}>
 				<input onChange={() => {}} type="number" value="999999" style={{ width: '100%' }} />
 			</div>
@@ -23,8 +31,12 @@ export default function InputRow() {
 			<div className={s.Cell}>
 				<input type="date" style={{ width: '100%' }} />
 			</div>
-			<div className={s.Cell}>ok</div>
-			<div className={s.Cell}>del</div>
-		</div>
+			<div className={s.Cell}>
+				<Image layout="fill" src={SvgCheckmark} />
+			</div>
+			<div className={s.Cell}>
+				<Image layout="fill" src={SvgCross} />
+			</div>
+		</form>
 	)
 }

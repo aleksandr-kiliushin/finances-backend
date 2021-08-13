@@ -3,8 +3,8 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'
 import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
+import { GetFinanceCategoriesDto } from './dto/get-finance-categories.dto'
 import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
-
 import { FinanceCategoryEntity } from './entities/finance-category.entity'
 
 @Injectable()
@@ -22,10 +22,14 @@ export class FinanceCategoryService {
 		})
 	}
 
-	getFinanceCategories(ids: FinanceCategoryEntity['id'][]): Promise<FinanceCategoryEntity[]> {
+	getFinanceCategories(
+		getFinanceCategoriesArgs: GetFinanceCategoriesDto,
+	): Promise<FinanceCategoryEntity[]> {
+		const { ids } = getFinanceCategoriesArgs
+
 		let where = {}
 
-		if (ids.length) {
+		if (ids?.length) {
 			where = { id: In(ids) }
 		}
 

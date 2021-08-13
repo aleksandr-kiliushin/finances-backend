@@ -36,6 +36,10 @@ type FinanceRecordDto {
   isTrashed: Boolean!
 }
 
+input GetFinanceCategoriesDto {
+  ids: [Int!]
+}
+
 input GetFinanceRecordsDto {
   isTrashed: Boolean
 }
@@ -53,7 +57,7 @@ type Mutation {
 }
 
 type Query {
-  financeCategories(ids: [Int!]!): [FinanceCategoryDto!]!
+  financeCategories(getFinanceCategoriesArgs: GetFinanceCategoriesDto!): [FinanceCategoryDto!]!
   financeCategory(id: Int!): FinanceCategoryDto!
   financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
   financeCategoryTypes(ids: [Int!]!): [FinanceCategoryTypeDto!]!
