@@ -12,8 +12,8 @@ input CreateFinanceCategoryTypeDto {
 }
 
 input CreateFinanceRecordDto {
-  amount: Float!
-  categoryId: Float!
+  amount: Int!
+  categoryId: Int!
   date: String!
 }
 
@@ -77,9 +77,9 @@ input UpdateFinanceCategoryTypeDto {
 }
 
 input UpdateFinanceRecordDto {
-  amount: Float
-  categoryId: Float
+  amount: Int
+  categoryId: Int
   date: String
-  id: Float!
+  id: Int!
   isTrashed: Boolean
 }

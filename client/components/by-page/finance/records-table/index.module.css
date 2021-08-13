@@ -1,4 +1,4 @@
-/* .Table {
+.Table {
 	border: 1px solid;
 }
 
@@ -29,6 +29,14 @@
 	border: 1px solid;
 }
 
-.SvgAdd {
-	position: relative;
-} */
+.CellInput {
+	width: 100%;
+}
+
+.ExpenseCategory {
+	color: darkred;
+}
+
+.IncomeCategory {
+	color: green;
+}

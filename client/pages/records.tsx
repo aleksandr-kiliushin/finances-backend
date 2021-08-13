@@ -3,34 +3,35 @@ import { useQuery } from '@apollo/client'
 
 // query
 import {
-	FINANCE_RECORDS,
-	IFinanceRecordsData,
-	IFinanceRecordsVars,
-} from '#queries/get-finance-records.query'
+	GET_FINANCE_RECORDS,
+	IGetFinanceRecordsData,
+	IGetFinanceRecordsVars,
+} from '#gql/get-finance-records.query'
+import {
+	GET_FINANCE_CATEGORIES,
+	IGetFinanceCategoriesData,
+	IGetFinanceCategoriesVars,
+} from '#gql/get-finance-categories.query'
 
 // components
 import { Table } from '#comp-by-page/finance/records-table'
-import {
-	FINANCE_CATEGORIES,
-	IFinanceCategoriesData,
-	IFinanceCategoriesVars,
-} from '#queries/get-finance-categories.query'
 
 export default function Records() {
-	const { data: recordsData } = useQuery<IFinanceRecordsData, IFinanceRecordsVars>(
-		FINANCE_RECORDS,
+	const { data: recordsData } = useQuery<IGetFinanceRecordsData, IGetFinanceRecordsVars>(
+		GET_FINANCE_RECORDS,
 		{
 			variables: { isTrashed: false },
 		},
 	)
 
-	const { data: categoriesData } = useQuery<IFinanceCategoriesData, IFinanceCategoriesVars>(
-		FINANCE_CATEGORIES,
+	const { data: categoriesData } = useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(
+		GET_FINANCE_CATEGORIES,
 	)
 
 	if (!recordsData || !categoriesData) return <div>loading...</div>
 
 	const { financeRecords } = recordsData
+	const { financeCategories } = categoriesData
 
-	return <Table records={financeRecords} />
+	return <Table records={financeRecords} categories={financeCategories} />
 }

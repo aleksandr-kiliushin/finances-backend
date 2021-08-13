@@ -7,7 +7,7 @@ import Image from 'next/image'
 import SVGAdd from '#svg/plus.svg'
 
 // styles
-import s from '#style-by-page/finance/records-table.module.css'
+import s from './index.module.css'
 
 export const Header = () => {
 	return (
@@ -16,7 +16,7 @@ export const Header = () => {
 			<div className={s.HeaderCell}>category</div>
 			<div className={s.HeaderCell}>date</div>
 			<div className={`${s.HeaderCell} ${s.AddRecordCell}`}>
-				<Image layout="fill" src={SVGAdd} />
+				<Image layout="fill" src={SVGAdd} alt="add" />
 			</div>
 		</div>
 	)

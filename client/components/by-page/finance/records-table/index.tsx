@@ -6,16 +6,16 @@ import { InputRow } from './input-row'
 import { Row } from './row'
 
 // styles
-import s from '#style-by-page/finance/records-table.module.css'
+import s from './index.module.css'
 
 // types
-import { IFinanceRecord } from '#interfaces/finance'
+import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const Table = ({ records }: IProps) => {
+export const Table = ({ categories, isTrash, records }: IProps) => {
 	return (
 		<div className={s.Table}>
 			<Header />
-			<InputRow />
+			<InputRow categories={categories} />
 			{records.map(record => (
 				<Row key={record.id} record={record} />
 			))}
@@ -24,5 +24,7 @@ export const Table = ({ records }: IProps) => {
 }
 
 interface IProps {
+	categories: IFinanceCategory[]
+	isTrash?: boolean
 	records: IFinanceRecord[]
 }

@@ -1,4 +1,12 @@
 import React from 'react'
+import { useMutation } from '@apollo/client'
+
+// gql
+import {
+	IUpdateFinanceRecordData,
+	IUpdateFinanceRecordVars,
+	UPDATE_FINANCE_RECORD,
+} from '#gql/update-finance-record.mutation'
 
 // components
 import Image from 'next/image'
@@ -8,13 +16,18 @@ import SvgCross from '#svg/cross.svg'
 import SvgEdit from '#svg/edit.svg'
 
 // styles
-import s from '#style-by-page/finance/records-table.module.css'
+import s from './index.module.css'
 
 // types
 import { IFinanceRecord } from '#interfaces/finance'
 
 export const Row = ({ record }: IProps) => {
-	const { amount, category, date } = record
+	const { amount, category, date, id } = record
+
+	const [updatedFinanceRecord, { data: updatedFinanceRecordData }] = useMutation<
+		IUpdateFinanceRecordData,
+		IUpdateFinanceRecordVars
+	>(UPDATE_FINANCE_RECORD)
 
 	return (
 		<div className={s.Row}>
@@ -22,10 +35,17 @@ export const Row = ({ record }: IProps) => {
 			<div className={s.Cell}>{category.name}</div>
 			<div className={s.Cell}>{date}</div>
 			<div className={s.Cell}>
-				<Image layout="fill" src={SvgEdit} />
+				<Image alt="edit" layout="fill" onClick={() => {}} src={SvgEdit} />
 			</div>
 			<div className={s.Cell}>
-				<Image layout="fill" src={SvgCross} />
+				<Image
+					alt="delete"
+					layout="fill"
+					onClick={() => {
+						updatedFinanceRecord({ variables: { id, isTrashed: true } })
+					}}
+					src={SvgCross}
+				/>
 			</div>
 		</div>
 	)

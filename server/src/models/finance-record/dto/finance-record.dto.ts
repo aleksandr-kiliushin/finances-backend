@@ -1,20 +1,24 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql'
+
 import { FinanceCategoryDto } from '#models/finance-category/dto/finance-category.dto'
+
+// types
+import { IFinanceRecord } from '#interfaces/finance'
 
 @ObjectType()
 export class FinanceRecordDto {
-	@Field(type => Int)
-	amount: number
+	@Field(() => Int!)
+	amount: IFinanceRecord['amount']
 
-	@Field(type => FinanceCategoryDto)
+	@Field(() => FinanceCategoryDto!)
 	category: FinanceCategoryDto
 
-	@Field()
-	date: string
+	@Field(() => String!)
+	date: IFinanceRecord['date']
 
-	@Field(type => Int)
-	id: number
+	@Field(() => Int!)
+	id: IFinanceRecord['id']
 
-	@Field()
-	isTrashed: boolean
+	@Field(() => Boolean!)
+	isTrashed: IFinanceRecord['isTrashed']
 }

@@ -1,42 +1,91 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useMutation } from '@apollo/client'
+
+// gql
+import {
+	CREATE_FINANCE_RECORD,
+	ICreateFinanceRecordData,
+	ICreateFinanceRecordVars,
+} from '#gql/create-finance-record.mutation'
 
 // components
 import Image from 'next/image'
+import { Datalist } from 'components/lib/datalist'
 
 // svg
 import SvgCheckmark from '#svg/checkmark.svg'
 import SvgCross from '#svg/cross.svg'
 
-// style
-import s from '#style-by-page/finance/records-table.module.css'
+// styles
+import s from './index.module.css'
 
-export const InputRow = () => {
+// types
+import { IFinanceCategory } from '#interfaces/finance'
+
+export const InputRow = ({ categories }: IProps) => {
+	const [amount, setAmount] = useState('')
+	const [category, setCategory] = useState<IFinanceCategory | null>(null)
+	const [date, setDate] = useState('')
+
+	const [createFinanceRecord, { data: createdFinanceRecordData }] = useMutation<
+		ICreateFinanceRecordData,
+		ICreateFinanceRecordVars
+	>(CREATE_FINANCE_RECORD)
+
 	return (
-		<form className={s.Row}>
+		<div className={s.Row}>
 			<div className={s.Cell}>
-				<input onChange={() => {}} type="number" value="999999" style={{ width: '100%' }} />
+				<input
+					className={s.CellInput}
+					onChange={e => {
+						setAmount(e.target.value)
+					}}
+					type="number"
+					value={amount}
+				/>
 			</div>
 			<div className={s.Cell}>
-				<input list="categories" onChange={() => {}} style={{ width: '100%' }} type="text" />
-				<datalist id="categories">
-					{[
-						{ id: 1, name: 'health' },
-						{ id: 2, name: 'meal' },
-						{ id: 3, name: 'education' },
-					].map(({ id, name }) => (
-						<option key={id} value={name} />
-					))}
-				</datalist>
+				<Datalist
+					options={categories}
+					renderOption={category => (
+						<div
+							key={category.id}
+							onClick={() => setCategory(category)}
+							className={category.type.name === 'expense' ? s.ExpenseCategory : s.IncomeCategory}
+						>
+							{category.name}
+						</div>
+					)}
+					selectedOptionText={category?.name}
+				/>
 			</div>
 			<div className={s.Cell}>
-				<input type="date" style={{ width: '100%' }} />
+				<input
+					className={s.CellInput}
+					onChange={e => setDate(e.target.value)}
+					type="date"
+					value={date}
+				/>
+			</div>
+			<div
+				className={s.Cell}
+				onClick={() => {
+					if (amount === '' || !category || !date) {
+						alert('Please, complete all fields.')
+						return
+					}
+					createFinanceRecord({ variables: { amount: +amount, categoryId: category.id, date } })
+				}}
+			>
+				<Image layout="fill" src={SvgCheckmark} alt="submit" />
 			</div>
 			<div className={s.Cell}>
-				<Image layout="fill" src={SvgCheckmark} />
+				<Image layout="fill" src={SvgCross} alt="delete" />
 			</div>
-			<div className={s.Cell}>
-				<Image layout="fill" src={SvgCross} />
-			</div>
-		</form>
+		</div>
 	)
+}
+
+interface IProps {
+	categories: IFinanceCategory[]
 }

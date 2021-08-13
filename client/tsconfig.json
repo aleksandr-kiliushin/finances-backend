@@ -16,7 +16,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"#comp-by-page/*": ["components/by-page/*"],
-			"#queries/*": ["queries/*"],
+			"#gql/*": ["gql/*"],
 			"#interfaces/*": ["../server/src/interfaces/*"],
 			"#style-by-page/*": ["styles/by-page/*"],
 			"#svg/*": ["public/svg/*"]

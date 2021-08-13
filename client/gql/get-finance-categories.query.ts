@@ -3,8 +3,8 @@ import { gql } from '@apollo/client'
 // types
 import { IFinanceCategory } from '#interfaces/finance'
 
-export const FINANCE_CATEGORIES = gql`
-	query GetFinanceCategories($ids: [Int!]) {
+export const GET_FINANCE_CATEGORIES = gql`
+	query ($ids: [Int!]) {
 		financeCategories(getFinanceCategoriesArgs: { ids: $ids }) {
 			id
 			name
@@ -16,10 +16,10 @@ export const FINANCE_CATEGORIES = gql`
 	}
 `
 
-export interface IFinanceCategoriesData {
+export interface IGetFinanceCategoriesData {
 	financeCategories: IFinanceCategory[]
 }
 
-export interface IFinanceCategoriesVars {
+export interface IGetFinanceCategoriesVars {
 	ids?: IFinanceCategory['id'][]
 }
