@@ -20,6 +20,7 @@ import s from './index.module.css'
 
 // types
 import { IFinanceRecord } from '#interfaces/finance'
+import cx from 'classnames'
 
 export const Row = ({ record }: IProps) => {
 	const { amount, category, date, id } = record
@@ -29,9 +30,15 @@ export const Row = ({ record }: IProps) => {
 		IUpdateFinanceRecordVars
 	>(UPDATE_FINANCE_RECORD)
 
+	const cxAmount = cx({
+		[s.Cell]: true,
+		[s.ExpenseRecordCell]: category.type.name === 'expense',
+		[s.IncomeRecordCell]: category.type.name === 'income',
+	})
+
 	return (
 		<div className={s.Row}>
-			<div className={s.Cell}>{amount}</div>
+			<div className={cxAmount}>{amount}</div>
 			<div className={s.Cell}>{category.name}</div>
 			<div className={s.Cell}>{date}</div>
 			<div className={s.Cell}>

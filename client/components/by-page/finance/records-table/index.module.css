@@ -8,11 +8,12 @@
 }
 
 .HeaderCell {
-	height: 35px;
-	line-height: 35px;
+	height: 40px;
+	line-height: 40px;
 	text-align: center;
-	background-color: whitesmoke;
+	background-color: #3293a8;
 	border: 1px solid;
+	color: white;
 }
 
 .AddRecordCell {
@@ -22,11 +23,11 @@
 
 .Cell {
 	position: relative;
-	height: 30px;
-	line-height: 30px;
+	height: 40px;
+	line-height: 40px;
 	text-align: center;
 	background-color: ghostwhite;
-	border: 1px solid;
+	border: 1px solid black;
 }
 
 .CellInput {
@@ -38,5 +39,21 @@
 }
 
 .IncomeCategory {
-	color: green;
+	color: darkgreen;
+}
+
+.ExpenseRecordCell {
+	color: darkred;
+}
+
+.ExpenseRecordCell::before {
+	content: '-';
+}
+
+.IncomeRecordCell {
+	color: darkgreen;
+}
+
+.IncomeRecordCell::before {
+	content: '+';
 }
