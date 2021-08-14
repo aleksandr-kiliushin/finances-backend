@@ -5,12 +5,17 @@ import { IFinanceRecord } from '#interfaces/finance'
 
 export const DELETE_FINANCE_RECORD = gql`
 	mutation ($id: Int!) {
-		deleteFinanceRecord(createFinanceRecordInput: { id: $id }) {
+		deleteFinanceRecord(id: $id) {
+			amount
+			date
 			id
-			name
-			type {
+			category {
 				id
 				name
+				type {
+					id
+					name
+				}
 			}
 		}
 	}

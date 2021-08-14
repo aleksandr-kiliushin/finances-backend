@@ -3,15 +3,20 @@ import { useMutation, useQuery } from '@apollo/client'
 
 // gql
 import {
+	GET_FINANCE_CATEGORIES,
+	IGetFinanceCategoriesData,
+	IGetFinanceCategoriesVars,
+} from '#gql/get-finance-categories.query'
+import {
 	CREATE_FINANCE_RECORD,
 	ICreateFinanceRecordData,
 	ICreateFinanceRecordVars,
 } from '#gql/create-finance-record.mutation'
 import {
-	GET_FINANCE_CATEGORIES,
-	IGetFinanceCategoriesData,
-	IGetFinanceCategoriesVars,
-} from '#gql/get-finance-categories.query'
+	UPDATE_FINANCE_RECORD,
+	IUpdateFinanceRecordData,
+	IUpdateFinanceRecordVars,
+} from '#gql/update-finance-record.mutation'
 
 // components
 import { Svg } from '#lib/svg'
@@ -23,7 +28,7 @@ import s from './index.module.css'
 // types
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const InputRow = ({ record }: IProps) => {
+export const InputRow = ({ closeInputRow, record }: IProps) => {
 	const [amount, setAmount] = useState(record?.amount ?? '')
 	const [category, setCategory] = useState<IFinanceCategory | null>(record?.category ?? null)
 	const [date, setDate] = useState(record?.date ?? '')
@@ -37,6 +42,32 @@ export const InputRow = ({ record }: IProps) => {
 		ICreateFinanceRecordVars
 	>(CREATE_FINANCE_RECORD)
 
+	const [updateFinanceRecord, { data: updatedFinanceRecordData }] = useMutation<
+		IUpdateFinanceRecordData,
+		IUpdateFinanceRecordVars
+	>(UPDATE_FINANCE_RECORD)
+
+	const onSubmit = () => {
+		if (!amount || !category || !date) {
+			alert('Please, complete all fields.')
+			return
+		}
+
+		const recordData = {
+			amount: +amount,
+			date,
+			categoryId: category.id,
+		}
+
+		if (record) {
+			updateFinanceRecord({ variables: { ...recordData, id: record.id } })
+		} else {
+			createFinanceRecord({ variables: recordData })
+		}
+
+		closeInputRow()
+	}
+
 	if (!categoriesData) return null
 
 	const { financeCategories } = categoriesData
@@ -44,15 +75,9 @@ export const InputRow = ({ record }: IProps) => {
 	return (
 		<div className={s.Row}>
 			<div className={s.Cell}>
-				<input
-					className={s.CellInput}
-					onChange={e => {
-						setAmount(e.target.value)
-					}}
-					type="number"
-					value={amount}
-				/>
+				<input onChange={e => setAmount(e.target.value)} type="number" value={amount} />
 			</div>
+
 			<div className={s.Cell}>
 				<Datalist
 					options={financeCategories}
@@ -68,27 +93,16 @@ export const InputRow = ({ record }: IProps) => {
 					selectedOptionText={category?.name}
 				/>
 			</div>
+
 			<div className={s.Cell}>
-				<input
-					className={s.CellInput}
-					onChange={e => setDate(e.target.value)}
-					type="date"
-					value={date}
-				/>
+				<input onChange={e => setDate(e.target.value)} type="date" value={date} />
 			</div>
-			<div
-				className={s.Cell}
-				onClick={() => {
-					if (amount === '' || !category || !date) {
-						alert('Please, complete all fields.')
-						return
-					}
-					createFinanceRecord({ variables: { amount: +amount, categoryId: category.id, date } })
-				}}
-			>
+
+			<div className={s.Cell} onClick={onSubmit}>
 				<Svg name="checkmark" />
 			</div>
-			<div className={s.Cell}>
+
+			<div className={s.Cell} onClick={() => closeInputRow()}>
 				<Svg name="cross" />
 			</div>
 		</div>
@@ -96,5 +110,6 @@ export const InputRow = ({ record }: IProps) => {
 }
 
 interface IProps {
+	closeInputRow: () => void
 	record: IFinanceRecord | null
 }

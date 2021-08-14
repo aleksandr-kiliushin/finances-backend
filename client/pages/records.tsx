@@ -1,8 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useQuery } from '@apollo/client'
+
+// gql
+import {
+	GET_FINANCE_RECORDS,
+	IGetFinanceRecordsData,
+	IGetFinanceRecordsVars,
+} from '#gql/get-finance-records.query'
 
 // components
-import { Table } from '#comp-by-page/finance/records-table'
+import { Header } from '#comp-by-page/finance/records-table/header'
+import { InputRow } from '#comp-by-page/finance/records-table/input-row'
+import { Row } from '#comp-by-page/finance/records-table/row'
+
+// styles
+import s from '#comp-by-page/finance/records-table/index.module.css'
 
 export default function Records() {
-	return <Table />
+	const [isAddRecordRowShown, setIsAddRecordRowShown] = useState(false)
+
+	const { data } = useQuery<IGetFinanceRecordsData, IGetFinanceRecordsVars>(GET_FINANCE_RECORDS, {
+		variables: { isTrashed: false },
+	})
+
+	if (!data) return null
+
+	const { financeRecords } = data
+
+	return (
+		<div className={s.Table}>
+			<Header
+				isTrash={false}
+				toggleIsAddRecordRowShown={() => setIsAddRecordRowShown(!isAddRecordRowShown)}
+			/>
+
+			{isAddRecordRowShown && (
+				<InputRow closeInputRow={() => setIsAddRecordRowShown(false)} record={null} />
+			)}
+
+			{financeRecords.map(record => (
+				<Row key={record.id} record={record} />
+			))}
+		</div>
+	)
 }

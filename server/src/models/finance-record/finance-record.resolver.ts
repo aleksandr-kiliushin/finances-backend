@@ -44,7 +44,7 @@ export class FinanceRecordResolver {
 
 	@Mutation(returns => FinanceRecordDto)
 	deleteFinanceRecord(
-		@Args('id', { type: () => Int })
+		@Args('id', { type: () => Int! })
 		id: FinanceRecordDto['id'],
 	) {
 		return this.financeRecordService.deleteFinanceRecord(id)
