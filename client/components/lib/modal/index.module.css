@@ -1,0 +1,26 @@
+.Modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 90vw;
+	padding: 0.5rem;
+	transform: translate(-50%, -50%);
+	background-color: paleturquoise;
+	border: 3px solid black;
+}
+
+.Text {
+	padding: 0.5rem;
+}
+
+.ButtonsContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 1rem;
+	padding: 0.5rem;
+}
+
+.SubmitButton {
+	background-color: darkred;
+	color: white;
+}
