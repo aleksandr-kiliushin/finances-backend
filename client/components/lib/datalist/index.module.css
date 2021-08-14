@@ -6,7 +6,6 @@
 .List {
 	z-index: 1;
 	position: absolute;
-	width: 100%;
 	overflow: hidden;
 	background-color: white;
 }

@@ -9,11 +9,7 @@ import {
 } from '#gql/update-finance-record.mutation'
 
 // components
-import Image from 'next/image'
-
-// svg
-import SvgCross from '#svg/cross.svg'
-import SvgEdit from '#svg/edit.svg'
+import { Svg } from '#lib/svg'
 
 // styles
 import s from './index.module.css'
@@ -30,6 +26,11 @@ export const Row = ({ record }: IProps) => {
 		IUpdateFinanceRecordVars
 	>(UPDATE_FINANCE_RECORD)
 
+	const dateFormatted = new Date(date).toLocaleString(undefined, {
+		month: 'short',
+		day: 'numeric',
+	})
+
 	const cxAmount = cx({
 		[s.Cell]: true,
 		[s.ExpenseRecordCell]: category.type.name === 'expense',
@@ -40,19 +41,12 @@ export const Row = ({ record }: IProps) => {
 		<div className={s.Row}>
 			<div className={cxAmount}>{amount}</div>
 			<div className={s.Cell}>{category.name}</div>
-			<div className={s.Cell}>{date}</div>
+			<div className={s.Cell}>{dateFormatted}</div>
 			<div className={s.Cell}>
-				<Image alt="edit" layout="fill" onClick={() => {}} src={SvgEdit} />
+				<Svg name="edit" />
 			</div>
 			<div className={s.Cell}>
-				<Image
-					alt="delete"
-					layout="fill"
-					onClick={() => {
-						updatedFinanceRecord({ variables: { id, isTrashed: true } })
-					}}
-					src={SvgCross}
-				/>
+				<Svg name="cross" />
 			</div>
 		</div>
 	)

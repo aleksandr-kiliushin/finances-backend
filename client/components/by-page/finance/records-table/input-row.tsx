@@ -9,12 +9,8 @@ import {
 } from '#gql/create-finance-record.mutation'
 
 // components
-import Image from 'next/image'
+import { Svg } from '#lib/svg'
 import { Datalist } from 'components/lib/datalist'
-
-// svg
-import SvgCheckmark from '#svg/checkmark.svg'
-import SvgCross from '#svg/cross.svg'
 
 // styles
 import s from './index.module.css'
@@ -77,10 +73,10 @@ export const InputRow = ({ categories }: IProps) => {
 					createFinanceRecord({ variables: { amount: +amount, categoryId: category.id, date } })
 				}}
 			>
-				<Image layout="fill" src={SvgCheckmark} alt="submit" />
+				<Svg name="checkmark" />
 			</div>
 			<div className={s.Cell}>
-				<Image layout="fill" src={SvgCross} alt="delete" />
+				<Svg name="cross" />
 			</div>
 		</div>
 	)

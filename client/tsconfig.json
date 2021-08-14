@@ -18,8 +18,9 @@
 			"#comp-by-page/*": ["components/by-page/*"],
 			"#gql/*": ["gql/*"],
 			"#interfaces/*": ["../server/src/interfaces/*"],
+			"#lib/*": ["components/lib/*"],
 			"#style-by-page/*": ["styles/by-page/*"],
-			"#svg/*": ["public/svg/*"]
+			"#svg/*": ["components/lib/svg/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "custom.d.ts"],

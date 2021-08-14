@@ -1,10 +1,7 @@
 import React from 'react'
 
 // components
-import Image from 'next/image'
-
-// svg
-import SVGAdd from '#svg/plus.svg'
+import { Svg } from '#lib/svg'
 
 // styles
 import s from './index.module.css'
@@ -16,7 +13,7 @@ export const Header = ({ toggleIsAddRecordRowShown }: IProps) => {
 			<div className={s.HeaderCell}>category</div>
 			<div className={s.HeaderCell}>date</div>
 			<div className={`${s.HeaderCell} ${s.AddRecordCell}`} onClick={toggleIsAddRecordRowShown}>
-				<Image layout="fill" src={SVGAdd} alt="add" />
+				<Svg name="plus" />
 			</div>
 		</div>
 	)
