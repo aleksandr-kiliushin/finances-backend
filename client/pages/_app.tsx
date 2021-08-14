@@ -4,7 +4,7 @@ import React from 'react'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 // components
-import { Layout } from 'components/layout'
+import { Layout } from '#lib/layout'
 
 // styles
 import 'styles/globals.css'

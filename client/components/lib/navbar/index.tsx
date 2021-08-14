@@ -32,6 +32,14 @@ export const Navbar = () => {
 					trash
 				</a>
 			</Link>
+
+			<Link href="/settings">
+				<a
+					className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/settings' })}
+				>
+					settings
+				</a>
+			</Link>
 		</nav>
 	)
 }
