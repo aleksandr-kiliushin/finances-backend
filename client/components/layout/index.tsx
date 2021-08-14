@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react'
 import { Navbar } from 'components/navbar'
 
 // styles
-import s from 'styles/layout.module.css'
+import s from './index.module.css'
 
 export const Layout = ({ children }: IProps) => {
 	return (

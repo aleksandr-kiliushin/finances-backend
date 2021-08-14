@@ -3,14 +3,18 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.4rem;
-	background-color: #cee;
+	background-color: teal;
 	grid-auto-flow: column;
 }
 
-.Link {
+.SectionLink {
 	width: fit-content;
 	padding: 0.2rem;
-	border: 1px solid #111;
+	border: 2px solid #111;
 	font-size: 1.2rem;
-	color: #111;
+	color: white;
+}
+
+.ActiveSectionLink {
+	background-color: cadetblue;
 }
