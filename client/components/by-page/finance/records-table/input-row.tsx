@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 
 // gql
 import {
@@ -7,6 +7,11 @@ import {
 	ICreateFinanceRecordData,
 	ICreateFinanceRecordVars,
 } from '#gql/create-finance-record.mutation'
+import {
+	GET_FINANCE_CATEGORIES,
+	IGetFinanceCategoriesData,
+	IGetFinanceCategoriesVars,
+} from '#gql/get-finance-categories.query'
 
 // components
 import { Svg } from '#lib/svg'
@@ -16,17 +21,25 @@ import { Datalist } from 'components/lib/datalist'
 import s from './index.module.css'
 
 // types
-import { IFinanceCategory } from '#interfaces/finance'
+import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const InputRow = ({ categories }: IProps) => {
-	const [amount, setAmount] = useState('')
-	const [category, setCategory] = useState<IFinanceCategory | null>(null)
-	const [date, setDate] = useState('')
+export const InputRow = ({ record }: IProps) => {
+	const [amount, setAmount] = useState(record?.amount ?? '')
+	const [category, setCategory] = useState<IFinanceCategory | null>(record?.category ?? null)
+	const [date, setDate] = useState(record?.date ?? '')
+
+	const { data: categoriesData } = useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(
+		GET_FINANCE_CATEGORIES,
+	)
 
 	const [createFinanceRecord, { data: createdFinanceRecordData }] = useMutation<
 		ICreateFinanceRecordData,
 		ICreateFinanceRecordVars
 	>(CREATE_FINANCE_RECORD)
+
+	if (!categoriesData) return null
+
+	const { financeCategories } = categoriesData
 
 	return (
 		<div className={s.Row}>
@@ -42,7 +55,7 @@ export const InputRow = ({ categories }: IProps) => {
 			</div>
 			<div className={s.Cell}>
 				<Datalist
-					options={categories}
+					options={financeCategories}
 					renderOption={category => (
 						<div
 							key={category.id}
@@ -83,5 +96,5 @@ export const InputRow = ({ categories }: IProps) => {
 }
 
 interface IProps {
-	categories: IFinanceCategory[]
+	record: IFinanceRecord | null
 }
