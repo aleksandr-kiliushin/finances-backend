@@ -1,0 +1,72 @@
+.Table {
+	border: 1px solid #111;
+}
+
+.Row {
+	display: grid;
+	grid-template-columns: 3fr 2fr 1fr 1fr;
+}
+
+.HeaderCell {
+	height: 40px;
+	margin: -1px;
+	line-height: 40px;
+	text-align: center;
+	background-color: cadetblue;
+	border: 1px solid #111;
+	color: white;
+}
+
+.HeaderActionCell {
+	grid-column: span 2;
+}
+
+.HeaderActionCell > svg {
+	height: 100%;
+	width: 100%;
+	padding: 0.3rem;
+	fill: white;
+}
+
+.Cell {
+	height: 40px;
+	margin: -1px;
+	line-height: 40px;
+	text-align: center;
+	background-color: whitesmoke;
+	border: 1px solid #111;
+}
+
+.Cell > input {
+	height: 50%;
+	width: 100%;
+	padding: 0;
+	background: whitesmoke;
+	border: none;
+	outline: none;
+	text-align: center;
+}
+
+.Cell > svg {
+	height: 100%;
+	width: 100%;
+	padding: 0.3rem;
+}
+
+/*.ExpenseCategory,
+.ExpenseRecordCell {
+	color: darkred;
+}
+
+.IncomeCategory,
+.IncomeRecordCell {
+	color: darkgreen;
+}
+
+.ExpenseRecordCell::before {
+	content: '-';
+}
+
+.IncomeRecordCell::before {
+	content: '+';
+} */

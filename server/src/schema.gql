@@ -4,7 +4,7 @@
 
 input CreateFinanceCategoryDto {
   name: String!
-  typeId: Float!
+  typeId: Int!
 }
 
 input CreateFinanceCategoryTypeDto {
@@ -60,15 +60,15 @@ type Query {
   financeCategories(getFinanceCategoriesArgs: GetFinanceCategoriesDto!): [FinanceCategoryDto!]!
   financeCategory(id: Int!): FinanceCategoryDto!
   financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
-  financeCategoryTypes(ids: [Int!]!): [FinanceCategoryTypeDto!]!
+  financeCategoryTypes(ids: [Int!]): [FinanceCategoryTypeDto!]!
   financeRecord(id: Int!): FinanceRecordDto!
   financeRecords(getFinanceRecordsArgs: GetFinanceRecordsDto!): [FinanceRecordDto!]!
 }
 
 input UpdateFinanceCategoryDto {
-  id: Float!
+  id: Int!
   name: String
-  typeId: Float
+  typeId: Int
 }
 
 input UpdateFinanceCategoryTypeDto {

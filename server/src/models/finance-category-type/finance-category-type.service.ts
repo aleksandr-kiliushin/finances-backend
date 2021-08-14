@@ -17,11 +17,11 @@ export class FinanceCategoryTypeService {
 	}
 
 	getFinanceCategoryTypes(
-		ids: FinanceCategoryTypeEntity['id'][],
+		ids?: FinanceCategoryTypeEntity['id'][],
 	): Promise<FinanceCategoryTypeEntity[]> {
 		let where = {}
 
-		if (ids.length) {
+		if (ids?.length) {
 			where = { id: In(ids) }
 		}
 

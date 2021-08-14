@@ -22,7 +22,7 @@ export const DELETE_FINANCE_RECORD = gql`
 `
 
 export interface IDeleteFinanceRecordData {
-	financeCategory: IFinanceRecord
+	financeRecord: IFinanceRecord
 }
 
 export interface IDeleteFinanceRecordVars {

@@ -10,7 +10,7 @@ import { GetFinanceCategoriesDto } from './dto/get-finance-categories.dto'
 export class FinanceCategoryResolver {
 	constructor(private financeCategoryService: FinanceCategoryService) {}
 
-	@Query(returns => FinanceCategoryDto, { name: 'financeCategory' })
+	@Query(() => FinanceCategoryDto, { name: 'financeCategory' })
 	getFinanceCategory(
 		@Args('id', { type: () => Int })
 		id: FinanceCategoryDto['id'],
@@ -18,7 +18,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.getFinanceCategory(id)
 	}
 
-	@Query(returns => [FinanceCategoryDto], { name: 'financeCategories' })
+	@Query(() => [FinanceCategoryDto], { name: 'financeCategories' })
 	getFinanceCategories(
 		@Args('getFinanceCategoriesArgs')
 		getFinanceCategoriesArgs: GetFinanceCategoriesDto,
@@ -26,7 +26,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.getFinanceCategories(getFinanceCategoriesArgs)
 	}
 
-	@Mutation(returns => FinanceCategoryDto)
+	@Mutation(() => FinanceCategoryDto)
 	createFinanceCategory(
 		@Args('createFinanceCategoryInput')
 		createFinanceCategoryInput: CreateFinanceCategoryDto,
@@ -34,7 +34,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.createFinanceCategory(createFinanceCategoryInput)
 	}
 
-	@Mutation(returns => FinanceCategoryDto)
+	@Mutation(() => FinanceCategoryDto)
 	updateFinanceCategory(
 		@Args('updateFinanceCategoryInput')
 		updateFinanceCategoryInput: UpdateFinanceCategoryDto,
@@ -42,7 +42,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.updateFinanceCategory(updateFinanceCategoryInput)
 	}
 
-	@Mutation(returns => FinanceCategoryDto)
+	@Mutation(() => FinanceCategoryDto)
 	deleteFinanceCategory(
 		@Args('id', { type: () => Int })
 		id: FinanceCategoryDto['id'],

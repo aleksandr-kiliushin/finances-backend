@@ -30,7 +30,7 @@ export const UPDATE_FINANCE_RECORD = gql`
 `
 
 export interface IUpdateFinanceRecordData {
-	financeCategories: IFinanceRecord
+	financeRecord: IFinanceRecord
 }
 
 export interface IUpdateFinanceRecordVars {

@@ -18,8 +18,8 @@ export class FinanceCategoryTypeResolver {
 
 	@Query(returns => [FinanceCategoryTypeDto], { name: 'financeCategoryTypes' })
 	getFinanceCategoryTypes(
-		@Args('ids', { type: () => [Int] })
-		ids: FinanceCategoryTypeDto['id'][],
+		@Args('ids', { type: () => [Int], nullable: true })
+		ids?: FinanceCategoryTypeDto['id'][],
 	) {
 		return this.financeCategoryTypeService.getFinanceCategoryTypes(ids)
 	}

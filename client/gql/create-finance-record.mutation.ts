@@ -24,7 +24,7 @@ export const CREATE_FINANCE_RECORD = gql`
 `
 
 export interface ICreateFinanceRecordData {
-	financeCategories: IFinanceRecord
+	financeRecord: IFinanceRecord
 }
 
 export interface ICreateFinanceRecordVars {

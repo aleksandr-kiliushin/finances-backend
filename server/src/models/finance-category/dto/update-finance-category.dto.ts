@@ -1,13 +1,16 @@
-import { InputType, Field } from '@nestjs/graphql'
+import { InputType, Field, Int } from '@nestjs/graphql'
+
+// types
+import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 @InputType()
 export class UpdateFinanceCategoryDto {
-	@Field()
-	id: number
+	@Field(() => Int)
+	id: IFinanceCategory['id']
 
-	@Field({ nullable: true })
-	typeId?: number
+	@Field(() => Int, { nullable: true })
+	typeId?: IFinanceCategoryType['id']
 
-	@Field({ nullable: true })
-	name?: string
+	@Field(() => String, { nullable: true })
+	name?: IFinanceCategory['name']
 }
