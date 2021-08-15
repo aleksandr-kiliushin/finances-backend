@@ -18,13 +18,13 @@ input CreateFinanceRecordDto {
 }
 
 type FinanceCategoryDto {
-  id: Int!
+  id: ID!
   name: String!
   type: FinanceCategoryTypeDto!
 }
 
 type FinanceCategoryTypeDto {
-  id: Int!
+  id: ID!
   name: String!
 }
 
@@ -32,12 +32,12 @@ type FinanceRecordDto {
   amount: Int!
   category: FinanceCategoryDto!
   date: String!
-  id: Int!
+  id: ID!
   isTrashed: Boolean!
 }
 
 input GetFinanceCategoriesDto {
-  ids: [Int!]
+  ids: [ID!]
 }
 
 input GetFinanceRecordsDto {
@@ -52,7 +52,7 @@ type Mutation {
   deleteFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
   deleteFinanceRecord(id: Int!): FinanceRecordDto!
   updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryDto!): FinanceCategoryDto!
-  updateFinanceCategoryType(createFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
+  updateFinanceCategoryType(updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
   updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto!): FinanceRecordDto!
 }
 
@@ -66,13 +66,13 @@ type Query {
 }
 
 input UpdateFinanceCategoryDto {
-  id: Int!
+  id: ID!
   name: String
   typeId: Int
 }
 
 input UpdateFinanceCategoryTypeDto {
-  id: Int!
+  id: ID!
   name: String
 }
 
@@ -80,6 +80,6 @@ input UpdateFinanceRecordDto {
   amount: Int
   categoryId: Int
   date: String
-  id: Int!
+  id: ID!
   isTrashed: Boolean
 }

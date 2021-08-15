@@ -1,10 +1,10 @@
-import { InputType, Field, Int } from '@nestjs/graphql'
+import { InputType, Field, ID } from '@nestjs/graphql'
 
 // types
 import { IFinanceCategory } from '#interfaces/finance'
 
 @InputType()
 export class GetFinanceCategoriesDto {
-	@Field(() => [Int], { nullable: true })
+	@Field(() => [ID], { nullable: true })
 	ids?: IFinanceCategory['id'][]
 }

@@ -34,7 +34,7 @@ export class FinanceCategoryTypeResolver {
 
 	@Mutation(() => FinanceCategoryTypeDto)
 	updateFinanceCategoryType(
-		@Args('createFinanceCategoryTypeInput')
+		@Args('updateFinanceCategoryTypeInput')
 		updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto,
 	) {
 		return this.financeCategoryTypeService.updateFinanceCategoryType(updateFinanceCategoryTypeInput)

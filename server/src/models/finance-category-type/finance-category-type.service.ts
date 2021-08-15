@@ -45,7 +45,9 @@ export class FinanceCategoryTypeService {
 
 		const financeCategoryType = await this.financeCategoryTypeRepository.findOneOrFail({ id })
 
-		financeCategoryType.name = name
+		if (name) {
+			financeCategoryType.name = name
+		}
 
 		return this.financeCategoryTypeRepository.save(financeCategoryType)
 	}

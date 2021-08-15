@@ -1,11 +1,11 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql'
+import { Field, ID, ObjectType } from '@nestjs/graphql'
 
 // types
 import { IFinanceCategoryType } from '#interfaces/finance'
 
 @ObjectType()
 export class FinanceCategoryTypeDto {
-	@Field(() => Int)
+	@Field(() => ID)
 	id: IFinanceCategoryType['id']
 
 	@Field(() => String)
