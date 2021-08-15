@@ -46,7 +46,7 @@ export class FinanceCategoryService {
 
 		const type = await this.financeCategoryTypeService.getFinanceCategoryType(typeId)
 
-		const category = this.financeCategoryRepository.create({ name, type } as Object)
+		const category = this.financeCategoryRepository.create({ name, type }) //as Record<string, unknown>
 
 		return this.financeCategoryRepository.save(category)
 	}

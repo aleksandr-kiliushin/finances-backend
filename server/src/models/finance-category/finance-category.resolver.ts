@@ -1,4 +1,4 @@
-import { Args, Int, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { FinanceCategoryService } from './finance-category.service'
 import { FinanceCategoryDto } from './dto/finance-category.dto'
@@ -6,7 +6,7 @@ import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
 import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
 import { GetFinanceCategoriesDto } from './dto/get-finance-categories.dto'
 
-@Resolver(of => FinanceCategoryDto)
+@Resolver(() => FinanceCategoryDto)
 export class FinanceCategoryResolver {
 	constructor(private financeCategoryService: FinanceCategoryService) {}
 

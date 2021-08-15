@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
@@ -36,7 +36,7 @@ export class FinanceRecordService {
 	async createFinanceRecord(
 		createFinanceRecordInput: CreateFinanceRecordDto,
 	): Promise<FinanceRecordEntity> {
-		const record = this.financeRecordRepository.create(createFinanceRecordInput as Object)
+		const record = this.financeRecordRepository.create(createFinanceRecordInput) //as Record<string, unknown>
 
 		const category = await this.financeCategoryService.getFinanceCategory(
 			createFinanceRecordInput.categoryId,

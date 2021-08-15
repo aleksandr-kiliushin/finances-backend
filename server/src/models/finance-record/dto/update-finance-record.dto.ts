@@ -14,7 +14,7 @@ export class UpdateFinanceRecordDto {
 	@Field(() => String, { nullable: true })
 	date?: IFinanceRecord['date']
 
-	@Field(() => Int!)
+	@Field(() => Int)
 	id: IFinanceRecord['id']
 
 	@Field(() => Boolean, { nullable: true })

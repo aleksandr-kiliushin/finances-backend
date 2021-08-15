@@ -4,11 +4,11 @@ import { FinanceCategoryTypeDto } from './dto/finance-category-type.dto'
 import { UpdateFinanceCategoryTypeDto } from './dto/update-finance-category-type.dto'
 import { FinanceCategoryTypeService } from './finance-category-type.service'
 
-@Resolver(of => FinanceCategoryTypeDto)
+@Resolver(() => FinanceCategoryTypeDto)
 export class FinanceCategoryTypeResolver {
 	constructor(private financeCategoryTypeService: FinanceCategoryTypeService) {}
 
-	@Query(returns => FinanceCategoryTypeDto, { name: 'financeCategoryType' })
+	@Query(() => FinanceCategoryTypeDto, { name: 'financeCategoryType' })
 	getFinanceCategoryType(
 		@Args('id', { type: () => [Int] })
 		id: FinanceCategoryTypeDto['id'],
@@ -16,7 +16,7 @@ export class FinanceCategoryTypeResolver {
 		return this.financeCategoryTypeService.getFinanceCategoryType(id)
 	}
 
-	@Query(returns => [FinanceCategoryTypeDto], { name: 'financeCategoryTypes' })
+	@Query(() => [FinanceCategoryTypeDto], { name: 'financeCategoryTypes' })
 	getFinanceCategoryTypes(
 		@Args('ids', { type: () => [Int], nullable: true })
 		ids?: FinanceCategoryTypeDto['id'][],
@@ -24,7 +24,7 @@ export class FinanceCategoryTypeResolver {
 		return this.financeCategoryTypeService.getFinanceCategoryTypes(ids)
 	}
 
-	@Mutation(returns => FinanceCategoryTypeDto)
+	@Mutation(() => FinanceCategoryTypeDto)
 	createFinanceCategoryType(
 		@Args('createFinanceCategoryTypeInput')
 		createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto,
@@ -32,7 +32,7 @@ export class FinanceCategoryTypeResolver {
 		return this.financeCategoryTypeService.createFinanceCategoryType(createFinanceCategoryTypeInput)
 	}
 
-	@Mutation(returns => FinanceCategoryTypeDto)
+	@Mutation(() => FinanceCategoryTypeDto)
 	updateFinanceCategoryType(
 		@Args('createFinanceCategoryTypeInput')
 		updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto,
@@ -40,7 +40,7 @@ export class FinanceCategoryTypeResolver {
 		return this.financeCategoryTypeService.updateFinanceCategoryType(updateFinanceCategoryTypeInput)
 	}
 
-	@Mutation(returns => FinanceCategoryTypeDto)
+	@Mutation(() => FinanceCategoryTypeDto)
 	deleteFinanceCategoryType(
 		@Args('id')
 		id: number,

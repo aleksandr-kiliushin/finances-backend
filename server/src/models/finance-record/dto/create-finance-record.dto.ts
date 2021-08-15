@@ -5,12 +5,12 @@ import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 @InputType()
 export class CreateFinanceRecordDto {
-	@Field(() => Int!)
+	@Field(() => Int)
 	amount: IFinanceRecord['amount']
 
-	@Field(() => Int!)
+	@Field(() => Int)
 	categoryId: IFinanceCategory['id']
 
-	@Field(() => String!)
+	@Field(() => String)
 	date: IFinanceRecord['date']
 }

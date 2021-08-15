@@ -6,11 +6,11 @@ import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
 import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 import { GetFinanceRecordsDto } from './dto/get-finance-records.dto'
 
-@Resolver(of => FinanceRecordDto)
+@Resolver(() => FinanceRecordDto)
 export class FinanceRecordResolver {
 	constructor(private financeRecordService: FinanceRecordService) {}
 
-	@Query(returns => FinanceRecordDto, { name: 'financeRecord' })
+	@Query(() => FinanceRecordDto, { name: 'financeRecord' })
 	getFinanceRecord(
 		@Args('id', { type: () => Int })
 		id: FinanceRecordDto['id'],
@@ -18,7 +18,7 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.getFinanceRecord(id)
 	}
 
-	@Query(returns => [FinanceRecordDto], { name: 'financeRecords' })
+	@Query(() => [FinanceRecordDto], { name: 'financeRecords' })
 	getFinanceRecords(
 		@Args('getFinanceRecordsArgs')
 		getFinanceRecordsArgs: GetFinanceRecordsDto,
@@ -26,7 +26,7 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.getFinanceRecords(getFinanceRecordsArgs)
 	}
 
-	@Mutation(returns => FinanceRecordDto)
+	@Mutation(() => FinanceRecordDto)
 	createFinanceRecord(
 		@Args('createFinanceRecordInput')
 		createFinanceRecordInput: CreateFinanceRecordDto,
@@ -34,7 +34,7 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.createFinanceRecord(createFinanceRecordInput)
 	}
 
-	@Mutation(returns => FinanceRecordDto)
+	@Mutation(() => FinanceRecordDto)
 	updateFinanceRecord(
 		@Args('updateFinanceRecordInput')
 		updateFinanceRecordInput: UpdateFinanceRecordDto,
@@ -42,9 +42,9 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.updateFinanceRecord(updateFinanceRecordInput)
 	}
 
-	@Mutation(returns => FinanceRecordDto)
+	@Mutation(() => FinanceRecordDto)
 	deleteFinanceRecord(
-		@Args('id', { type: () => Int! })
+		@Args('id', { type: () => Int })
 		id: FinanceRecordDto['id'],
 	) {
 		return this.financeRecordService.deleteFinanceRecord(id)

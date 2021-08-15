@@ -7,18 +7,18 @@ import { IFinanceRecord } from '#interfaces/finance'
 
 @ObjectType()
 export class FinanceRecordDto {
-	@Field(() => Int!)
+	@Field(() => Int)
 	amount: IFinanceRecord['amount']
 
-	@Field(() => FinanceCategoryDto!)
+	@Field(() => FinanceCategoryDto)
 	category: FinanceCategoryDto
 
-	@Field(() => String!)
+	@Field(() => String)
 	date: IFinanceRecord['date']
 
-	@Field(() => Int!)
+	@Field(() => Int)
 	id: IFinanceRecord['id']
 
-	@Field(() => Boolean!)
+	@Field(() => Boolean)
 	isTrashed: IFinanceRecord['isTrashed']
 }
