@@ -4,7 +4,7 @@ import { InputType, Field, Int } from '@nestjs/graphql'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 @InputType()
-export class CreateFinanceRecordDto {
+export class CreateFinanceRecordInput {
 	@Field(() => Int)
 	amount: IFinanceRecord['amount']
 

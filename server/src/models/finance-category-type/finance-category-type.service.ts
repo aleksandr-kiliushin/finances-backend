@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'
-import { CreateFinanceCategoryTypeDto } from './dto/create-finance-category-type.dto'
-import { UpdateFinanceCategoryTypeDto } from './dto/update-finance-category-type.dto'
+import { CreateFinanceCategoryTypeInput } from './dto/create-finance-category-type.input'
+import { UpdateFinanceCategoryTypeInput } from './dto/update-finance-category-type.input'
 import { FinanceCategoryTypeEntity } from './entities/finance-category-type.entity'
 
 @Injectable()
@@ -29,7 +29,7 @@ export class FinanceCategoryTypeService {
 	}
 
 	createFinanceCategoryType(
-		createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto,
+		createFinanceCategoryTypeInput: CreateFinanceCategoryTypeInput,
 	): Promise<FinanceCategoryTypeEntity> {
 		const { name } = createFinanceCategoryTypeInput
 
@@ -39,7 +39,7 @@ export class FinanceCategoryTypeService {
 	}
 
 	async updateFinanceCategoryType(
-		updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto,
+		updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeInput,
 	): Promise<FinanceCategoryTypeEntity> {
 		const { id, name } = updateFinanceCategoryTypeInput
 

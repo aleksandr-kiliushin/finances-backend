@@ -2,9 +2,9 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { FinanceRecordService } from './finance-record.service'
 import { FinanceRecordDto } from './dto/finance-record.dto'
-import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
-import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
-import { GetFinanceRecordsDto } from './dto/get-finance-records.dto'
+import { CreateFinanceRecordInput } from './dto/create-finance-record.input'
+import { UpdateFinanceRecordArgs } from './dto/update-finance-record.input'
+import { GetFinanceRecordsArgs } from './dto/get-finance-records.args'
 
 @Resolver(() => FinanceRecordDto)
 export class FinanceRecordResolver {
@@ -21,7 +21,7 @@ export class FinanceRecordResolver {
 	@Query(() => [FinanceRecordDto], { name: 'financeRecords' })
 	getFinanceRecords(
 		@Args('getFinanceRecordsArgs')
-		getFinanceRecordsArgs: GetFinanceRecordsDto,
+		getFinanceRecordsArgs: GetFinanceRecordsArgs,
 	) {
 		return this.financeRecordService.getFinanceRecords(getFinanceRecordsArgs)
 	}
@@ -29,7 +29,7 @@ export class FinanceRecordResolver {
 	@Mutation(() => FinanceRecordDto)
 	createFinanceRecord(
 		@Args('createFinanceRecordInput')
-		createFinanceRecordInput: CreateFinanceRecordDto,
+		createFinanceRecordInput: CreateFinanceRecordInput,
 	) {
 		return this.financeRecordService.createFinanceRecord(createFinanceRecordInput)
 	}
@@ -37,7 +37,7 @@ export class FinanceRecordResolver {
 	@Mutation(() => FinanceRecordDto)
 	updateFinanceRecord(
 		@Args('updateFinanceRecordInput')
-		updateFinanceRecordInput: UpdateFinanceRecordDto,
+		updateFinanceRecordInput: UpdateFinanceRecordArgs,
 	) {
 		return this.financeRecordService.updateFinanceRecord(updateFinanceRecordInput)
 	}

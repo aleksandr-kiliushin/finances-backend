@@ -2,9 +2,9 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { FinanceCategoryService } from './finance-category.service'
 import { FinanceCategoryDto } from './dto/finance-category.dto'
-import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
-import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
-import { GetFinanceCategoriesDto } from './dto/get-finance-categories.dto'
+import { CreateFinanceCategoryInput } from './dto/create-finance-category.input'
+import { UpdateFinanceCategoryInput } from './dto/update-finance-category.input'
+import { GetFinanceCategoriesArgs } from './dto/get-finance-categories.args'
 
 @Resolver(() => FinanceCategoryDto)
 export class FinanceCategoryResolver {
@@ -21,7 +21,7 @@ export class FinanceCategoryResolver {
 	@Query(() => [FinanceCategoryDto], { name: 'financeCategories' })
 	getFinanceCategories(
 		@Args('getFinanceCategoriesArgs')
-		getFinanceCategoriesArgs: GetFinanceCategoriesDto,
+		getFinanceCategoriesArgs: GetFinanceCategoriesArgs,
 	) {
 		return this.financeCategoryService.getFinanceCategories(getFinanceCategoriesArgs)
 	}
@@ -29,7 +29,7 @@ export class FinanceCategoryResolver {
 	@Mutation(() => FinanceCategoryDto)
 	createFinanceCategory(
 		@Args('createFinanceCategoryInput')
-		createFinanceCategoryInput: CreateFinanceCategoryDto,
+		createFinanceCategoryInput: CreateFinanceCategoryInput,
 	) {
 		return this.financeCategoryService.createFinanceCategory(createFinanceCategoryInput)
 	}
@@ -37,7 +37,7 @@ export class FinanceCategoryResolver {
 	@Mutation(() => FinanceCategoryDto)
 	updateFinanceCategory(
 		@Args('updateFinanceCategoryInput')
-		updateFinanceCategoryInput: UpdateFinanceCategoryDto,
+		updateFinanceCategoryInput: UpdateFinanceCategoryInput,
 	) {
 		return this.financeCategoryService.updateFinanceCategory(updateFinanceCategoryInput)
 	}

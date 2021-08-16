@@ -4,9 +4,9 @@ import { Repository } from 'typeorm'
 
 import { FinanceCategoryService } from '#models/finance-category/finance-category.service'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
-import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
-import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
-import { GetFinanceRecordsDto } from './dto/get-finance-records.dto'
+import { UpdateFinanceRecordArgs } from './dto/update-finance-record.input'
+import { CreateFinanceRecordInput } from './dto/create-finance-record.input'
+import { GetFinanceRecordsArgs } from './dto/get-finance-records.args'
 
 @Injectable()
 export class FinanceRecordService {
@@ -23,7 +23,7 @@ export class FinanceRecordService {
 		})
 	}
 
-	getFinanceRecords(getFinanceRecordsArgs: GetFinanceRecordsDto): Promise<FinanceRecordEntity[]> {
+	getFinanceRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs): Promise<FinanceRecordEntity[]> {
 		return this.financeRecordRepository.find({
 			order: {
 				date: 'DESC',
@@ -34,7 +34,7 @@ export class FinanceRecordService {
 	}
 
 	async createFinanceRecord(
-		createFinanceRecordInput: CreateFinanceRecordDto,
+		createFinanceRecordInput: CreateFinanceRecordInput,
 	): Promise<FinanceRecordEntity> {
 		const record = this.financeRecordRepository.create(createFinanceRecordInput) //as Record<string, unknown>
 
@@ -48,7 +48,7 @@ export class FinanceRecordService {
 	}
 
 	async updateFinanceRecord(
-		updateFinanceRecordInput: UpdateFinanceRecordDto,
+		updateFinanceRecordInput: UpdateFinanceRecordArgs,
 	): Promise<FinanceRecordEntity> {
 		const { id, categoryId, ...rest } = updateFinanceRecordInput
 

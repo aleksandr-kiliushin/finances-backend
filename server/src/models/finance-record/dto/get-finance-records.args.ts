@@ -4,7 +4,7 @@ import { InputType, Field } from '@nestjs/graphql'
 import { IFinanceRecord } from '#interfaces/finance'
 
 @InputType()
-export class GetFinanceRecordsDto {
+export class GetFinanceRecordsArgs {
 	@Field(() => Boolean, { nullable: true })
 	isTrashed?: IFinanceRecord['isTrashed']
 }

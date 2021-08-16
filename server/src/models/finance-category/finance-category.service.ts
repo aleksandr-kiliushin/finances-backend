@@ -2,9 +2,9 @@ import { FinanceCategoryTypeService } from '#models/finance-category-type/financ
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'
-import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
-import { GetFinanceCategoriesDto } from './dto/get-finance-categories.dto'
-import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
+import { CreateFinanceCategoryInput } from './dto/create-finance-category.input'
+import { GetFinanceCategoriesArgs } from './dto/get-finance-categories.args'
+import { UpdateFinanceCategoryInput } from './dto/update-finance-category.input'
 import { FinanceCategoryEntity } from './entities/finance-category.entity'
 
 @Injectable()
@@ -23,7 +23,7 @@ export class FinanceCategoryService {
 	}
 
 	getFinanceCategories(
-		getFinanceCategoriesArgs: GetFinanceCategoriesDto,
+		getFinanceCategoriesArgs: GetFinanceCategoriesArgs,
 	): Promise<FinanceCategoryEntity[]> {
 		const { ids } = getFinanceCategoriesArgs
 
@@ -40,7 +40,7 @@ export class FinanceCategoryService {
 	}
 
 	async createFinanceCategory(
-		createFinanceCategoryInput: CreateFinanceCategoryDto,
+		createFinanceCategoryInput: CreateFinanceCategoryInput,
 	): Promise<FinanceCategoryEntity> {
 		const { typeId, name } = createFinanceCategoryInput
 
@@ -52,7 +52,7 @@ export class FinanceCategoryService {
 	}
 
 	async updateFinanceCategory(
-		updateFinanceCategoryInput: UpdateFinanceCategoryDto,
+		updateFinanceCategoryInput: UpdateFinanceCategoryInput,
 	): Promise<FinanceCategoryEntity> {
 		const { id, typeId, name } = updateFinanceCategoryInput
 

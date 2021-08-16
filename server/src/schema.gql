@@ -2,19 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreateFinanceCategoryDto {
+input CreateFinanceCategoryInput {
   name: String!
   typeId: Int!
 }
 
-input CreateFinanceCategoryTypeDto {
+input CreateFinanceCategoryTypeInput {
   name: String!
 }
 
-input CreateFinanceRecordDto {
+input CreateFinanceRecordInput {
   amount: Int!
   categoryId: Int!
   date: String!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 type FinanceCategoryDto {
@@ -36,50 +41,65 @@ type FinanceRecordDto {
   isTrashed: Boolean!
 }
 
-input GetFinanceCategoriesDto {
+input GetFinanceCategoriesArgs {
   ids: [ID!]
 }
 
-input GetFinanceRecordsDto {
+input GetFinanceRecordsArgs {
   isTrashed: Boolean
 }
 
 type Mutation {
-  createFinanceCategory(createFinanceCategoryInput: CreateFinanceCategoryDto!): FinanceCategoryDto!
-  createFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
-  createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordDto!): FinanceRecordDto!
+  createFinanceCategory(createFinanceCategoryInput: CreateFinanceCategoryInput!): FinanceCategoryDto!
+  createFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeInput!): FinanceCategoryTypeDto!
+  createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordInput!): FinanceRecordDto!
+  createUser(createUserInput: CreateUserInput!): User!
   deleteFinanceCategory(id: Int!): FinanceCategoryDto!
   deleteFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
   deleteFinanceRecord(id: Int!): FinanceRecordDto!
-  updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryDto!): FinanceCategoryDto!
-  updateFinanceCategoryType(updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeDto!): FinanceCategoryTypeDto!
-  updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordDto!): FinanceRecordDto!
+  removeUser(id: Int!): User!
+  updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryInput!): FinanceCategoryDto!
+  updateFinanceCategoryType(updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeInput!): FinanceCategoryTypeDto!
+  updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordArgs!): FinanceRecordDto!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
-  financeCategories(getFinanceCategoriesArgs: GetFinanceCategoriesDto!): [FinanceCategoryDto!]!
+  financeCategories(getFinanceCategoriesArgs: GetFinanceCategoriesArgs!): [FinanceCategoryDto!]!
   financeCategory(id: Int!): FinanceCategoryDto!
   financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
   financeCategoryTypes(ids: [Int!]): [FinanceCategoryTypeDto!]!
   financeRecord(id: Int!): FinanceRecordDto!
-  financeRecords(getFinanceRecordsArgs: GetFinanceRecordsDto!): [FinanceRecordDto!]!
+  financeRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs!): [FinanceRecordDto!]!
+  user(id: Int!): User!
 }
 
-input UpdateFinanceCategoryDto {
+input UpdateFinanceCategoryInput {
   id: ID!
   name: String
   typeId: Int
 }
 
-input UpdateFinanceCategoryTypeDto {
+input UpdateFinanceCategoryTypeInput {
   id: ID!
   name: String
 }
 
-input UpdateFinanceRecordDto {
+input UpdateFinanceRecordArgs {
   amount: Int
   categoryId: Int
   date: String
   id: ID!
   isTrashed: Boolean
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }

@@ -1,12 +1,12 @@
 import { Field, ID, InputType, PartialType } from '@nestjs/graphql'
 
-import { CreateFinanceRecordDto } from './create-finance-record.dto'
+import { CreateFinanceRecordInput } from './create-finance-record.input'
 
 // types
 import { IFinanceRecord } from '#interfaces/finance'
 
 @InputType()
-export class UpdateFinanceRecordDto extends PartialType(CreateFinanceRecordDto) {
+export class UpdateFinanceRecordArgs extends PartialType(CreateFinanceRecordInput) {
 	@Field(() => ID)
 	id: IFinanceRecord['id']
 
