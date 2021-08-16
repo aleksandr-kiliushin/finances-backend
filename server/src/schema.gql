@@ -19,6 +19,7 @@ input CreateFinanceRecordInput {
 
 input CreateUserInput {
   name: String!
+  password: String!
 }
 
 type FinanceCategoryDto {
@@ -52,15 +53,15 @@ type Mutation {
   createFinanceCategory(createFinanceCategoryInput: CreateFinanceCategoryInput!): FinanceCategoryDto!
   createFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeInput!): FinanceCategoryTypeDto!
   createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordInput!): FinanceRecordDto!
-  createUser(createUserInput: CreateUserInput!): User!
+  createUser(createUserInput: CreateUserInput!): UserDto!
   deleteFinanceCategory(id: Int!): FinanceCategoryDto!
   deleteFinanceCategoryType(id: Int!): FinanceCategoryTypeDto!
   deleteFinanceRecord(id: Int!): FinanceRecordDto!
-  removeUser(id: Int!): User!
+  deleteUser(id: Int!): UserDto!
   updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryInput!): FinanceCategoryDto!
   updateFinanceCategoryType(updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeInput!): FinanceCategoryTypeDto!
   updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordArgs!): FinanceRecordDto!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): UserDto!
 }
 
 type Query {
@@ -70,7 +71,8 @@ type Query {
   financeCategoryTypes(ids: [Int!]): [FinanceCategoryTypeDto!]!
   financeRecord(id: Int!): FinanceRecordDto!
   financeRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs!): [FinanceRecordDto!]!
-  user(id: Int!): User!
+  user(id: Int!): UserDto!
+  users: [UserDto!]!
 }
 
 input UpdateFinanceCategoryInput {
@@ -95,9 +97,11 @@ input UpdateFinanceRecordArgs {
 input UpdateUserInput {
   id: Int!
   name: String
+  password: String
 }
 
-type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+type UserDto {
+  id: Int!
+  name: String!
+  password: String!
 }

@@ -1,10 +1,13 @@
-import { InputType, Field } from '@nestjs/graphql'
+import { Field, Int, ObjectType } from '@nestjs/graphql'
 
-// type
+// types
 import { IUser } from '#interfaces/user'
 
-@InputType()
-export class CreateUserInput {
+@ObjectType()
+export class UserDto {
+	@Field(() => Int)
+	id: IUser['id']
+
 	@Field(() => String)
 	name: IUser['name']
 
