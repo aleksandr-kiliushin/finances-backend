@@ -18,18 +18,17 @@ input CreateFinanceRecordInput {
 }
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 type FinanceCategoryDto {
-  id: ID!
+  id: Int!
   name: String!
   type: FinanceCategoryTypeDto!
 }
 
 type FinanceCategoryTypeDto {
-  id: ID!
+  id: Int!
   name: String!
 }
 
@@ -37,12 +36,12 @@ type FinanceRecordDto {
   amount: Int!
   category: FinanceCategoryDto!
   date: String!
-  id: ID!
+  id: Int!
   isTrashed: Boolean!
 }
 
 input GetFinanceCategoriesArgs {
-  ids: [ID!]
+  ids: [Int!]
 }
 
 input GetFinanceRecordsArgs {
@@ -55,7 +54,7 @@ type Mutation {
   createFinanceRecord(createFinanceRecordInput: CreateFinanceRecordInput!): FinanceRecordDto!
   createUser(createUserInput: CreateUserInput!): User!
   deleteFinanceCategory(id: Int!): FinanceCategoryDto!
-  deleteFinanceCategoryType(id: Float!): FinanceCategoryTypeDto!
+  deleteFinanceCategoryType(id: Int!): FinanceCategoryTypeDto!
   deleteFinanceRecord(id: Int!): FinanceRecordDto!
   removeUser(id: Int!): User!
   updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryInput!): FinanceCategoryDto!
@@ -75,13 +74,13 @@ type Query {
 }
 
 input UpdateFinanceCategoryInput {
-  id: ID!
+  id: Int!
   name: String
   typeId: Int
 }
 
 input UpdateFinanceCategoryTypeInput {
-  id: ID!
+  id: Int!
   name: String
 }
 
@@ -89,14 +88,13 @@ input UpdateFinanceRecordArgs {
   amount: Int
   categoryId: Int
   date: String
-  id: ID!
+  id: Int!
   isTrashed: Boolean
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
+  name: String
 }
 
 type User {

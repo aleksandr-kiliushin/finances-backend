@@ -1,4 +1,4 @@
-import { Field, ID, InputType, PartialType } from '@nestjs/graphql'
+import { Field, InputType, Int, PartialType } from '@nestjs/graphql'
 
 import { CreateFinanceCategoryInput } from './create-finance-category.input'
 
@@ -7,6 +7,6 @@ import { IFinanceCategory } from '#interfaces/finance'
 
 @InputType()
 export class UpdateFinanceCategoryInput extends PartialType(CreateFinanceCategoryInput) {
-	@Field(() => ID)
+	@Field(() => Int)
 	id: IFinanceCategory['id']
 }

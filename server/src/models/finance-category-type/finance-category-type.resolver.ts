@@ -1,3 +1,4 @@
+import { IFinanceCategoryType } from '#interfaces/finance'
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { CreateFinanceCategoryTypeInput } from './dto/create-finance-category-type.input'
 import { FinanceCategoryTypeDto } from './dto/finance-category-type.dto'
@@ -42,8 +43,8 @@ export class FinanceCategoryTypeResolver {
 
 	@Mutation(() => FinanceCategoryTypeDto)
 	deleteFinanceCategoryType(
-		@Args('id')
-		id: number,
+		@Args('id', { type: () => Int })
+		id: IFinanceCategoryType['id'],
 	) {
 		return this.financeCategoryTypeService.deleteFinanceCategoryType(id)
 	}

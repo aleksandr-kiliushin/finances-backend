@@ -1,4 +1,4 @@
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql'
+import { Field, Int, ObjectType } from '@nestjs/graphql'
 
 import { FinanceCategoryDto } from '#models/finance-category/dto/finance-category.dto'
 
@@ -16,7 +16,7 @@ export class FinanceRecordDto {
 	@Field(() => String)
 	date: IFinanceRecord['date']
 
-	@Field(() => ID)
+	@Field(() => Int)
 	id: IFinanceRecord['id']
 
 	@Field(() => Boolean)
