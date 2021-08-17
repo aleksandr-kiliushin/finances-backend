@@ -8,13 +8,21 @@
 }
 
 .SectionLink {
-	width: fit-content;
 	padding: 0.2rem;
-	border: 1px solid #111;
-	font-size: 1.2rem;
-	color: white;
+	border: 1px solid lightgray;
+}
+
+.SectionLink > svg {
+	height: 40px;
+	width: 40px;
+	fill: lightgray;
 }
 
 .ActiveSectionLink {
 	background-color: cadetblue;
+	border: 1px solid white;
+}
+
+.ActiveSectionLink > svg {
+	fill: white;
 }

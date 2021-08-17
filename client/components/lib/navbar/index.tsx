@@ -7,6 +7,7 @@ import Link from 'next/link'
 
 // styles
 import s from './index.module.css'
+import { Svg } from '#lib/svg'
 
 export const Navbar = () => {
 	const { pathname } = useRouter()
@@ -15,7 +16,7 @@ export const Navbar = () => {
 		<nav className={s.Navbar}>
 			<Link href="/">
 				<a className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/' })}>
-					home
+					<Svg name="home" />
 				</a>
 			</Link>
 
@@ -23,13 +24,13 @@ export const Navbar = () => {
 				<a
 					className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/records' })}
 				>
-					records
+					<Svg name="box" />
 				</a>
 			</Link>
 
 			<Link href="/trash">
 				<a className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/trash' })}>
-					trash
+					<Svg name="trash-can" />
 				</a>
 			</Link>
 
@@ -37,7 +38,13 @@ export const Navbar = () => {
 				<a
 					className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/settings' })}
 				>
-					settings
+					<Svg name="gear" />
+				</a>
+			</Link>
+
+			<Link href="/login">
+				<a className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/login' })}>
+					<Svg name="person" />
 				</a>
 			</Link>
 		</nav>
