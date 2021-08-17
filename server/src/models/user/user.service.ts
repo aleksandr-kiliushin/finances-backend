@@ -5,6 +5,7 @@ import { Repository } from 'typeorm'
 import { UserEntity } from './entities/user.entity'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
+import { GetUserArgs } from './dto/get-user.args'
 
 @Injectable()
 export class UserService {
@@ -13,8 +14,8 @@ export class UserService {
 		private userRepository: Repository<UserEntity>,
 	) {}
 
-	getUser(id: UserEntity['id']): Promise<UserEntity> {
-		return this.userRepository.findOneOrFail(id)
+	getUser(getUserArgs: GetUserArgs): Promise<UserEntity> {
+		return this.userRepository.findOneOrFail({ where: getUserArgs })
 	}
 
 	getUsers(): Promise<UserEntity[]> {
@@ -30,7 +31,7 @@ export class UserService {
 	async updateUser(updateUserInput: UpdateUserInput): Promise<UserEntity> {
 		const { id, ...rest } = updateUserInput
 
-		const user = await this.getUser(id)
+		const user = await this.getUser({ id })
 
 		const updatedUser = { ...user, ...rest }
 
@@ -38,7 +39,7 @@ export class UserService {
 	}
 
 	async deleteUser(id: UserEntity['id']): Promise<UserEntity> {
-		const user = await this.getUser(id)
+		const user = await this.getUser({ id })
 
 		await this.userRepository.delete(id)
 

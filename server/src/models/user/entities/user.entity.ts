@@ -9,7 +9,7 @@ export class UserEntity {
 	id: IUser['id']
 
 	@Column({ type: 'varchar' })
-	name: IUser['name']
+	username: IUser['username']
 
 	@Column({ type: 'varchar' })
 	password: IUser['password']

@@ -1,13 +1,8 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql'
-
-// types
 import { IUser } from '#interfaces/user'
+import { Field, InputType } from '@nestjs/graphql'
 
-@ObjectType()
-export class UserDto {
-	@Field(() => Int)
-	id: IUser['id']
-
+@InputType()
+export class LoginInput {
 	@Field(() => String)
 	username: IUser['username']
 

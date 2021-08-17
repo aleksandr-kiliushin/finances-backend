@@ -18,8 +18,8 @@ input CreateFinanceRecordInput {
 }
 
 input CreateUserInput {
-  name: String!
   password: String!
+  username: String!
 }
 
 type FinanceCategoryDto {
@@ -49,6 +49,16 @@ input GetFinanceRecordsArgs {
   isTrashed: Boolean
 }
 
+input GetUserArgs {
+  id: Int
+  username: String
+}
+
+input LoginInput {
+  password: String!
+  username: String!
+}
+
 type Mutation {
   createFinanceCategory(createFinanceCategoryInput: CreateFinanceCategoryInput!): FinanceCategoryDto!
   createFinanceCategoryType(createFinanceCategoryTypeInput: CreateFinanceCategoryTypeInput!): FinanceCategoryTypeDto!
@@ -58,6 +68,7 @@ type Mutation {
   deleteFinanceCategoryType(id: Int!): FinanceCategoryTypeDto!
   deleteFinanceRecord(id: Int!): FinanceRecordDto!
   deleteUser(id: Int!): UserDto!
+  login(loginInput: LoginInput!): String!
   updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryInput!): FinanceCategoryDto!
   updateFinanceCategoryType(updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeInput!): FinanceCategoryTypeDto!
   updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordArgs!): FinanceRecordDto!
@@ -71,7 +82,7 @@ type Query {
   financeCategoryTypes(ids: [Int!]): [FinanceCategoryTypeDto!]!
   financeRecord(id: Int!): FinanceRecordDto!
   financeRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs!): [FinanceRecordDto!]!
-  user(id: Int!): UserDto!
+  user(getUserArgs: GetUserArgs!): UserDto!
   users: [UserDto!]!
 }
 
@@ -96,12 +107,12 @@ input UpdateFinanceRecordArgs {
 
 input UpdateUserInput {
   id: Int!
-  name: String
   password: String
+  username: String
 }
 
 type UserDto {
   id: Int!
-  name: String!
   password: String!
+  username: String!
 }

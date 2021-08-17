@@ -1,9 +1,13 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql'
+import { Resolver, Query, Mutation, Args, Int /*, Context*/ } from '@nestjs/graphql'
 
 import { UserService } from './user.service'
 import { UserDto } from './dto/user.dto'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
+import { GetUserArgs } from './dto/get-user.args'
+// import { UseGuards } from '@nestjs/common'
+// import { AuthGuard } from '#models/auth/auth.guard'
+// import { IUser } from '#interfaces/user'
 
 @Resolver(() => UserDto)
 export class UserResolver {
@@ -11,10 +15,10 @@ export class UserResolver {
 
 	@Query(() => UserDto, { name: 'user' })
 	getUser(
-		@Args('id', { type: () => Int })
-		id: UserDto['id'],
+		@Args('getUserArgs')
+		getUserArgs: GetUserArgs,
 	) {
-		return this.userService.getUser(id)
+		return this.userService.getUser(getUserArgs)
 	}
 
 	@Query(() => [UserDto], { name: 'users' })
@@ -45,4 +49,13 @@ export class UserResolver {
 	) {
 		return this.userService.deleteUser(id)
 	}
+
+	// @Query(() => UserDto)
+	// @UseGuards(new AuthGuard())
+	// me(
+	// 	@Context('user')
+	// 	{ id }: IUser,
+	// ) {
+	// 	return this.userService.getUser({ id })
+	// }
 }
