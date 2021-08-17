@@ -16,27 +16,46 @@ export default function Login() {
 		try {
 			const { data: loginData } = await login({ variables: { password, username } })
 
+			if (!loginData) {
+				throw new Error('authorization failed')
+			}
+
 			const { login: token } = loginData
 
 			localStorage.setItem('authToken', token)
+
+			alert('logged in')
 		} catch {
 			alert('invalid username or password')
 		}
 	}
 
 	return (
-		<form onSubmit={onSubmit}>
-			<label>
-				username
-				<input onChange={e => setUsername(e.target.value)} type="text" value={username} />
-			</label>
+		<>
+			<h1>login</h1>
+			<form onSubmit={onSubmit}>
+				<label>
+					username
+					<input onChange={e => setUsername(e.target.value)} type="text" value={username} />
+				</label>
 
-			<label>
-				password
-				<input onChange={e => setPassword(e.target.value)} type="password" value={password} />
-			</label>
+				<label>
+					password
+					<input onChange={e => setPassword(e.target.value)} type="password" value={password} />
+				</label>
 
-			<input type="submit" />
-		</form>
+				<input type="submit" />
+			</form>
+
+			<h1>logout</h1>
+			<button
+				onClick={() => {
+					localStorage.removeItem('authToken')
+					alert('logged out')
+				}}
+			>
+				logout
+			</button>
+		</>
 	)
 }

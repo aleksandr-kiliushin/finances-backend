@@ -10,7 +10,7 @@ export const LOGIN = gql`
 `
 
 export interface ILoginData {
-	login: { login: string }
+	login: string
 }
 
 export interface ILoginVars {
