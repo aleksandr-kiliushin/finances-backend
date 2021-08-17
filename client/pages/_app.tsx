@@ -1,7 +1,8 @@
 import React from 'react'
+import { ApolloProvider } from '@apollo/client'
 
-// graphql
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+// config
+import { client } from '#gql/config'
 
 // components
 import { Layout } from '#lib/layout'
@@ -11,11 +12,6 @@ import 'styles/globals.css'
 
 // types
 import type { AppProps } from 'next/app'
-
-const client = new ApolloClient({
-	uri: '/graphql',
-	cache: new InMemoryCache(),
-})
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
 	return (

@@ -1,5 +1,7 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
 
+import { AuthGuard } from '#models/auth/auth.guard'
 import { FinanceRecordService } from './finance-record.service'
 import { FinanceRecordDto } from './dto/finance-record.dto'
 import { CreateFinanceRecordInput } from './dto/create-finance-record.input'
@@ -18,6 +20,7 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.getFinanceRecord(id)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Query(() => [FinanceRecordDto], { name: 'financeRecords' })
 	getFinanceRecords(
 		@Args('getFinanceRecordsArgs')
