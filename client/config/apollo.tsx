@@ -1,7 +1,13 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 
-export const CustomApolloProvider = ({ children, authToken }: IProps) => {
+export const CustomApolloProvider = ({ children }: IProps) => {
+	const [authToken, setAuthToken] = useState<string | null>(null)
+
+	useEffect(() => {
+		setAuthToken(localStorage.getItem('authToken'))
+	}, [authToken])
+
 	const gqlClient = new ApolloClient({
 		uri: '/graphql',
 		cache: new InMemoryCache(),
@@ -15,5 +21,4 @@ export const CustomApolloProvider = ({ children, authToken }: IProps) => {
 
 interface IProps {
 	children: ReactNode
-	authToken: string | null
 }

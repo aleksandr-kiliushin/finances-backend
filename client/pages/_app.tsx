@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 // config
 import { CustomApolloProvider } from 'config/apollo'
@@ -13,14 +13,8 @@ import 'styles/globals.css'
 import type { AppProps } from 'next/app'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-	const [authToken, setAuthToken] = useState<string | null>(null)
-
-	useEffect(() => {
-		setAuthToken(localStorage.getItem('authToken'))
-	}, [authToken])
-
 	return (
-		<CustomApolloProvider authToken={authToken}>
+		<CustomApolloProvider /* authToken={authToken}*/>
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
