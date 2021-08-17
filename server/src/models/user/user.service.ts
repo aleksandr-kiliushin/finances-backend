@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
@@ -15,7 +15,11 @@ export class UserService {
 	) {}
 
 	getUser(getUserArgs: GetUserArgs): Promise<UserEntity> {
-		return this.userRepository.findOneOrFail({ where: getUserArgs })
+		const user = this.userRepository.findOne({ where: getUserArgs })
+
+		if (!user) throw new NotFoundException('User not found.')
+
+		return user
 	}
 
 	getUsers(): Promise<UserEntity[]> {

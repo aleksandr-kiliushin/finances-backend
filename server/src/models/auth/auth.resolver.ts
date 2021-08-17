@@ -2,7 +2,7 @@ import { Resolver, Mutation, Args } from '@nestjs/graphql'
 
 import { AuthService } from './auth.service'
 import { LoginInput } from './dto/login.input'
-import { UserDto } from '#models/user/dto/user.dto'
+import { UserDto } from '#models/user/dto/user.dto' // change with somehting
 
 @Resolver(() => UserDto) // change with somehting
 export class AuthResolver {
