@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 // components
-import { Navbar } from '#lib/navbar'
+import { Navbar } from './navbar'
 
 // styles
 import s from './index.module.css'

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 
@@ -9,7 +10,19 @@ import s from './index.module.css'
 import { Svg } from '#lib/svg'
 
 export const Navbar = () => {
+	const [isAuth, setIsAuth] = useState(false)
+
 	const { pathname } = useRouter()
+
+	useEffect(() => {
+		if (localStorage.getItem('authToken')) {
+			setIsAuth(true)
+		}
+	}, [isAuth, setIsAuth])
+
+	if (!isAuth) {
+		return null
+	}
 
 	return (
 		<nav className={s.Navbar}>

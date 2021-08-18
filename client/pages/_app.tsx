@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 // config
 import { CustomApolloProvider } from 'config/apollo'
 
@@ -9,8 +11,17 @@ import 'styles/globals.css'
 
 // types
 import type { AppProps } from 'next/app'
+import { useEffect } from 'react'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+export default function MyApp({ Component, pageProps }: AppProps) {
+	const { pathname, push } = useRouter()
+
+	useEffect(() => {
+		if (!localStorage.getItem('authToken') && pathname !== '/login') {
+			push('/login')
+		}
+	}, [pathname, push])
+
 	return (
 		<CustomApolloProvider /* authToken={authToken}*/>
 			<Layout>
@@ -19,4 +30,3 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 		</CustomApolloProvider>
 	)
 }
-export default MyApp
