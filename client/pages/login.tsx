@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import React, { SyntheticEvent, useState } from 'react'
+import { SyntheticEvent, useState } from 'react'
 
 // gql
 import { ILoginData, ILoginVars, LOGIN } from '#gql/login.mutation'

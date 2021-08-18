@@ -1,5 +1,3 @@
-import React from 'react'
-
 // config
 import { CustomApolloProvider } from 'config/apollo'
 

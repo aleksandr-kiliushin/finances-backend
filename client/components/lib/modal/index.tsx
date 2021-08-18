@@ -1,5 +1,3 @@
-import React from 'react'
-
 // styles
 import s from './index.module.css'
 

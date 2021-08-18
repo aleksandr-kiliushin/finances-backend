@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useMutation, useQuery } from '@apollo/client'
+import { useState } from 'react'
+import { useQuery } from '@apollo/client'
 
 // gql
 import {
