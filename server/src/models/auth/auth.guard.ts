@@ -9,15 +9,13 @@ export class AuthGuard implements CanActivate {
 
 		if (!ctx.headers.authorization) return false
 
-		ctx.user = this.validateToken(ctx.headers.authorization)
+		ctx.user = this.validateToken(ctx.headers.authorization) // change to userId
 
 		return true
 	}
 
 	validateToken(auth: string) {
-		const [prefix, token] = auth.split(' ')
-
-		if (prefix !== 'Bearer') throw new UnauthorizedException('Invalid token.')
+		const [, token] = auth.split(' ')
 
 		try {
 			return jwt.verify(token, 'secret')

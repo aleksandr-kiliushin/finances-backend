@@ -18,7 +18,7 @@ export class AuthService {
 		if (user.password !== password) throw new UnauthorizedException()
 
 		return {
-			authToken: jwt.sign({ id: user.id, password }, 'secret'),
+			authToken: jwt.sign({ id: user.id, username: user.username }, 'secret', { expiresIn: '10d' }),
 		}
 	}
 }
