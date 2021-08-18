@@ -2,13 +2,13 @@ import { Resolver, Mutation, Args } from '@nestjs/graphql'
 
 import { AuthService } from './auth.service'
 import { LoginInput } from './dto/login.input'
-import { UserDto } from '#models/user/dto/user.dto' // change with somehting
+import { LoginDto } from './dto/login.dto'
 
-@Resolver(() => UserDto) // change with somehting
+@Resolver(() => LoginDto) // change with somehting
 export class AuthResolver {
 	constructor(private readonly authService: AuthService) {}
 
-	@Mutation(() => String)
+	@Mutation(() => LoginDto)
 	async login(
 		@Args('loginInput')
 		loginInput: LoginInput,

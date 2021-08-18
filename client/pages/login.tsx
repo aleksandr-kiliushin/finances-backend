@@ -14,15 +14,15 @@ export default function Login() {
 		e.preventDefault()
 
 		try {
-			const { data: loginData } = await login({ variables: { password, username } })
+			await login({ variables: { password, username } })
 
 			if (!loginData) {
 				throw new Error('authorization failed')
 			}
 
-			const { login: token } = loginData
+			const { authToken } = loginData.login
 
-			localStorage.setItem('authToken', token)
+			localStorage.setItem('authToken', authToken)
 
 			alert('logged in')
 		} catch {
@@ -54,7 +54,7 @@ export default function Login() {
 					alert('logged out')
 				}}
 			>
-				logout
+				log out
 			</button>
 		</>
 	)

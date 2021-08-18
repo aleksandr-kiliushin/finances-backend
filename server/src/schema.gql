@@ -54,6 +54,10 @@ input GetUserArgs {
   username: String
 }
 
+type LoginDto {
+  authToken: String!
+}
+
 input LoginInput {
   password: String!
   username: String!
@@ -68,7 +72,7 @@ type Mutation {
   deleteFinanceCategoryType(id: Int!): FinanceCategoryTypeDto!
   deleteFinanceRecord(id: Int!): FinanceRecordDto!
   deleteUser(id: Int!): UserDto!
-  login(loginInput: LoginInput!): String!
+  login(loginInput: LoginInput!): LoginDto!
   updateFinanceCategory(updateFinanceCategoryInput: UpdateFinanceCategoryInput!): FinanceCategoryDto!
   updateFinanceCategoryType(updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeInput!): FinanceCategoryTypeDto!
   updateFinanceRecord(updateFinanceRecordInput: UpdateFinanceRecordArgs!): FinanceRecordDto!

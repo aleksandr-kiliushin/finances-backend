@@ -5,12 +5,16 @@ import { IUser } from '#interfaces/user'
 
 export const LOGIN = gql`
 	mutation ($password: String!, $username: String!) {
-		login(loginInput: { password: $password, username: $username })
+		login(loginInput: { password: $password, username: $username }) {
+			authToken
+		}
 	}
 `
 
 export interface ILoginData {
-	login: string
+	login: {
+		authToken: string
+	}
 }
 
 export interface ILoginVars {
