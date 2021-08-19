@@ -13,7 +13,7 @@ export const authContext = createContext<IAuthContextValue>({
 export const AuthContext = ({ children }: IAuthContextProps) => {
 	const [authToken, setAuthToken] = useState<string>('')
 
-	const { pathname, push } = useRouter()
+	// const { pathname, push } = useRouter()
 
 	/** Initialize authToken state from localStorage. */
 	useEffect(() => {
@@ -26,11 +26,11 @@ export const AuthContext = ({ children }: IAuthContextProps) => {
 	}, [authToken])
 
 	/** If the user is logged out, redirect to /login page. */
-	useEffect(() => {
-		if (!authToken && pathname !== '/login') {
-			push('/login')
-		}
-	}, [authToken, pathname])
+	// useEffect(() => {
+	// 	if (!authToken && pathname !== '/login') {
+	// 		push('/login')
+	// 	}
+	// }, [authToken, pathname, push])
 
 	const value = {
 		authToken,
