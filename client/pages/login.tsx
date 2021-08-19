@@ -1,33 +1,42 @@
-import { useMutation } from '@apollo/client'
-import { SyntheticEvent, useState } from 'react'
+import { useRouter } from 'next/router'
+import { SyntheticEvent, useContext, useState } from 'react'
 
 // gql
-import { ILoginData, ILoginVars, LOGIN } from '#gql/login.mutation'
+import { authContext, useAuth } from 'context/auth'
 
 export default function Login() {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 
-	const [login, { data: loginData }] = useMutation<ILoginData, ILoginVars>(LOGIN)
+	const { push } = useRouter()
+
+	const { authToken } = useContext(authContext)
+
+	const { logIn, logOut } = useAuth()
 
 	const onSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault()
 
 		try {
-			await login({ variables: { password, username } })
+			const response = await logIn({ variables: { password, username } })
 
-			if (!loginData) {
-				throw new Error('authorization failed')
+			if (!response.data?.login.authToken) {
+				throw new Error()
 			}
 
-			const { authToken } = loginData.login
-
-			localStorage.setItem('authToken', authToken)
-
-			alert('logged in')
+			push('/')
 		} catch {
-			alert('invalid username or password')
+			alert('login failed')
 		}
+	}
+
+	if (authToken) {
+		return (
+			<>
+				<h1>logout</h1>
+				<button onClick={logOut}>log out</button>
+			</>
+		)
 	}
 
 	return (
@@ -44,18 +53,8 @@ export default function Login() {
 					<input onChange={e => setPassword(e.target.value)} type="password" value={password} />
 				</label>
 
-				<input type="submit" />
+				<button type="submit">log in</button>
 			</form>
-
-			<h1>logout</h1>
-			<button
-				onClick={() => {
-					localStorage.removeItem('authToken')
-					alert('logged out')
-				}}
-			>
-				log out
-			</button>
 		</>
 	)
 }
