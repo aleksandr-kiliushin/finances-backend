@@ -1,19 +1,36 @@
 import { ReactNode, useContext } from 'react'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { useRouter } from 'next/router'
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
 
 import { authContext } from './auth'
 
 export const CustomApolloProvider = ({ children }: IProps) => {
-	const { authToken } = useContext(authContext)
+	const { authToken, setAuthToken } = useContext(authContext)
 
-	// add check if server responses with UNAUTHORIZED
+	const { pathname, push } = useRouter()
 
-	const apolloClient = new ApolloClient({
-		uri: '/graphql',
-		cache: new InMemoryCache(),
+	const httpLink = new HttpLink({
 		headers: {
 			authorization: 'Bearer ' + authToken,
 		},
+		uri: '/graphql',
+	})
+
+	/** Customize response logic if server responses with Unauthorized 401 status code. */
+	const logoutLink = onError(({ response }) => {
+		if (response?.errors?.some(error => error.extensions?.response.statusCode === 401)) {
+			setAuthToken('')
+
+			if (pathname !== '/login') {
+				push('/login')
+			}
+		}
+	})
+
+	const apolloClient = new ApolloClient({
+		cache: new InMemoryCache(),
+		link: logoutLink.concat(httpLink),
 	})
 
 	return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>

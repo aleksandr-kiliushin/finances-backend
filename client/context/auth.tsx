@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 
 // gql
 import { ILoginData, ILoginVars, LOGIN } from '#gql/login.mutation'
@@ -13,8 +12,6 @@ export const authContext = createContext<IAuthContextValue>({
 export const AuthContext = ({ children }: IAuthContextProps) => {
 	const [authToken, setAuthToken] = useState<string>('')
 
-	// const { pathname, push } = useRouter()
-
 	/** Initialize authToken state from localStorage. */
 	useEffect(() => {
 		setAuthToken(localStorage.getItem('authToken') ?? '')
@@ -24,13 +21,6 @@ export const AuthContext = ({ children }: IAuthContextProps) => {
 	useEffect(() => {
 		localStorage.setItem('authToken', authToken)
 	}, [authToken])
-
-	/** If the user is logged out, redirect to /login page. */
-	// useEffect(() => {
-	// 	if (!authToken && pathname !== '/login') {
-	// 		push('/login')
-	// 	}
-	// }, [authToken, pathname, push])
 
 	const value = {
 		authToken,
