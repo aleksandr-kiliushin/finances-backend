@@ -6,7 +6,7 @@ import cx from 'classnames'
 import { authContext } from 'context/auth'
 
 // components
-import { Svg } from '#lib/svg'
+import { ISvgProps, Svg } from '#lib/svg'
 import Link from 'next/link'
 
 // styles
@@ -19,41 +19,34 @@ export const Navbar = () => {
 
 	if (!authToken) return null
 
+	const sectionsData: ISection[] = [
+		{ href: '/', svgName: 'home' },
+		{ href: '/records', svgName: 'box' },
+		{ href: '/trash', svgName: 'trash-can' },
+		{ href: '/settings', svgName: 'gear' },
+		{ href: '/login', svgName: 'person' },
+	]
+
+	const sectionsDataForLayout = sectionsData.map(({ href, svgName }) => ({
+		className: cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === href }),
+		href,
+		svgName,
+	}))
+
 	return (
 		<nav className={s.Navbar}>
-			<Link href="/">
-				<a className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/' })}>
-					<Svg name="home" />
-				</a>
-			</Link>
-
-			<Link href="/records">
-				<a
-					className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/records' })}
-				>
-					<Svg name="box" />
-				</a>
-			</Link>
-
-			<Link href="/trash">
-				<a className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/trash' })}>
-					<Svg name="trash-can" />
-				</a>
-			</Link>
-
-			<Link href="/settings">
-				<a
-					className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/settings' })}
-				>
-					<Svg name="gear" />
-				</a>
-			</Link>
-
-			<Link href="/login">
-				<a className={cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === '/login' })}>
-					<Svg name="person" />
-				</a>
-			</Link>
+			{sectionsDataForLayout.map(({ href, className, svgName }) => (
+				<Link href={href} key={href}>
+					<a className={className}>
+						<Svg name={svgName} />
+					</a>
+				</Link>
+			))}
 		</nav>
 	)
+}
+
+interface ISection {
+	href: string
+	svgName: ISvgProps['name']
 }

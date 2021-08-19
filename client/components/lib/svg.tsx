@@ -1,4 +1,4 @@
-export const Svg = ({ name, ...props }: IProps) => {
+export const Svg = ({ name, ...props }: ISvgProps) => {
 	const { height, pathD, viewBox, width } = svgs[name]
 
 	if (!pathD) {
@@ -101,7 +101,7 @@ const svgs = {
 	},
 }
 
-interface IProps {
+export interface ISvgProps {
 	className?: string
 	name: keyof typeof svgs
 }
