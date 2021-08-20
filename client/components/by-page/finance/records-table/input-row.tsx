@@ -2,11 +2,7 @@ import { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 
 // gql
-import {
-	GET_FINANCE_CATEGORIES,
-	IGetFinanceCategoriesData,
-	IGetFinanceCategoriesVars,
-} from '#gql/get-finance-categories.query'
+import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
 import {
 	CREATE_FINANCE_RECORD,
 	ICreateFinanceRecordData,
@@ -33,9 +29,7 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 	const [category, setCategory] = useState<IFinanceCategory | null>(record?.category ?? null)
 	const [date, setDate] = useState(record?.date ?? '')
 
-	const { data: categoriesData } = useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(
-		GET_FINANCE_CATEGORIES,
-	)
+	const { data: financeCategoriesData } = getFinanceCategoriesQuery()
 
 	const [createFinanceRecord, { data: createdFinanceRecordData }] = useMutation<
 		ICreateFinanceRecordData,
@@ -68,9 +62,9 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 		closeInputRow()
 	}
 
-	if (!categoriesData) return null
+	if (!financeCategoriesData) return null
 
-	const { financeCategories } = categoriesData
+	const { financeCategories } = financeCategoriesData
 
 	return (
 		<div className={s.Row}>

@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { SyntheticEvent, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 
 // gql
 import { authContext, useAuth } from 'context/auth'

@@ -1,12 +1,7 @@
 import { useState } from 'react'
-import { useQuery } from '@apollo/client'
 
 // gql
-import {
-	GET_FINANCE_CATEGORIES,
-	IGetFinanceCategoriesData,
-	IGetFinanceCategoriesVars,
-} from '#gql/get-finance-categories.query'
+import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
 
 // styles
 import s from '#comp-by-page/settings/index.module.css'
@@ -17,13 +12,7 @@ import { Row } from '#comp-by-page/settings/row'
 export default function Settings() {
 	const [isAddCategoryRowShown, setIsAddCategoryRowShown] = useState(false)
 
-	const { data: categoriesData } = useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(
-		GET_FINANCE_CATEGORIES,
-	)
-
-	if (!categoriesData) return null
-
-	const { financeCategories } = categoriesData
+	const { data } = getFinanceCategoriesQuery()
 
 	return (
 		<>
@@ -38,7 +27,7 @@ export default function Settings() {
 					<InputRow closeInputRow={() => setIsAddCategoryRowShown(false)} category={null} />
 				)}
 
-				{financeCategories.map(category => (
+				{data?.financeCategories.map(category => (
 					<Row category={category} key={category.id} />
 				))}
 			</div>
