@@ -44,17 +44,3 @@ export default function Records() {
 		</div>
 	)
 }
-
-// props typing
-// interface PostNextPageContext extends NextPageContext {
-// 	query: {
-// 		id: string
-// 	}
-// }
-
-// Post.getInitialProps = async ({query,req}: PostNextPageContext) => {
-//   console.log(query.id)
-//   return {
-
-//   }
-// }
