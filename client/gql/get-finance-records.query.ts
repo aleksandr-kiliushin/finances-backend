@@ -1,9 +1,10 @@
-import { gql } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 
 // types
+import { QueryHookOptions } from '@apollo/client'
 import { IFinanceRecord } from '#interfaces/finance'
 
-export const GET_FINANCE_RECORDS = gql`
+const GET_FINANCE_RECORDS = gql`
 	query ($isTrashed: Boolean) {
 		financeRecords(getFinanceRecordsArgs: { isTrashed: $isTrashed }) {
 			amount
@@ -22,10 +23,14 @@ export const GET_FINANCE_RECORDS = gql`
 	}
 `
 
-export interface IGetFinanceRecordsData {
+interface IGetFinanceRecordsData {
 	financeRecords: IFinanceRecord[]
 }
 
-export interface IGetFinanceRecordsVars {
+interface IGetFinanceRecordsVars {
 	isTrashed?: IFinanceRecord['isTrashed']
+}
+
+export const getFinanceRecordsQuery = (options: QueryHookOptions) => {
+	return useQuery<IGetFinanceRecordsData, IGetFinanceRecordsVars>(GET_FINANCE_RECORDS, options)
 }

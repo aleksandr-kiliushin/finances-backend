@@ -1,11 +1,5 @@
-import { useQuery } from '@apollo/client'
-
 // gql
-import {
-	GET_FINANCE_RECORDS,
-	IGetFinanceRecordsData,
-	IGetFinanceRecordsVars,
-} from '#gql/get-finance-records.query'
+import { getFinanceRecordsQuery } from '#gql/get-finance-records.query'
 
 // components
 import { Header } from '#comp-by-page/finance/records-table/header'
@@ -15,9 +9,7 @@ import { Row } from '#comp-by-page/finance/records-table/row'
 import s from '#comp-by-page/finance/records-table/index.module.css'
 
 export default function Trash() {
-	const { data } = useQuery<IGetFinanceRecordsData, IGetFinanceRecordsVars>(GET_FINANCE_RECORDS, {
-		variables: { isTrashed: true },
-	})
+	const { data } = getFinanceRecordsQuery({ variables: { isTrashed: true } })
 
 	return (
 		<div className={s.Table}>
