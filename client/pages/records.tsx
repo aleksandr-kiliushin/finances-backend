@@ -23,10 +23,6 @@ export default function Records() {
 		variables: { isTrashed: false },
 	})
 
-	if (!data) return null
-
-	const { financeRecords } = data
-
 	return (
 		<div className={s.Table}>
 			<Header
@@ -38,7 +34,7 @@ export default function Records() {
 				<InputRow closeInputRow={() => setIsAddRecordRowShown(false)} record={null} />
 			)}
 
-			{financeRecords.map(record => (
+			{data?.financeRecords.map(record => (
 				<Row key={record.id} record={record} />
 			))}
 		</div>

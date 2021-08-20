@@ -19,15 +19,11 @@ export default function Trash() {
 		variables: { isTrashed: true },
 	})
 
-	if (!data) return null
-
-	const { financeRecords } = data
-
 	return (
 		<div className={s.Table}>
 			<Header isTrash />
 
-			{financeRecords.map(record => (
+			{data?.financeRecords.map(record => (
 				<Row key={record.id} record={record} />
 			))}
 		</div>
