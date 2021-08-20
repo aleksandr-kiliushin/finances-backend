@@ -25,9 +25,5 @@ interface IGetFinanceCategoriesVars {
 	ids?: IFinanceCategory['id'][]
 }
 
-export const getFinanceCategoriesQuery = (options: QueryHookOptions) => {
-	return useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(
-		GET_FINANCE_CATEGORIES,
-		options,
-	)
-}
+export const getFinanceCategoriesQuery = (options?: QueryHookOptions) =>
+	useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(GET_FINANCE_CATEGORIES, options)

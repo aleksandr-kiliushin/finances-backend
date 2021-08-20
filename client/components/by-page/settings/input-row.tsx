@@ -2,21 +2,9 @@ import { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 
 // gql
-import {
-	GET_FINANCE_CATEGORY_TYPES,
-	IGetFinanceCategoryTypesData,
-	IGetFinanceCategoryTypesVars,
-} from '#gql/get-finance-category-types.query'
-import {
-	CREATE_FINANCE_CATEGORY,
-	ICreateFinanceCategoryData,
-	ICreateFinanceCategoryVars,
-} from '#gql/create-finance-category.mutation'
-import {
-	IUpdateFinanceCategoryData,
-	IUpdateFinanceCategoryVars,
-	UPDATE_FINANCE_CATEGORY,
-} from '#gql/update-finance-category.mutation'
+import { getFinanceCategoryTypesQuery } from '#gql/get-finance-category-types.query'
+import { createFinanceCategoryMutation } from '#gql/create-finance-category.mutation'
+import { updateFinanceCategoryMutation } from '#gql/update-finance-category.mutation'
 
 // components
 import { Svg } from '#lib/svg'
@@ -32,20 +20,11 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 	const [name, setName] = useState(category?.name ?? '')
 	const [type, setType] = useState<IFinanceCategoryType | null>(category?.type ?? null)
 
-	const { data: categoryTypesData } = useQuery<
-		IGetFinanceCategoryTypesData,
-		IGetFinanceCategoryTypesVars
-	>(GET_FINANCE_CATEGORY_TYPES)
+	const { data: categoryTypesData } = getFinanceCategoryTypesQuery()
 
-	const [createFinanceCategory, { data: createdFinanceRecordData }] = useMutation<
-		ICreateFinanceCategoryData,
-		ICreateFinanceCategoryVars
-	>(CREATE_FINANCE_CATEGORY)
+	const [createFinanceCategory] = createFinanceCategoryMutation()
 
-	const [updateFinanceCategory, { data: updatedFinanceRecordData }] = useMutation<
-		IUpdateFinanceCategoryData,
-		IUpdateFinanceCategoryVars
-	>(UPDATE_FINANCE_CATEGORY)
+	const [updateFinanceCategory] = updateFinanceCategoryMutation()
 
 	const onSubmit = () => {
 		if (!name || !type) {

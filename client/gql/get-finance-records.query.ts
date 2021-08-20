@@ -31,6 +31,5 @@ interface IGetFinanceRecordsVars {
 	isTrashed?: IFinanceRecord['isTrashed']
 }
 
-export const getFinanceRecordsQuery = (options: QueryHookOptions) => {
-	return useQuery<IGetFinanceRecordsData, IGetFinanceRecordsVars>(GET_FINANCE_RECORDS, options)
-}
+export const getFinanceRecordsQuery = (options?: QueryHookOptions) =>
+	useQuery<IGetFinanceRecordsData, IGetFinanceRecordsVars>(GET_FINANCE_RECORDS, options)

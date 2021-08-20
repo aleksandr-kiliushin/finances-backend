@@ -1,9 +1,9 @@
-import { gql } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 
 // types
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
-export const UPDATE_FINANCE_CATEGORY = gql`
+const UPDATE_FINANCE_CATEGORY = gql`
 	mutation ($id: Int!, $name: String, $typeId: Int) {
 		updateFinanceCategory(updateFinanceCategoryInput: { id: $id, name: $name, typeId: $typeId }) {
 			id
@@ -16,12 +16,15 @@ export const UPDATE_FINANCE_CATEGORY = gql`
 	}
 `
 
-export interface IUpdateFinanceCategoryData {
+interface IUpdateFinanceCategoryData {
 	financeCategory: IFinanceCategory
 }
 
-export interface IUpdateFinanceCategoryVars {
+interface IUpdateFinanceCategoryVars {
 	id: IFinanceCategory['id']
 	name?: IFinanceCategory['name']
 	typeId?: IFinanceCategoryType['id']
 }
+
+export const updateFinanceCategoryMutation = () =>
+	useMutation<IUpdateFinanceCategoryData, IUpdateFinanceCategoryVars>(UPDATE_FINANCE_CATEGORY)
