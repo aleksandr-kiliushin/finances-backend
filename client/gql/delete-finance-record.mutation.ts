@@ -1,9 +1,9 @@
-import { gql } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 
 // types
 import { IFinanceRecord } from '#interfaces/finance'
 
-export const DELETE_FINANCE_RECORD = gql`
+const DELETE_FINANCE_RECORD = gql`
 	mutation ($id: Int!) {
 		deleteFinanceRecord(id: $id) {
 			amount
@@ -21,10 +21,13 @@ export const DELETE_FINANCE_RECORD = gql`
 	}
 `
 
-export interface IDeleteFinanceRecordData {
+interface IDeleteFinanceRecordData {
 	financeRecord: IFinanceRecord
 }
 
-export interface IDeleteFinanceRecordVars {
+interface IDeleteFinanceRecordVars {
 	id: IFinanceRecord['id']
 }
+
+export const deleteFinanceRecordMutation = () =>
+	useMutation<IDeleteFinanceRecordData, IDeleteFinanceRecordVars>(DELETE_FINANCE_RECORD)

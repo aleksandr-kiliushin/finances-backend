@@ -1,9 +1,9 @@
-import { gql } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 
 // types
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const CREATE_FINANCE_RECORD = gql`
+const CREATE_FINANCE_RECORD = gql`
 	mutation ($amount: Int!, $categoryId: Int!, $date: String!) {
 		createFinanceRecord(
 			createFinanceRecordInput: { amount: $amount, categoryId: $categoryId, date: $date }
@@ -23,12 +23,15 @@ export const CREATE_FINANCE_RECORD = gql`
 	}
 `
 
-export interface ICreateFinanceRecordData {
+interface ICreateFinanceRecordData {
 	financeRecord: IFinanceRecord
 }
 
-export interface ICreateFinanceRecordVars {
+interface ICreateFinanceRecordVars {
 	amount: IFinanceRecord['amount']
 	categoryId: IFinanceCategory['id']
 	date: IFinanceRecord['date']
 }
+
+export const createFinanceRecordMutation = () =>
+	useMutation<ICreateFinanceRecordData, ICreateFinanceRecordVars>(CREATE_FINANCE_RECORD)

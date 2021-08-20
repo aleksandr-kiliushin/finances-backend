@@ -3,16 +3,8 @@ import { useMutation, useQuery } from '@apollo/client'
 
 // gql
 import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
-import {
-	CREATE_FINANCE_RECORD,
-	ICreateFinanceRecordData,
-	ICreateFinanceRecordVars,
-} from '#gql/create-finance-record.mutation'
-import {
-	UPDATE_FINANCE_RECORD,
-	IUpdateFinanceRecordData,
-	IUpdateFinanceRecordVars,
-} from '#gql/update-finance-record.mutation'
+import { createFinanceRecordMutation } from '#gql/create-finance-record.mutation'
+import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
 
 // components
 import { Svg } from '#lib/svg'
@@ -31,15 +23,9 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 
 	const { data: financeCategoriesData } = getFinanceCategoriesQuery()
 
-	const [createFinanceRecord, { data: createdFinanceRecordData }] = useMutation<
-		ICreateFinanceRecordData,
-		ICreateFinanceRecordVars
-	>(CREATE_FINANCE_RECORD)
+	const [createFinanceRecord] = createFinanceRecordMutation()
 
-	const [updateFinanceRecord, { data: updatedFinanceRecordData }] = useMutation<
-		IUpdateFinanceRecordData,
-		IUpdateFinanceRecordVars
-	>(UPDATE_FINANCE_RECORD)
+	const [updateFinanceRecord] = updateFinanceRecordMutation()
 
 	const onSubmit = () => {
 		if (!amount || !category || !date) {

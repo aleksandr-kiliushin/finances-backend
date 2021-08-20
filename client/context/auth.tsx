@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 import { useMutation } from '@apollo/client'
 
 // gql
-import { ILoginData, ILoginVars, LOGIN } from '#gql/login.mutation'
+import { loginMutation } from '#gql/login.mutation'
 
 export const authContext = createContext<IAuthContextValue>({
 	authToken: '',
@@ -31,7 +31,7 @@ export const AuthContext = ({ children }: IAuthContextProps) => {
 }
 
 export const useAuth = () => {
-	const [logIn, { data: loginData }] = useMutation<ILoginData, ILoginVars>(LOGIN)
+	const [logIn, { data: loginData }] = loginMutation()
 
 	const { setAuthToken } = useContext(authContext)
 

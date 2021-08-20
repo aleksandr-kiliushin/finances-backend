@@ -1,9 +1,9 @@
-import { gql } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 
 // types
 import { IUser } from '#interfaces/user'
 
-export const LOGIN = gql`
+const LOGIN = gql`
 	mutation ($password: String!, $username: String!) {
 		login(loginInput: { password: $password, username: $username }) {
 			authToken
@@ -11,13 +11,15 @@ export const LOGIN = gql`
 	}
 `
 
-export interface ILoginData {
+interface ILoginData {
 	login: {
 		authToken: string
 	}
 }
 
-export interface ILoginVars {
+interface ILoginVars {
 	password: IUser['password']
 	username: IUser['username']
 }
+
+export const loginMutation = () => useMutation<ILoginData, ILoginVars>(LOGIN)

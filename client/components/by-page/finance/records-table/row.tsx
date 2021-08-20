@@ -3,16 +3,8 @@ import { useMutation } from '@apollo/client'
 import cx from 'classnames'
 
 // gql
-import {
-	IUpdateFinanceRecordData,
-	IUpdateFinanceRecordVars,
-	UPDATE_FINANCE_RECORD,
-} from '#gql/update-finance-record.mutation'
-import {
-	IDeleteFinanceRecordData,
-	IDeleteFinanceRecordVars,
-	DELETE_FINANCE_RECORD,
-} from '#gql/delete-finance-record.mutation'
+import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
+import { deleteFinanceRecordMutation } from '#gql/delete-finance-record.mutation'
 
 // components
 import { Svg } from '#lib/svg'
@@ -29,15 +21,9 @@ export const Row = ({ record }: IProps) => {
 
 	const { amount, category, date, id } = record
 
-	const [updatedFinanceRecord, { data: updatedFinanceRecordData }] = useMutation<
-		IUpdateFinanceRecordData,
-		IUpdateFinanceRecordVars
-	>(UPDATE_FINANCE_RECORD)
+	const [updateFinanceRecord] = updateFinanceRecordMutation()
 
-	const [deleteFinanceRecord, { data: deleteFinanceRecordData }] = useMutation<
-		IDeleteFinanceRecordData,
-		IDeleteFinanceRecordVars
-	>(DELETE_FINANCE_RECORD)
+	const [deleteFinanceRecord] = deleteFinanceRecordMutation()
 
 	const dateFormatted = new Date(date).toLocaleString('en-US', { month: 'short', day: 'numeric' })
 
@@ -59,7 +45,7 @@ export const Row = ({ record }: IProps) => {
 				<div className={s.Cell}>{dateFormatted}</div>
 				<div
 					className={s.Cell}
-					onClick={() => updatedFinanceRecord({ variables: { id, isTrashed: false } })}
+					onClick={() => updateFinanceRecord({ variables: { id, isTrashed: false } })}
 				>
 					<Svg name="undelete" />
 				</div>
@@ -80,7 +66,7 @@ export const Row = ({ record }: IProps) => {
 			</div>
 			<div
 				className={s.Cell}
-				onClick={() => updatedFinanceRecord({ variables: { id, isTrashed: true } })}
+				onClick={() => updateFinanceRecord({ variables: { id, isTrashed: true } })}
 			>
 				<Svg name="trash-can" />
 			</div>
