@@ -5,6 +5,8 @@ import { UserDto } from './dto/user.dto'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { GetUserArgs } from './dto/get-user.args'
+import { UseGuards } from '@nestjs/common'
+import { AuthGuard } from '#models/auth/auth.guard'
 // import { UseGuards } from '@nestjs/common'
 // import { AuthGuard } from '#models/auth/auth.guard'
 // import { IUser } from '#interfaces/user'
@@ -13,6 +15,7 @@ import { GetUserArgs } from './dto/get-user.args'
 export class UserResolver {
 	constructor(private readonly userService: UserService) {}
 
+	@UseGuards(new AuthGuard())
 	@Query(() => UserDto, { name: 'user' })
 	getUser(
 		@Args('getUserArgs')
@@ -21,11 +24,13 @@ export class UserResolver {
 		return this.userService.getUser(getUserArgs)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Query(() => [UserDto], { name: 'users' })
 	getUsers() {
 		return this.userService.getUsers()
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => UserDto)
 	createUser(
 		@Args('createUserInput')
@@ -34,6 +39,7 @@ export class UserResolver {
 		return this.userService.createUser(createUserInput)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => UserDto)
 	updateUser(
 		@Args('updateUserInput')
@@ -42,6 +48,7 @@ export class UserResolver {
 		return this.userService.updateUser(updateUserInput)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => UserDto)
 	deleteUser(
 		@Args('id', { type: () => Int })

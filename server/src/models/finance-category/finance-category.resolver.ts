@@ -5,11 +5,14 @@ import { FinanceCategoryDto } from './dto/finance-category.dto'
 import { CreateFinanceCategoryInput } from './dto/create-finance-category.input'
 import { UpdateFinanceCategoryInput } from './dto/update-finance-category.input'
 import { GetFinanceCategoriesArgs } from './dto/get-finance-categories.args'
+import { AuthGuard } from '#models/auth/auth.guard'
+import { UseGuards } from '@nestjs/common'
 
 @Resolver(() => FinanceCategoryDto)
 export class FinanceCategoryResolver {
 	constructor(private financeCategoryService: FinanceCategoryService) {}
 
+	@UseGuards(new AuthGuard())
 	@Query(() => FinanceCategoryDto, { name: 'financeCategory' })
 	getFinanceCategory(
 		@Args('id', { type: () => Int })
@@ -18,6 +21,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.getFinanceCategory(id)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Query(() => [FinanceCategoryDto], { name: 'financeCategories' })
 	getFinanceCategories(
 		@Args('getFinanceCategoriesArgs')
@@ -26,6 +30,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.getFinanceCategories(getFinanceCategoriesArgs)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => FinanceCategoryDto)
 	createFinanceCategory(
 		@Args('createFinanceCategoryInput')
@@ -34,6 +39,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.createFinanceCategory(createFinanceCategoryInput)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => FinanceCategoryDto)
 	updateFinanceCategory(
 		@Args('updateFinanceCategoryInput')
@@ -42,6 +48,7 @@ export class FinanceCategoryResolver {
 		return this.financeCategoryService.updateFinanceCategory(updateFinanceCategoryInput)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => FinanceCategoryDto)
 	deleteFinanceCategory(
 		@Args('id', { type: () => Int })

@@ -12,6 +12,7 @@ import { GetFinanceRecordsArgs } from './dto/get-finance-records.args'
 export class FinanceRecordResolver {
 	constructor(private financeRecordService: FinanceRecordService) {}
 
+	@UseGuards(new AuthGuard())
 	@Query(() => FinanceRecordDto, { name: 'financeRecord' })
 	getFinanceRecord(
 		@Args('id', { type: () => Int })
@@ -29,6 +30,7 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.getFinanceRecords(getFinanceRecordsArgs)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => FinanceRecordDto)
 	createFinanceRecord(
 		@Args('createFinanceRecordInput')
@@ -37,6 +39,7 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.createFinanceRecord(createFinanceRecordInput)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => FinanceRecordDto)
 	updateFinanceRecord(
 		@Args('updateFinanceRecordInput')
@@ -45,6 +48,7 @@ export class FinanceRecordResolver {
 		return this.financeRecordService.updateFinanceRecord(updateFinanceRecordInput)
 	}
 
+	@UseGuards(new AuthGuard())
 	@Mutation(() => FinanceRecordDto)
 	deleteFinanceRecord(
 		@Args('id', { type: () => Int })
