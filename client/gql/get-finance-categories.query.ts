@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 
 // types
+import { QueryHookOptions } from '@apollo/client'
 import { IFinanceCategory } from '#interfaces/finance'
 
 const GET_FINANCE_CATEGORIES = gql`
@@ -24,6 +25,9 @@ interface IGetFinanceCategoriesVars {
 	ids?: IFinanceCategory['id'][]
 }
 
-export const getFinanceCategoriesQuery = () => {
-	return useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(GET_FINANCE_CATEGORIES)
+export const getFinanceCategoriesQuery = (options: QueryHookOptions) => {
+	return useQuery<IGetFinanceCategoriesData, IGetFinanceCategoriesVars>(
+		GET_FINANCE_CATEGORIES,
+		options,
+	)
 }

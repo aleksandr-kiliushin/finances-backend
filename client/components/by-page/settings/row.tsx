@@ -1,12 +1,7 @@
 import { useState } from 'react'
-import { useMutation } from '@apollo/client'
 
 // gql
-import {
-	DELETE_FINANCE_CATEGORY,
-	IDeleteFinanceCategoryData,
-	IDeleteFinanceCategoryVars,
-} from '#gql/delete-finance-category.mutation'
+import { deleteFinanceCategoryMutation } from '#gql/delete-finance-category.mutation'
 
 // components
 import { Svg } from '#lib/svg'
@@ -25,10 +20,7 @@ export const Row = ({ category }: IProps) => {
 
 	const { id, name, type } = category
 
-	const [deleteFinanceCategory, { data: deleteFinanceCategoryData }] = useMutation<
-		IDeleteFinanceCategoryData,
-		IDeleteFinanceCategoryVars
-	>(DELETE_FINANCE_CATEGORY)
+	const [deleteFinanceCategory] = deleteFinanceCategoryMutation()
 
 	if (isEditing) {
 		return <InputRow closeInputRow={() => setIsEditing(false)} category={category} />
