@@ -16,8 +16,8 @@ const UPDATE_FINANCE_RECORD = gql`
 			}
 		) {
 			amount
-			id
 			date
+			id
 			category {
 				id
 				name
@@ -44,4 +44,15 @@ interface IUpdateFinanceRecordVars {
 
 export const updateFinanceRecordMutation = (
 	options?: MutationHookOptions<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>,
-) => useMutation<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>(UPDATE_FINANCE_RECORD, options)
+) =>
+	useMutation<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>(UPDATE_FINANCE_RECORD, {
+		update: cache => {
+			cache.modify({
+				fields: {
+					financeRecords: () => {},
+				},
+			})
+		},
+
+		...options,
+	})

@@ -9,7 +9,9 @@ import { Row } from '#comp-by-page/finance/records-table/row'
 import s from '#comp-by-page/finance/records-table/index.module.css'
 
 export default function Trash() {
-	const { data } = getFinanceRecordsQuery({ variables: { isTrashed: true } })
+	const { data } = getFinanceRecordsQuery({
+		variables: { isTrashed: true },
+	})
 
 	return (
 		<div className={s.Table}>

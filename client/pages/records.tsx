@@ -14,7 +14,9 @@ import s from '#comp-by-page/finance/records-table/index.module.css'
 export default function Records() {
 	const [isAddRecordRowShown, setIsAddRecordRowShown] = useState(false)
 
-	const { data } = getFinanceRecordsQuery({ variables: { isTrashed: false } })
+	const { data } = getFinanceRecordsQuery({
+		variables: { isTrashed: false },
+	})
 
 	return (
 		<div className={s.Table}>
