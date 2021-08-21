@@ -14,7 +14,7 @@ export const Modal = ({
 				<button className={s.CancelButton} onClick={onCancelButtonClick}>
 					cancel
 				</button>
-				<button className={s.SubmitButton} disabled onClick={onSubmitButtonClick}>
+				<button className={s.SubmitButton} onClick={onSubmitButtonClick}>
 					{submitButtonText}
 				</button>
 			</div>

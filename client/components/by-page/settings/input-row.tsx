@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useMutation, useQuery } from '@apollo/client'
 
 // gql
 import { getFinanceCategoryTypesQuery } from '#gql/get-finance-category-types.query'

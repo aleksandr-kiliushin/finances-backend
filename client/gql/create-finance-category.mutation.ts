@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 
 // types
+import { MutationHookOptions, StoreObject } from '@apollo/client'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 const CREATE_FINANCE_CATEGORY = gql`
@@ -17,7 +18,7 @@ const CREATE_FINANCE_CATEGORY = gql`
 `
 
 interface ICreateFinanceCategoryData {
-	financeCategory: IFinanceCategory
+	createFinanceCategory: StoreObject & IFinanceCategory
 }
 
 interface ICreateFinanceCategoryVars {
@@ -25,5 +26,26 @@ interface ICreateFinanceCategoryVars {
 	typeId: IFinanceCategoryType['id']
 }
 
-export const createFinanceCategoryMutation = () =>
-	useMutation<ICreateFinanceCategoryData, ICreateFinanceCategoryVars>(CREATE_FINANCE_CATEGORY)
+export const createFinanceCategoryMutation = (
+	options?: MutationHookOptions<ICreateFinanceCategoryData, ICreateFinanceCategoryVars>,
+) =>
+	useMutation<ICreateFinanceCategoryData, ICreateFinanceCategoryVars>(CREATE_FINANCE_CATEGORY, {
+		/** Update cache after category creating. */
+		update: (cache, { data }) => {
+			if (!data) return
+
+			const cacheId = cache.identify(data.createFinanceCategory)
+
+			if (!cacheId) return
+
+			cache.modify({
+				fields: {
+					financeCategories: (existingFieldData, { toReference }) => {
+						return [...existingFieldData, toReference(cacheId)]
+					},
+				},
+			})
+		},
+
+		...options,
+	})
