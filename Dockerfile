@@ -7,11 +7,13 @@ RUN apt-get -y install curl
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get -y install nodejs nginx nano
 
-COPY ./server/dist/ /var/server/dist/
-COPY ./server/node_modules/ /var/server/node_modules/
+COPY . /var/app/
 
-COPY ./client/ /var/client/
+# COPY ./server/dist/ /var/server/dist/
+# COPY ./server/node_modules/ /var/server/node_modules/
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+# COPY ./client/ /var/client/
+
+COPY ./config/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
