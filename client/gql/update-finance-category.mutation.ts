@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 
 // types
+import { MutationHookOptions, StoreObject } from '@apollo/client'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 const UPDATE_FINANCE_CATEGORY = gql`
@@ -17,7 +18,7 @@ const UPDATE_FINANCE_CATEGORY = gql`
 `
 
 interface IUpdateFinanceCategoryData {
-	financeCategory: IFinanceCategory
+	updateFinanceCategory: StoreObject & IFinanceCategory
 }
 
 interface IUpdateFinanceCategoryVars {
@@ -26,5 +27,10 @@ interface IUpdateFinanceCategoryVars {
 	typeId?: IFinanceCategoryType['id']
 }
 
-export const updateFinanceCategoryMutation = () =>
-	useMutation<IUpdateFinanceCategoryData, IUpdateFinanceCategoryVars>(UPDATE_FINANCE_CATEGORY)
+export const updateFinanceCategoryMutation = (
+	options?: MutationHookOptions<IUpdateFinanceCategoryData, IUpdateFinanceCategoryVars>,
+) =>
+	useMutation<IUpdateFinanceCategoryData, IUpdateFinanceCategoryVars>(
+		UPDATE_FINANCE_CATEGORY,
+		options,
+	)

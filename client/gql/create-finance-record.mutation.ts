@@ -35,7 +35,7 @@ interface ICreateFinanceRecordVars {
 }
 
 export const createFinanceRecordMutation = (
-	options: MutationHookOptions<ICreateFinanceRecordData, ICreateFinanceRecordVars>,
+	options?: MutationHookOptions<ICreateFinanceRecordData, ICreateFinanceRecordVars>,
 ) =>
 	useMutation<ICreateFinanceRecordData, ICreateFinanceRecordVars>(CREATE_FINANCE_RECORD, {
 		/** Update cache after category creating. */

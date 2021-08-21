@@ -1,6 +1,7 @@
-import { gql, useMutation } from '@apollo/client'
+import { MutationHookOptions, StoreObject } from '@apollo/client'
 
 // types
+import { gql, useMutation } from '@apollo/client'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 const UPDATE_FINANCE_RECORD = gql`
@@ -30,7 +31,7 @@ const UPDATE_FINANCE_RECORD = gql`
 `
 
 interface IUpdateFinanceRecordData {
-	financeRecord: IFinanceRecord
+	updateFinanceRecord: StoreObject & IFinanceRecord
 }
 
 interface IUpdateFinanceRecordVars {
@@ -41,5 +42,6 @@ interface IUpdateFinanceRecordVars {
 	isTrashed?: IFinanceRecord['isTrashed']
 }
 
-export const updateFinanceRecordMutation = () =>
-	useMutation<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>(UPDATE_FINANCE_RECORD)
+export const updateFinanceRecordMutation = (
+	options?: MutationHookOptions<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>,
+) => useMutation<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>(UPDATE_FINANCE_RECORD, options)
