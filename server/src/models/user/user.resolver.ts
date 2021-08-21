@@ -1,11 +1,11 @@
-import { Resolver, Query, Mutation, Args, Int /*, Context*/ } from '@nestjs/graphql'
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
 
 import { UserService } from './user.service'
 import { UserDto } from './dto/user.dto'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { GetUserArgs } from './dto/get-user.args'
-import { UseGuards } from '@nestjs/common'
 import { AuthGuard } from '#models/auth/auth.guard'
 
 @Resolver(() => UserDto)
@@ -27,7 +27,7 @@ export class UserResolver {
 		return this.userService.getUsers()
 	}
 
-	// @UseGuards(new AuthGuard())
+	@UseGuards(new AuthGuard())
 	@Mutation(() => UserDto)
 	createUser(
 		@Args('createUserInput')

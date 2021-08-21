@@ -1,6 +1,7 @@
 import { IFinanceCategoryType } from '#interfaces/finance'
-import { AuthGuard } from '#models/auth/auth.guard'
 import { UseGuards } from '@nestjs/common'
+
+import { AuthGuard } from '#models/auth/auth.guard'
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { CreateFinanceCategoryTypeInput } from './dto/create-finance-category-type.input'
 import { FinanceCategoryTypeDto } from './dto/finance-category-type.dto'

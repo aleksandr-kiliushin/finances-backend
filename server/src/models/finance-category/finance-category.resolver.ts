@@ -1,4 +1,5 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
 
 import { FinanceCategoryService } from './finance-category.service'
 import { FinanceCategoryDto } from './dto/finance-category.dto'
@@ -6,7 +7,6 @@ import { CreateFinanceCategoryInput } from './dto/create-finance-category.input'
 import { UpdateFinanceCategoryInput } from './dto/update-finance-category.input'
 import { GetFinanceCategoriesArgs } from './dto/get-finance-categories.args'
 import { AuthGuard } from '#models/auth/auth.guard'
-import { UseGuards } from '@nestjs/common'
 
 @Resolver(() => FinanceCategoryDto)
 export class FinanceCategoryResolver {
