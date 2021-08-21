@@ -25,7 +25,7 @@ const ormconfigProd: TypeOrmModuleOptions = {
 	password: 'lVJxIokcu6b0e-IFty7LnTEsivCE0WSG',
 	port: 5432,
 	ssl: false,
-	synchronize: true, //should set "false" for production.
+	synchronize: false, //should set "false" for production.
 	type: 'postgres',
 	username: 'xwyksyfg',
 }
