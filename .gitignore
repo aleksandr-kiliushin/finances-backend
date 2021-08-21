@@ -1,6 +1,9 @@
 # node_modules
 */node_modules
 
+# local env files
+**/*.env
+
 
 
 # client/
@@ -27,12 +30,6 @@ client/*.pem
 client/npm-debug.log*
 client/yarn-debug.log*
 client/yarn-error.log*
-
-# local env files
-client/.env.local
-client/.env.development.local
-client/.env.test.local
-client/.env.production.local
 
 # vercel
 client/.vercel

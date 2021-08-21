@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev:client": "npm run dev --prefix client",
+    "start:client": "npm run start --prefix client",
     "dev:db": "docker start finance-dev-db-server",
     "dev:db:download": "bash ./db.sh",
     "dev:server": "npm run dev --prefix server"
