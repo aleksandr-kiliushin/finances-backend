@@ -2,12 +2,21 @@
 	border: 1px solid #111;
 }
 
+.Body {
+	margin-top: 39px;
+}
+
 .Row {
 	display: grid;
 	grid-template-columns: 23% 27% 22% 14% 14%;
 }
 
-.HeaderCell {
+.HeaderRow {
+	position: fixed;
+	width: calc(100% - 2px); /* -2px: fix for borders */
+}
+
+.HeaderRow > .Cell {
 	height: 40px;
 	margin: -1px;
 	line-height: 40px;

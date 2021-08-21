@@ -8,15 +8,15 @@ import s from './index.module.css'
 
 export const Header = ({ isTrash, toggleIsAddRecordRowShown }: IProps) => {
 	return (
-		<div className={s.Row}>
-			<div className={s.HeaderCell}>amount</div>
-			<div className={s.HeaderCell}>category</div>
-			<div className={s.HeaderCell}>date</div>
+		<div className={cx(s.Row, s.HeaderRow)}>
+			<div className={s.Cell}>amount</div>
+			<div className={s.Cell}>category</div>
+			<div className={s.Cell}>date</div>
 
 			{isTrash ? (
-				<div className={cx(s.HeaderCell, s.HeaderActionCell)} />
+				<div className={cx(s.Cell, s.HeaderActionCell)} />
 			) : (
-				<div className={cx(s.HeaderCell, s.HeaderActionCell)} onClick={toggleIsAddRecordRowShown}>
+				<div className={cx(s.Cell, s.HeaderActionCell)} onClick={toggleIsAddRecordRowShown}>
 					<Svg name="plus" />
 				</div>
 			)}

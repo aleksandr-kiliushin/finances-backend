@@ -25,13 +25,15 @@ export default function Records() {
 				toggleIsAddRecordRowShown={() => setIsAddRecordRowShown(!isAddRecordRowShown)}
 			/>
 
-			{isAddRecordRowShown && (
-				<InputRow closeInputRow={() => setIsAddRecordRowShown(false)} record={null} />
-			)}
+			<div className={s.Body}>
+				{isAddRecordRowShown && (
+					<InputRow closeInputRow={() => setIsAddRecordRowShown(false)} record={null} />
+				)}
 
-			{data?.financeRecords.map(record => (
-				<Row key={record.id} record={record} />
-			))}
+				{data?.financeRecords.map(record => (
+					<Row key={record.id} record={record} />
+				))}
+			</div>
 		</div>
 	)
 }

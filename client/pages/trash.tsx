@@ -17,9 +17,11 @@ export default function Trash() {
 		<div className={s.Table}>
 			<Header isTrash />
 
-			{data?.financeRecords.map(record => (
-				<Row key={record.id} record={record} />
-			))}
+			<div className={s.Body}>
+				{data?.financeRecords.map(record => (
+					<Row key={record.id} record={record} />
+				))}
+			</div>
 		</div>
 	)
 }
