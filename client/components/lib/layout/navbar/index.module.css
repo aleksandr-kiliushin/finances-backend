@@ -1,10 +1,13 @@
 .Navbar {
+	position: fixed;
+	bottom: 0;
 	display: grid;
+	grid-auto-flow: column;
 	align-items: center;
 	justify-content: space-between;
+	width: 100%;
 	padding: 0.4rem;
 	background-color: teal;
-	grid-auto-flow: column;
 }
 
 .SectionLink {
