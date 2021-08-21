@@ -7,8 +7,8 @@
 	"license": "UNLICENSED",
 	"scripts": {
 		"build": "nest build",
-		"dev": "nest start --watch",
-		"start": "nest start",
+		"dev": "MODE=dev nest start --watch",
+		"start": "MODE=prod nest start",
 		"start:debug": "nest start --debug --watch",
 		"start:prod": "node dist/main",
 		"typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
@@ -25,6 +25,7 @@
 		"@nestjs/typeorm": "^8.0.2",
 		"apollo-server-express": "^2.25.2",
 		"bcrypt": "^5.0.1",
+		"dotenv": "^10.0.0",
 		"graphql": "^15.5.1",
 		"jsonwebtoken": "^8.5.1",
 		"pg": "^8.7.1",

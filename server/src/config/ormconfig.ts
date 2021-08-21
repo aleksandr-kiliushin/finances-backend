@@ -1,6 +1,11 @@
+import * as path from 'path'
+import * as dotenv from 'dotenv'
+
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 
-const ormconfigDev: TypeOrmModuleOptions = {
+dotenv.config({ path: path.join(__dirname, '..', '..', '..', 'config', process.env.MODE + '.env') })
+
+const ormConfigDev: TypeOrmModuleOptions = {
 	cli: { migrationsDir: 'src/migration' },
 	database: 'finance',
 	entities: ['dist/**/*.entity{.js,.ts}'],
@@ -15,19 +20,19 @@ const ormconfigDev: TypeOrmModuleOptions = {
 	username: 'postgres',
 }
 
-const ormconfigProd: TypeOrmModuleOptions = {
+const ormConfigProd: TypeOrmModuleOptions = {
 	cli: { migrationsDir: 'src/migration' },
-	database: 'xwyksyfg',
+	database: process.env.DB_NAME,
 	entities: ['dist/**/*.entity{ .ts,.js}'],
-	host: 'hattie.db.elephantsql.com',
+	host: process.env.DB_HOST,
 	migrations: ['src/migration/*.ts'],
 	migrationsTableName: 'migration',
-	password: 'lVJxIokcu6b0e-IFty7LnTEsivCE0WSG',
+	password: process.env.DB_PASSWORD,
 	port: 5432,
 	ssl: false,
-	synchronize: false, //should set "false" for production.
+	synchronize: false, // should be "false" for production.
 	type: 'postgres',
-	username: 'xwyksyfg',
+	username: process.env.DB_USERNAME,
 }
 
-export default ormconfigProd
+export default process.env.MODE === 'prod' ? ormConfigProd : ormConfigDev
