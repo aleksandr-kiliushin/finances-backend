@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken'
+import * as bcrypt from 'bcrypt'
 
 import { UserService } from '#models/user/user.service'
 import { LoginInput } from './dto/login.input'
@@ -15,7 +16,10 @@ export class AuthService {
 		const user = await this.userService.getUser({ username })
 
 		if (!user) throw new UnauthorizedException()
-		if (user.password !== password) throw new UnauthorizedException()
+
+		const isPasswordValid = await bcrypt.compare(password, user.password)
+
+		if (!isPasswordValid) throw new UnauthorizedException()
 
 		return {
 			authToken: jwt.sign({ id: user.id, username: user.username }, 'secret', { expiresIn: '10d' }),

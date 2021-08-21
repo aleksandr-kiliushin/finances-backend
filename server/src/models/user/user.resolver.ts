@@ -7,9 +7,6 @@ import { UpdateUserInput } from './dto/update-user.input'
 import { GetUserArgs } from './dto/get-user.args'
 import { UseGuards } from '@nestjs/common'
 import { AuthGuard } from '#models/auth/auth.guard'
-// import { UseGuards } from '@nestjs/common'
-// import { AuthGuard } from '#models/auth/auth.guard'
-// import { IUser } from '#interfaces/user'
 
 @Resolver(() => UserDto)
 export class UserResolver {
@@ -30,7 +27,7 @@ export class UserResolver {
 		return this.userService.getUsers()
 	}
 
-	@UseGuards(new AuthGuard())
+	// @UseGuards(new AuthGuard())
 	@Mutation(() => UserDto)
 	createUser(
 		@Args('createUserInput')
