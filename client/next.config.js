@@ -12,7 +12,7 @@ module.exports = {
 		return [
 			{
 				source: '/graphql',
-				destination: 'http://[::1]:3080/graphql',
+				destination: 'http://[::1]:' + process.env.BACKEND_PORT + '/graphql',
 			},
 		]
 	},
