@@ -14,7 +14,7 @@ export const CustomApolloProvider = ({ children }: IProps) => {
 		headers: {
 			authorization: 'Bearer ' + authToken,
 		},
-		uri: '/graphql',
+		uri: '/graphql/',
 	})
 
 	/** Customize response logic if server responses with Unauthorized 401 status code. */
