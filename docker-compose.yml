@@ -4,27 +4,30 @@ services:
   reverse-proxy:
     container_name: reverse-proxy
     depends_on:
-      - finance-client
+      - client
+      - server
     image: nginx:latest
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
 
-  finance-client:
+  client:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile.client
-    container_name: finance-client
+      dockerfile: ./client/Dockerfile.client
+    container_name: client
+    depends_on:
+      - server
     ports:
       - 3000:3000
     restart: on-failure
 
-  finance-server:
+  server:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile.server
-    container_name: finance-server
+      dockerfile: ./server/Dockerfile.server
+    container_name: server
     ports:
       - 3080:3080
     restart: on-failure
