@@ -1,0 +1,13 @@
+FROM node:14
+
+COPY ./client/package.json /app/client/package.json
+RUN npm i --prefix /app/client
+
+COPY ./client /app/client
+COPY ./server/src/interfaces /app/server/src/interfaces
+
+RUN npm run build --prefix /app/client
+
+CMD ["npm", "run", "start", "--prefix", "/app/client"]
+
+EXPOSE 3000
