@@ -1,11 +1,10 @@
 #!/bin/bash
-# set -e
 
-LOCAL_SERVER="finance-dev-db-server";
-LOCAL_PW="123";
-LOCAL_DB="finance";
-REMOTE_API_KEY="11774a77-e885-485b-858f-b1dec98828e4";
-REMOTE_DB_NAME="xwyksyfg";
+LOCAL_SERVER=$(grep LOCAL_SERVER ./config/dev.env | cut -d '=' -f2);
+LOCAL_PW=$(grep LOCAL_PW ./config/dev.env | cut -d '=' -f2);
+LOCAL_DB=$(grep LOCAL_DB ./config/dev.env | cut -d '=' -f2);
+REMOTE_API_KEY=$(grep REMOTE_API_KEY ./config/dev.env | cut -d '=' -f2);
+REMOTE_DB_NAME=$(grep REMOTE_DB_NAME ./config/dev.env | cut -d '=' -f2);
 
 echo "stop old local docker [$LOCAL_SERVER]";
 docker kill $LOCAL_SERVER || :;
