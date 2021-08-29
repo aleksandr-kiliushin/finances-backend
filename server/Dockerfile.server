@@ -4,7 +4,7 @@ COPY ./server/package.json /app/server/package.json
 RUN npm i --prefix /app/server
 
 COPY ./server /app/server
-COPY ./config/dev.env /app/config/dev.env
+COPY ./config/prod.env /app/config/prod.env
 
 RUN npm run build --prefix /app/server
 
