@@ -5,6 +5,7 @@ RUN npm i --prefix /app/client
 
 COPY ./client /app/client
 COPY ./server/src/interfaces /app/server/src/interfaces
+COPY ./config/prod.env /app/config/prod.env
 
 RUN npm run build --prefix /app/client
 
