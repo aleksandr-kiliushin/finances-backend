@@ -52,3 +52,9 @@ server/.nyc_output
 
 # temporary files
 temp/
+
+
+
+### notionbot
+# binary
+notionbot/notionbot
