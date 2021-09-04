@@ -31,3 +31,10 @@ services:
     ports:
       - 3080:3080
     restart: on-failure
+
+  notionbot:
+    build:
+      context: .
+      dockerfile: ./notionbot/Dockerfile
+    container_name: notionbot
+    restart: on-failure
