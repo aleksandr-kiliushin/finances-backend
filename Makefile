@@ -9,13 +9,15 @@ build-server:
 	npm run build --prefix server
 dev-client:
 	npm run dev --prefix client
+
 dev-db:
 	docker start finance-dev-db-server
 dev-db-download:
 	bash ./db.sh
 dev-server:
 	npm run dev --prefix server
+
 start-client:
 	npm run start --prefix client
 start-server:
-	npm run start --prefix serve
+	npm run start --prefix server
