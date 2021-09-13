@@ -27,6 +27,7 @@ export class FinanceRecordService {
 		return this.financeRecordRepository.find({
 			order: {
 				date: 'DESC',
+				id: 'DESC',
 			},
 			relations: ['category', 'category.type'],
 			where: getFinanceRecordsArgs,

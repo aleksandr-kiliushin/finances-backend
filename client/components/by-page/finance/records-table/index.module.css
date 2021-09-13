@@ -11,6 +11,11 @@
 	grid-template-columns: 23% 27% 22% 14% 14%;
 }
 
+.AddNewRecordRow {
+	position: fixed;
+	width: calc(100% - 2px); /* -2px: fix for borders */
+}
+
 .HeaderRow {
 	position: fixed;
 	width: calc(100% - 2px); /* -2px: fix for borders */

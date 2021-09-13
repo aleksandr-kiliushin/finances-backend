@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useMutation, useQuery } from '@apollo/client'
+import cx from 'classnames'
 
 // gql
 import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
@@ -19,7 +19,7 @@ import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 export const InputRow = ({ closeInputRow, record }: IProps) => {
 	const [amount, setAmount] = useState(record?.amount ?? '')
 	const [category, setCategory] = useState<IFinanceCategory | null>(record?.category ?? null)
-	const [date, setDate] = useState(record?.date ?? '')
+	const [date, setDate] = useState(record?.date ?? new Date().toISOString().split('T')[0])
 
 	const { data: financeCategoriesData } = getFinanceCategoriesQuery()
 
@@ -52,8 +52,13 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 
 	const { financeCategories } = financeCategoriesData
 
+	const cxRow = cx({
+		[s.Row]: true,
+		[s.AddNewRecordRow]: !record,
+	})
+
 	return (
-		<div className={s.Row}>
+		<div className={cxRow}>
 			<div className={s.Cell}>
 				<input onChange={e => setAmount(e.target.value)} type="number" value={amount} />
 			</div>
