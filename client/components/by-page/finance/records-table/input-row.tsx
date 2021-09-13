@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import cx from 'classnames'
 
 // gql
 import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
@@ -51,8 +52,13 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 
 	const { financeCategories } = financeCategoriesData
 
+	const cxRow = cx({
+		[s.Row]: true,
+		[s.AddNewRecordRow]: !record,
+	})
+
 	return (
-		<div className={s.Row}>
+		<div className={cxRow}>
 			<div className={s.Cell}>
 				<input onChange={e => setAmount(e.target.value)} type="number" value={amount} />
 			</div>
