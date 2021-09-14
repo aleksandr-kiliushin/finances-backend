@@ -12,7 +12,6 @@
 
 .SectionLink {
 	padding: 0.2rem;
-	border: 1px solid lightgray;
 }
 
 .SectionLink > svg {
@@ -22,10 +21,11 @@
 }
 
 .ActiveSectionLink {
-	background-color: cadetblue;
-	border: 1px solid white;
+	padding: 0.4rem;
 }
 
 .ActiveSectionLink > svg {
+	height: 45px;
+	width: 45px;
 	fill: white;
 }

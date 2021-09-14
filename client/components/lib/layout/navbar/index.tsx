@@ -22,6 +22,7 @@ export const Navbar = () => {
 	const sectionsData: ISection[] = [
 		{ href: '/', svgName: 'home' },
 		{ href: '/records', svgName: 'box' },
+		{ href: '/stats', svgName: 'chart-up' },
 		{ href: '/trash', svgName: 'trash-can' },
 		{ href: '/settings', svgName: 'gear' },
 		{ href: '/login', svgName: 'person' },
