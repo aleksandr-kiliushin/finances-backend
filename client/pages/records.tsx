@@ -15,7 +15,11 @@ export default function Records() {
 	const [isAddRecordRowShown, setIsAddRecordRowShown] = useState(false)
 
 	const { data } = getFinanceRecordsQuery({
-		variables: { isTrashed: false },
+		variables: {
+			isTrashed: false,
+			orderingByDate: 'DESC',
+			orderingById: 'ASC',
+		},
 	})
 
 	return (

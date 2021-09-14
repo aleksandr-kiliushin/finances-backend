@@ -10,7 +10,11 @@ import s from '#comp-by-page/finance/records-table/index.module.css'
 
 export default function Trash() {
 	const { data } = getFinanceRecordsQuery({
-		variables: { isTrashed: true },
+		variables: {
+			isTrashed: true,
+			orderingByDate: 'DESC',
+			orderingById: 'ASC',
+		},
 	})
 
 	return (

@@ -1,5 +1,5 @@
-import { Chart } from '#comp-by-page/stats/chart'
+import { Chart1 } from '#comp-by-page/stats/chart'
 
 export default function Stats() {
-	return <Chart />
+	return <Chart1 />
 }

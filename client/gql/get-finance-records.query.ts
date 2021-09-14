@@ -3,10 +3,17 @@ import { gql, useQuery } from '@apollo/client'
 // types
 import { QueryHookOptions } from '@apollo/client'
 import { IFinanceRecord } from '#interfaces/finance'
+import { IOrdering } from '#interfaces/common'
 
 const GET_FINANCE_RECORDS = gql`
-	query ($isTrashed: Boolean) {
-		financeRecords(getFinanceRecordsArgs: { isTrashed: $isTrashed }) {
+	query ($isTrashed: Boolean, $orderingByDate: String, $orderingById: String) {
+		financeRecords(
+			getFinanceRecordsArgs: {
+				isTrashed: $isTrashed
+				orderingByDate: $orderingByDate
+				orderingById: $orderingById
+			}
+		) {
 			amount
 			category {
 				id
@@ -29,6 +36,8 @@ interface IGetFinanceRecordsData {
 
 interface IGetFinanceRecordsVars {
 	isTrashed?: IFinanceRecord['isTrashed']
+	orderingByDate?: IOrdering
+	orderingById?: IOrdering
 }
 
 export const getFinanceRecordsQuery = (options?: QueryHookOptions) =>
