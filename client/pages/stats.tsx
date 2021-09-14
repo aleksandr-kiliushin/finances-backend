@@ -1,3 +1,5 @@
+import { Chart } from '#comp-by-page/stats/chart'
+
 export default function Stats() {
-	return <h1>Stats</h1>
+	return <Chart />
 }
