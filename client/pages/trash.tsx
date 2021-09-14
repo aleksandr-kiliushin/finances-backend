@@ -13,7 +13,7 @@ export default function Trash() {
 		variables: {
 			isTrashed: true,
 			orderingByDate: 'DESC',
-			orderingById: 'ASC',
+			orderingById: 'DESC',
 		},
 	})
 
