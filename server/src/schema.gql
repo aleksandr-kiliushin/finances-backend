@@ -47,6 +47,8 @@ input GetFinanceCategoriesArgs {
 
 input GetFinanceRecordsArgs {
   isTrashed: Boolean
+  orderingByDate: String = "ASC"
+  orderingById: String = "ASC"
 }
 
 input GetUserArgs {

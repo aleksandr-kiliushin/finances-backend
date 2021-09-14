@@ -24,13 +24,14 @@ export class FinanceRecordService {
 	}
 
 	getFinanceRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs): Promise<FinanceRecordEntity[]> {
+		const { orderingByDate, orderingById, ...where } = getFinanceRecordsArgs
 		return this.financeRecordRepository.find({
 			order: {
-				date: 'DESC',
-				id: 'DESC',
+				date: orderingByDate,
+				id: orderingById,
 			},
 			relations: ['category', 'category.type'],
-			where: getFinanceRecordsArgs,
+			where,
 		})
 	}
 
