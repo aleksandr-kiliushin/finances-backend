@@ -42,19 +42,31 @@ export const Chart = () => {
 			currentDate.setDate(currentDate.getDate() + 1)
 		}
 
+		const maxSum = Math.max.apply(
+			Math,
+			financeRecords.map(record => record.amount),
+		)
+
 		const canvas = canvasRef.current as HTMLCanvasElement | null
 
 		if (canvas === null) return
 
-		const context = canvas.getContext('2d')
+		const ctx = canvas.getContext('2d')
 
-		if (context === null) return
+		if (ctx === null) return
 
-		context.fillStyle = '#000000'
-		context.fillRect(0, 0, context.canvas.width, context.canvas.height)
+		const xMultiplier = ctx.canvas.clientWidth / Object.keys(mapSumToDate).length
+		const yMultiplier = ctx.canvas.clientHeight / maxSum
+
+		ctx.beginPath()
+		ctx.moveTo(0, currentSum * yMultiplier * 0.01)
+		Object.values(mapSumToDate).forEach((sum, index) => {
+			ctx.lineTo(index * xMultiplier, sum * yMultiplier * 0.01)
+		})
+		ctx.stroke()
 	}, [data])
 
 	if (!data) return null
 
-	return <canvas className={s.Chart} ref={canvasRef} />
+	return <canvas className={s.Chart} ref={canvasRef} style={{ border: '1px solid black' }} />
 }
