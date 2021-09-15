@@ -1,4 +1,4 @@
-export const Svg = ({ name, ...props }: ISvgProps) => {
+export const Svg = ({ name, className = '' }: ISvgProps) => {
 	const { height, pathD, viewBox, width } = svgs[name]
 
 	if (!pathD) {
@@ -12,7 +12,7 @@ export const Svg = ({ name, ...props }: ISvgProps) => {
 			viewBox={viewBox}
 			width={width}
 			xmlns="http://www.w3.org/2000/svg"
-			{...props}
+			className={className}
 		>
 			<path d={pathD} />
 		</svg>
