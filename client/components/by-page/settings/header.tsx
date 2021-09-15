@@ -14,7 +14,7 @@ export const Header = ({ toggleIsAddCategoryRowShown }: IProps) => {
 			<div className={s.HeaderCell}>type</div>
 
 			<div className={cx(s.HeaderCell, s.HeaderActionCell)} onClick={toggleIsAddCategoryRowShown}>
-				<Svg name="plus" />
+				<Svg name="plus-in-circle" />
 			</div>
 		</div>
 	)

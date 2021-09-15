@@ -32,7 +32,7 @@ export const Row = ({ category }: IProps) => {
 				<div className={s.Cell}>{name}</div>
 				<div className={s.Cell}>{type.name}</div>
 				<div className={s.Cell} onClick={() => setIsEditing(!isEditing)}>
-					<Svg name="edit" />
+					<Svg name="pencil" />
 				</div>
 				<div className={s.Cell} onClick={() => setIsDeletionWindowShown(true)}>
 					<Svg name="trash-can" />

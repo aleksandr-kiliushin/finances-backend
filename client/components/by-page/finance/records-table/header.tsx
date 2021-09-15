@@ -17,7 +17,7 @@ export const Header = ({ isTrash, toggleIsAddRecordRowShown }: IProps) => {
 				<div className={cx(s.Cell, s.HeaderActionCell)} />
 			) : (
 				<div className={cx(s.Cell, s.HeaderActionCell)} onClick={toggleIsAddRecordRowShown}>
-					<Svg name="plus" />
+					<Svg name="plus-in-circle" />
 				</div>
 			)}
 		</div>

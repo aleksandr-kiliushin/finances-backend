@@ -46,7 +46,7 @@ export const Row = ({ record }: IProps) => {
 					className={s.Cell}
 					onClick={() => updateFinanceRecord({ variables: { id, isTrashed: false } })}
 				>
-					<Svg name="undelete" />
+					<Svg name="reply" />
 				</div>
 				<div className={s.Cell} onClick={() => deleteFinanceRecord({ variables: { id } })}>
 					<Svg name="trash-can" />
@@ -61,7 +61,7 @@ export const Row = ({ record }: IProps) => {
 			<div className={s.Cell}>{category.name}</div>
 			<div className={s.Cell}>{dateFormatted}</div>
 			<div className={s.Cell} onClick={() => setIsEditing(!isEditing)}>
-				<Svg name="edit" />
+				<Svg name="pencil" />
 			</div>
 			<div
 				className={s.Cell}
