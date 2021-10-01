@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { FinanceCategoryResolver } from './finance-category.resolver'
 import { FinanceCategoryService } from './finance-category.service'
 import { FinanceCategoryEntity } from './entities/finance-category.entity'
-import { FinanceCategoryTypeModule } from '#models/finance-category-type/finance-category-type.module'
+import { FinanceCategoryTypeModule } from '#models/OLD-finance-category-type/finance-category-type.module'
 
 @Module({
 	exports: [FinanceCategoryService],
