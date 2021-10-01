@@ -11,8 +11,8 @@ module.exports = {
 
 		return [
 			{
-				source: '/graphql',
-				destination: 'http://[::1]:' + process.env.BACKEND_PORT + '/graphql',
+				source: '/api',
+				destination: 'http://[::1]:' + process.env.BACKEND_PORT + '/api',
 			},
 		]
 	},
