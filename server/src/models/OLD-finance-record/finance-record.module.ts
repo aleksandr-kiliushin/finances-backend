@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { FinanceCategoryModule } from '#models/OLD-finance-category/finance-category.module'
+import { FinanceRecordResolver } from './finance-record.resolver'
 import { FinanceRecordService } from './finance-record.service'
-import { FinanceRecordController } from './finance-record.controller'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
+import { FinanceCategoryModule } from '#models/OLD-finance-category/finance-category.module'
 
 @Module({
-	controllers: [FinanceRecordController],
 	imports: [TypeOrmModule.forFeature([FinanceRecordEntity]), FinanceCategoryModule],
-	providers: [FinanceRecordController, FinanceRecordService],
+	providers: [FinanceRecordResolver, FinanceRecordService],
 })
 export class FinanceRecordModule {}

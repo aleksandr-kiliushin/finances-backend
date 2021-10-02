@@ -12,7 +12,7 @@ POST http://localhost:3080/api/finance-category-type/ HTTP/1.1
 Content-Type: application/json
 
 {
-	"name": "hernya"
+	"name": "My category type name"
 }
 
 ###
@@ -20,15 +20,13 @@ PATCH http://localhost:3080/api/finance-category-type/5 HTTP/1.1
 Content-Type: application/json
 
 {
-	"name": "hernya155"
+	"name": "My UPDATED category type name"
 }
 
 ###
-DELETE http://localhost:3080/api/finance-category-type/5 HTTP/1.1
+DELETE http://localhost:3080/api/finance-category-type/6 HTTP/1.1
 
-
-
-### Finance category
+### Finance category ##########################################################
 GET http://localhost:3080/api/finance-category
 
 ###
@@ -39,7 +37,7 @@ POST http://localhost:3080/api/finance-category/ HTTP/1.1
 Content-Type: application/json
 
 {
-	"name": "heheIncome",
+	"name": "My category name",
 	"typeId": 2
 }
 
@@ -48,9 +46,33 @@ PATCH http://localhost:3080/api/finance-category/16 HTTP/1.1
 Content-Type: application/json
 
 {
-	"name": "heheExpense",
+	"name": "My UPDATED category name",
 	"typeId": 1
 }
 
 ###
 DELETE http://localhost:3080/api/finance-category/17 HTTP/1.1
+
+### Finance record ############################################################
+GET http://localhost:3080/api/finance-record
+
+# ###
+# GET http://localhost:3080/api/finance-category/17
+
+# ###
+# POST http://localhost:3080/api/finance-category/ HTTP/1.1
+# Content-Type: application/json
+
+# {
+# 	"name": "My category name",
+# 	"typeId": 2
+# }
+
+# ###
+# PATCH http://localhost:3080/api/finance-category/16 HTTP/1.1
+# Content-Type: application/json
+
+# {
+# 	"name": "My UPDATED category name",
+# 	"typeId": 1
+# }
