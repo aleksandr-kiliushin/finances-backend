@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 
-import { UserService } from '#models/user/user.service'
+import { UserService } from '#models/OLD-user/user.service'
 import { LoginInput } from './dto/login.input'
 import { LoginDto } from './dto/login.dto'
 
