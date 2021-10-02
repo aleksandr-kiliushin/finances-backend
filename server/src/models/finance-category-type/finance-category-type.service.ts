@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'
 
 import { CreateFinanceCategoryTypeDto } from './dto/create-finance-category-type.dto'
-import { FinanceCategoryTypeDto } from './dto/finance-category-type.dto'
 import { UpdateFinanceCategoryTypeDto } from './dto/update-finance-category-type.dto'
 import { FinanceCategoryTypeEntity } from './entities/finance-category-type.entity'
 
@@ -14,7 +13,7 @@ export class FinanceCategoryTypeService {
 		private financeCategoryTypeRepository: Repository<FinanceCategoryTypeEntity>,
 	) {}
 
-	getFinanceCategoryTypes(query?: { ids: string }): Promise<FinanceCategoryTypeDto[]> {
+	getFinanceCategoryTypes(query: { ids: string }): Promise<FinanceCategoryTypeEntity[]> {
 		const { ids } = query
 		const where = {
 			...(ids && { id: In(ids.split(',')) }),

@@ -5,7 +5,7 @@ import { FinanceCategoryTypeService } from './finance-category-type.service'
 import { CreateFinanceCategoryTypeDto } from './dto/create-finance-category-type.dto'
 import { UpdateFinanceCategoryTypeDto } from './dto/update-finance-category-type.dto'
 
-@Controller('finance-category-type') // Try to delete this controller.
+@Controller('finance-category-type')
 export class FinanceCategoryTypeController {
 	constructor(private readonly financeCategoryTypeService: FinanceCategoryTypeService) {}
 
@@ -20,7 +20,7 @@ export class FinanceCategoryTypeController {
 	}
 
 	@Post()
-	create(@Body() createFinanceCategoryTypeDto: CreateFinanceCategoryTypeDto) {
+	createFinanceCategoryType(@Body() createFinanceCategoryTypeDto: CreateFinanceCategoryTypeDto) {
 		return this.financeCategoryTypeService.createFinanceCategoryType(createFinanceCategoryTypeDto)
 	}
 

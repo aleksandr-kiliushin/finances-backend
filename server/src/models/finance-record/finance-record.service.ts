@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { FinanceCategoryService } from '#models/finance-category/finance-category.service'
+import { FinanceCategoryService } from '#models/OLD-finance-category/finance-category.service'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
 import { UpdateFinanceRecordArgs } from './dto/update-finance-record.input'
 import { CreateFinanceRecordInput } from './dto/create-finance-record.input'
@@ -30,7 +30,7 @@ export class FinanceRecordService {
 				date: orderingByDate,
 				id: orderingById,
 			},
-			relations: ['category', 'category.type'],
+			relations: ['category'], // 'category.type'],
 			where,
 		})
 	}
