@@ -1,12 +1,38 @@
-import { Controller, Get } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+
 import { FinanceRecordService } from './finance-record.service'
+import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
+import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 
 @Controller('finance-record')
 export class FinanceRecordController {
 	constructor(private readonly financeRecordService: FinanceRecordService) {}
 
 	@Get()
-	getFinanceRecords() {
-		return 'hjhe'
+	getFinanceRecords(@Query() query: any) {
+		return this.financeRecordService.getFinanceRecords(query)
+	}
+
+	@Get(':id')
+	getFinanceRecord(@Param('id') id: string) {
+		return this.financeRecordService.getFinanceRecord(+id)
+	}
+
+	@Post()
+	createFinanceRecord(@Body() createFinanceRecordDto: CreateFinanceRecordDto) {
+		return this.financeRecordService.createFinanceRecord(createFinanceRecordDto)
+	}
+
+	@Patch(':id')
+	updateFinanceRecord(
+		@Param('id') id: string,
+		@Body() updateFinanceRecordDto: UpdateFinanceRecordDto,
+	) {
+		return this.financeRecordService.updateFinanceRecord(+id, updateFinanceRecordDto)
+	}
+
+	@Delete(':id')
+	deleteFinanceRecord(@Param('id') id: string) {
+		return this.financeRecordService.deleteFinanceRecord(+id)
 	}
 }
