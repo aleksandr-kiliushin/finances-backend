@@ -1,37 +1,42 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+
 import { FinanceCategoryTypeService } from './finance-category-type.service'
+
 import { CreateFinanceCategoryTypeDto } from './dto/create-finance-category-type.dto'
 import { UpdateFinanceCategoryTypeDto } from './dto/update-finance-category-type.dto'
 
-@Controller('finance-category-type')
+@Controller('finance-category-type') // Try to delete this controller.
 export class FinanceCategoryTypeController {
 	constructor(private readonly financeCategoryTypeService: FinanceCategoryTypeService) {}
 
-	@Post()
-	create(@Body() createFinanceCategoryTypeDto: CreateFinanceCategoryTypeDto) {
-		return this.financeCategoryTypeService.create(createFinanceCategoryTypeDto)
-	}
-
 	@Get()
-	findAll() {
-		return this.financeCategoryTypeService.findAll()
+	getFinanceCategoryTypes(@Query() query: any) {
+		return this.financeCategoryTypeService.getFinanceCategoryTypes(query)
 	}
 
 	@Get(':id')
-	findOne(@Param('id') id: string) {
-		return this.financeCategoryTypeService.findOne(+id)
+	getFinanceCategoryType(@Param('id') id: string) {
+		return this.financeCategoryTypeService.getFinanceCategoryType(+id)
+	}
+
+	@Post()
+	create(@Body() createFinanceCategoryTypeDto: CreateFinanceCategoryTypeDto) {
+		return this.financeCategoryTypeService.createFinanceCategoryType(createFinanceCategoryTypeDto)
 	}
 
 	@Patch(':id')
-	update(
+	updateFinanceCategoryType(
 		@Param('id') id: string,
 		@Body() updateFinanceCategoryTypeDto: UpdateFinanceCategoryTypeDto,
 	) {
-		return this.financeCategoryTypeService.update(+id, updateFinanceCategoryTypeDto)
+		return this.financeCategoryTypeService.updateFinanceCategoryType(
+			+id,
+			updateFinanceCategoryTypeDto,
+		)
 	}
 
 	@Delete(':id')
-	remove(@Param('id') id: string) {
-		return this.financeCategoryTypeService.remove(+id)
+	deleteFinanceCategoryType(@Param('id') id: string) {
+		return this.financeCategoryTypeService.deleteFinanceCategoryType(+id)
 	}
 }

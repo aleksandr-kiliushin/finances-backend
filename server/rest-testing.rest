@@ -1,0 +1,27 @@
+GET http://localhost:3080/api/finance-category-type
+
+###
+GET http://localhost:3080/api/finance-category-type?ids=1,2
+
+###
+GET http://localhost:3080/api/finance-category-type?ids=2
+
+###
+POST http://localhost:3080/api/finance-category-type/ HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "hernya"
+}
+
+###
+PATCH http://localhost:3080/api/finance-category-type/5 HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "hernya155"
+}
+
+###
+DELETE http://localhost:3080/api/finance-category-type/5 HTTP/1.1
+Content-Type: application/json

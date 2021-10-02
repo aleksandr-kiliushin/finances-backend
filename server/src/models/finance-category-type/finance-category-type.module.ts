@@ -1,22 +1,13 @@
 import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
 import { FinanceCategoryTypeService } from './finance-category-type.service'
 import { FinanceCategoryTypeController } from './finance-category-type.controller'
+import { FinanceCategoryTypeEntity } from './entities/finance-category-type.entity'
 
 @Module({
-	controllers: [FinanceCategoryTypeController],
-	providers: [FinanceCategoryTypeService],
+	exports: [FinanceCategoryTypeService],
+	imports: [TypeOrmModule.forFeature([FinanceCategoryTypeEntity])],
+	providers: [FinanceCategoryTypeController, FinanceCategoryTypeService], // Try to delete.
+	controllers: [FinanceCategoryTypeController], // Try to delete.
 })
 export class FinanceCategoryTypeModule {}
-
-// import { Module } from '@nestjs/common'
-// import { TypeOrmModule } from '@nestjs/typeorm'
-// import { FinanceCategoryTypeEntity } from './entities/finance-category-type.entity'
-// import { FinanceCategoryTypeResolver } from './finance-category-type.resolver'
-// import { FinanceCategoryTypeService } from './finance-category-type.service'
-
-// @Module({
-// 	exports: [FinanceCategoryTypeService],
-// 	imports: [TypeOrmModule.forFeature([FinanceCategoryTypeEntity])],
-// 	providers: [FinanceCategoryTypeResolver, FinanceCategoryTypeService],
-// })
-// export class FinanceCategoryTypeModule {}
