@@ -26,6 +26,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3080/api/finance-category-type/6 HTTP/1.1
 
+
+
 ### Finance category ##########################################################
 GET http://localhost:3080/api/finance-category
 
@@ -52,6 +54,8 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3080/api/finance-category/17 HTTP/1.1
+
+
 
 ### Finance record ############################################################
 GET http://localhost:3080/api/finance-record
@@ -82,3 +86,32 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3080/api/finance-record/331 HTTP/1.1
+
+
+
+### User ######################################################################
+GET http://localhost:3080/api/user
+
+###
+GET http://localhost:3080/api/user?id=3&username=sasha
+
+###
+POST http://localhost:3080/api/user/ HTTP/1.1
+Content-Type: application/json
+
+{
+	"username": "slava",
+	"password": "slava228"
+}
+
+###
+PATCH http://localhost:3080/api/user/5 HTTP/1.1
+Content-Type: application/json
+
+{
+	"username": "slava1",
+	"password": "slava228"
+}
+
+###
+DELETE http://localhost:3080/api/user/5 HTTP/1.1
