@@ -1,5 +1,6 @@
 ### Finance category type
 GET http://localhost:3080/api/finance-category-type
+Authorization: 'Bearer eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzI5MDk0NiwiZXhwIjoxNjM0MTU0OTQ2fQ.oiLvsMWzE-YK0sbDRPcdRll3Iv3B7k-eeiUUxcqfAfGXyoliuKdR1k4mRNC6in2J'
 
 ###
 GET http://localhost:3080/api/finance-category-type?ids=1,2
@@ -115,3 +116,14 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3080/api/user/5 HTTP/1.1
+
+
+
+### Auth ######################################################################
+POST http://localhost:3080/api/login/ HTTP/1.1
+Content-Type: application/json
+
+{
+	"username": "my_username",
+	"password": "my_password"
+}

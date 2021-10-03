@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common'
-import { GraphQLModule } from '@nestjs/graphql'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import ormconfig from 'src/config/ormconfig'
@@ -13,11 +12,6 @@ import { UserModule } from './models/user/user.module'
 @Module({
 	imports: [
 		TypeOrmModule.forRoot(ormconfig),
-		GraphQLModule.forRoot({
-			autoSchemaFile: 'src/schema.gql',
-			context: ({ req }) => ({ headers: req.headers }),
-			sortSchema: true,
-		}),
 		AuthModule,
 		FinanceCategoryModule,
 		FinanceCategoryTypeModule,

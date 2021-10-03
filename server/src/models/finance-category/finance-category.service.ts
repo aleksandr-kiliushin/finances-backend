@@ -1,4 +1,4 @@
-import { FinanceCategoryTypeService } from '#models/OLD-finance-category-type/finance-category-type.service'
+import { FinanceCategoryTypeService } from '#models/finance-category-type/finance-category-type.service'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'

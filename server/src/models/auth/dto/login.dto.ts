@@ -1,7 +1,7 @@
-import { Field, ObjectType } from '@nestjs/graphql'
+// Types
+import { IUser } from '#interfaces/user'
 
-@ObjectType()
 export class LoginDto {
-	@Field(() => String)
-	authToken: string
+	password: IUser['password']
+	username: IUser['username']
 }

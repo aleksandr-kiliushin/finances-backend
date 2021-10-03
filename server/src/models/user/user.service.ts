@@ -20,7 +20,7 @@ export class UserService {
 
 		if (id === undefined && username === undefined) return this.userRepository.find()
 
-		const user = await this.userRepository.findOne({ where: query })
+		const user = (await this.userRepository.findOne({ where: query })) as UserEntity
 
 		if (!user) throw new NotFoundException('User not found.')
 
