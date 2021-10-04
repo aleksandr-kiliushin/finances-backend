@@ -14,26 +14,14 @@ export class AuthGuard implements CanActivate {
 
 		if (!authorizationHeader) return false
 
-		const result = this.validateToken(authorizationHeader) // Set current user to context.
-
-		console.log(result)
-
-		return true
-
-		// const ctx = GqlExecutionContext.create(context).getContext()
-		// if (!ctx.headers.authorization) return false
-		// ctx.user = this.validateToken(ctx.headers.authorization) // change to userId
-		// return true
-	}
-
-	validateToken(authorizationHeader: string) {
 		const [, token] = authorizationHeader.split(' ')
 
 		try {
-			return jwt.verify(token, 'process.env.JWT_SECRET', { algorithms: ['HS384'] })
+			jwt.verify(token, process.env.JWT_SECRET)
 		} catch (err) {
-			console.log(err)
 			throw new UnauthorizedException('Invalid token.')
 		}
+
+		return true
 	}
 }

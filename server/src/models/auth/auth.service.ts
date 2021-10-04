@@ -26,9 +26,8 @@ export class AuthService {
 		if (!isPasswordValid) throw new UnauthorizedException()
 
 		return {
-			authToken: jwt.sign({ id: user.id, username: user.username }, 'secret', {
+			authToken: jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, {
 				expiresIn: '10d',
-				algorithm: 'HS384',
 			}),
 		}
 	}

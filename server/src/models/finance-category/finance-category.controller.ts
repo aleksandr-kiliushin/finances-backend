@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common'
 
+import { AuthGuard } from '#models/auth/auth.guard'
 import { FinanceCategoryService } from './finance-category.service'
 import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
 import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
 
 @Controller('finance-category')
+@UseGuards(AuthGuard)
 export class FinanceCategoryController {
 	constructor(private financeCategoryService: FinanceCategoryService) {}
 
