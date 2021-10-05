@@ -2,14 +2,14 @@ import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 
-// context
+// Context
 import { authContext } from 'context/auth'
 
-// components
+// Components
 import { ISvgProps, Svg } from '#lib/svg'
 import Link from 'next/link'
 
-// styles
+// Styles
 import s from './index.module.css'
 
 export const Navbar = () => {

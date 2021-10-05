@@ -6,14 +6,14 @@ import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
 import { createFinanceRecordMutation } from '#gql/create-finance-record.mutation'
 import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
 
-// components
+// Components
 import { Svg } from '#lib/svg'
 import { Datalist } from 'components/lib/datalist'
 
-// styles
+// Styles
 import s from './index.module.css'
 
-// types
+// Types
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 export const InputRow = ({ closeInputRow, record }: IProps) => {

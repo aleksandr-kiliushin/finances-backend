@@ -5,14 +5,14 @@ import { getFinanceCategoryTypesQuery } from '#gql/get-finance-category-types.qu
 import { createFinanceCategoryMutation } from '#gql/create-finance-category.mutation'
 import { updateFinanceCategoryMutation } from '#gql/update-finance-category.mutation'
 
-// components
+// Components
 import { Svg } from '#lib/svg'
 import { Datalist } from 'components/lib/datalist'
 
-// styles
+// Styles
 import s from './index.module.css'
 
-// types
+// Types
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 export const InputRow = ({ closeInputRow, category }: IProps) => {

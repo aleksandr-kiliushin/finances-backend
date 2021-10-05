@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 
-// components
+// Components
 import { Navbar } from './navbar'
 
-// styles
+// Styles
 import s from './index.module.css'
 
 export const Layout = ({ children }: IProps) => {

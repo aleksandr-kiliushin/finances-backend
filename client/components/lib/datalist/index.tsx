@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
 
-// styles
+// Styles
 import s from './index.module.css'
 
 export const Datalist = ({ options, renderOption, selectedOptionText = '- select -' }: IProps) => {

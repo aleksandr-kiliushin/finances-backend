@@ -3,14 +3,14 @@ import { useState } from 'react'
 // gql
 import { deleteFinanceCategoryMutation } from '#gql/delete-finance-category.mutation'
 
-// components
+// Components
 import { Svg } from '#lib/svg'
 import { InputRow } from './input-row'
 
-// styles
+// Styles
 import s from './index.module.css'
 
-// types
+// Types
 import { IFinanceCategory } from '#interfaces/finance'
 import { Modal } from '#lib/modal'
 

@@ -1,20 +1,31 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-// gql
-import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
-
-// components
+// Components
 import { Header } from '#comp-by-page/settings/header'
 import { InputRow } from '#comp-by-page/settings/input-row'
 import { Row } from '#comp-by-page/settings/row'
 
-// styles
+// Styles
 import s from '#comp-by-page/settings/index.module.css'
+
+// Types
+import { IFinanceCategory } from '#interfaces/finance'
 
 export default function Settings() {
 	const [isAddCategoryRowShown, setIsAddCategoryRowShown] = useState(false)
 
-	const { data } = getFinanceCategoriesQuery()
+	const [financeCategories, setFinanceCategories] = useState<IFinanceCategory[]>([])
+
+	useEffect(() => {
+		fetch('api/finance-record?isTrashed=false&orderingByDate=DESC&orderingById=DESC', {
+			headers: {
+				Authorization:
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+			},
+		})
+			.then(response => response.json())
+			.then(records => setFinanceCategories(records))
+	}, [])
 
 	return (
 		<>
@@ -29,7 +40,7 @@ export default function Settings() {
 					<InputRow closeInputRow={() => setIsAddCategoryRowShown(false)} category={null} />
 				)}
 
-				{data?.financeCategories.map(category => (
+				{financeCategories.map(category => (
 					<Row category={category} key={category.id} />
 				))}
 			</div>

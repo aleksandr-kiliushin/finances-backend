@@ -1,4 +1,4 @@
-// styles
+// Styles
 import s from './index.module.css'
 
 export const Modal = ({

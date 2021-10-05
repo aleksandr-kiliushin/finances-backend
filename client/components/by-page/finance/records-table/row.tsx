@@ -5,14 +5,14 @@ import cx from 'classnames'
 import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
 import { deleteFinanceRecordMutation } from '#gql/delete-finance-record.mutation'
 
-// components
+// Components
 import { Svg } from '#lib/svg'
 import { InputRow } from './input-row'
 
-// styles
+// Styles
 import s from './index.module.css'
 
-// types
+// Types
 import { IFinanceRecord } from '#interfaces/finance'
 
 export const Row = ({ record }: IProps) => {

@@ -1,23 +1,21 @@
-import { CustomApolloProvider } from 'context/apollo'
+// Context
+import { AuthContext } from 'context/auth'
 
-// components
+// Components
 import { Layout } from '#lib/layout'
 
-// styles
+// Styles
 import 'styles/globals.css'
 
-// types
+// Types
 import type { AppProps } from 'next/app'
-import { AuthContext } from 'context/auth'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<AuthContext>
-			<CustomApolloProvider>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
-			</CustomApolloProvider>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
 		</AuthContext>
 	)
 }
