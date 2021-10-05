@@ -11,8 +11,8 @@ module.exports = {
 
 		return [
 			{
-				source: '/api',
-				destination: 'http://[::1]:' + process.env.BACKEND_PORT + '/api',
+				source: '/api/:path*',
+				destination: 'http://[::1]:' + process.env.BACKEND_PORT + '/api/:path*',
 			},
 		]
 	},

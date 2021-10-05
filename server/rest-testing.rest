@@ -69,7 +69,7 @@ Authorization: Bearer MY_TOKEN
 
 
 ### Finance record ############################################################
-GET http://localhost:3080/api/finance-record
+GET http://localhost:3080/api/finance-record?orderingByDate=DESC?orderingById=DESC
 Authorization: Bearer MY_TOKEN
 
 ###
@@ -147,3 +147,7 @@ Content-Type: application/json
 	"username": "my_username",
 	"password": "my_password"
 }
+
+
+
+### Drafts ####################################################################
