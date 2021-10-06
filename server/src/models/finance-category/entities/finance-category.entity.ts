@@ -13,6 +13,6 @@ export class FinanceCategoryEntity {
 	@Column({ type: 'varchar' })
 	name: IFinanceCategory['name']
 
-	@ManyToOne(() => FinanceCategoryTypeEntity)
+	@ManyToOne(() => FinanceCategoryTypeEntity, { onDelete: 'CASCADE' })
 	type: FinanceCategoryTypeEntity
 }

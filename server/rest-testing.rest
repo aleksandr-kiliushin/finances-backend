@@ -36,7 +36,7 @@ Authorization: Bearer MY_TOKEN
 
 ### Finance category ##########################################################
 GET http://localhost:3080/api/finance-category
-Authorization: Bearer MY_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0
 
 ###
 GET http://localhost:3080/api/finance-category/10
@@ -44,7 +44,7 @@ Authorization: Bearer MY_TOKEN
 
 ###
 POST http://localhost:3080/api/finance-category/
-Authorization: Bearer MY_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0
 Content-Type: application/json
 
 {

@@ -1,8 +1,5 @@
 import { useState } from 'react'
 
-// gql
-import { deleteFinanceCategoryMutation } from '#gql/delete-finance-category.mutation'
-
 // Components
 import { Svg } from '#lib/svg'
 import { InputRow } from './input-row'
@@ -20,7 +17,17 @@ export const Row = ({ category }: IProps) => {
 
 	const { id, name, type } = category
 
-	const [deleteFinanceCategory] = deleteFinanceCategoryMutation()
+	const deleteFinanceCategory = () => {
+		fetch('api/finance-category/' + id, {
+			headers: {
+				Authorization:
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+			},
+			method: 'DELETE',
+		})
+
+		setIsDeletionWindowShown(false)
+	}
 
 	if (isEditing) {
 		return <InputRow closeInputRow={() => setIsEditing(false)} category={category} />
@@ -42,10 +49,7 @@ export const Row = ({ category }: IProps) => {
 			{isDeletionWindowShown && (
 				<Modal
 					onCancelButtonClick={() => setIsDeletionWindowShown(false)}
-					onSubmitButtonClick={() => {
-						deleteFinanceCategory({ variables: { id } })
-						setIsDeletionWindowShown(false)
-					}}
+					onSubmitButtonClick={deleteFinanceCategory}
 					submitButtonText="delete"
 					text="The category and all its records will be deleted permanently. You will not be able to restore them."
 				/>
