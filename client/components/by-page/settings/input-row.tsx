@@ -1,9 +1,4 @@
-import { useState } from 'react'
-
-// gql
-import { getFinanceCategoryTypesQuery } from '#gql/get-finance-category-types.query'
-import { createFinanceCategoryMutation } from '#gql/create-finance-category.mutation'
-import { updateFinanceCategoryMutation } from '#gql/update-finance-category.mutation'
+import { useEffect, useState } from 'react'
 
 // Components
 import { Svg } from '#lib/svg'
@@ -19,11 +14,18 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 	const [name, setName] = useState(category?.name ?? '')
 	const [type, setType] = useState<IFinanceCategoryType | null>(category?.type ?? null)
 
-	const { data: categoryTypesData } = getFinanceCategoryTypesQuery()
+	const [financeCategoryTypes, setFinanceCategoryTypes] = useState<IFinanceCategoryType[]>([])
 
-	const [createFinanceCategory] = createFinanceCategoryMutation()
-
-	const [updateFinanceCategory] = updateFinanceCategoryMutation()
+	useEffect(() => {
+		fetch('api/finance-category-type', {
+			headers: {
+				Authorization:
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+			},
+		})
+			.then((response) => response.json())
+			.then((financeCategoryTypes) => setFinanceCategoryTypes(financeCategoryTypes))
+	}, [])
 
 	const onSubmit = () => {
 		if (!name || !type) {
@@ -34,27 +36,39 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 		const categoryData = { name, typeId: type.id }
 
 		if (category) {
-			updateFinanceCategory({ variables: { ...categoryData, id: category.id } })
+			fetch('api/finance-category/' + category.id, {
+				body: JSON.stringify(categoryData),
+				headers: {
+					Authorization:
+						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+					'Content-Type': 'application/json',
+				},
+				method: 'PATCH',
+			})
 		} else {
-			createFinanceCategory({ variables: categoryData })
+			fetch('api/finance-category/', {
+				body: JSON.stringify(categoryData),
+				headers: {
+					Authorization:
+						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+					'Content-Type': 'application/json',
+				},
+				method: 'POST',
+			})
 		}
 		closeInputRow()
 	}
 
-	if (!categoryTypesData) return null
-
-	const { financeCategoryTypes } = categoryTypesData
-
 	return (
 		<div className={s.Row}>
 			<div className={s.Cell}>
-				<input onChange={e => setName(e.target.value)} type="text" value={name} />
+				<input onChange={(e) => setName(e.target.value)} type="text" value={name} />
 			</div>
 
 			<div className={s.Cell}>
 				<Datalist
 					options={financeCategoryTypes}
-					renderOption={type => (
+					renderOption={(type) => (
 						<div key={type.id} onClick={() => setType(type)}>
 							{type.name}
 						</div>
