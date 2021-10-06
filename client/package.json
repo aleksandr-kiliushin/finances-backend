@@ -10,12 +10,10 @@
 		"start": "MODE=prod next start"
 	},
 	"dependencies": {
-		"@apollo/client": "^3.4.7",
 		"chart.js": "^3.5.1",
 		"classnames": "^2.3.1",
 		"dotenv": "^10.0.0",
-		"graphql": "^15.5.1",
-		"next": "11.0.1",
+		"next": "11.1.2",
 		"react": "17.0.2",
 		"react-dom": "17.0.2"
 	},
@@ -23,7 +21,7 @@
 		"@types/chart.js": "^2.9.34",
 		"@types/react": "17.0.14",
 		"eslint": "7.30.0",
-		"eslint-config-next": "11.0.1",
+		"eslint-config-next": "11.1.2",
 		"typescript": "4.3.5"
 	}
 }
