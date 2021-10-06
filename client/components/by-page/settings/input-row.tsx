@@ -19,8 +19,7 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 	useEffect(() => {
 		fetch('api/finance-category-type', {
 			headers: {
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+				Authorization: `Bearer ${localStorage.authToken}`,
 			},
 		})
 			.then((response) => response.json())
@@ -39,8 +38,7 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 			fetch('api/finance-category/' + category.id, {
 				body: JSON.stringify(categoryData),
 				headers: {
-					Authorization:
-						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+					Authorization: `Bearer ${localStorage.authToken}`,
 					'Content-Type': 'application/json',
 				},
 				method: 'PATCH',
@@ -49,8 +47,7 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 			fetch('api/finance-category/', {
 				body: JSON.stringify(categoryData),
 				headers: {
-					Authorization:
-						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+					Authorization: `Bearer ${localStorage.authToken}`,
 					'Content-Type': 'application/json',
 				},
 				method: 'POST',

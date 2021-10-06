@@ -16,12 +16,11 @@ export default function Trash() {
 	useEffect(() => {
 		fetch('api/finance-record?isTrashed=true&orderingByDate=DESC&orderingById=DESC', {
 			headers: {
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+				Authorization: `Bearer ${localStorage.authToken}`,
 			},
 		})
-			.then(response => response.json())
-			.then(records => setFinanceRecords(records))
+			.then((response) => response.json())
+			.then((records) => setFinanceRecords(records))
 	}, [])
 
 	return (
@@ -29,7 +28,7 @@ export default function Trash() {
 			<Header isTrash />
 
 			<div className={s.Body}>
-				{financeRecords.map(record => (
+				{financeRecords.map((record) => (
 					<Row key={record.id} record={record} />
 				))}
 			</div>

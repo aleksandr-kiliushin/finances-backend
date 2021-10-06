@@ -20,8 +20,7 @@ export const Row = ({ record }: IProps) => {
 		fetch('api/finance-record/' + id, {
 			body: JSON.stringify(body),
 			headers: {
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+				Authorization: `Bearer ${localStorage.authToken}`,
 				'Content-Type': 'application/json',
 			},
 			method: 'PATCH',
@@ -31,8 +30,7 @@ export const Row = ({ record }: IProps) => {
 	const deleteFinanceRecord = () => {
 		fetch('api/finance-record/' + id, {
 			headers: {
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+				Authorization: `Bearer ${localStorage.authToken}`,
 			},
 			method: 'DELETE',
 		})

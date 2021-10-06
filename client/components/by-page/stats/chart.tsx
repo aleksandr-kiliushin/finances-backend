@@ -13,12 +13,11 @@ export const Chart1 = () => {
 	useEffect(() => {
 		fetch('api/finance-record?isTrashed=false&orderingByDate=ASC&orderingById=ASC', {
 			headers: {
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+				Authorization: `Bearer ${localStorage.authToken}`,
 			},
 		})
-			.then(response => response.json() as Promise<IFinanceRecord[]>)
-			.then(financeRecords => {
+			.then((response) => response.json() as Promise<IFinanceRecord[]>)
+			.then((financeRecords) => {
 				if (!financeRecords) return
 
 				const canvas = canvasRef.current as HTMLCanvasElement | null
@@ -43,7 +42,7 @@ export const Chart1 = () => {
 					const stringifiedCurrentDate = currentDate.toISOString().split('T')[0]
 
 					currentSum = financeRecords
-						.filter(record => record.date === stringifiedCurrentDate)
+						.filter((record) => record.date === stringifiedCurrentDate)
 						.reduce((dateSum, record) => {
 							if (record.category.type.name === 'expense') {
 								return (dateSum -= record.amount)
@@ -79,7 +78,7 @@ export const Chart1 = () => {
 						scales: {
 							x: {
 								ticks: {
-									callback: tickValue => {
+									callback: (tickValue) => {
 										if (typeof tickValue !== 'number') return 'error'
 
 										const timeStamp = new Date(financeRecords[0].date).setDate(
@@ -98,7 +97,7 @@ export const Chart1 = () => {
 							y: {
 								beginAtZero: true,
 								ticks: {
-									callback: tickValue =>
+									callback: (tickValue) =>
 										typeof tickValue === 'number' ? tickValue / 1_000_000 : 'error',
 									padding: 1,
 								},

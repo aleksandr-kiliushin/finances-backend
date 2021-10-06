@@ -1,8 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
-// gql
-import { loginMutation } from '#gql/login.mutation'
-
 export const authContext = createContext<IAuthContextValue>({
 	authToken: '',
 	setAuthToken: () => {},
@@ -30,20 +27,19 @@ export const AuthContext = ({ children }: IAuthContextProps) => {
 }
 
 export const useAuth = () => {
-	const [logIn, { data: loginData }] = loginMutation()
-
 	const { setAuthToken } = useContext(authContext)
 
-	useEffect(() => {
-		if (loginData?.login.authToken) {
-			setAuthToken(loginData?.login.authToken)
-		}
-	}, [loginData])
+	// const [logIn, { data: loginData }] = loginMutation()
+
+	// useEffect(() => {
+	// 	if (loginData?.login.authToken) {
+	// 		setAuthToken(loginData?.login.authToken)
+	// 	}
+	// }, [loginData])
 
 	const logOut = () => setAuthToken('')
 
 	return {
-		logIn,
 		logOut,
 	}
 }

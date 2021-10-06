@@ -20,8 +20,7 @@ export const Row = ({ category }: IProps) => {
 	const deleteFinanceCategory = () => {
 		fetch('api/finance-category/' + id, {
 			headers: {
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+				Authorization: `Bearer ${localStorage.authToken}`,
 			},
 			method: 'DELETE',
 		})
