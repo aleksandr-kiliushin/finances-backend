@@ -1,10 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import cx from 'classnames'
-
-// gql
-import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
-import { createFinanceRecordMutation } from '#gql/create-finance-record.mutation'
-import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
 
 // Components
 import { Svg } from '#lib/svg'
@@ -21,11 +16,18 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 	const [category, setCategory] = useState<IFinanceCategory | null>(record?.category ?? null)
 	const [date, setDate] = useState(record?.date ?? new Date().toISOString().split('T')[0])
 
-	const { data: financeCategoriesData } = getFinanceCategoriesQuery()
+	const [financeCategories, setFinanceCategories] = useState<IFinanceCategory[]>([])
 
-	const [createFinanceRecord] = createFinanceRecordMutation()
-
-	const [updateFinanceRecord] = updateFinanceRecordMutation()
+	useEffect(() => {
+		fetch('api/finance-category', {
+			headers: {
+				Authorization:
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+			},
+		})
+			.then((response) => response.json())
+			.then((categories) => setFinanceCategories(categories))
+	}, [])
 
 	const onSubmit = () => {
 		if (!amount || !category || !date) {
@@ -40,17 +42,29 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 		}
 
 		if (record) {
-			updateFinanceRecord({ variables: { ...recordData, id: record.id } })
+			fetch('api/finance-record/' + record.id, {
+				body: JSON.stringify(recordData),
+				headers: {
+					Authorization:
+						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+					'Content-Type': 'application/json',
+				},
+				method: 'PATCH',
+			})
 		} else {
-			createFinanceRecord({ variables: recordData })
+			fetch('api/finance-record/', {
+				body: JSON.stringify(recordData),
+				headers: {
+					Authorization:
+						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+					'Content-Type': 'application/json',
+				},
+				method: 'POST',
+			})
 		}
 
 		closeInputRow()
 	}
-
-	if (!financeCategoriesData) return null
-
-	const { financeCategories } = financeCategoriesData
 
 	const cxRow = cx({
 		[s.Row]: true,
@@ -60,13 +74,13 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 	return (
 		<div className={cxRow}>
 			<div className={s.Cell}>
-				<input onChange={e => setAmount(e.target.value)} type="number" value={amount} />
+				<input onChange={(e) => setAmount(e.target.value)} type="number" value={amount} />
 			</div>
 
 			<div className={s.Cell}>
 				<Datalist
 					options={financeCategories}
-					renderOption={category => (
+					renderOption={(category) => (
 						<div
 							key={category.id}
 							onClick={() => setCategory(category)}
@@ -80,7 +94,7 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 			</div>
 
 			<div className={s.Cell}>
-				<input onChange={e => setDate(e.target.value)} type="date" value={date} />
+				<input onChange={(e) => setDate(e.target.value)} type="date" value={date} />
 			</div>
 
 			<div className={s.Cell} onClick={onSubmit}>

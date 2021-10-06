@@ -17,14 +17,14 @@ export default function Settings() {
 	const [financeCategories, setFinanceCategories] = useState<IFinanceCategory[]>([])
 
 	useEffect(() => {
-		fetch('api/finance-record?isTrashed=false&orderingByDate=DESC&orderingById=DESC', {
+		fetch('api/finance-category', {
 			headers: {
 				Authorization:
 					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
 			},
 		})
-			.then(response => response.json())
-			.then(records => setFinanceCategories(records))
+			.then((response) => response.json())
+			.then((categories) => setFinanceCategories(categories))
 	}, [])
 
 	return (
@@ -40,7 +40,7 @@ export default function Settings() {
 					<InputRow closeInputRow={() => setIsAddCategoryRowShown(false)} category={null} />
 				)}
 
-				{financeCategories.map(category => (
+				{financeCategories.map((category) => (
 					<Row category={category} key={category.id} />
 				))}
 			</div>
