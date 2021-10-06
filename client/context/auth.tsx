@@ -29,7 +29,7 @@ export const AuthContextProvider = ({ children }: IAuthContextProps) => {
 
 export const useAuth = () => {
 	const { setAuthToken } = useContext(AuthContext)
-	const { push } = useRouter()
+	const { push, reload } = useRouter()
 
 	const logIn = (loginCredentials: ILoginCredentials) => {
 		fetch('api/login', {
@@ -45,7 +45,7 @@ export const useAuth = () => {
 
 				localStorage.authToken = authToken
 
-				push('/')
+				push('/').then(reload)
 			})
 			.catch(() => {
 				alert('Login failed.')
