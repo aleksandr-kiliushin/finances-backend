@@ -1,11 +1,12 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
-export const authContext = createContext<IAuthContextValue>({
+export const AuthContext = createContext<IAuthContextValue>({
 	authToken: '',
 	setAuthToken: () => {},
 })
 
-export const AuthContext = ({ children }: IAuthContextProps) => {
+export const AuthContextProvider = ({ children }: IAuthContextProps) => {
 	const [authToken, setAuthToken] = useState<string>('')
 
 	/** Initialize authToken state from localStorage. */
@@ -23,30 +24,46 @@ export const AuthContext = ({ children }: IAuthContextProps) => {
 		setAuthToken,
 	}
 
-	return <authContext.Provider value={value}>{children}</authContext.Provider>
+	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => {
-	const { setAuthToken } = useContext(authContext)
+	const { setAuthToken } = useContext(AuthContext)
+	const { push } = useRouter()
 
-	// const [logIn, { data: loginData }] = loginMutation()
+	const logIn = (loginCredentials: ILoginCredentials) => {
+		fetch('api/login', {
+			body: JSON.stringify(loginCredentials),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+		})
+			.then((response) => response.json())
+			.then(({ authToken }) => {
+				if (authToken === undefined) throw new Error()
 
-	// useEffect(() => {
-	// 	if (loginData?.login.authToken) {
-	// 		setAuthToken(loginData?.login.authToken)
-	// 	}
-	// }, [loginData])
+				localStorage.authToken = authToken
+
+				push('/')
+			})
+			.catch(() => {
+				alert('Login failed.')
+			})
+	}
 
 	const logOut = () => setAuthToken('')
 
-	return {
-		logOut,
-	}
+	return { logIn, logOut }
 }
 
-// types
+// Types
 interface IAuthContextProps {
 	children: ReactNode
+}
+export interface ILoginCredentials {
+	password: string
+	username: string
 }
 
 type IAuthContextValue = {
