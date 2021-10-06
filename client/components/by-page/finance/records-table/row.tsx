@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import cx from 'classnames'
 
-// gql
-import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
-import { deleteFinanceRecordMutation } from '#gql/delete-finance-record.mutation'
-
 // Components
 import { Svg } from '#lib/svg'
 import { InputRow } from './input-row'
@@ -18,11 +14,29 @@ import { IFinanceRecord } from '#interfaces/finance'
 export const Row = ({ record }: IProps) => {
 	const [isEditing, setIsEditing] = useState(false)
 
-	const { amount, category, date, id } = record
+	const { amount, category, date, id, isTrashed } = record
 
-	const [updateFinanceRecord] = updateFinanceRecordMutation()
+	const updateFinanceRecord = (body: Record<string, unknown>) => {
+		fetch('api/finance-record/' + id, {
+			body: JSON.stringify(body),
+			headers: {
+				Authorization:
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+				'Content-Type': 'application/json',
+			},
+			method: 'PATCH',
+		})
+	}
 
-	const [deleteFinanceRecord] = deleteFinanceRecordMutation()
+	const deleteFinanceRecord = () => {
+		fetch('api/finance-record/' + id, {
+			headers: {
+				Authorization:
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYXNoYSIsImlhdCI6MTYzMzQ1Nzk4OCwiZXhwIjoxNjM0MzIxOTg4fQ.aREJJltS80P33yfzdIeLIqyW3_LCpeVNC5imu1Akwo0',
+			},
+			method: 'DELETE',
+		})
+	}
 
 	const dateFormatted = new Date(date).toLocaleString('en-US', { month: 'short', day: 'numeric' })
 
@@ -36,36 +50,24 @@ export const Row = ({ record }: IProps) => {
 		return <InputRow closeInputRow={() => setIsEditing(false)} record={record} />
 	}
 
-	if (record.isTrashed) {
-		return (
-			<div className={s.Row}>
-				<div className={cxAmount}>{amount}</div>
-				<div className={s.Cell}>{category.name}</div>
-				<div className={s.Cell}>{dateFormatted}</div>
-				<div
-					className={s.Cell}
-					onClick={() => updateFinanceRecord({ variables: { id, isTrashed: false } })}
-				>
-					<Svg name="reply" />
-				</div>
-				<div className={s.Cell} onClick={() => deleteFinanceRecord({ variables: { id } })}>
-					<Svg name="trash-can" />
-				</div>
-			</div>
-		)
-	}
-
 	return (
 		<div className={s.Row}>
 			<div className={cxAmount}>{amount}</div>
 			<div className={s.Cell}>{category.name}</div>
 			<div className={s.Cell}>{dateFormatted}</div>
-			<div className={s.Cell} onClick={() => setIsEditing(!isEditing)}>
-				<Svg name="pencil" />
+			<div
+				className={s.Cell}
+				onClick={
+					isTrashed
+						? () => updateFinanceRecord({ isTrashed: false })
+						: () => setIsEditing(!isEditing)
+				}
+			>
+				<Svg name={isTrashed ? 'reply' : 'pencil'} />
 			</div>
 			<div
 				className={s.Cell}
-				onClick={() => updateFinanceRecord({ variables: { id, isTrashed: true } })}
+				onClick={isTrashed ? deleteFinanceRecord : () => updateFinanceRecord({ isTrashed: true })}
 			>
 				<Svg name="trash-can" />
 			</div>
