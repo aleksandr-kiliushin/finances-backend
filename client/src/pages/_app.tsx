@@ -5,6 +5,7 @@ import { Layout } from '#components/lib/layout'
 
 // styles
 import 'src/styles/globals.css'
+import 'src/styles/vars.css'
 
 // types
 import type { AppProps } from 'next/app'

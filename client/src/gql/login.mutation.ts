@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 
-// types
+// Types
 import { IUser } from '#interfaces/user'
 
 const LOGIN = gql`
@@ -22,4 +22,4 @@ interface ILoginVars {
 	username: IUser['username']
 }
 
-export const loginMutation = () => useMutation<ILoginData, ILoginVars>(LOGIN)
+export const useLoginMutation = () => useMutation<ILoginData, ILoginVars>(LOGIN)

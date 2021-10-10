@@ -1,5 +1,5 @@
 {
-	"arrowParens": "avoid",
+	"arrowParens": "always",
 	"bracketSpacing": true,
 	"editor.formatOnSave": false,
 	"jsxBracketSameLine": false,
