@@ -6,8 +6,8 @@ import { createFinanceCategoryMutation } from '#gql/create-finance-category.muta
 import { updateFinanceCategoryMutation } from '#gql/update-finance-category.mutation'
 
 // components
-import { Svg } from '#lib/svg'
-import { Datalist } from 'components/lib/datalist'
+import { Svg } from '#components/lib/svg'
+import { Datalist } from '#components/lib/datalist'
 
 // styles
 import s from './index.module.css'

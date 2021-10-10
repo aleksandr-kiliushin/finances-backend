@@ -2,11 +2,11 @@
 import { getFinanceRecordsQuery } from '#gql/get-finance-records.query'
 
 // components
-import { Header } from '#comp-by-page/finance/records-table/header'
-import { Row } from '#comp-by-page/finance/records-table/row'
+import { Header } from '#components/by-page/finance/records-table/header'
+import { Row } from '#components/by-page/finance/records-table/row'
 
 // styles
-import s from '#comp-by-page/finance/records-table/index.module.css'
+import s from '#components/by-page/finance/records-table/index.module.css'
 
 export default function Trash() {
 	const { data } = getFinanceRecordsQuery({

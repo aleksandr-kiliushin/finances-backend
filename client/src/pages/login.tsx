@@ -2,7 +2,7 @@ import { SyntheticEvent, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // gql
-import { authContext, useAuth } from 'context/auth'
+import { authContext, useAuth } from '#context/auth'
 
 export default function Login() {
 	const [username, setUsername] = useState('')

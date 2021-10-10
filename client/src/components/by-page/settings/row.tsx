@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { deleteFinanceCategoryMutation } from '#gql/delete-finance-category.mutation'
 
 // components
-import { Svg } from '#lib/svg'
+import { Svg } from '#components/lib/svg'
 import { InputRow } from './input-row'
 
 // styles
@@ -12,7 +12,7 @@ import s from './index.module.css'
 
 // types
 import { IFinanceCategory } from '#interfaces/finance'
-import { Modal } from '#lib/modal'
+import { Modal } from '#components/lib/modal'
 
 export const Row = ({ category }: IProps) => {
 	const [isEditing, setIsEditing] = useState(false)

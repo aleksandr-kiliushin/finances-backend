@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
 
 // components
-import { Header } from '#comp-by-page/settings/header'
-import { InputRow } from '#comp-by-page/settings/input-row'
-import { Row } from '#comp-by-page/settings/row'
+import { Header } from '#components/by-page/settings/header'
+import { InputRow } from '#components/by-page/settings/input-row'
+import { Row } from '#components/by-page/settings/row'
 
 // styles
-import s from '#comp-by-page/settings/index.module.css'
+import s from '#components/by-page/settings/index.module.css'
 
 export default function Settings() {
 	const [isAddCategoryRowShown, setIsAddCategoryRowShown] = useState(false)

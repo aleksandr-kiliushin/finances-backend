@@ -1,7 +1,7 @@
 import cx from 'classnames'
 
 // components
-import { Svg } from '#lib/svg'
+import { Svg } from '#components/lib/svg'
 
 // styles
 import s from './index.module.css'

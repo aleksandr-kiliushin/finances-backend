@@ -6,7 +6,7 @@ import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation
 import { deleteFinanceRecordMutation } from '#gql/delete-finance-record.mutation'
 
 // components
-import { Svg } from '#lib/svg'
+import { Svg } from '#components/lib/svg'
 import { InputRow } from './input-row'
 
 // styles

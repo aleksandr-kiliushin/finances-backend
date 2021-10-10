@@ -3,10 +3,10 @@ import { useRouter } from 'next/router'
 import cx from 'classnames'
 
 // context
-import { authContext } from 'context/auth'
+import { authContext } from '#context/auth'
 
 // components
-import { ISvgProps, Svg } from '#lib/svg'
+import { ISvgProps, Svg } from '#components/lib/svg'
 import Link from 'next/link'
 
 // styles

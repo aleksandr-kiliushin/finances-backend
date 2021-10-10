@@ -7,8 +7,8 @@ import { createFinanceRecordMutation } from '#gql/create-finance-record.mutation
 import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
 
 // components
-import { Svg } from '#lib/svg'
-import { Datalist } from 'components/lib/datalist'
+import { Svg } from '#components/lib/svg'
+import { Datalist } from '#components/lib/datalist'
 
 // styles
 import s from './index.module.css'

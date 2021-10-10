@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { getFinanceRecordsQuery } from '#gql/get-finance-records.query'
 
 // components
-import { Header } from '#comp-by-page/finance/records-table/header'
-import { InputRow } from '#comp-by-page/finance/records-table/input-row'
-import { Row } from '#comp-by-page/finance/records-table/row'
+import { Header } from '#components/by-page/finance/records-table/header'
+import { InputRow } from '#components/by-page/finance/records-table/input-row'
+import { Row } from '#components/by-page/finance/records-table/row'
 
 // styles
-import s from '#comp-by-page/finance/records-table/index.module.css'
+import s from '#components/by-page/finance/records-table/index.module.css'
 
 export default function Records() {
 	const [isAddRecordRowShown, setIsAddRecordRowShown] = useState(false)

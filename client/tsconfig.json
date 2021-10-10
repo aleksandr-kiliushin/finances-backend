@@ -15,12 +15,10 @@
 		"jsx": "preserve",
 		"baseUrl": ".",
 		"paths": {
-			"#comp-by-page/*": ["components/by-page/*"],
-			"#gql/*": ["gql/*"],
+			"#components/*": ["src/components/*"],
+			"#gql/*": ["src/gql/*"],
 			"#interfaces/*": ["../server/src/interfaces/*"],
-			"#lib/*": ["components/lib/*"],
-			"#style-by-page/*": ["styles/by-page/*"],
-			"#svg/*": ["components/lib/svg/*"]
+			"#context/*": ["src/context/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
