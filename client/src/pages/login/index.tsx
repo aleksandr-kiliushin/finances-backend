@@ -32,10 +32,10 @@ export default function Login() {
 
 	if (authToken) {
 		return (
-			<>
+			<div>
 				<h1>logout</h1>
 				<button onClick={logOut}>log out</button>
-			</>
+			</div>
 		)
 	}
 
