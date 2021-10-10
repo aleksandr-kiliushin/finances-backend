@@ -1,8 +1,9 @@
-.Layout {
-	/* 0.4rem * 2: navbar-padding */
-	/* 40px: svg-height */
-	/* 0.2rem * 2: svg-padding */
-	/* 4px: borders */
-	/* 6px: additional fixing margin */
-	margin-bottom: calc(40px + 0.2rem * 2 + 0.4rem * 2 + 4px + 3px);
+.Container {
+	display: grid;
+	grid-template-rows: 1fr var(--navbar-height);
+	height: 100vh;
+}
+
+.ContainerWithoutNavbar {
+	grid-template-rows: 1fr;
 }
