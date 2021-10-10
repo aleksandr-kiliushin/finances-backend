@@ -4,28 +4,21 @@
 	display: grid;
 	grid-auto-flow: column;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
+	height: var(--navbar-height);
 	width: 100%;
-	padding: 0.1rem 0.4rem;
 	background-color: teal;
-}
-
-.SectionLink {
-	padding: 0.2rem;
 }
 
 .SectionLink > svg {
 	height: 40px;
 	width: 40px;
 	fill: lightgray;
-}
-
-.ActiveSectionLink {
-	padding: 0.4rem;
+	transition: height 0.15s, width 0.15s, fill 0.15s;
 }
 
 .ActiveSectionLink > svg {
-	height: 45px;
-	width: 45px;
+	height: 55px;
+	width: 55px;
 	fill: white;
 }
