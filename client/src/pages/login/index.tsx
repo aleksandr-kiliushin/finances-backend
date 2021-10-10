@@ -1,8 +1,11 @@
 import { SyntheticEvent, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 
-// gql
-import { authContext, useAuth } from '#context/auth'
+// GQL
+import { authContext, useAuth } from '#context/auth' //To do: change to AuthContext.
+
+// Styles
+import s from './index.module.css'
 
 export default function Login() {
 	const [username, setUsername] = useState('')
@@ -18,23 +21,25 @@ export default function Login() {
 		e.preventDefault()
 
 		try {
-			const response = await logIn({ variables: { password, username } })
+			const { data } = await logIn({ variables: { password, username } })
 
-			if (!response.data?.login.authToken) {
+			if (!data?.login.authToken) {
 				throw new Error()
 			}
 
 			push('/')
 		} catch {
-			alert('login failed')
+			alert('Login failed.')
 		}
 	}
 
 	if (authToken) {
 		return (
-			<div>
-				<h1>logout</h1>
-				<button onClick={logOut}>log out</button>
+			<div className={s.Container}>
+				<p className={s.Centered}>
+					You are logged in as <strong>sasha</strong>.
+				</p>
+				<button onClick={logOut}>Log out</button>
 			</div>
 		)
 	}
@@ -45,12 +50,12 @@ export default function Login() {
 			<form onSubmit={onSubmit}>
 				<label>
 					username
-					<input onChange={e => setUsername(e.target.value)} type="text" value={username} />
+					<input onChange={(e) => setUsername(e.target.value)} type="text" value={username} />
 				</label>
 
 				<label>
 					password
-					<input onChange={e => setPassword(e.target.value)} type="password" value={password} />
+					<input onChange={(e) => setPassword(e.target.value)} type="password" value={password} />
 				</label>
 
 				<button type="submit">log in</button>
