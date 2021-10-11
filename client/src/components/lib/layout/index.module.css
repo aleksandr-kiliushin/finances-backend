@@ -7,3 +7,7 @@
 	height: calc(100vh - var(--navbar-height));
 	overflow: scroll;
 }
+
+.MainWithoutNavbar {
+	height: 100vh;
+}

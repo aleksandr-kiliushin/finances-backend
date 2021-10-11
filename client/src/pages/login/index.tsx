@@ -20,9 +20,7 @@ export default function Login() {
 
 	const { logIn, logOut } = useAuth()
 
-	const onSubmit = async (e: SyntheticEvent) => {
-		e.preventDefault()
-
+	const onSubmit = async () => {
 		try {
 			const { data } = await logIn({ variables: { password, username } })
 
@@ -51,21 +49,19 @@ export default function Login() {
 	}
 
 	return (
-		<>
-			<h1>login</h1>
-			<form onSubmit={onSubmit}>
-				<label>
-					username
-					<input onChange={(e) => setUsername(e.target.value)} type="text" value={username} />
-				</label>
+		<div className={s.Container}>
+			<h1 className={s.Centered}>Welcome</h1>
+			<label>
+				Username
+				<input onChange={(e) => setUsername(e.target.value)} type="text" value={username} />
+			</label>
 
-				<label>
-					password
-					<input onChange={(e) => setPassword(e.target.value)} type="password" value={password} />
-				</label>
+			<label>
+				Password
+				<input onChange={(e) => setPassword(e.target.value)} type="password" value={password} />
+			</label>
 
-				<button type="submit">log in</button>
-			</form>
-		</>
+			<Button onClick={onSubmit}>Log in</Button>
+		</div>
 	)
 }

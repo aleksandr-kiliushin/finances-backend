@@ -7,9 +7,9 @@ body {
 }
 
 * {
+	color: var(--soft-black);
 	box-sizing: border-box;
 	font-size: 1.1rem;
-	color: var(--soft-black);
 }
 
 svg {
@@ -19,4 +19,16 @@ svg {
 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+h1 {
+	font-size: 2rem;
+}
+
+h2 {
+	font-size: 1.7rem;
+}
+
+h3 {
+	font-size: 1.4rem;
 }
