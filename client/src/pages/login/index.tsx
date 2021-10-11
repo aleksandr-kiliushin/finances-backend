@@ -6,8 +6,10 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { authContext, useAuth } from '#context/auth' //To do: change to AuthContext.
 
 // Components
+import { Form } from '#components/lib/form-constructor/form'
+import { FormRow } from '#components/lib/form-constructor/form-row'
+import { HookFormInput } from '#components/lib/form-constructor/input'
 import { Button } from '#components/lib/button'
-import { HookFormInput } from '#components/lib/react-hook-form/input'
 
 // Styles
 import s from './index.module.css'
@@ -53,13 +55,17 @@ export default function Login() {
 		<div className={s.Container}>
 			<h1 className={s.Centered}>Welcome</h1>
 
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<HookFormInput {...register('username', { required: true })} />
+			<Form onSubmit={handleSubmit(onSubmit)}>
+				<FormRow label="Username">
+					<HookFormInput {...register('username', { required: true })} />
+				</FormRow>
 
-				<HookFormInput type="password" {...register('password', { required: true })} />
+				<FormRow label="Password">
+					<HookFormInput type="password" {...register('password', { required: true })} />
+				</FormRow>
 
 				<Button type="submit">Log in</Button>
-			</form>
+			</Form>
 		</div>
 	)
 }
