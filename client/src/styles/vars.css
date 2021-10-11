@@ -1,5 +1,7 @@
 :root {
-	--color-theme-1: teal;
+	--color-theme-1: steelblue;
+	--color-theme-1-light: linear-gradient(var(--color-theme-1), white);
 	--navbar-height: 70px;
 	--soft-black: #111;
+	--soft-red: indianred;
 }

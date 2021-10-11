@@ -1,4 +1,18 @@
 .Button {
+	height: 35px;
+}
+
+.ButtonPrimaryBackgroundColor {
 	background-color: var(--color-theme-1);
 	color: white;
+}
+
+.ButtonRedBackgroundColor {
+	background-color: var(--soft-red);
+	color: white;
+}
+
+.ButtonWhiteBackgroundColor {
+	background-color: white;
+	color: var(--soft-black);
 }

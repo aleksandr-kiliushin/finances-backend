@@ -1,18 +1,19 @@
 import { useState } from 'react'
 
-// gql
+// GQL
 import { deleteFinanceCategoryMutation } from '#gql/delete-finance-category.mutation'
 
-// components
+// Components
+import { Button } from '#components/lib/button'
+import { Modal } from '#components/lib/modal'
 import { Svg } from '#components/lib/svg'
 import { InputRow } from './input-row'
 
-// styles
+// Styles
 import s from './index.module.css'
 
-// types
+// Types
 import { IFinanceCategory } from '#interfaces/finance'
-import { Modal } from '#components/lib/modal'
 
 export const Row = ({ category }: IProps) => {
 	const [isEditing, setIsEditing] = useState(false)
@@ -41,14 +42,26 @@ export const Row = ({ category }: IProps) => {
 
 			{isDeletionWindowShown && (
 				<Modal
-					onCancelButtonClick={() => setIsDeletionWindowShown(false)}
-					onSubmitButtonClick={() => {
-						deleteFinanceCategory({ variables: { id } })
-						setIsDeletionWindowShown(false)
-					}}
-					submitButtonText="delete"
-					text="The category and all its records will be deleted permanently. You will not be able to restore them."
-				/>
+					buttons={
+						<>
+							<Button backgroundColor="white" onClick={() => setIsDeletionWindowShown(false)}>
+								Cancel
+							</Button>
+							<Button
+								backgroundColor="red"
+								onClick={() => {
+									deleteFinanceCategory({ variables: { id } })
+									setIsDeletionWindowShown(false)
+								}}
+							>
+								Delete
+							</Button>
+						</>
+					}
+				>
+					The category and all its records will be deleted permanently. You will not be able to
+					restore them.
+				</Modal>
 			)}
 		</>
 	)
