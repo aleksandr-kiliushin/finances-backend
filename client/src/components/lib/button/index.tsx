@@ -10,7 +10,7 @@ export const Button = ({
 	isDisabled = false,
 	onClick = () => {},
 	type = 'button',
-}: IButtonProps) => {
+}: IProps) => {
 	const cxButton = cx({
 		[s.Button]: true,
 		[s.ButtonPrimaryBackground]: background === 'primary',
@@ -25,7 +25,7 @@ export const Button = ({
 	)
 }
 
-interface IButtonProps {
+interface IProps {
 	background?: 'primary' | 'red' | 'white'
 	children: ReactChild
 	isDisabled?: boolean

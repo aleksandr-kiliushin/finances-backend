@@ -7,12 +7,13 @@ import { authContext, useAuth } from '#context/auth' //To do: change to AuthCont
 
 // Components
 import { Button } from '#components/lib/button'
+import { HookFormInput } from '#components/lib/react-hook-form/input'
 
 // Styles
 import s from './index.module.css'
 
 export default function Login() {
-	const { register, handleSubmit } = useForm<IInputs>()
+	const { register, handleSubmit } = useForm<IFormValues>()
 
 	const { push } = useRouter()
 
@@ -20,7 +21,7 @@ export default function Login() {
 
 	const { logIn, logOut } = useAuth()
 
-	const onSubmit: SubmitHandler<IInputs> = async ({ password, username }) => {
+	const onSubmit: SubmitHandler<IFormValues> = async ({ password, username }) => {
 		try {
 			const { data } = await logIn({ variables: { password, username } })
 
@@ -53,9 +54,9 @@ export default function Login() {
 			<h1 className={s.Centered}>Welcome</h1>
 
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<input {...register('username', { required: true })} />
+				<HookFormInput {...register('username', { required: true })} />
 
-				<input type="password" {...register('password', { required: true })} />
+				<HookFormInput type="password" {...register('password', { required: true })} />
 
 				<Button type="submit">Log in</Button>
 			</form>
@@ -63,7 +64,7 @@ export default function Login() {
 	)
 }
 
-interface IInputs {
+interface IFormValues {
 	password: string
 	username: string
 }
