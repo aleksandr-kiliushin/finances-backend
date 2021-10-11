@@ -2,7 +2,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql'
 
 import { FinanceCategoryDto } from '#models/finance-category/dto/finance-category.dto'
 
-// types
+// Types
 import { IFinanceRecord } from '#interfaces/finance'
 
 @ObjectType()

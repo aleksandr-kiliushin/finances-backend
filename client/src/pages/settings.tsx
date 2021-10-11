@@ -3,12 +3,12 @@ import { useState } from 'react'
 // gql
 import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
 
-// components
+// Components
 import { Header } from '#components/by-page/settings/header'
 import { InputRow } from '#components/by-page/settings/input-row'
 import { Row } from '#components/by-page/settings/row'
 
-// styles
+// Styles
 import s from '#components/by-page/settings/index.module.css'
 
 export default function Settings() {
@@ -29,7 +29,7 @@ export default function Settings() {
 					<InputRow closeInputRow={() => setIsAddCategoryRowShown(false)} category={null} />
 				)}
 
-				{data?.financeCategories.map(category => (
+				{data?.financeCategories.map((category) => (
 					<Row category={category} key={category.id} />
 				))}
 			</div>

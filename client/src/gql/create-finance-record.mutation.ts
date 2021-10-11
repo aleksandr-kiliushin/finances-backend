@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 
-// types
+// Types
 import { MutationHookOptions, StoreObject } from '@apollo/client'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 

@@ -2,20 +2,20 @@ import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 
-// context
-import { authContext } from '#context/auth'
+// Context
+import { AuthContext } from '#context/auth'
 
-// components
+// Components
 import { ISvgProps, Svg } from '#components/lib/svg'
 import Link from 'next/link'
 
-// styles
+// Styles
 import s from './index.module.css'
 
 export const Navbar = () => {
 	const { pathname } = useRouter()
 
-	const { authToken } = useContext(authContext)
+	const { authToken } = useContext(AuthContext)
 
 	if (!authToken) return null
 

@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 
-// types
+// Types
 import { MutationHookOptions, StoreObject } from '@apollo/client'
 import { IFinanceCategory } from '#interfaces/finance'
 
@@ -29,7 +29,7 @@ export const deleteFinanceCategoryMutation = (
 	options?: MutationHookOptions<IDeleteFinanceCategoryData, IDeleteFinanceCategoryVars>,
 ) =>
 	useMutation<IDeleteFinanceCategoryData, IDeleteFinanceCategoryVars>(DELETE_FINANCE_CATEGORY, {
-		update: cache => {
+		update: (cache) => {
 			cache.modify({
 				fields: {
 					financeCategories: () => {},

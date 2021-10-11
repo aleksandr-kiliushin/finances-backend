@@ -2,7 +2,7 @@ import { Field, InputType, Int, PartialType } from '@nestjs/graphql'
 
 import { CreateFinanceCategoryInput } from './create-finance-category.input'
 
-// types
+// Types
 import { IFinanceCategory } from '#interfaces/finance'
 
 @InputType()

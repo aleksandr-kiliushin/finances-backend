@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
-// types
+// Types
 import { IUser } from '#interfaces/user'
 
 @Entity('user')

@@ -1,6 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql'
 
-// types
+// Types
 import { IUser } from '#interfaces/user'
 
 @ObjectType()

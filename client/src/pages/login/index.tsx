@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 // GQL
-import { authContext, useAuth } from '#context/auth' //To do: change to AuthContext.
+import { AuthContext, useAuth } from '#context/auth' //To do: change to AuthContext.
 
 // Components
 import { Form } from '#components/lib/form-constructor/form'
@@ -19,7 +19,7 @@ export default function Login() {
 
 	const { push } = useRouter()
 
-	const { authToken } = useContext(authContext)
+	const { authToken } = useContext(AuthContext)
 
 	const { logIn, logOut } = useAuth()
 

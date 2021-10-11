@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
-// types
+// Types
 import { IFinanceCategoryType } from '#interfaces/finance'
 
 @Entity('finance_category_type')

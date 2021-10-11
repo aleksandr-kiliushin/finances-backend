@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 
-// types
+// Types
 import { MutationHookOptions, StoreObject } from '@apollo/client'
 import { IFinanceRecord } from '#interfaces/finance'
 
@@ -34,7 +34,7 @@ export const deleteFinanceRecordMutation = (
 	options?: MutationHookOptions<IDeleteFinanceRecordData, IDeleteFinanceRecordVars>,
 ) =>
 	useMutation<IDeleteFinanceRecordData, IDeleteFinanceRecordVars>(DELETE_FINANCE_RECORD, {
-		update: cache => {
+		update: (cache) => {
 			cache.modify({
 				fields: {
 					financeRecords: () => {},

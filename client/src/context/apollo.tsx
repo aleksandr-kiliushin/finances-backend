@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 
-import { authContext } from './auth'
+// Context
+import { AuthContext } from './auth'
 
 export const CustomApolloProvider = ({ children }: IProps) => {
-	const { authToken, setAuthToken } = useContext(authContext)
+	const { authToken, setAuthToken } = useContext(AuthContext)
 
 	const { pathname, push } = useRouter()
 
@@ -19,7 +20,7 @@ export const CustomApolloProvider = ({ children }: IProps) => {
 
 	/** Customize response logic if server responses with Unauthorized 401 status code. */
 	const logoutLink = onError(({ response }) => {
-		if (response?.errors?.some(error => error.extensions?.response.statusCode === 401)) {
+		if (response?.errors?.some((error) => error.extensions?.response.statusCode === 401)) {
 			setAuthToken('')
 
 			if (pathname !== '/login') {

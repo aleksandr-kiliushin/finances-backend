@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 
 import { FinanceCategoryTypeEntity } from '#models/finance-category-type/entities/finance-category-type.entity'
 
-// types
+// Types
 import { IFinanceCategory } from '#interfaces/finance'
 
 @Entity('finance_category')

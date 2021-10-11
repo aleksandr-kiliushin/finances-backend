@@ -6,14 +6,14 @@ import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
 import { createFinanceRecordMutation } from '#gql/create-finance-record.mutation'
 import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
 
-// components
+// Components
 import { Svg } from '#components/lib/svg'
 import { Datalist } from '#components/lib/datalist'
 
-// styles
+// Styles
 import s from './index.module.css'
 
-// types
+// Types
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 export const InputRow = ({ closeInputRow, record }: IProps) => {
@@ -60,13 +60,13 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 	return (
 		<div className={cxRow}>
 			<div className={s.Cell}>
-				<input onChange={e => setAmount(e.target.value)} type="number" value={amount} />
+				<input onChange={(e) => setAmount(e.target.value)} type="number" value={amount} />
 			</div>
 
 			<div className={s.Cell}>
 				<Datalist
 					options={financeCategories}
-					renderOption={category => (
+					renderOption={(category) => (
 						<div
 							key={category.id}
 							onClick={() => setCategory(category)}
@@ -80,7 +80,7 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 			</div>
 
 			<div className={s.Cell}>
-				<input onChange={e => setDate(e.target.value)} type="date" value={date} />
+				<input onChange={(e) => setDate(e.target.value)} type="date" value={date} />
 			</div>
 
 			<div className={s.Cell} onClick={onSubmit}>

@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 
-// types
+// Types
 import { QueryHookOptions } from '@apollo/client'
 import { IFinanceRecord } from '#interfaces/finance'
 import { IOrdering } from '#interfaces/common'

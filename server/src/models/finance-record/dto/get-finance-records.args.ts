@@ -1,6 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql'
 
-// types
+// Types
 import { IFinanceRecord } from '#interfaces/finance'
 import { IOrdering } from '#interfaces/common'
 

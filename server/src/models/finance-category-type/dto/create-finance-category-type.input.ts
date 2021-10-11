@@ -1,6 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql'
 
-// types
+// Types
 import { IFinanceCategoryType } from '#interfaces/finance'
 
 @InputType()

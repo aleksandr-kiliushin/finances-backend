@@ -1,9 +1,9 @@
 import cx from 'classnames'
 
-// components
+// Components
 import { Svg } from '#components/lib/svg'
 
-// styles
+// Styles
 import s from './index.module.css'
 
 export const Header = ({ isTrash, toggleIsAddRecordRowShown }: IProps) => {

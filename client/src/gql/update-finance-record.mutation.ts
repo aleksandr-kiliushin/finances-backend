@@ -1,7 +1,7 @@
 import { MutationHookOptions, StoreObject } from '@apollo/client'
 import { gql, useMutation } from '@apollo/client'
 
-// types
+// Types
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 const UPDATE_FINANCE_RECORD = gql`
@@ -46,7 +46,7 @@ export const updateFinanceRecordMutation = (
 	options?: MutationHookOptions<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>,
 ) =>
 	useMutation<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>(UPDATE_FINANCE_RECORD, {
-		update: cache => {
+		update: (cache) => {
 			cache.modify({
 				fields: {
 					financeRecords: () => {},

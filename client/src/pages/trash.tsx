@@ -1,11 +1,11 @@
 // gql
 import { getFinanceRecordsQuery } from '#gql/get-finance-records.query'
 
-// components
+// Components
 import { Header } from '#components/by-page/finance/records-table/header'
 import { Row } from '#components/by-page/finance/records-table/row'
 
-// styles
+// Styles
 import s from '#components/by-page/finance/records-table/index.module.css'
 
 export default function Trash() {
@@ -22,7 +22,7 @@ export default function Trash() {
 			<Header isTrash />
 
 			<div className={s.Body}>
-				{data?.financeRecords.map(record => (
+				{data?.financeRecords.map((record) => (
 					<Row key={record.id} record={record} />
 				))}
 			</div>

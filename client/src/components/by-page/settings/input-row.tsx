@@ -5,14 +5,14 @@ import { getFinanceCategoryTypesQuery } from '#gql/get-finance-category-types.qu
 import { createFinanceCategoryMutation } from '#gql/create-finance-category.mutation'
 import { updateFinanceCategoryMutation } from '#gql/update-finance-category.mutation'
 
-// components
+// Components
 import { Svg } from '#components/lib/svg'
 import { Datalist } from '#components/lib/datalist'
 
-// styles
+// Styles
 import s from './index.module.css'
 
-// types
+// Types
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 export const InputRow = ({ closeInputRow, category }: IProps) => {
@@ -48,13 +48,13 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 	return (
 		<div className={s.Row}>
 			<div className={s.Cell}>
-				<input onChange={e => setName(e.target.value)} type="text" value={name} />
+				<input onChange={(e) => setName(e.target.value)} type="text" value={name} />
 			</div>
 
 			<div className={s.Cell}>
 				<Datalist
 					options={financeCategoryTypes}
-					renderOption={type => (
+					renderOption={(type) => (
 						<div key={type.id} onClick={() => setType(type)}>
 							{type.name}
 						</div>
