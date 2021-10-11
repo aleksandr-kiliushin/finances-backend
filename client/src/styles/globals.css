@@ -9,11 +9,11 @@ body {
 * {
 	box-sizing: border-box;
 	font-size: 1.1rem;
-	color: #111;
+	color: var(--soft-black);
 }
 
 svg {
-	fill: #111;
+	fill: var(--soft-black);
 }
 
 a {

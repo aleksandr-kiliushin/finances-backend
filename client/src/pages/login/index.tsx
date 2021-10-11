@@ -4,6 +4,9 @@ import { useRouter } from 'next/router'
 // GQL
 import { authContext, useAuth } from '#context/auth' //To do: change to AuthContext.
 
+// Components
+import { Button } from '#components/lib/button'
+
 // Styles
 import s from './index.module.css'
 
@@ -39,7 +42,8 @@ export default function Login() {
 				<p className={s.Centered}>
 					You are logged in as <strong>sasha</strong>.
 				</p>
-				<button onClick={logOut}>Log out</button>
+
+				<Button onClick={logOut}>Log out</Button>
 			</div>
 		)
 	}

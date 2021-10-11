@@ -1,5 +1,5 @@
 .Table {
-	border: 1px solid #111;
+	border: 1px solid var(--soft-black);
 }
 
 .Row {
@@ -12,8 +12,8 @@
 	margin: -1px;
 	line-height: 40px;
 	text-align: center;
-	background-color: cadetblue;
-	border: 1px solid #111;
+	background-color: var(--color-theme-1);
+	border: 1px solid var(--soft-black);
 	color: white;
 }
 
@@ -34,7 +34,7 @@
 	line-height: 40px;
 	text-align: center;
 	background-color: whitesmoke;
-	border: 1px solid #111;
+	border: 1px solid var(--soft-black);
 }
 
 .Cell > input {
@@ -52,21 +52,3 @@
 	width: 100%;
 	padding: 0.3rem;
 }
-
-/*.ExpenseCategory,
-.ExpenseRecordCell {
-	color: darkred;
-}
-
-.IncomeCategory,
-.IncomeRecordCell {
-	color: darkgreen;
-}
-
-.ExpenseRecordCell::before {
-	content: '-';
-}
-
-.IncomeRecordCell::before {
-	content: '+';
-} */
