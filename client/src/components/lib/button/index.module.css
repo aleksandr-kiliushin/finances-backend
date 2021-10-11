@@ -2,17 +2,17 @@
 	height: 35px;
 }
 
-.ButtonPrimaryBackgroundColor {
-	background-color: var(--color-theme-1);
+.ButtonPrimaryBackground {
+	background: var(--color-theme-1);
 	color: white;
 }
 
-.ButtonRedBackgroundColor {
-	background-color: var(--soft-red);
+.ButtonRedBackground {
+	background: var(--soft-red);
 	color: white;
 }
 
-.ButtonWhiteBackgroundColor {
-	background-color: white;
+.ButtonWhiteBackground {
+	background: white;
 	color: var(--soft-black);
 }

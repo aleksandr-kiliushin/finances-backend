@@ -1,6 +1,11 @@
 :root {
 	--color-theme-1: steelblue;
-	--color-theme-1-light: linear-gradient(var(--color-theme-1), white);
+	--color-theme-1-light: linear-gradient(
+		90deg,
+		var(--color-theme-1) -300%,
+		white 50%,
+		var(--color-theme-1) 400%
+	);
 	--navbar-height: 70px;
 	--soft-black: #111;
 	--soft-red: indianred;

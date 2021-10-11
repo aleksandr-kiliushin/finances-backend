@@ -5,16 +5,16 @@ import cx from 'classnames'
 import s from './index.module.css'
 
 export const Button = ({
-	backgroundColor = 'primary',
+	background = 'primary',
 	children,
 	isDisabled = false,
 	onClick,
 }: IButtonProps) => {
 	const cxButton = cx({
 		[s.Button]: true,
-		[s.ButtonPrimaryBackgroundColor]: backgroundColor === 'primary',
-		[s.ButtonRedBackgroundColor]: backgroundColor === 'red',
-		[s.ButtonWhiteBackgroundColor]: backgroundColor === 'white',
+		[s.ButtonPrimaryBackground]: background === 'primary',
+		[s.ButtonRedBackground]: background === 'red',
+		[s.ButtonWhiteBackground]: background === 'white',
 	})
 
 	return (
@@ -25,7 +25,7 @@ export const Button = ({
 }
 
 interface IButtonProps {
-	backgroundColor?: 'primary' | 'red' | 'white'
+	background?: 'primary' | 'red' | 'white'
 	children: ReactChild
 	isDisabled?: boolean
 	onClick: (e?: SyntheticEvent) => void

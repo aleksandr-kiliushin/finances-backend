@@ -44,11 +44,11 @@ export const Row = ({ category }: IProps) => {
 				<Modal
 					buttons={
 						<>
-							<Button backgroundColor="white" onClick={() => setIsDeletionWindowShown(false)}>
+							<Button background="white" onClick={() => setIsDeletionWindowShown(false)}>
 								Cancel
 							</Button>
 							<Button
-								backgroundColor="red"
+								background="red"
 								onClick={() => {
 									deleteFinanceCategory({ variables: { id } })
 									setIsDeletionWindowShown(false)

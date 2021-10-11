@@ -5,8 +5,8 @@
 	width: 90vw;
 	padding: 0.5rem;
 	transform: translate(-50%, -50%);
-	background-color: var(--color-theme-1-light);
-	border: 3px solid black;
+	background: var(--color-theme-1-light);
+	border: 1px solid black;
 }
 
 .Body {

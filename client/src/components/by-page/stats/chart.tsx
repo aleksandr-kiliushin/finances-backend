@@ -44,7 +44,7 @@ export const Chart1 = () => {
 			const stringifiedCurrentDate = currentDate.toISOString().split('T')[0]
 
 			currentSum = financeRecords
-				.filter(record => record.date === stringifiedCurrentDate)
+				.filter((record) => record.date === stringifiedCurrentDate)
 				.reduce((dateSum, record) => {
 					if (record.category.type.name === 'expense') {
 						return (dateSum -= record.amount)
@@ -65,7 +65,7 @@ export const Chart1 = () => {
 			data: {
 				datasets: [
 					{
-						backgroundColor: 'rgba(0, 100, 0, 0.5)',
+						background: 'rgba(0, 100, 0, 0.5)',
 						borderColor: 'darkgreen',
 						borderWidth: 1,
 						data: Object.values(mapSumToDate),
@@ -80,7 +80,7 @@ export const Chart1 = () => {
 				scales: {
 					x: {
 						ticks: {
-							callback: tickValue => {
+							callback: (tickValue) => {
 								if (typeof tickValue !== 'number') return 'error'
 
 								const timeStamp = new Date(financeRecords[0].date).setDate(
@@ -99,7 +99,7 @@ export const Chart1 = () => {
 					y: {
 						beginAtZero: true,
 						ticks: {
-							callback: tickValue =>
+							callback: (tickValue) =>
 								typeof tickValue === 'number' ? tickValue / 1_000_000 : 'error',
 							padding: 1,
 						},

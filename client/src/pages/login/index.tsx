@@ -43,7 +43,7 @@ export default function Login() {
 					You are logged in as <strong>sasha</strong>.
 				</p>
 
-				<Button backgroundColor="red" onClick={logOut}>
+				<Button background="red" onClick={logOut}>
 					Log out
 				</Button>
 			</div>
