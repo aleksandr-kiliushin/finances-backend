@@ -1,9 +1,9 @@
-.Container {
-	display: grid;
-	grid-template-rows: 1fr var(--navbar-height);
+.Layout {
 	height: 100vh;
+	width: 100vw;
 }
 
-.ContainerWithoutNavbar {
-	grid-template-rows: 1fr;
+.MainWithNavbar {
+	height: calc(100vh - var(--navbar-height));
+	overflow: scroll;
 }
