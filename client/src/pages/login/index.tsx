@@ -1,5 +1,6 @@
-import { SyntheticEvent, useContext, useState } from 'react'
+import { useContext } from 'react'
 import { useRouter } from 'next/router'
+import { useForm, SubmitHandler } from 'react-hook-form'
 
 // GQL
 import { authContext, useAuth } from '#context/auth' //To do: change to AuthContext.
@@ -11,8 +12,7 @@ import { Button } from '#components/lib/button'
 import s from './index.module.css'
 
 export default function Login() {
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
+	const { register, handleSubmit } = useForm<IInputs>()
 
 	const { push } = useRouter()
 
@@ -20,7 +20,7 @@ export default function Login() {
 
 	const { logIn, logOut } = useAuth()
 
-	const onSubmit = async () => {
+	const onSubmit: SubmitHandler<IInputs> = async ({ password, username }) => {
 		try {
 			const { data } = await logIn({ variables: { password, username } })
 
@@ -51,17 +51,19 @@ export default function Login() {
 	return (
 		<div className={s.Container}>
 			<h1 className={s.Centered}>Welcome</h1>
-			<label>
-				Username
-				<input onChange={(e) => setUsername(e.target.value)} type="text" value={username} />
-			</label>
 
-			<label>
-				Password
-				<input onChange={(e) => setPassword(e.target.value)} type="password" value={password} />
-			</label>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<input {...register('username', { required: true })} />
 
-			<Button onClick={onSubmit}>Log in</Button>
+				<input type="password" {...register('password', { required: true })} />
+
+				<Button type="submit">Log in</Button>
+			</form>
 		</div>
 	)
+}
+
+interface IInputs {
+	password: string
+	username: string
 }

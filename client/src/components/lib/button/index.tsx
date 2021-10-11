@@ -8,7 +8,8 @@ export const Button = ({
 	background = 'primary',
 	children,
 	isDisabled = false,
-	onClick,
+	onClick = () => {},
+	type = 'button',
 }: IButtonProps) => {
 	const cxButton = cx({
 		[s.Button]: true,
@@ -18,7 +19,7 @@ export const Button = ({
 	})
 
 	return (
-		<button className={cxButton} disabled={isDisabled} onClick={onClick}>
+		<button className={cxButton} disabled={isDisabled} onClick={onClick} type={type}>
 			{children}
 		</button>
 	)
@@ -28,5 +29,6 @@ interface IButtonProps {
 	background?: 'primary' | 'red' | 'white'
 	children: ReactChild
 	isDisabled?: boolean
-	onClick: (e?: SyntheticEvent) => void
+	onClick?: (e?: SyntheticEvent) => void
+	type?: 'button' | 'reset' | 'submit'
 }
