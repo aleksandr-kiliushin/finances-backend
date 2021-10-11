@@ -1,8 +1,9 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react'
+import { DetailedHTMLProps, ForwardedRef, forwardRef, InputHTMLAttributes } from 'react'
 
-export const HookFormInput = (props: IProps) => {
-	console.log(props)
-	return <input {...props} />
+const HookFormInput_ = (props: IProps, ref: ForwardedRef<HTMLInputElement>) => {
+	return <input ref={ref} {...props} />
 }
+
+export const HookFormInput = forwardRef(HookFormInput_)
 
 type IProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
