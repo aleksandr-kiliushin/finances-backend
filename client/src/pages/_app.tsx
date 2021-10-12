@@ -1,7 +1,7 @@
 import { CustomApolloProvider } from '#context/apollo'
 
 // Context
-import { AuthContextProvider } from '#context/auth'
+import { ReducerProvider } from '#context/state'
 
 // Components
 import { Layout } from '#components/lib/layout'
@@ -15,12 +15,12 @@ import type { AppProps } from 'next/app'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<AuthContextProvider>
+		<ReducerProvider>
 			<CustomApolloProvider>
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>
 			</CustomApolloProvider>
-		</AuthContextProvider>
+		</ReducerProvider>
 	)
 }

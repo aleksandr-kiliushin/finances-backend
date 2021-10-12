@@ -4,10 +4,11 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/c
 import { onError } from '@apollo/client/link/error'
 
 // Context
-import { AuthContext } from './auth'
+import { DispatchContext, StateContext } from './state'
 
 export const CustomApolloProvider = ({ children }: IProps) => {
-	const { authToken, setAuthToken } = useContext(AuthContext)
+	const { authToken } = useContext(StateContext)
+	const asyncDispatch = useContext(DispatchContext)
 
 	const { pathname, push } = useRouter()
 
@@ -21,7 +22,10 @@ export const CustomApolloProvider = ({ children }: IProps) => {
 	/** Customize response logic if server responses with Unauthorized 401 status code. */
 	const logoutLink = onError(({ response }) => {
 		if (response?.errors?.some((error) => error.extensions?.response.statusCode === 401)) {
-			setAuthToken('')
+			asyncDispatch({
+				payload: { authToken: '' },
+				type: 'auth/setUserData',
+			})
 
 			if (pathname !== '/login') {
 				push('/login')
