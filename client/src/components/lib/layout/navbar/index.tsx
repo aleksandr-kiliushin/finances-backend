@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import cx from 'classnames'
 
 // Context
@@ -7,7 +8,6 @@ import { StateContext } from '#context/state'
 
 // Components
 import { ISvgProps, Svg } from '#components/lib/svg'
-import Link from 'next/link'
 
 // Styles
 import s from './index.module.css'
