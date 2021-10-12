@@ -16,9 +16,10 @@
 		"baseUrl": ".",
 		"paths": {
 			"#components/*": ["src/components/*"],
+			"#context/*": ["src/context/*"],
 			"#gql/*": ["src/gql/*"],
 			"#interfaces/*": ["../server/src/interfaces/*"],
-			"#context/*": ["src/context/*"]
+			"#utils/*": ["src/utils/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
