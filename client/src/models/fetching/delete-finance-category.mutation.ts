@@ -25,7 +25,7 @@ interface IDeleteFinanceCategoryVars {
 	id: IFinanceCategory['id']
 }
 
-export const deleteFinanceCategoryMutation = (
+export const useDeleteFinanceCategoryMutation = (
 	options?: MutationHookOptions<IDeleteFinanceCategoryData, IDeleteFinanceCategoryVars>,
 ) =>
 	useMutation<IDeleteFinanceCategoryData, IDeleteFinanceCategoryVars>(DELETE_FINANCE_CATEGORY, {

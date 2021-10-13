@@ -16,9 +16,8 @@
 		"baseUrl": ".",
 		"paths": {
 			"#components/*": ["src/components/*"],
-			"#context/*": ["src/context/*"],
-			"#gql/*": ["src/gql/*"],
 			"#interfaces/*": ["../server/src/interfaces/*"],
+			"#models/*": ["src/models/*"],
 			"#utils/*": ["src/utils/*"]
 		}
 	},

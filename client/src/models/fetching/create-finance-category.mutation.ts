@@ -26,7 +26,7 @@ interface ICreateFinanceCategoryVars {
 	typeId: IFinanceCategoryType['id']
 }
 
-export const createFinanceCategoryMutation = (
+export const useCreateFinanceCategoryMutation = (
 	options?: MutationHookOptions<ICreateFinanceCategoryData, ICreateFinanceCategoryVars>,
 ) =>
 	useMutation<ICreateFinanceCategoryData, ICreateFinanceCategoryVars>(CREATE_FINANCE_CATEGORY, {

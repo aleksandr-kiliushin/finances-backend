@@ -27,7 +27,7 @@ interface IUpdateFinanceCategoryVars {
 	typeId?: IFinanceCategoryType['id']
 }
 
-export const updateFinanceCategoryMutation = (
+export const useUpdateFinanceCategoryMutation = (
 	options?: MutationHookOptions<IUpdateFinanceCategoryData, IUpdateFinanceCategoryVars>,
 ) =>
 	useMutation<IUpdateFinanceCategoryData, IUpdateFinanceCategoryVars>(

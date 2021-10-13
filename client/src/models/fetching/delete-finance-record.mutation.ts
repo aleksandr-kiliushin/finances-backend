@@ -30,7 +30,7 @@ interface IDeleteFinanceRecordVars {
 	id: IFinanceRecord['id']
 }
 
-export const deleteFinanceRecordMutation = (
+export const useDeleteFinanceRecordMutation = (
 	options?: MutationHookOptions<IDeleteFinanceRecordData, IDeleteFinanceRecordVars>,
 ) =>
 	useMutation<IDeleteFinanceRecordData, IDeleteFinanceRecordVars>(DELETE_FINANCE_RECORD, {

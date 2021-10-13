@@ -40,5 +40,5 @@ interface IGetFinanceRecordsVars {
 	orderingById?: IOrdering
 }
 
-export const getFinanceRecordsQuery = (options?: QueryHookOptions) =>
+export const useGetFinanceRecordsQuery = (options?: QueryHookOptions) =>
 	useQuery<IGetFinanceRecordsData, IGetFinanceRecordsVars>(GET_FINANCE_RECORDS, options)

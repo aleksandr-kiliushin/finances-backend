@@ -34,7 +34,7 @@ interface ICreateFinanceRecordVars {
 	date: IFinanceRecord['date']
 }
 
-export const createFinanceRecordMutation = (
+export const useCreateFinanceRecordMutation = (
 	options?: MutationHookOptions<ICreateFinanceRecordData, ICreateFinanceRecordVars>,
 ) =>
 	useMutation<ICreateFinanceRecordData, ICreateFinanceRecordVars>(CREATE_FINANCE_RECORD, {

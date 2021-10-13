@@ -42,7 +42,7 @@ interface IUpdateFinanceRecordVars {
 	isTrashed?: IFinanceRecord['isTrashed']
 }
 
-export const updateFinanceRecordMutation = (
+export const useUpdateFinanceRecordMutation = (
 	options?: MutationHookOptions<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>,
 ) =>
 	useMutation<IUpdateFinanceRecordData, IUpdateFinanceRecordVars>(UPDATE_FINANCE_RECORD, {
