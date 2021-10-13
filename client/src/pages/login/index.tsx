@@ -1,9 +1,9 @@
-import { useContext } from 'react'
-import { useRouter } from 'next/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
-// Context
-import { DispatchContext, StateContext } from '#context/state'
+// Fetching
+import { useGetCurrentUserDataQuery } from '#models/fetching/get-current-user-data.query'
+import { useIsUserLoggedInQuery } from '#models/fetching/is-user-logged-in.query'
+import { useLoginMutation } from '#models/fetching/login.mutation'
 
 // Components
 import { Form } from '#components/lib/form-constructor/form'
@@ -11,47 +11,35 @@ import { FormRow } from '#components/lib/form-constructor/form-row'
 import { HookFormInput } from '#components/lib/form-constructor/input'
 import { Button } from '#components/lib/button'
 
-// Utils
-import { useLogin } from '#utils/hooks'
-
 // Styles
 import s from './index.module.css'
 
 export default function Login() {
 	const { register, handleSubmit } = useForm<IFormValues>()
 
-	const { push } = useRouter()
+	const { data: isUserLoggedInData } = useIsUserLoggedInQuery()
 
-	const { authToken } = useContext(StateContext)
-	const asyncDispatch = useContext(DispatchContext)
+	const { data: currentUserData } = useGetCurrentUserDataQuery({ fetchPolicy: 'no-cache' })
 
-	const { logIn } = useLogin()
+	const [logIn, { client }] = useLoginMutation()
 
-	const logOut = () =>
-		asyncDispatch({
-			payload: {
-				authToken: '',
-			},
-			type: 'auth/setUserData',
-		})
+	const logOut = () => {
+		localStorage.authToken = ''
 
-	const onSubmit: SubmitHandler<IFormValues> = async ({ password, username }) => {
-		try {
-			const { data } = await logIn({ variables: { password, username } })
-			if (!data?.login.authToken) {
-				throw new Error()
-			}
-			push('/')
-		} catch {
-			alert('Login failed.')
-		}
+		client.resetStore()
 	}
 
-	if (authToken) {
+	const onSubmit: SubmitHandler<IFormValues> = ({ password, username }) => {
+		logIn({ variables: { password, username } })
+	}
+
+	console.log(isUserLoggedInData?.isUserLoggedIn)
+
+	if (isUserLoggedInData?.isUserLoggedIn) {
 		return (
 			<div className={s.Container}>
 				<p className={s.Centered}>
-					You are logged in as <strong>sasha</strong>.
+					You are logged in as <strong>{currentUserData?.currentUserData.username}</strong>.
 				</p>
 
 				<Button background="red" onClick={logOut}>
