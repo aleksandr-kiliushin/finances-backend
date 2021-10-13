@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import cx from 'classnames'
 
-// gql
-import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
-import { createFinanceRecordMutation } from '#gql/create-finance-record.mutation'
-import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
+// Fetching
+import { useGetFinanceCategoriesQuery } from '#models/fetching/get-finance-categories.query'
+import { useCreateFinanceRecordMutation } from '#models/fetching/create-finance-record.mutation'
+import { useUpdateFinanceRecordMutation } from '#models/fetching/update-finance-record.mutation'
 
 // Components
 import { Svg } from '#components/lib/svg'
@@ -21,11 +21,11 @@ export const InputRow = ({ closeInputRow, record }: IProps) => {
 	const [category, setCategory] = useState<IFinanceCategory | null>(record?.category ?? null)
 	const [date, setDate] = useState(record?.date ?? new Date().toISOString().split('T')[0])
 
-	const { data: financeCategoriesData } = getFinanceCategoriesQuery()
+	const { data: financeCategoriesData } = useGetFinanceCategoriesQuery()
 
-	const [createFinanceRecord] = createFinanceRecordMutation()
+	const [createFinanceRecord] = useCreateFinanceRecordMutation()
 
-	const [updateFinanceRecord] = updateFinanceRecordMutation()
+	const [updateFinanceRecord] = useUpdateFinanceRecordMutation()
 
 	const onSubmit = () => {
 		if (!amount || !category || !date) {

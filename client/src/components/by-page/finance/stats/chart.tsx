@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { Chart, registerables } from 'chart.js'
 
-// gql
-import { getFinanceRecordsQuery } from '#gql/get-finance-records.query'
+// Fetching
+import { useGetFinanceRecordsQuery } from '#models/fetching/get-finance-records.query'
 
 // style
 import s from './chart.module.css'
 
 export const Chart1 = () => {
-	const { data } = getFinanceRecordsQuery({
+	const { data } = useGetFinanceRecordsQuery({
 		variables: {
 			isTrashed: false,
 			orderingByDate: 'ASC',
@@ -65,7 +65,6 @@ export const Chart1 = () => {
 			data: {
 				datasets: [
 					{
-						background: 'rgba(0, 100, 0, 0.5)',
 						borderColor: 'darkgreen',
 						borderWidth: 1,
 						data: Object.values(mapSumToDate),

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // GQL
-import { deleteFinanceCategoryMutation } from '#gql/delete-finance-category.mutation'
+import { useDeleteFinanceCategoryMutation } from '#models/fetching/delete-finance-category.mutation'
 
 // Components
 import { Button } from '#components/lib/button'
@@ -21,7 +21,7 @@ export const Row = ({ category }: IProps) => {
 
 	const { id, name, type } = category
 
-	const [deleteFinanceCategory] = deleteFinanceCategoryMutation()
+	const [deleteFinanceCategory] = useDeleteFinanceCategoryMutation()
 
 	if (isEditing) {
 		return <InputRow closeInputRow={() => setIsEditing(false)} category={category} />

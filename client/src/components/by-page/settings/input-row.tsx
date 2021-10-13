@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 // gql
-import { getFinanceCategoryTypesQuery } from '#gql/get-finance-category-types.query'
-import { createFinanceCategoryMutation } from '#gql/create-finance-category.mutation'
-import { updateFinanceCategoryMutation } from '#gql/update-finance-category.mutation'
+import { useGetFinanceCategoryTypesQuery } from '#models/fetching/get-finance-category-types.query'
+import { useCreateFinanceCategoryMutation } from '#models/fetching/create-finance-category.mutation'
+import { useUpdateFinanceCategoryMutation } from '#models/fetching/update-finance-category.mutation'
 
 // Components
 import { Svg } from '#components/lib/svg'
@@ -19,11 +19,11 @@ export const InputRow = ({ closeInputRow, category }: IProps) => {
 	const [name, setName] = useState(category?.name ?? '')
 	const [type, setType] = useState<IFinanceCategoryType | null>(category?.type ?? null)
 
-	const { data: categoryTypesData } = getFinanceCategoryTypesQuery()
+	const { data: categoryTypesData } = useGetFinanceCategoryTypesQuery()
 
-	const [createFinanceCategory] = createFinanceCategoryMutation()
+	const [createFinanceCategory] = useCreateFinanceCategoryMutation()
 
-	const [updateFinanceCategory] = updateFinanceCategoryMutation()
+	const [updateFinanceCategory] = useUpdateFinanceCategoryMutation()
 
 	const onSubmit = () => {
 		if (!name || !type) {

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import cx from 'classnames'
 
-// gql
-import { updateFinanceRecordMutation } from '#gql/update-finance-record.mutation'
-import { deleteFinanceRecordMutation } from '#gql/delete-finance-record.mutation'
+// Fetching
+import { useUpdateFinanceRecordMutation } from '#models/fetching/update-finance-record.mutation'
+import { useDeleteFinanceRecordMutation } from '#models/fetching/delete-finance-record.mutation'
 
 // Components
 import { Svg } from '#components/lib/svg'
@@ -20,9 +20,9 @@ export const Row = ({ record }: IProps) => {
 
 	const { amount, category, date, id } = record
 
-	const [updateFinanceRecord] = updateFinanceRecordMutation()
+	const [updateFinanceRecord] = useUpdateFinanceRecordMutation()
 
-	const [deleteFinanceRecord] = deleteFinanceRecordMutation()
+	const [deleteFinanceRecord] = useDeleteFinanceRecordMutation()
 
 	const dateFormatted = new Date(date).toLocaleString('en-US', { month: 'short', day: 'numeric' })
 
