@@ -88,6 +88,7 @@ type Query {
   financeCategoryTypes(ids: [Int!]): [FinanceCategoryTypeDto!]!
   financeRecord(id: Int!): FinanceRecordDto!
   financeRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs!): [FinanceRecordDto!]!
+  getCurrentUserData: UserDto!
   user(getUserArgs: GetUserArgs!): UserDto!
   users: [UserDto!]!
 }

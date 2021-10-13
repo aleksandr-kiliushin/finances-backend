@@ -1,12 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql'
+import { Resolver, Query, Mutation, Args, Int, Context } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
+import { AuthGuard } from '#models/auth/auth.guard'
 import { UserService } from './user.service'
 import { UserDto } from './dto/user.dto'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { GetUserArgs } from './dto/get-user.args'
-import { AuthGuard } from '#models/auth/auth.guard'
 
 @Resolver(() => UserDto)
 export class UserResolver {
@@ -54,12 +54,12 @@ export class UserResolver {
 		return this.userService.deleteUser(id)
 	}
 
-	// @Query(() => UserDto)
-	// @UseGuards(new AuthGuard())
-	// me(
-	// 	@Context('user')
-	// 	{ id }: IUser,
-	// ) {
-	// 	return this.userService.getUser({ id })
-	// }
+	@Query(() => UserDto)
+	@UseGuards(new AuthGuard())
+	getCurrentUserData(
+		@Context('user')
+		{ id }: UserDto,
+	) {
+		return this.userService.getUser({ id })
+	}
 }
