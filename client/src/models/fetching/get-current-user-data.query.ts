@@ -14,13 +14,13 @@ const GET_CURRENT_USER_DATA = gql`
 `
 
 interface IGetCurrentUserData {
-	currentUserData: {
-		id: IUser['id']
-		username: IUser['username']
-	}
+	currentUserData: Omit<IUser, 'password'>
 }
 
 interface IGetCurrentUserVars {}
 
 export const useGetCurrentUserDataQuery = (options?: QueryHookOptions) =>
-	useQuery<IGetCurrentUserData, IGetCurrentUserVars>(GET_CURRENT_USER_DATA, options)
+	useQuery<IGetCurrentUserData, IGetCurrentUserVars>(GET_CURRENT_USER_DATA, {
+		// Standard logic here.
+		...options,
+	})
