@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-// gql
-import { getFinanceCategoriesQuery } from '#gql/get-finance-categories.query'
+// Fetching
+import { useGetFinanceCategoriesQuery } from '#models/fetching/get-finance-categories.query'
 
 // Components
 import { Header } from '#components/by-page/settings/header'
@@ -14,7 +14,7 @@ import s from '#components/by-page/settings/index.module.css'
 export default function Settings() {
 	const [isAddCategoryRowShown, setIsAddCategoryRowShown] = useState(false)
 
-	const { data } = getFinanceCategoriesQuery()
+	const { data } = useGetFinanceCategoriesQuery()
 
 	return (
 		<>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-// gql
-import { getFinanceRecordsQuery } from '#gql/get-finance-records.query'
+// Fetching
+import { useGetFinanceRecordsQuery } from '#models/fetching/get-finance-records.query'
 
 // Components
 import { Header } from '#components/by-page/finance/records-table/header'
@@ -14,7 +14,7 @@ import s from '#components/by-page/finance/records-table/index.module.css'
 export default function Records() {
 	const [isAddRecordRowShown, setIsAddRecordRowShown] = useState(false)
 
-	const { data } = getFinanceRecordsQuery({
+	const { data } = useGetFinanceRecordsQuery({
 		variables: {
 			isTrashed: false,
 			orderingByDate: 'DESC',
