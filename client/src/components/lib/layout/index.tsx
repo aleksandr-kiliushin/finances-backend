@@ -1,5 +1,8 @@
 import { ReactNode } from 'react'
 
+// Fetching
+import { useIsUserLoggedInQuery } from '#models/fetching/is-user-logged-in.query'
+
 // Components
 import { Navbar } from './navbar'
 
@@ -7,7 +10,9 @@ import { Navbar } from './navbar'
 import s from './index.module.css'
 
 export const Layout = ({ children }: IProps) => {
-	const cnMain = globalThis.document?.querySelector('nav') ? s.MainWithNavbar : s.MainWithoutNavbar
+	const { data: isUserLoggedIn } = useIsUserLoggedInQuery()
+
+	const cnMain = isUserLoggedIn ? s.MainWithNavbar : s.MainWithoutNavbar
 
 	return (
 		<div className={s.Layout}>
