@@ -1,4 +1,4 @@
-import { CustomApolloProvider } from '#models/apollo-provider'
+import { CustomApolloProvider } from '#models/index'
 
 // Components
 import { Layout } from '#components/lib/layout'
