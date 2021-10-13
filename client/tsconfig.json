@@ -17,7 +17,8 @@
 		"paths": {
 			"#components/*": ["src/components/*"],
 			"#interfaces/*": ["../server/src/interfaces/*"],
-			"#models/*": ["src/models/*"]
+			"#models/*": ["src/models/*"],
+			"#utils/*": ["src/utils/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
