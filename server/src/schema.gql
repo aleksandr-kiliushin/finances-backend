@@ -82,13 +82,13 @@ type Mutation {
 }
 
 type Query {
+  currentUserData: UserDto!
   financeCategories(getFinanceCategoriesArgs: GetFinanceCategoriesArgs!): [FinanceCategoryDto!]!
   financeCategory(id: Int!): FinanceCategoryDto!
   financeCategoryType(id: [Int!]!): FinanceCategoryTypeDto!
   financeCategoryTypes(ids: [Int!]): [FinanceCategoryTypeDto!]!
   financeRecord(id: Int!): FinanceRecordDto!
   financeRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs!): [FinanceRecordDto!]!
-  getCurrentUserData: UserDto!
   user(getUserArgs: GetUserArgs!): UserDto!
   users: [UserDto!]!
 }

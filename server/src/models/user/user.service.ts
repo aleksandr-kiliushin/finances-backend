@@ -16,11 +16,7 @@ export class UserService {
 	) {}
 
 	getUser(getUserArgs: GetUserArgs): Promise<UserEntity> {
-		const user = this.userRepository.findOne({ where: getUserArgs })
-
-		if (!user) throw new NotFoundException('User not found.')
-
-		return user
+		return this.userRepository.findOneOrFail({ ...getUserArgs })
 	}
 
 	getUsers(): Promise<UserEntity[]> {

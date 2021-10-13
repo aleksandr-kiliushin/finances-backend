@@ -6,7 +6,7 @@ import { IUser } from '#interfaces/user'
 
 const GET_CURRENT_USER_DATA = gql`
 	query {
-		getCurrentUserData {
+		currentUserData {
 			username
 			id
 		}

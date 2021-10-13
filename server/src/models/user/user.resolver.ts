@@ -54,8 +54,8 @@ export class UserResolver {
 		return this.userService.deleteUser(id)
 	}
 
-	@Query(() => UserDto)
 	@UseGuards(new AuthGuard())
+	@Query(() => UserDto, { name: 'currentUserData' })
 	getCurrentUserData(
 		@Context('user')
 		{ id }: UserDto,
