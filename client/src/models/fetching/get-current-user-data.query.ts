@@ -14,8 +14,10 @@ const GET_CURRENT_USER_DATA = gql`
 `
 
 interface IGetCurrentUserData {
-	id: IUser['id']
-	username: IUser['username']
+	currentUserData: {
+		id: IUser['id']
+		username: IUser['username']
+	}
 }
 
 interface IGetCurrentUserVars {}
