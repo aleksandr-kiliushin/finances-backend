@@ -13,5 +13,5 @@ type IIsLoggedInData = boolean
 
 interface IIsLoggedInVars {}
 
-export const useGetFinanceRecordsQuery = (options?: QueryHookOptions) =>
+export const useIsLoggedInQuery = (options?: QueryHookOptions) =>
 	useQuery<IIsLoggedInData, IIsLoggedInVars>(IS_LOGGED_IN, options)
