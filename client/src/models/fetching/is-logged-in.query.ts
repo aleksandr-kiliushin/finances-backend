@@ -4,7 +4,7 @@ import { gql, useQuery } from '@apollo/client'
 import { QueryHookOptions } from '@apollo/client'
 
 const IS_LOGGED_IN = gql`
-	query IsUserLoggedIn {
+	query IsLoggedIn {
 		isLoggedIn @client
 	}
 `
