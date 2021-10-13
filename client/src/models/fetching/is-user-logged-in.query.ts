@@ -9,7 +9,9 @@ const IS_USER_LOGGED_IN = gql`
 	}
 `
 
-type IIsUserLoggedInData = boolean
+interface IIsUserLoggedInData {
+	isUserLoggedIn: boolean
+}
 
 interface IIsUserLoggedInVars {}
 
