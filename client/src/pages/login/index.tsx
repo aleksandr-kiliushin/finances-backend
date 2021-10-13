@@ -1,5 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 
+// Cache
+import { isUserLoggedInVar } from '#models/cache'
+
 // Fetching
 import { useGetCurrentUserDataQuery } from '#models/fetching/get-current-user-data.query'
 import { useIsUserLoggedInQuery } from '#models/fetching/is-user-logged-in.query'
@@ -27,6 +30,8 @@ export default function Login() {
 		localStorage.authToken = ''
 
 		client.resetStore()
+
+		isUserLoggedInVar(false)
 	}
 
 	const onSubmit: SubmitHandler<IFormValues> = ({ password, username }) => {
