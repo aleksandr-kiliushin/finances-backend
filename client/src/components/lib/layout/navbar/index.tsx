@@ -2,6 +2,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import cx from 'classnames'
 
+// Fetching
+import { useIsUserLoggedInQuery } from '#models/fetching/is-user-logged-in.query'
+
 // Components
 import { ISvgProps, Svg } from '#components/lib/svg'
 
@@ -11,7 +14,9 @@ import s from './index.module.css'
 export const Navbar = () => {
 	const { pathname } = useRouter()
 
-	// To do: Return null if !isLoggedIn.
+	const { data: isUserLoggedIn } = useIsUserLoggedInQuery()
+
+	if (!isUserLoggedIn) return null
 
 	const sectionsData: ISection[] = [
 		{ href: '/', svgName: 'home' },
