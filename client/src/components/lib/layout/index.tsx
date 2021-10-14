@@ -5,6 +5,7 @@ import { useIsUserLoggedInQuery } from '#models/fetching/is-user-logged-in.query
 
 // Components
 import { Navbar } from './navbar'
+import { NotificationList } from '#components/lib/notifications'
 
 // Styles
 import s from './index.module.css'
@@ -17,7 +18,10 @@ export const Layout = ({ children }: IProps) => {
 	return (
 		<div className={s.Layout}>
 			<main className={cnMain}>{children}</main>
+
 			<Navbar />
+
+			<NotificationList />
 		</div>
 	)
 }
