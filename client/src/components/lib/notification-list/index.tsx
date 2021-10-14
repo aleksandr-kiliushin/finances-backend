@@ -1,20 +1,20 @@
-// Fetching
-import { useNotificationsQuery } from '#models/fetching/notifications.query'
+import { useReactiveVar } from '@apollo/client'
 
 // Components
 import { Notification } from './notification'
 
 // Styles
 import s from './index.module.css'
+import { notificationsVar } from '#models/cache'
 
 export const NotificationList = () => {
-	const { data } = useNotificationsQuery()
+	const notifications = useReactiveVar(notificationsVar)
 
-	if (!data?.notifications.length) return null
+	if (notifications.length === 0) return null
 
 	return (
 		<div className={s.NotificationList}>
-			{data.notifications.map((notification) => {
+			{notifications.map((notification) => {
 				return <Notification key={notification.id} notificationData={notification} />
 			})}
 		</div>
