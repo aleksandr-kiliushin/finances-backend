@@ -1,0 +1,13 @@
+.Notification {
+	border: 1px solid var(--soft-black);
+}
+
+.NotificationError {
+	background: lightsalmon;
+	border: 1px solid var(--soft-black);
+}
+
+.NotificationSuccess {
+	background: rgb(182, 218, 128);
+	border: 1px solid var(--soft-black);
+}
