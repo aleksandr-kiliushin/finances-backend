@@ -1,7 +1,9 @@
+import React from 'react'
+
 export const Home = () => {
 	return (
 		<div>
-			<h1>Home page 8</h1>
+			<h1>Home page</h1>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos, facilis inventore quis odio
 				quibusdam reiciendis laborum dicta quod magni vitae eaque animi quidem nemo quo? Tenetur

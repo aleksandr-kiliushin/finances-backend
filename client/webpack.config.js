@@ -3,6 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	devServer: {
+		historyApiFallback: true,
 		port: 3000,
 	},
 	entry: './src/index.tsx',
@@ -27,9 +28,13 @@ module.exports = {
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/',
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		alias: {
+			'#views': path.resolve(process.cwd(), 'src/views'),
+		},
 	},
 	plugins: [
 		new HTMLWebpackPlugin({

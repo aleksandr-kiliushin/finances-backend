@@ -13,13 +13,10 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
-		"baseUrl": "."
-		// "paths": {
-		// 	"#components/*": ["src/components/*"],
-		// 	"#interfaces/*": ["../server/src/interfaces/*"],
-		// 	"#models/*": ["src/models/*"],
-		// 	"#utils/*": ["src/utils/*"]
-		// }
+		"baseUrl": ".",
+		"paths": {
+			"#views/*": ["src/views/*"]
+		}
 	},
 	"include": ["src/**/*.ts", "src/**/*.tsx"],
 	"exclude": ["node_modules"]
