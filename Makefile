@@ -5,11 +5,15 @@ stop-app:
 
 build-client:
 	npm run build --prefix client
+build-client-old:
+	npm run build --prefix client-OLD
 build-server:
 	npm run build --prefix server
 
 dev-client:
 	npm run dev --prefix client
+dev-client-old:
+	npm run dev --prefix client-OLD
 dev-db:
 	docker start finance-dev-db-server
 dev-db-download:
