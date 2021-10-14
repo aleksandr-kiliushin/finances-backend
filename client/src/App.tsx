@@ -1,5 +1,10 @@
 import React from 'react'
 
 export const App = () => {
-	return <h1>Home</h1>
+	return (
+		<div>heh</div>
+		// <Layout>
+		// 	<Component {...pageProps} />
+		// </Layout>
+	)
 }
