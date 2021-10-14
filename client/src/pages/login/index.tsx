@@ -36,8 +36,6 @@ export default function Login() {
 		logIn({ variables: { password, username } })
 	}
 
-	console.log(isUserLoggedInData?.isUserLoggedIn)
-
 	if (isUserLoggedInData?.isUserLoggedIn) {
 		return (
 			<div className={s.Container}>

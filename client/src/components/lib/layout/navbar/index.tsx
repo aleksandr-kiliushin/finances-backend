@@ -16,7 +16,7 @@ export const Navbar = () => {
 
 	const { data: isUserLoggedIn } = useIsUserLoggedInQuery()
 
-	if (!isUserLoggedIn) return null
+	if (!isUserLoggedIn?.isUserLoggedIn) return null
 
 	const sectionsData: ISection[] = [
 		{ href: '/', svgName: 'home' },
