@@ -12,12 +12,6 @@ module.exports = {
 				use: [
 					{
 						loader: 'babel-loader',
-						options: {
-							presets: ['react', ['es2015', { modules: false }], 'es2016'],
-						},
-					},
-					{
-						loader: 'ts-loader',
 					},
 				],
 			},
@@ -25,11 +19,10 @@ module.exports = {
 	},
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, './dist'),
-		// path: path.resolve('dist'),
+		path: path.resolve(__dirname, 'dist'),
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx'],
+		extensions: ['.ts', '.tsx', '.js', '.jsx'],
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
