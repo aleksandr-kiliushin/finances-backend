@@ -6,37 +6,14 @@
 
 
 
-# client/
+# client/ #####################################################################
 
-# dependencies
-client/.pnp
-client/.pnp.js
-
-# testing
-client/coverage
-
-# compiled and static output
-client/.next/
-client/out/
-
-# production
-client/build
-
-# misc
-client/.DS_Store
-client/*.pem
-
-# debug
-client/npm-debug.log*
-client/yarn-debug.log*
-client/yarn-error.log*
-
-# vercel
-client/.vercel
+# compiled output
+client/dist
 
 
 
-# server/
+# server/ #####################################################################
 
 # compiled output
 server/dist
@@ -52,3 +29,12 @@ server/.nyc_output
 
 # temporary files
 temp/
+
+
+
+# client-OLD/ #################################################################
+# compiled and static output
+client-OLD/.next/
+client-OLD/out/
+# production
+client-OLD/build
