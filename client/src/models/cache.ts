@@ -6,6 +6,7 @@ import { InMemoryCache } from '@apollo/client'
 export const isUserLoggedInVar = makeVar<boolean>(!!globalThis.localStorage?.authToken)
 
 export const notificationsVar = makeVar<INotification[]>([
+	/*
 	{
 		id: 1,
 		message: 'New record added successfully.',
@@ -24,6 +25,7 @@ export const notificationsVar = makeVar<INotification[]>([
 		title: 'Category added',
 		type: 'success',
 	},
+*/
 ])
 
 export const cache: InMemoryCache = new InMemoryCache({
