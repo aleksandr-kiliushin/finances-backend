@@ -1,8 +1,22 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+// import { Provider } from 'react-redux'
 
-const App = (): ReactElement => {
-	return <h1>Hello, World!</h1>
-}
+// Models
+// import { store } from './app/store'
 
-ReactDOM.render(<App />, document.querySelector('#root'))
+// Components
+import { App } from './App'
+
+// Styles
+import './styles/index.css'
+import './styles/vars.css'
+
+ReactDOM.render(
+	<React.StrictMode>
+		{/* <Provider store={store}> */}
+		<App />
+		{/* </Provider> */}
+	</React.StrictMode>,
+	document.querySelector('#root'),
+)
