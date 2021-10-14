@@ -1,13 +1,20 @@
 .Notification {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+	padding: 1rem;
 	border: 1px solid var(--soft-black);
+}
+
+.Notification h4,
+.Notification p {
+	margin: 0;
 }
 
 .NotificationError {
 	background: lightsalmon;
-	border: 1px solid var(--soft-black);
 }
 
 .NotificationSuccess {
 	background: rgb(182, 218, 128);
-	border: 1px solid var(--soft-black);
 }

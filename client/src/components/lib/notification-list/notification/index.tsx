@@ -17,8 +17,8 @@ export const Notification = ({ notificationData }: IProps) => {
 
 	return (
 		<div className={cxNotification}>
-			{title}
-			{message}
+			<h4>{title}</h4>
+			<p>{message}</p>
 		</div>
 	)
 }

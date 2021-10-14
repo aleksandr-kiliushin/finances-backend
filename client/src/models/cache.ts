@@ -1,12 +1,30 @@
 import { makeVar } from '@apollo/client'
 
 // Types
-import { ReactChild } from 'react'
 import { InMemoryCache } from '@apollo/client'
 
 export const isUserLoggedInVar = makeVar<boolean>(!!globalThis.localStorage?.authToken)
 
-export const notificationListVar = makeVar<INotification[]>([])
+export const notificationsVar = makeVar<INotification[]>([
+	{
+		id: 1,
+		message: 'New record added successfully.',
+		title: 'Record added',
+		type: 'success',
+	},
+	{
+		id: 2,
+		message: 'Invalid username or password.',
+		title: 'Authentication error',
+		type: 'error',
+	},
+	{
+		id: 3,
+		message: 'New category added successfully.',
+		title: 'Category added',
+		type: 'success',
+	},
+])
 
 export const cache: InMemoryCache = new InMemoryCache({
 	typePolicies: {
@@ -17,9 +35,9 @@ export const cache: InMemoryCache = new InMemoryCache({
 						return !!globalThis.localStorage?.authToken
 					},
 				},
-				notificationList: {
+				notifications: {
 					read() {
-						return notificationListVar
+						return notificationsVar()
 					},
 				},
 			},
@@ -29,7 +47,7 @@ export const cache: InMemoryCache = new InMemoryCache({
 
 export interface INotification {
 	id: number
-	message: ReactChild
-	title: ReactChild
+	message: string
+	title: string
 	type: 'error' | 'success'
 }

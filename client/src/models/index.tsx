@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactChild } from 'react'
 import { useRouter } from 'next/router'
 import { ApolloClient, ApolloProvider, gql, HttpLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
@@ -12,6 +12,7 @@ import { NormalizedCacheObject } from '@apollo/client'
 export const typeDefs = gql`
 	extend type Query {
 		isUserLoggedIn: Boolean!
+		notifications: [Object]!
 	}
 `
 
@@ -48,5 +49,5 @@ export const CustomApolloProvider = ({ children }: IProps) => {
 }
 
 interface IProps {
-	children: ReactNode
+	children: ReactChild
 }
