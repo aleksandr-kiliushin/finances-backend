@@ -39,8 +39,6 @@ export const useLoginMutation = (options?: MutationHookOptions<ILoginData, ILogi
 
 				await client.cache.reset()
 
-				isUserLoggedInVar(true)
-
 				push('/')
 			}
 		},

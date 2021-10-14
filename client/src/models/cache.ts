@@ -11,7 +11,7 @@ export const cache: InMemoryCache = new InMemoryCache({
 			fields: {
 				isUserLoggedIn: {
 					read() {
-						return isUserLoggedInVar()
+						return !!globalThis.localStorage?.authToken
 					},
 				},
 			},

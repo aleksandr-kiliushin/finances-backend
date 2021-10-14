@@ -29,9 +29,7 @@ export default function Login() {
 	const logOut = () => {
 		localStorage.authToken = ''
 
-		client.resetStore()
-
-		isUserLoggedInVar(false)
+		client.cache.reset()
 	}
 
 	const onSubmit: SubmitHandler<IFormValues> = ({ password, username }) => {
