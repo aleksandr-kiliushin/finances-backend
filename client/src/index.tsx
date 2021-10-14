@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import ReactDOM from 'react-dom'
 
-const App = () => {
+const App = (): ReactElement => {
 	return <h1>Hello, World!!!</h1>
 }
 
