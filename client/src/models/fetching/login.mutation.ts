@@ -1,9 +1,6 @@
 import { gql, MutationHookOptions, useMutation } from '@apollo/client'
 import { useApolloClient } from '@apollo/client'
 
-// Cache
-import { isUserLoggedInVar } from '#models/cache'
-
 // Types
 import { IUser } from '#interfaces/user'
 import { useRouter } from 'next/router'
