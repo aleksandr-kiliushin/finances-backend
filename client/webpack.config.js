@@ -2,8 +2,12 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+	devServer: {
+		port: 3000,
+		static: path.resolve(__dirname, 'dist'),
+	},
 	entry: './src/index.tsx',
-	mode: 'production',
+	mode: 'development',
 	module: {
 		rules: [
 			{
@@ -27,6 +31,7 @@ module.exports = {
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: 'src/index.html',
+			title: 'Development',
 		}),
 	],
 }
