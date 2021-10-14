@@ -1,7 +1,7 @@
-// Types
+// Type
 import { IUser } from '#interfaces/user'
 
-export class LoginDto {
-	password: IUser['password']
+export class CreateUserDto {
 	username: IUser['username']
+	password: IUser['password']
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'
-import { CreateFinanceCategoryTypeInput } from './dto/create-finance-category-type.input'
-import { UpdateFinanceCategoryTypeInput } from './dto/update-finance-category-type.input'
+
+import { CreateFinanceCategoryTypeDto } from './dto/create-finance-category-type.dto'
+import { UpdateFinanceCategoryTypeDto } from './dto/update-finance-category-type.dto'
 import { FinanceCategoryTypeEntity } from './entities/finance-category-type.entity'
 
 @Injectable()
@@ -12,43 +13,35 @@ export class FinanceCategoryTypeService {
 		private financeCategoryTypeRepository: Repository<FinanceCategoryTypeEntity>,
 	) {}
 
+	getFinanceCategoryTypes(query: { ids: string }): Promise<FinanceCategoryTypeEntity[]> {
+		const { ids } = query
+		const where = {
+			...(ids && { id: In(ids.split(',')) }),
+		}
+		return this.financeCategoryTypeRepository.find({ where })
+	}
+
 	getFinanceCategoryType(id: FinanceCategoryTypeEntity['id']): Promise<FinanceCategoryTypeEntity> {
 		return this.financeCategoryTypeRepository.findOneOrFail(id)
 	}
 
-	getFinanceCategoryTypes(
-		ids?: FinanceCategoryTypeEntity['id'][],
-	): Promise<FinanceCategoryTypeEntity[]> {
-		let where = {}
-
-		if (ids?.length) {
-			where = { id: In(ids) }
-		}
-
-		return this.financeCategoryTypeRepository.find({ where })
-	}
-
 	createFinanceCategoryType(
-		createFinanceCategoryTypeInput: CreateFinanceCategoryTypeInput,
+		createFinanceCategoryTypeDto: CreateFinanceCategoryTypeDto,
 	): Promise<FinanceCategoryTypeEntity> {
-		const { name } = createFinanceCategoryTypeInput
-
+		const { name } = createFinanceCategoryTypeDto
 		const financeCategoryType = this.financeCategoryTypeRepository.create({ name })
-
 		return this.financeCategoryTypeRepository.save(financeCategoryType)
 	}
 
 	async updateFinanceCategoryType(
-		updateFinanceCategoryTypeInput: UpdateFinanceCategoryTypeInput,
+		id: FinanceCategoryTypeEntity['id'],
+		updateFinanceCategoryTypeDto: UpdateFinanceCategoryTypeDto,
 	): Promise<FinanceCategoryTypeEntity> {
-		const { id, name } = updateFinanceCategoryTypeInput
-
+		const { name } = updateFinanceCategoryTypeDto
 		const financeCategoryType = await this.financeCategoryTypeRepository.findOneOrFail({ id })
-
 		if (name) {
 			financeCategoryType.name = name
 		}
-
 		return this.financeCategoryTypeRepository.save(financeCategoryType)
 	}
 

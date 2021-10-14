@@ -4,9 +4,9 @@ import { Repository } from 'typeorm'
 
 import { FinanceCategoryService } from '#models/finance-category/finance-category.service'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
-import { UpdateFinanceRecordArgs } from './dto/update-finance-record.input'
-import { CreateFinanceRecordInput } from './dto/create-finance-record.input'
-import { GetFinanceRecordsArgs } from './dto/get-finance-records.args'
+import { GetFinanceRecordsDto } from './dto/get-finance-records.dto'
+import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
+import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 
 @Injectable()
 export class FinanceRecordService {
@@ -17,14 +17,11 @@ export class FinanceRecordService {
 		private financeCategoryService: FinanceCategoryService,
 	) {}
 
-	getFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-		return this.financeRecordRepository.findOneOrFail(id, {
-			relations: ['category', 'category.type'],
-		})
-	}
-
-	getFinanceRecords(getFinanceRecordsArgs: GetFinanceRecordsArgs): Promise<FinanceRecordEntity[]> {
-		const { orderingByDate, orderingById, ...where } = getFinanceRecordsArgs
+	getFinanceRecords({
+		orderingByDate,
+		orderingById,
+		...where
+	}: GetFinanceRecordsDto): Promise<FinanceRecordEntity[]> {
 		return this.financeRecordRepository.find({
 			order: {
 				date: orderingByDate,
@@ -35,33 +32,36 @@ export class FinanceRecordService {
 		})
 	}
 
+	getFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+		return this.financeRecordRepository.findOneOrFail(id, {
+			relations: ['category', 'category.type'],
+		})
+	}
+
 	async createFinanceRecord(
-		createFinanceRecordInput: CreateFinanceRecordInput,
+		createFinanceRecordDto: CreateFinanceRecordDto,
 	): Promise<FinanceRecordEntity> {
-		const record = this.financeRecordRepository.create(createFinanceRecordInput) //as Record<string, unknown>
+		const { categoryId } = createFinanceRecordDto
 
-		const category = await this.financeCategoryService.getFinanceCategory(
-			createFinanceRecordInput.categoryId,
-		)
+		const record = this.financeRecordRepository.create(createFinanceRecordDto)
 
-		record.category = category
+		record.category = await this.financeCategoryService.getFinanceCategory(categoryId)
 
 		return this.financeRecordRepository.save(record)
 	}
 
 	async updateFinanceRecord(
-		updateFinanceRecordInput: UpdateFinanceRecordArgs,
+		id: FinanceRecordEntity['id'],
+		updateFinanceRecordDto: UpdateFinanceRecordDto,
 	): Promise<FinanceRecordEntity> {
-		const { id, categoryId, ...rest } = updateFinanceRecordInput
+		const { categoryId, ...rest } = updateFinanceRecordDto
 
 		const record = await this.getFinanceRecord(id)
 
 		const updatedRecord = { ...record, ...rest }
 
 		if (categoryId) {
-			const category = await this.financeCategoryService.getFinanceCategory(categoryId)
-
-			updatedRecord.category = category
+			updatedRecord.category = await this.financeCategoryService.getFinanceCategory(categoryId)
 		}
 
 		return this.financeRecordRepository.save(updatedRecord)

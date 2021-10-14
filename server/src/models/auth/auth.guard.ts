@@ -1,26 +1,27 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common'
-import { GqlExecutionContext } from '@nestjs/graphql'
 import * as jwt from 'jsonwebtoken'
+import * as path from 'path'
+import * as dotenv from 'dotenv'
+
+dotenv.config({ path: path.join(__dirname, '..', '..', '..', '..', 'config', 'prod.env') })
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 	canActivate(context: ExecutionContext) {
-		const ctx = GqlExecutionContext.create(context).getContext()
+		const request = context.switchToHttp().getRequest()
 
-		if (!ctx.headers.authorization) return false
+		const authorizationHeader = request.headers.authorization
 
-		ctx.user = this.validateToken(ctx.headers.authorization) // change to userId
+		if (!authorizationHeader) return false
 
-		return true
-	}
-
-	validateToken(auth: string) {
-		const [, token] = auth.split(' ')
+		const [, token] = authorizationHeader.split(' ')
 
 		try {
-			return jwt.verify(token, 'secret')
+			jwt.verify(token, process.env.JWT_SECRET)
 		} catch (err) {
 			throw new UnauthorizedException('Invalid token.')
 		}
+
+		return true
 	}
 }
