@@ -31,6 +31,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.css', '.js', '.jsx', '.ts', '.tsx'],
 		alias: {
+			'#components': path.resolve(process.cwd(), 'src/components'),
 			'#views': path.resolve(process.cwd(), 'src/views'),
 		},
 	},
