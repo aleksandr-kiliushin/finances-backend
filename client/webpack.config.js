@@ -36,6 +36,7 @@ module.exports = {
 		extensions: ['.css', '.js', '.jsx', '.ts', '.tsx'],
 		alias: {
 			'#components': path.resolve(process.cwd(), 'src/components'),
+			'#interfaces/*': path.resolve(process.cwd(), '../server/src/interfaces/'),
 			'#models': path.resolve(process.cwd(), 'src/models'),
 			'#views': path.resolve(process.cwd(), 'src/views'),
 			'#utils': path.resolve(process.cwd(), 'src/utils'),
