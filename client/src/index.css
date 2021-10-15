@@ -2,9 +2,9 @@
 	--color-theme-1: steelblue;
 	--color-theme-1-light: linear-gradient(
 		90deg,
-		var(--color-theme-1) -300%,
+		var(--color-theme-1) -500%,
 		white 50%,
-		var(--color-theme-1) 400%
+		var(--color-theme-1) 600%
 	);
 	--gray: #555;
 	--lightgray: lightgray;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 // Components
+import { Svg } from '#components/Svg'
 import { Table } from '#components/Table'
 import { Row } from '#components/Table/Row'
 import { Cell } from '#components/Table/Cell'
@@ -28,16 +29,18 @@ export const Settings = () => {
 			<Row cnRow={s.Row} isHeaderRow>
 				<Cell>Category</Cell>
 				<Cell>Type</Cell>
-				<Cell>Edit</Cell>
-				<Cell>Del</Cell>
 			</Row>
 
 			{categories.items.map(({ id, name, type }) => (
 				<Row cnRow={s.Row} key={id}>
 					<Cell>{name}</Cell>
 					<Cell>{type.name}</Cell>
-					<Cell>Edit</Cell>
-					<Cell>Del</Cell>
+					<Cell>
+						<Svg name="pencil" />
+					</Cell>
+					<Cell>
+						<Svg name="trash-can" />
+					</Cell>
 				</Row>
 			))}
 		</Table>
