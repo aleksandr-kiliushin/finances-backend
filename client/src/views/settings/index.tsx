@@ -32,8 +32,6 @@ export const Settings = () => {
 				<Cell>Del</Cell>
 			</Row>
 
-			<p>{categories.status}</p>
-
 			{categories.items.map(({ id, name, type }) => (
 				<Row cnRow={s.Row} key={id}>
 					<Cell>{name}</Cell>
