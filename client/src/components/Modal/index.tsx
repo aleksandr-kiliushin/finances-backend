@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React, { ReactNode } from 'react'
 
 // Styles
 import s from './index.module.css'
@@ -13,6 +13,6 @@ export const Modal = ({ buttons, children }: IProps) => {
 }
 
 interface IProps {
-	buttons: ReactChild
-	children: ReactChild
+	buttons: ReactNode
+	children: ReactNode
 }

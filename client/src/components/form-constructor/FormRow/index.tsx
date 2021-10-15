@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React, { ReactNode } from 'react'
 
 // Styles
 import s from './index.module.css'
@@ -14,6 +14,6 @@ export const FormRow = ({ children, label = '' }: IProps) => {
 }
 
 interface IProps {
-	children: ReactChild
-	label?: ReactChild
+	children: ReactNode
+	label?: ReactNode
 }

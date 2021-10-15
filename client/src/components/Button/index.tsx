@@ -1,4 +1,4 @@
-import React, { ReactChild, SyntheticEvent } from 'react'
+import React, { ReactNode, SyntheticEvent } from 'react'
 import cx from 'classnames'
 
 // Styles
@@ -27,7 +27,7 @@ export const Button = ({
 
 interface IProps {
 	background?: 'primary' | 'red' | 'white'
-	children: ReactChild
+	children: ReactNode
 	isDisabled?: boolean
 	onClick?: (e?: SyntheticEvent) => void
 	type?: 'button' | 'reset' | 'submit'
