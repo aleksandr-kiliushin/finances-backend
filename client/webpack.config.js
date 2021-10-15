@@ -1,10 +1,14 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const { SourceMapDevToolPlugin } = require('webpack')
 
 module.exports = {
 	devServer: {
 		historyApiFallback: true,
 		port: 3000,
+		proxy: {
+			'/api': 'http://localhost:3080',
+		},
 	},
 	devtool: 'source-map',
 	entry: './src/index.tsx',
@@ -38,6 +42,9 @@ module.exports = {
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: 'src/index.html',
+		}),
+		new SourceMapDevToolPlugin({
+			filename: '[file].map[query]',
 		}),
 	],
 }
