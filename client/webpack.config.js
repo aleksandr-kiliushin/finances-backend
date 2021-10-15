@@ -23,6 +23,25 @@ module.exports = {
 				test: /\.css$/i,
 				use: ['style-loader', 'css-loader'],
 			},
+			// {
+			// 	test: /\.css$/,
+			// 	use: [
+			// 		'style-loader',
+			// 		{
+			// 			loader: 'css-loader',
+			// 			options: {
+			// 				importLoaders: 1,
+			// 				modules: true,
+			// 			},
+			// 		},
+			// 	],
+			// 	include: /\.module\.css$/,
+			// },
+			// {
+			// 	test: /\.css$/,
+			// 	use: ['style-loader', 'css-loader'],
+			// 	exclude: /\.module\.css$/,
+			// },
 		],
 	},
 	output: {
@@ -31,7 +50,7 @@ module.exports = {
 		publicPath: '/',
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		extensions: ['.css', '.js', '.jsx', '.ts', '.tsx'],
 		alias: {
 			'#views': path.resolve(process.cwd(), 'src/views'),
 		},

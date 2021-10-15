@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 // import { store } from './app/store'
 
 // Components
-import { App } from './App'
+import { View } from './views'
 
 // Styles
 import './styles/index.css'
@@ -17,7 +17,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			{/* <Provider store={store}> */}
-			<App />
+			<View />
 			{/* </Provider> */}
 		</BrowserRouter>
 	</React.StrictMode>,
