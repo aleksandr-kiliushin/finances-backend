@@ -5,26 +5,22 @@ import { Table } from '#components/Table'
 import { Row } from '#components/Table/Row'
 import { Cell } from '#components/Table/Cell'
 
+// Utils
+import { useAppDispatch, useAppSelector } from '#utils/hooks'
+
 // Styles
 import s from './index.module.css'
 
 // Types
-import { IFinanceCategory } from '#interfaces/finance'
+import { getCategories } from '#models/finance/slice'
 
 export const Settings = () => {
-	const [categories, setCategories] = useState<IFinanceCategory[]>([])
+	const dispatch = useAppDispatch()
+
+	const categories = useAppSelector((state) => state.finance.categories)
 
 	useEffect(() => {
-		const options = {
-			headers: {
-				Authorization: 'Bearer ' + localStorage.authToken,
-				'Content-Type': 'application/json',
-			},
-		}
-
-		fetch('api/finance-category', options)
-			.then((response) => response.json())
-			.then((categories) => setCategories(categories))
+		dispatch(getCategories())
 	}, [])
 
 	return (
@@ -36,7 +32,9 @@ export const Settings = () => {
 				<Cell>Del</Cell>
 			</Row>
 
-			{categories.map(({ id, name, type }) => (
+			<p>{categories.status}</p>
+
+			{categories.items.map(({ id, name, type }) => (
 				<Row cnRow={s.Row} key={id}>
 					<Cell>{name}</Cell>
 					<Cell>{type.name}</Cell>
