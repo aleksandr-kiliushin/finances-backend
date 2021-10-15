@@ -3,6 +3,7 @@ import { Switch } from 'react-router'
 import { Route } from 'react-router-dom'
 
 // Components
+import { Navbar } from '#components/navbar'
 import { Home } from './home'
 import { Login } from './login'
 import { Records } from './records'
@@ -40,6 +41,8 @@ export const App = () => {
 					</Route>
 				</Switch>
 			</main>
+
+			<Navbar />
 		</div>
 	)
 }
