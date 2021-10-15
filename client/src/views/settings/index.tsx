@@ -25,7 +25,7 @@ export const Settings = () => {
 
 	return (
 		<Table title="Finance categories">
-			<Row cnRow={s.Row}>
+			<Row cnRow={s.Row} isHeaderRow>
 				<Cell>Category</Cell>
 				<Cell>Type</Cell>
 				<Cell>Edit</Cell>

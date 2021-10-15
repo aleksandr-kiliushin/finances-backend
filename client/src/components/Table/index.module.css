@@ -1,11 +1,6 @@
-.Table {
-	border: 1px solid var(--soft-black);
-}
-
 .TableTitle {
 	margin: 0;
 	padding: 0.5rem 1rem;
-	border-bottom: 1px solid var(--soft-black);
 }
 
 /* .Row {

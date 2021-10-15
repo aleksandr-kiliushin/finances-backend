@@ -5,7 +5,7 @@ import s from './index.module.css'
 
 export const Table = ({ children, title }: IProps) => {
 	return (
-		<div className={s.Table}>
+		<div>
 			{!!title && <h4 className={s.TableTitle}>{title}</h4>}
 
 			{children}

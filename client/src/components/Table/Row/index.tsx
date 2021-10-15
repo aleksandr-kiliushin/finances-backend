@@ -10,7 +10,7 @@ import { ReactNode } from 'react'
 export const Row = ({ children, cnRow = '', isHeaderRow = false }: IProps) => {
 	const cxHeaderRow = cx({
 		[s.Row]: true,
-		[s.Header]: isHeaderRow,
+		[s.HeaderRow]: isHeaderRow,
 		[cnRow]: !!cnRow,
 	})
 
