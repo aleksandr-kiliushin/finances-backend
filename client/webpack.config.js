@@ -6,6 +6,7 @@ module.exports = {
 		historyApiFallback: true,
 		port: 3000,
 	},
+	devtool: 'source-map',
 	entry: './src/index.tsx',
 	mode: 'development',
 	module: {
@@ -29,6 +30,7 @@ module.exports = {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/',
+		sourceMapFilename: '[name].js.map',
 	},
 	resolve: {
 		extensions: ['.css', '.js', '.jsx', '.ts', '.tsx'],
