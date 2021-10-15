@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // Components
 import { Svg } from '#components/Svg'
@@ -13,29 +13,37 @@ import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import s from './index.module.css'
 
 // Types
-import { getCategories } from '#models/finance/slice'
+import { getRecords } from '#models/finance/slice'
 
 export const Records = () => {
 	const dispatch = useAppDispatch()
 
-	const categories = useAppSelector((state) => state.finance.categories)
+	const [areTrashedRecordsShown, setAreTrashedRecordsShown] = useState(false)
+
+	const records = useAppSelector(
+		(state) => state.finance.records[areTrashedRecordsShown ? 'trashed' : 'notTrashed'],
+	)
 
 	useEffect(() => {
-		dispatch(getCategories())
+		dispatch(getRecords())
 	}, [])
 
 	return (
 		<Table title="Finance records">
-			<Row cnRow={s.Row} isHeaderRow>
+			<Row cnRow={s.HeaderRow} isHeaderRow>
 				<Cell>Amount</Cell>
 				<Cell>Category</Cell>
 				<Cell>Date</Cell>
+				<Cell>
+					<button onClick={() => setAreTrashedRecordsShown(!areTrashedRecordsShown)}>Switch</button>
+				</Cell>
 			</Row>
 
-			{categories.items.map(({ id, name, type }) => (
+			{records.items.map(({ amount, category, date, id }) => (
 				<Row cnRow={s.Row} key={id}>
-					<Cell>{name}</Cell>
-					<Cell>{type.name}</Cell>
+					<Cell>{amount}</Cell>
+					<Cell>{category.name}</Cell>
+					<Cell>{date.slice(2)}</Cell>
 					<Cell>
 						<Svg name="pencil" />
 					</Cell>

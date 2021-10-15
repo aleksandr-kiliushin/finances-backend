@@ -1,3 +1,7 @@
+.HeaderRow {
+	grid-template-columns: 23% 29% 24% 24%;
+}
+
 .Row {
-	grid-template-columns: 23% 27% 22% 14% 14%;
+	grid-template-columns: 23% 29% 24% 12% 12%;
 }

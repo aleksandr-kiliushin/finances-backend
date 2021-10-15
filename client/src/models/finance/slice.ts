@@ -30,6 +30,18 @@ const financeSlice = createSlice({
 	name: 'finance',
 	initialState,
 	reducers: {
+		setNotTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
+			state.records.notTrashed = {
+				items: action.payload,
+				status: 'success',
+			}
+		},
+		setTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
+			state.records.trashed = {
+				items: action.payload,
+				status: 'success',
+			}
+		},
 		setCategories: (state, action: PayloadAction<IFinanceCategory[]>) => {
 			state.categories = {
 				items: action.payload,
@@ -39,13 +51,25 @@ const financeSlice = createSlice({
 	},
 })
 
-export const { setCategories } = financeSlice.actions
+export const { setCategories, setNotTrashedRecords, setTrashedRecords } = financeSlice.actions
 export const financeReducer = financeSlice.reducer
 
+// Thunks
 export const getCategories = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categories.status !== 'idle') return
 	const categories = await Http.get({ url: 'api/finance-category' })
 	dispatch(setCategories(categories))
+}
+export const getRecords = (): AppThunk => async (dispatch, getState) => {
+	if (getState().finance.records.notTrashed.status === 'idle') {
+		const records = await Http.get({ url: 'api/finance-record?isTrashed=false' })
+		dispatch(setNotTrashedRecords(records))
+	}
+
+	if (getState().finance.records.trashed.status === 'idle') {
+		const records = await Http.get({ url: 'api/finance-record?isTrashed=true' })
+		dispatch(setTrashedRecords(records))
+	}
 }
 
 // Types
