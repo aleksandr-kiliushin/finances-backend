@@ -23,7 +23,7 @@ module.exports = {
 		],
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/',
 		sourceMapFilename: '[name].js.map',
