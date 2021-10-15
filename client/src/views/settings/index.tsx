@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 // Components
-// import { Table } from '#components/Table'
-// import { Header } from '#components/by-page/settings/header'
-// import { InputRow } from '#components/by-page/settings/input-row'
-// import { Row } from '#components/by-page/settings/row'
+import { Table } from '#components/Table'
+import { Row } from '#components/Table/Row'
+import { Cell } from '#components/Table/Cell'
+
+// Styles
+import s from './index.module.css'
 
 export const Settings = () => {
 	const [categories, setCategories] = useState([])
@@ -28,24 +30,13 @@ export const Settings = () => {
 	}, [])
 
 	return (
-		<>
-			<h2>Finance categories</h2>
-
-			{/* <Table></Table> */}
-
-			{/* <div className={s.Table}>
-				<Header
-					toggleIsAddCategoryRowShown={() => setIsAddCategoryRowShown(!isAddCategoryRowShown)}
-				/>
-
-				{isAddCategoryRowShown && (
-					<InputRow closeInputRow={() => setIsAddCategoryRowShown(false)} category={null} />
-				)}
-
-				{data?.financeCategories.map((category) => (
-					<Row category={category} key={category.id} />
-				))}
-			</div> */}
-		</>
+		<Table title="Finance categories">
+			<Row cnRow={s.Row} isHeaderRow>
+				<Cell>Category</Cell>
+				<Cell>Type</Cell>
+				<Cell>Edit</Cell>
+				<Cell>Del</Cell>
+			</Row>
+		</Table>
 	)
 }
