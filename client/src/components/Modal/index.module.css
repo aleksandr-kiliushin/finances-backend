@@ -1,0 +1,21 @@
+.Modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 90vw;
+	padding: 0.5rem;
+	transform: translate(-50%, -50%);
+	background: var(--color-theme-1-light);
+	border: 1px solid black;
+}
+
+.Body {
+	padding: 0.5rem;
+}
+
+.ButtonsContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 1rem;
+	padding: 0.5rem;
+}

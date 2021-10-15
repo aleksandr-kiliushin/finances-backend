@@ -3,7 +3,7 @@ import { useLocation } from 'react-router'
 import cx from 'classnames'
 
 // Components
-import { ISvgProps, Svg } from '#components/svg'
+import { ISvgProps, Svg } from '#components/Svg'
 
 // Styles
 import s from './index.module.css'

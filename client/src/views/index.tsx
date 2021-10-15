@@ -3,7 +3,7 @@ import { Switch } from 'react-router'
 import { Route } from 'react-router-dom'
 
 // Components
-import { Navbar } from '#components/navbar'
+import { Navbar } from '#components/Navbar'
 import { Home } from './home'
 import { Login } from './login'
 import { Records } from './records'
