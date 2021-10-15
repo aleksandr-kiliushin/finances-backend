@@ -13,29 +13,33 @@ import { Trash } from './trash'
 // Styles
 import s from './index.module.css'
 
-export const View = () => {
+export const App = () => {
+	const cnView = !!localStorage.authToken ? s.ViewWithNavbar : s.ViewWithoutNavbar
+
 	return (
-		<div className={s.View}>
-			<Switch>
-				<Route path="/login">
-					<Login />
-				</Route>
-				<Route path="/records">
-					<Records />
-				</Route>
-				<Route path="/settings">
-					<Settings />
-				</Route>
-				<Route path="/stats">
-					<Stats />
-				</Route>
-				<Route path="/trash">
-					<Trash />
-				</Route>
-				<Route path="/">
-					<Home />
-				</Route>
-			</Switch>
+		<div className={s.Layout}>
+			<main className={cnView}>
+				<Switch>
+					<Route path="/login">
+						<Login />
+					</Route>
+					<Route path="/records">
+						<Records />
+					</Route>
+					<Route path="/settings">
+						<Settings />
+					</Route>
+					<Route path="/stats">
+						<Stats />
+					</Route>
+					<Route path="/trash">
+						<Trash />
+					</Route>
+					<Route path="/">
+						<Home />
+					</Route>
+				</Switch>
+			</main>
 		</div>
 	)
 }
