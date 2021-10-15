@@ -14,9 +14,23 @@ import s from './index.module.css'
 export const Login = () => {
 	const { register, handleSubmit } = useForm<IFormValues>()
 
-	const logOut = () => {}
+	const logOut = () => {
+		localStorage.authToken = ''
+	}
 
-	const onSubmit: SubmitHandler<IFormValues> = async ({ password, username }) => {}
+	const logIn: SubmitHandler<IFormValues> = async ({ password, username }) => {
+		fetch('api/login/', {
+			body: JSON.stringify({ password, username }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+		})
+			.then((response) => response.json())
+			.then(({ authToken }) => {
+				if (authToken) localStorage.authToken = authToken
+			})
+	}
 
 	if (!!localStorage.authToken) {
 		return (
@@ -36,7 +50,7 @@ export const Login = () => {
 		<div className={s.Container}>
 			<h1 className={s.Centered}>Welcome</h1>
 
-			<Form onSubmit={handleSubmit(onSubmit)}>
+			<Form onSubmit={handleSubmit(logIn)}>
 				<FormRow label="Username">
 					<HookFormInput {...register('username', { required: true })} />
 				</FormRow>

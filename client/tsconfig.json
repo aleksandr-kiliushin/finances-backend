@@ -12,6 +12,8 @@
 		"noEmit": true,
 		"paths": {
 			"#components/*": ["src/components/*"],
+			"#models/*": ["src/models/*"],
+			"#utils/*": ["src/utils/*"],
 			"#views/*": ["src/views/*"]
 		},
 		"resolveJsonModule": true,
