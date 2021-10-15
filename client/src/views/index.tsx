@@ -9,7 +9,6 @@ import { Login } from './login'
 import { Records } from './records'
 import { Settings } from './settings'
 import { Stats } from './stats'
-import { Trash } from './trash'
 
 // Styles
 import s from './index.module.css'
@@ -32,9 +31,6 @@ export const App = () => {
 					</Route>
 					<Route path="/stats">
 						<Stats />
-					</Route>
-					<Route path="/trash">
-						<Trash />
 					</Route>
 					<Route path="/">
 						<Home />
