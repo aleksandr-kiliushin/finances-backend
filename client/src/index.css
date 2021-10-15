@@ -1,3 +1,18 @@
+:root {
+	--color-theme-1: steelblue;
+	--color-theme-1-light: linear-gradient(
+		90deg,
+		var(--color-theme-1) -300%,
+		white 50%,
+		var(--color-theme-1) 400%
+	);
+	--gray: #555;
+	--lightgray: lightgray;
+	--navbar-height: 70px;
+	--soft-black: #111;
+	--soft-red: indianred;
+}
+
 html,
 body {
 	padding: 0;

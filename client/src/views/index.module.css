@@ -5,7 +5,7 @@
 
 .ViewWithNavbar {
 	height: calc(100vh - var(--navbar-height));
-	overflow: scroll; /*try to delete*/
+	overflow-y: scroll;
 }
 
 .ViewWithoutNavbar {
