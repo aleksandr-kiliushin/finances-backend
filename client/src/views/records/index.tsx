@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 // Components
 import { Svg } from '#components/Svg'
@@ -25,10 +25,11 @@ export const Records = () => {
 	}, [])
 
 	return (
-		<Table title="Finance categories">
+		<Table title="Finance records">
 			<Row cnRow={s.Row} isHeaderRow>
+				<Cell>Amount</Cell>
 				<Cell>Category</Cell>
-				<Cell>Type</Cell>
+				<Cell>Date</Cell>
 			</Row>
 
 			{categories.items.map(({ id, name, type }) => (
