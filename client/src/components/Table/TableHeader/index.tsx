@@ -19,5 +19,4 @@ export const TableHeader = ({ children, cnTableHeader = '' }: IProps) => {
 interface IProps {
 	children: ReactNode
 	cnTableHeader?: string
-	isHeaderRow?: boolean
 }
