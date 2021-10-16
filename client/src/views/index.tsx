@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from '#utils/hooks'
 
 // Styles
 import s from './index.module.css'
+import { getCurrentUserData } from '#models/user'
 
 export const App = () => {
 	const dispatch = useAppDispatch()
@@ -26,13 +27,18 @@ export const App = () => {
 	const redirectPath = useAppSelector((state) => state.common.redirectPath)
 	const { isUserLoggedIn } = useAppSelector((state) => state.user)
 
-	const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
-
 	useEffect(() => {
 		if (redirectPath !== null) {
 			dispatch(setRedirectPath(null))
 		}
 	}, [redirectPath])
+
+	/** Initialize app. */
+	useEffect(() => {
+		dispatch(getCurrentUserData())
+	}, [])
+
+	const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
 
 	if (redirectPath !== null && redirectPath !== pathname) {
 		return <Redirect to={redirectPath} />
