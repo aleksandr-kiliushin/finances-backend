@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+// Action creators
+import { getRecords } from '#models/finance/slice'
+
 // Components
 import { Svg } from '#components/Svg'
 import { SwitchInput } from '#components/form-constructor/SwitchInput'
@@ -15,18 +18,15 @@ import { useAppDispatch, useAppSelector } from '#utils/hooks'
 // Styles
 import s from './index.module.css'
 
-// Types
-import { getRecords } from '#models/finance/slice'
-
 export const Records = () => {
 	const dispatch = useAppDispatch()
 
-	const { register } = useForm<IFormValues>()
+	const { register, watch } = useForm<IFormValues>()
 
-	const [areTrashedRecordsShown, setAreTrashedRecordsShown] = useState(false)
+	const { isTrash } = watch()
 
 	const records = useAppSelector(
-		(state) => state.finance.records[areTrashedRecordsShown ? 'trashed' : 'notTrashed'],
+		(state) => state.finance.records[isTrash ? 'trashed' : 'notTrashed'],
 	)
 
 	useEffect(() => {
@@ -38,7 +38,7 @@ export const Records = () => {
 			<TableHeader cnTableHeader={s.TableHeader}>
 				<h3>Finance records</h3>
 
-				<SwitchInput label="Trashed" {...register('username')} />
+				<SwitchInput label="Trashed" {...register('isTrash')} />
 			</TableHeader>
 
 			<TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
@@ -65,6 +65,5 @@ export const Records = () => {
 }
 
 interface IFormValues {
-	password: string
-	username: string
+	isTrash: boolean
 }
