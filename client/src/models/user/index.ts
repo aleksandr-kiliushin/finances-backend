@@ -12,10 +12,10 @@ import { IUser } from '#interfaces/user'
 import { Http } from '#utils/Http'
 
 const initialState: IState = {
-	isUserLoggedin: !!localStorage.authToken,
+	isUserLoggedIn: !!localStorage.authToken,
 	userData: {
 		id: 0,
-		username: 'string',
+		username: '',
 	},
 }
 
@@ -23,18 +23,21 @@ const slice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		setIsUserLoggedIn: (state, action: PayloadAction<IState['isUserLoggedin']>) => {
-			state.isUserLoggedin = action.payload
-		},
 		logOut: (state) => {
 			localStorage.authToken = ''
-			state.isUserLoggedin = false
+			state.isUserLoggedIn = false
 			state.userData = initialState.userData
+		},
+		setIsUserLoggedIn: (state, action: PayloadAction<IState['isUserLoggedIn']>) => {
+			state.isUserLoggedIn = action.payload
+		},
+		setCurrentUserData: (state, action: PayloadAction<IState['userData']>) => {
+			state.userData = action.payload
 		},
 	},
 })
 
-export const { logOut, setIsUserLoggedIn } = slice.actions
+export const { logOut, setCurrentUserData, setIsUserLoggedIn } = slice.actions
 export const userReducer = slice.reducer
 
 // Thunks
@@ -55,6 +58,12 @@ export const logIn =
 
 		dispatch(setIsUserLoggedIn(true))
 
+		const currentUserData = await Http.get({ url: 'api/user/me' })
+
+		delete currentUserData.password
+
+		dispatch(setCurrentUserData(currentUserData))
+
 		dispatch(setRedirectPath('/'))
 
 		return true
@@ -62,6 +71,6 @@ export const logIn =
 
 // Types
 interface IState {
-	isUserLoggedin: boolean
+	isUserLoggedIn: boolean
 	userData: Pick<IUser, 'id' | 'username'>
 }

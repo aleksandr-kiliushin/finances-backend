@@ -24,7 +24,7 @@ export const App = () => {
 	const { pathname } = useLocation()
 
 	const redirectPath = useAppSelector((state) => state.common.redirectPath)
-	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
+	const { isUserLoggedIn } = useAppSelector((state) => state.user)
 
 	const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
 

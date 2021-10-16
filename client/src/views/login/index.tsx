@@ -23,7 +23,7 @@ import { IUser } from '#interfaces/user'
 export const Login = () => {
 	const dispatch = useAppDispatch()
 
-	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
+	const { isUserLoggedIn, userData } = useAppSelector((state) => state.user)
 
 	const { register, handleSubmit } = useForm<IFormValues>()
 
@@ -35,7 +35,7 @@ export const Login = () => {
 		return (
 			<div className={s.Container}>
 				<p className={s.Centered}>
-					You are logged in as <strong>sasha</strong>.
+					You are logged in as <strong>{userData.username}</strong>.
 				</p>
 
 				<Button background="red" onClick={() => dispatch(logOut())}>

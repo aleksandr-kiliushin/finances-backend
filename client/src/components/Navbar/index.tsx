@@ -18,7 +18,7 @@ import { ISvgProps } from '#components/Svg'
 export const Navbar = () => {
 	const { pathname } = useLocation()
 
-	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
+	const { isUserLoggedIn } = useAppSelector((state) => state.user)
 
 	if (!isUserLoggedIn) return null
 
