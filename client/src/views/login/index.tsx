@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 // Components
 import { Form } from '#components/form-constructor/Form'
@@ -10,6 +10,9 @@ import { Button } from '#components/Button'
 
 // Styles
 import s from './index.module.css'
+
+// Types
+import { SubmitHandler } from 'react-hook-form'
 
 export const Login = () => {
 	const { register, handleSubmit } = useForm<IFormValues>()

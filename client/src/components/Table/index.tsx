@@ -1,19 +1,9 @@
 import React, { ReactNode } from 'react'
 
-// Styles
-import s from './index.module.css'
-
-export const Table = ({ children, title }: IProps) => {
-	return (
-		<div>
-			{!!title && <h4 className={s.TableTitle}>{title}</h4>}
-
-			{children}
-		</div>
-	)
+export const Table = ({ children }: IProps) => {
+	return <div>{children}</div>
 }
 
 interface IProps {
 	children: ReactNode
-	title: string
 }

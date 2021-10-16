@@ -1,4 +1,4 @@
-.Row {
+.TableRow {
 	display: grid;
 	height: 40px;
 	margin-top: -1px;
@@ -6,6 +6,6 @@
 	border-top: 1px solid var(--color-theme-1);
 }
 
-.HeaderRow {
+.TableHeaderRow {
 	font-weight: 500;
 }
