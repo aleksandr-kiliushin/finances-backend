@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // Types
 import { PayloadAction } from '@reduxjs/toolkit'
-import { ILoadingStatus } from '#interfaces/common'
 import { AppThunk } from '#models/store'
+import { ILoadingStatus } from '#interfaces/common'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 // Utils
 import { Http } from '#utils/Http'
 
-const initialState: CounterState = {
+const initialState: IState = {
 	categories: {
 		items: [],
 		status: 'idle',
@@ -73,7 +73,7 @@ export const getRecords = (): AppThunk => async (dispatch, getState) => {
 }
 
 // Types
-interface CounterState {
+interface IState {
 	categories: {
 		items: IFinanceCategory[]
 		status: ILoadingStatus

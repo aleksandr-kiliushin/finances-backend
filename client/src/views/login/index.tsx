@@ -1,6 +1,8 @@
 import React from 'react'
-
 import { useForm } from 'react-hook-form'
+
+// Models
+import { logIn, logOut } from '#models/user/slice'
 
 // Components
 import { Form } from '#components/form-constructor/Form'
@@ -8,41 +10,34 @@ import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
 import { Button } from '#components/Button'
 
+// Utils
+import { useAppDispatch, useAppSelector } from '#utils/hooks'
+
 // Styles
 import s from './index.module.css'
 
 // Types
 import { SubmitHandler } from 'react-hook-form'
+import { IUser } from '#interfaces/user'
 
 export const Login = () => {
+	const dispatch = useAppDispatch()
+	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
+
 	const { register, handleSubmit } = useForm<IFormValues>()
 
-	const logOut = () => {
-		localStorage.authToken = ''
+	const submitLogin: SubmitHandler<IFormValues> = ({ password, username }) => {
+		dispatch(logIn({ password, username }))
 	}
 
-	const logIn: SubmitHandler<IFormValues> = async ({ password, username }) => {
-		fetch('api/login/', {
-			body: JSON.stringify({ password, username }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			method: 'POST',
-		})
-			.then((response) => response.json())
-			.then(({ authToken }) => {
-				if (authToken) localStorage.authToken = authToken
-			})
-	}
-
-	if (!!localStorage.authToken) {
+	if (isUserLoggedIn) {
 		return (
 			<div className={s.Container}>
 				<p className={s.Centered}>
 					You are logged in as <strong>sasha</strong>.
 				</p>
 
-				<Button background="red" onClick={logOut}>
+				<Button background="red" onClick={() => dispatch(logOut())}>
 					Log out
 				</Button>
 			</div>
@@ -53,7 +48,7 @@ export const Login = () => {
 		<div className={s.Container}>
 			<h1 className={s.Centered}>Welcome</h1>
 
-			<Form onSubmit={handleSubmit(logIn)}>
+			<Form onSubmit={handleSubmit(submitLogin)}>
 				<FormRow label="Username">
 					<PlainInput {...register('username', { required: true })} />
 				</FormRow>
@@ -68,7 +63,4 @@ export const Login = () => {
 	)
 }
 
-interface IFormValues {
-	password: string
-	username: string
-}
+type IFormValues = Pick<IUser, 'password' | 'username'>

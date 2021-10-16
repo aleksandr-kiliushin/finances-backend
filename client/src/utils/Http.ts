@@ -12,8 +12,21 @@ export class Http {
 		const response = await fetch(url, this.requestOptions)
 		return await response.json()
 	}
+
+	static async post({ payload, url }: IRequestDataWithPayload) {
+		const response = await fetch(url, {
+			...this.requestOptions,
+			body: JSON.stringify(payload),
+			method: 'POST',
+		})
+		return await response.json()
+	}
 }
 
 interface IRequestDataWithoutPayload {
 	url: string
+}
+
+interface IRequestDataWithPayload extends IRequestDataWithoutPayload {
+	payload: Record<string, unknown>
 }

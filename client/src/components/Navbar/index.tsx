@@ -1,18 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router'
 import cx from 'classnames'
 
 // Components
-import { ISvgProps, Svg } from '#components/Svg'
+import { Svg } from '#components/Svg'
+
+// Utils
+import { useAppSelector } from '#utils/hooks'
 
 // Styles
 import s from './index.module.css'
-import { Link } from 'react-router-dom'
+
+// Types
+import { ISvgProps } from '#components/Svg'
 
 export const Navbar = () => {
 	const { pathname } = useLocation()
 
-	if (!localStorage.authToken) return null
+	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
+
+	if (!isUserLoggedIn) return null
 
 	const sectionsData: ISection[] = [
 		{ path: '/', svgName: 'home' },
