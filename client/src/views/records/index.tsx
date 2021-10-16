@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 // Components
 import { Svg } from '#components/Svg'
+import { SwitchInput } from '#components/form-constructor/SwitchInput'
 import { Table } from '#components/Table'
-import { Row } from '#components/Table/Row'
-import { Cell } from '#components/Table/Cell'
+import { TableRow } from '#components/Table/TableRow'
+import { TableCell } from '#components/Table/TableCell'
 
 // Utils
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
@@ -18,6 +20,8 @@ import { getRecords } from '#models/finance/slice'
 export const Records = () => {
 	const dispatch = useAppDispatch()
 
+	const { register } = useForm<IFormValues>()
+
 	const [areTrashedRecordsShown, setAreTrashedRecordsShown] = useState(false)
 
 	const records = useAppSelector(
@@ -29,29 +33,35 @@ export const Records = () => {
 	}, [])
 
 	return (
-		<Table title="Finance records">
-			<Row cnRow={s.HeaderRow} isHeaderRow>
-				<Cell>Amount</Cell>
-				<Cell>Category</Cell>
-				<Cell>Date</Cell>
-				<Cell>
-					<button onClick={() => setAreTrashedRecordsShown(!areTrashedRecordsShown)}>Switch</button>
-				</Cell>
-			</Row>
+		<Table>
+			<TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
+				<TableCell>Amount</TableCell>
+				<TableCell>Category</TableCell>
+				<TableCell>Date</TableCell>
+				<TableCell>
+					<SwitchInput label="Trashed" {...register('username')} />
+					{/* <button onClick={() => setAreTrashedRecordsShown(!areTrashedRecordsShown)}>Switch</button> */}
+				</TableCell>
+			</TableRow>
 
 			{records.items.map(({ amount, category, date, id }) => (
-				<Row cnRow={s.Row} key={id}>
-					<Cell>{amount}</Cell>
-					<Cell>{category.name}</Cell>
-					<Cell>{date.slice(2)}</Cell>
-					<Cell>
+				<TableRow cnTableRow={s.TableRow} key={id}>
+					<TableCell>{amount}</TableCell>
+					<TableCell>{category.name}</TableCell>
+					<TableCell>{date.slice(2)}</TableCell>
+					<TableCell>
 						<Svg name="pencil" />
-					</Cell>
-					<Cell>
+					</TableCell>
+					<TableCell>
 						<Svg name="trash-can" />
-					</Cell>
-				</Row>
+					</TableCell>
+				</TableRow>
 			))}
 		</Table>
 	)
+}
+
+interface IFormValues {
+	password: string
+	username: string
 }

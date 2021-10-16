@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 // Components
 import { Svg } from '#components/Svg'
 import { Table } from '#components/Table'
-import { Row } from '#components/Table/Row'
-import { Cell } from '#components/Table/Cell'
+import { TableRow } from '#components/Table/TableRow'
+import { TableCell } from '#components/Table/TableCell'
 
 // Utils
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
@@ -25,23 +25,23 @@ export const Settings = () => {
 	}, [])
 
 	return (
-		<Table title="Finance categories">
-			<Row cnRow={s.Row} isHeaderRow>
-				<Cell>Category</Cell>
-				<Cell>Type</Cell>
-			</Row>
+		<Table>
+			<TableRow cnTableRow={s.TableRow} isTableHeaderRow>
+				<TableCell>Category</TableCell>
+				<TableCell>Type</TableCell>
+			</TableRow>
 
 			{categories.items.map(({ id, name, type }) => (
-				<Row cnRow={s.Row} key={id}>
-					<Cell>{name}</Cell>
-					<Cell>{type.name}</Cell>
-					<Cell>
+				<TableRow cnTableRow={s.TableRow} key={id}>
+					<TableCell>{name}</TableCell>
+					<TableCell>{type.name}</TableCell>
+					<TableCell>
 						<Svg name="pencil" />
-					</Cell>
-					<Cell>
+					</TableCell>
+					<TableCell>
 						<Svg name="trash-can" />
-					</Cell>
-				</Row>
+					</TableCell>
+				</TableRow>
 			))}
 		</Table>
 	)
