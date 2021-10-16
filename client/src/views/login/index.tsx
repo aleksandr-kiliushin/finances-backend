@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 // Components
 import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
-import { HookFormInput } from '#components/form-constructor/HookFormInput'
+import { PlainInput } from '#components/form-constructor/PlainInput'
 import { Button } from '#components/Button'
 
 // Styles
@@ -52,11 +52,11 @@ export const Login = () => {
 
 			<Form onSubmit={handleSubmit(logIn)}>
 				<FormRow label="Username">
-					<HookFormInput {...register('username', { required: true })} />
+					<PlainInput {...register('username', { required: true })} />
 				</FormRow>
 
 				<FormRow label="Password">
-					<HookFormInput type="password" {...register('password', { required: true })} />
+					<PlainInput type="password" {...register('password', { required: true })} />
 				</FormRow>
 
 				<Button type="submit">Log in</Button>

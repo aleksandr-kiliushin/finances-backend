@@ -1,4 +1,4 @@
-.Input {
+.PlainInput {
 	height: 35px;
 	padding: 0 10px;
 	border: 1px solid var(--lightgray);
@@ -6,7 +6,7 @@
 	outline: none;
 }
 
-.Input:focus {
+.PlainInput:focus {
 	outline-color: var(--color-theme-1);
 	outline-width: 1px;
 	outline-style: solid;
