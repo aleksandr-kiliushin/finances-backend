@@ -6,8 +6,8 @@ import s from './index.module.css'
 // Types
 import { ReactNode } from 'react'
 
-export const Cell = ({ children }: IProps) => {
-	return <div className={s.Cell}>{children}</div>
+export const TableCell = ({ children }: IProps) => {
+	return <div className={s.TableCell}>{children}</div>
 }
 
 interface IProps {
