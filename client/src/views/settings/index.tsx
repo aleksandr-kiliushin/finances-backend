@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 
+// Action creators
+import { getCategories } from '#models/finance'
+
 // Components
 import { Svg } from '#components/Svg'
 import { Table } from '#components/Table'
@@ -11,9 +14,6 @@ import { useAppDispatch, useAppSelector } from '#utils/hooks'
 
 // Styles
 import s from './index.module.css'
-
-// Types
-import { getCategories } from '#models/finance/slice'
 
 export const Settings = () => {
 	const dispatch = useAppDispatch()

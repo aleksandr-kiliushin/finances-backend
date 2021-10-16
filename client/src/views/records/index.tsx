@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 // Action creators
-import { getRecords } from '#models/finance/slice'
+import { getRecords } from '#models/finance'
 
 // Components
 import { Svg } from '#components/Svg'

@@ -26,7 +26,7 @@ const initialState: IState = {
 	},
 }
 
-const financeSlice = createSlice({
+const slice = createSlice({
 	name: 'finance',
 	initialState,
 	reducers: {
@@ -51,8 +51,8 @@ const financeSlice = createSlice({
 	},
 })
 
-export const { setCategories, setNotTrashedRecords, setTrashedRecords } = financeSlice.actions
-export const financeReducer = financeSlice.reducer
+export const { setCategories, setNotTrashedRecords, setTrashedRecords } = slice.actions
+export const financeReducer = slice.reducer
 
 // Thunks
 export const getCategories = (): AppThunk => async (dispatch, getState) => {

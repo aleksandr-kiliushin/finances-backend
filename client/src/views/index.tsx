@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch } from 'react-router'
+import { Redirect, Switch, useLocation } from 'react-router'
 import { Route } from 'react-router-dom'
 
 // Components
@@ -10,11 +10,22 @@ import { Records } from './records'
 import { Settings } from './settings'
 import { Stats } from './stats'
 
+// Utils
+import { useAppSelector } from '#utils/hooks'
+
 // Styles
 import s from './index.module.css'
 
 export const App = () => {
-	const cnView = !!localStorage.authToken ? s.ViewWithNavbar : s.ViewWithoutNavbar
+	const { pathname } = useLocation()
+
+	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
+
+	const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
+
+	if (pathname !== '/settings') {
+		return <Redirect to="/settings" />
+	}
 
 	return (
 		<div className={s.Layout}>

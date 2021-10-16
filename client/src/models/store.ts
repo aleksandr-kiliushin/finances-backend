@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 // Reducers
-import { financeReducer } from './finance/slice'
-import { userReducer } from './user/slice'
+import { financeReducer } from './finance'
+import { userReducer } from './user'
 
 // Types
 import { Action, ThunkAction } from '@reduxjs/toolkit'

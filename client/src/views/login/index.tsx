@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 
 // Models
-import { logIn, logOut } from '#models/user/slice'
+import { logIn, logOut } from '#models/user'
 
 // Components
 import { Form } from '#components/form-constructor/Form'
@@ -22,11 +22,12 @@ import { IUser } from '#interfaces/user'
 
 export const Login = () => {
 	const dispatch = useAppDispatch()
+
 	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
 
 	const { register, handleSubmit } = useForm<IFormValues>()
 
-	const submitLogin: SubmitHandler<IFormValues> = ({ password, username }) => {
+	const submitLogin: SubmitHandler<IFormValues> = async ({ password, username }) => {
 		dispatch(logIn({ password, username }))
 	}
 

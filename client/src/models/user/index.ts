@@ -16,7 +16,7 @@ const initialState: IState = {
 	},
 }
 
-const userSlice = createSlice({
+const slice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
@@ -31,8 +31,8 @@ const userSlice = createSlice({
 	},
 })
 
-export const { logOut, setIsUserLoggedIn } = userSlice.actions
-export const userReducer = userSlice.reducer
+export const { logOut, setIsUserLoggedIn } = slice.actions
+export const userReducer = slice.reducer
 
 // Thunks
 export const logIn =
@@ -51,6 +51,8 @@ export const logIn =
 		localStorage.authToken = authToken
 
 		dispatch(setIsUserLoggedIn(true))
+
+		return true
 	}
 
 // Types
