@@ -110,6 +110,10 @@ GET http://localhost:3080/api/user
 Authorization: Bearer MY_TOKEN
 
 ###
+GET http://localhost:3080/api/user/me
+Authorization: Bearer MY_TOKEN
+
+###
 GET http://localhost:3080/api/user?id=3&username=sasha
 Authorization: Bearer MY_TOKEN
 

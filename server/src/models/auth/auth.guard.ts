@@ -1,7 +1,10 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken'
 import * as path from 'path'
 import * as dotenv from 'dotenv'
+
+// Types
+import { CanActivate, ExecutionContext } from '@nestjs/common'
 
 dotenv.config({ path: path.join(__dirname, '..', '..', '..', '..', 'config', 'prod.env') })
 
@@ -18,6 +21,10 @@ export class AuthGuard implements CanActivate {
 
 		try {
 			jwt.verify(token, process.env.JWT_SECRET)
+
+			const { id } = jwt.decode(token, { json: true })
+
+			request.userId = id
 		} catch (err) {
 			throw new UnauthorizedException('Invalid token.')
 		}

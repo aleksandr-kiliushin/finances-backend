@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common'
+import { Controller, Get, Query, Request, UseGuards } from '@nestjs/common'
 
 import { UserService } from './user.service'
 import { GetUserDto } from './dto/get-user.dto'
@@ -37,4 +37,12 @@ export class UserController {
 	// ) {
 	// 	return this.userService.getUser({ id })
 	// }
+
+	@Get('me')
+	getCurrentUserData(
+		@Request()
+		req: any,
+	) {
+		return this.userService.getUser({ id: req.userId })
+	}
 }
