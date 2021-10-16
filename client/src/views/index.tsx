@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Redirect, Switch, useLocation } from 'react-router'
 import { Route } from 'react-router-dom'
+
+// Action creators
+import { setRedirectPath } from '#models/common'
 
 // Components
 import { Navbar } from '#components/Navbar'
@@ -11,20 +14,28 @@ import { Settings } from './settings'
 import { Stats } from './stats'
 
 // Utils
-import { useAppSelector } from '#utils/hooks'
+import { useAppDispatch, useAppSelector } from '#utils/hooks'
 
 // Styles
 import s from './index.module.css'
 
 export const App = () => {
+	const dispatch = useAppDispatch()
 	const { pathname } = useLocation()
 
+	const redirectPath = useAppSelector((state) => state.common.redirectPath)
 	const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedin)
 
 	const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
 
-	if (pathname !== '/settings') {
-		return <Redirect to="/settings" />
+	useEffect(() => {
+		if (redirectPath !== null) {
+			dispatch(setRedirectPath(null))
+		}
+	}, [redirectPath])
+
+	if (redirectPath !== null && redirectPath !== pathname) {
+		return <Redirect to={redirectPath} />
 	}
 
 	return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
-// Models
+// Action creators
 import { logIn, logOut } from '#models/user'
 
 // Components

@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Action creators
+import { setRedirectPath } from '#models/common'
+
 // Types
 import { PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '#models/store'
@@ -51,6 +54,8 @@ export const logIn =
 		localStorage.authToken = authToken
 
 		dispatch(setIsUserLoggedIn(true))
+
+		dispatch(setRedirectPath('/'))
 
 		return true
 	}
