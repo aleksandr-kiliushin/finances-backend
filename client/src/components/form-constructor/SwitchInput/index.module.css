@@ -24,10 +24,10 @@
 .Slider:before {
 	position: absolute;
 	z-index: 1;
-	bottom: 1px;
-	left: 1px;
-	height: 20px;
-	width: 20px;
+	bottom: 2px;
+	left: 2px;
+	height: 18px;
+	width: 18px;
 	background: var(--color-theme-1);
 	border-radius: 50%;
 	content: '';
