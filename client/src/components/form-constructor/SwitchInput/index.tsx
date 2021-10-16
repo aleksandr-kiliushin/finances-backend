@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 // Styles
-// import s from './index.module.css'
+import s from './index.module.css'
 
 // Types
 import { DetailedHTMLProps, ForwardedRef, InputHTMLAttributes } from 'react'
@@ -11,9 +11,21 @@ const SwitchInput_ = (
 	ref: ForwardedRef<HTMLInputElement>,
 ) => {
 	return (
-		<div>
+		<div className={s.Container}>
 			<label htmlFor={name}>{label}</label>
-			<input className={'s.SwitchInput'} name={name} ref={ref} type="checkbox" {...rest} />
+
+			<div className={s.SliderContainer}>
+				<input
+					className={s.SwitchInput}
+					id={name}
+					name={name}
+					ref={ref}
+					type="checkbox"
+					{...rest}
+				/>
+
+				<div className={s.Slider} />
+			</div>
 		</div>
 	)
 }
