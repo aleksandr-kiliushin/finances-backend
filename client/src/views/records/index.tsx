@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Svg } from '#components/Svg'
 import { SwitchInput } from '#components/form-constructor/SwitchInput'
 import { Table } from '#components/Table'
+import { TableHeader } from '#components/Table/TableHeader'
 import { TableRow } from '#components/Table/TableRow'
 import { TableCell } from '#components/Table/TableCell'
 
@@ -34,14 +35,16 @@ export const Records = () => {
 
 	return (
 		<Table>
+			<TableHeader cnTableHeader={s.TableHeader}>
+				<h3>Finance records</h3>
+
+				<SwitchInput label="Trashed" {...register('username')} />
+			</TableHeader>
+
 			<TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
 				<TableCell>Amount</TableCell>
 				<TableCell>Category</TableCell>
 				<TableCell>Date</TableCell>
-				<TableCell>
-					<SwitchInput label="Trashed" {...register('username')} />
-					{/* <button onClick={() => setAreTrashedRecordsShown(!areTrashedRecordsShown)}>Switch</button> */}
-				</TableCell>
 			</TableRow>
 
 			{records.items.map(({ amount, category, date, id }) => (
