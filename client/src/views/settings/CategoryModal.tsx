@@ -14,7 +14,7 @@ export const CategoryModal = ({ category, closeModal }: IProps) => {
 	return (
 		<Modal closeModal={closeModal}>
 			<ModalHeader>
-				<h4>{!!category ? 'Create category' : 'Edit category'}</h4>
+				<h4>{!!category ? 'Edit category' : 'Create category'}</h4>
 			</ModalHeader>
 
 			<ModalBody>heeh</ModalBody>
