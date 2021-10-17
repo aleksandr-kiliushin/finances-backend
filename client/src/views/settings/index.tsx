@@ -22,7 +22,7 @@ import s from './index.module.css'
 
 export const Settings = () => {
 	const dispatch = useAppDispatch()
-	const [isRecordModalShown, setIsRecordModalShown] = useState(false)
+	const [isCategoryModalShown, setIsCategoryModalShown] = useState(false)
 
 	const categories = useAppSelector((state) => state.finance.categories)
 
@@ -41,7 +41,7 @@ export const Settings = () => {
 					<TableCell>Category</TableCell>
 					<TableCell>Type</TableCell>
 					<TableCell>
-						<Button onClick={() => setIsRecordModalShown(true)}>+ New</Button>
+						<Button onClick={() => setIsCategoryModalShown(true)}>+ New</Button>
 					</TableCell>
 				</TableRow>
 
@@ -59,12 +59,12 @@ export const Settings = () => {
 				))}
 			</Table>
 
-			{isRecordModalShown && (
-				<Modal closeModal={() => setIsRecordModalShown(false)}>
+			{isCategoryModalShown && (
+				<Modal closeModal={() => setIsCategoryModalShown(false)}>
 					<ModalBody>heeh</ModalBody>
 
 					<ModalButtonsContainer>
-						<Button color="light" onClick={() => setIsRecordModalShown(false)}>
+						<Button color="light" onClick={() => setIsCategoryModalShown(false)}>
 							Cancel
 						</Button>
 						<Button>Submit</Button>

@@ -24,6 +24,7 @@ import s from './index.module.css'
 
 export const Records = () => {
 	const dispatch = useAppDispatch()
+	const [isRecordModalShown, setIsRecordModalShown] = useState(false)
 
 	const { register, watch } = useForm<IFormValues>()
 
@@ -70,13 +71,18 @@ export const Records = () => {
 				))}
 			</Table>
 
-			<Modal closeModal={() => {}}>
-				<ModalBody>heeh</ModalBody>
-				<ModalButtonsContainer>
-					<Button>Cancel</Button>
-					<Button>Submit</Button>
-				</ModalButtonsContainer>
-			</Modal>
+			{isRecordModalShown && (
+				<Modal closeModal={() => setIsRecordModalShown(false)}>
+					<ModalBody>heeh</ModalBody>
+
+					<ModalButtonsContainer>
+						<Button color="light" onClick={() => setIsRecordModalShown(false)}>
+							Cancel
+						</Button>
+						<Button>Submit</Button>
+					</ModalButtonsContainer>
+				</Modal>
+			)}
 		</>
 	)
 }
