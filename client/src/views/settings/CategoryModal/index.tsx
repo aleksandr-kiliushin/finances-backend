@@ -12,9 +12,9 @@ import { PlainInput } from '#components/form-constructor/PlainInput'
 import { RadioGroup } from '#components/form-constructor/RadioGroup'
 
 // Types
-import { IFinanceCategory } from '#interfaces/finance'
+import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
-export const CategoryModal = ({ category, closeModal }: IProps) => {
+export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) => {
 	// const { register, handleSubmit, formState: { errors } } = useForm();
 	// const onSubmit = data => console.log(data);
 	// console.log(errors);
@@ -42,10 +42,8 @@ export const CategoryModal = ({ category, closeModal }: IProps) => {
 					</FormRow>
 					<FormRow label="Type">
 						<RadioGroup
-							options={[
-								{ id: 1, value: 'Expense' },
-								{ id: 2, value: 'Income' },
-							]}
+							name="category-types"
+							options={categoryTypes.map(({ id, name }) => ({ id, value: name }))}
 						/>
 					</FormRow>
 				</Form>
@@ -63,5 +61,6 @@ export const CategoryModal = ({ category, closeModal }: IProps) => {
 
 interface IProps {
 	category: IFinanceCategory | null
+	categoryTypes: IFinanceCategoryType[]
 	closeModal: () => void
 }

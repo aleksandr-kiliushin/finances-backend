@@ -4,13 +4,17 @@ import { createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '#models/store'
 import { ILoadingStatus } from '#interfaces/common'
-import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
+import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
 
 // Utils
 import { Http } from '#utils/Http'
 
 const initialState: IState = {
 	categories: {
+		items: [],
+		status: 'idle',
+	},
+	categoryTypes: {
 		items: [],
 		status: 'idle',
 	},
@@ -30,6 +34,12 @@ const slice = createSlice({
 	name: 'finance',
 	initialState,
 	reducers: {
+		setCategories: (state, action: PayloadAction<IFinanceCategory[]>) => {
+			state.categories = {
+				items: action.payload,
+				status: 'success',
+			}
+		},
 		setNotTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
 			state.records.notTrashed = {
 				items: action.payload,
@@ -42,8 +52,8 @@ const slice = createSlice({
 				status: 'success',
 			}
 		},
-		setCategories: (state, action: PayloadAction<IFinanceCategory[]>) => {
-			state.categories = {
+		setCategoryTypes: (state, action: PayloadAction<IFinanceCategoryType[]>) => {
+			state.categoryTypes = {
 				items: action.payload,
 				status: 'success',
 			}
@@ -51,7 +61,8 @@ const slice = createSlice({
 	},
 })
 
-export const { setCategories, setNotTrashedRecords, setTrashedRecords } = slice.actions
+export const { setCategories, setCategoryTypes, setNotTrashedRecords, setTrashedRecords } =
+	slice.actions
 export const financeReducer = slice.reducer
 
 // Thunks
@@ -59,6 +70,11 @@ export const getCategories = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categories.status !== 'idle') return
 	const categories = await Http.get({ url: 'api/finance-category' })
 	dispatch(setCategories(categories))
+}
+export const getCategoryTypes = (): AppThunk => async (dispatch, getState) => {
+	if (getState().finance.categoryTypes.status !== 'idle') return
+	const categoryTypes = await Http.get({ url: 'api/finance-category-type' })
+	dispatch(setCategoryTypes(categoryTypes))
 }
 export const getRecords = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.records.notTrashed.status === 'idle') {
@@ -76,6 +92,10 @@ export const getRecords = (): AppThunk => async (dispatch, getState) => {
 interface IState {
 	categories: {
 		items: IFinanceCategory[]
+		status: ILoadingStatus
+	}
+	categoryTypes: {
+		items: IFinanceCategoryType[]
 		status: ILoadingStatus
 	}
 	records: {

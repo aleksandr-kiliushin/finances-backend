@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 // Action creators
-import { getCategories } from '#models/finance'
+import { getCategories, getCategoryTypes } from '#models/finance'
 
 // Components
 import { Table } from '#components/Table'
@@ -23,9 +23,11 @@ export const Settings = () => {
 	const [isCategoryCreatingModalShown, setIsCategoryCreatingModalShown] = useState(true)
 
 	const categories = useAppSelector((state) => state.finance.categories)
+	const categoryTypes = useAppSelector((state) => state.finance.categoryTypes)
 
 	useEffect(() => {
 		dispatch(getCategories())
+		dispatch(getCategoryTypes())
 	}, [])
 
 	return (
@@ -49,7 +51,11 @@ export const Settings = () => {
 			</Table>
 
 			{isCategoryCreatingModalShown && (
-				<CategoryModal category={null} closeModal={() => setIsCategoryCreatingModalShown(false)} />
+				<CategoryModal
+					category={null}
+					categoryTypes={categoryTypes.items}
+					closeModal={() => setIsCategoryCreatingModalShown(false)}
+				/>
 			)}
 		</>
 	)
