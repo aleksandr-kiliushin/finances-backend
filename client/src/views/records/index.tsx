@@ -52,7 +52,7 @@ export const Records = () => {
 					<TableCell>Category</TableCell>
 					<TableCell>Date</TableCell>
 					<TableCell>
-						<Button>+ New</Button>
+						<Button onClick={() => setIsRecordModalShown(true)}>+ New</Button>
 					</TableCell>
 				</TableRow>
 

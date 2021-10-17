@@ -9,10 +9,8 @@ import { Table } from '#components/Table'
 import { TableHeader } from '#components/Table/TableHeader'
 import { TableRow } from '#components/Table/TableRow'
 import { TableCell } from '#components/Table/TableCell'
-import { Modal } from '#components/Modal'
-import { ModalBody } from '#components/Modal/ModalBody'
-import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
 import { Button } from '#components/Button'
+import { CategoryModal } from './CategoryModal'
 
 // Utils
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
@@ -22,7 +20,7 @@ import s from './index.module.css'
 
 export const Settings = () => {
 	const dispatch = useAppDispatch()
-	const [isCategoryModalShown, setIsCategoryModalShown] = useState(false)
+	const [isCategoryModalShown, setIsCategoryModalShown] = useState(true)
 
 	const categories = useAppSelector((state) => state.finance.categories)
 
@@ -59,18 +57,7 @@ export const Settings = () => {
 				))}
 			</Table>
 
-			{isCategoryModalShown && (
-				<Modal closeModal={() => setIsCategoryModalShown(false)}>
-					<ModalBody>heeh</ModalBody>
-
-					<ModalButtonsContainer>
-						<Button color="light" onClick={() => setIsCategoryModalShown(false)}>
-							Cancel
-						</Button>
-						<Button>Submit</Button>
-					</ModalButtonsContainer>
-				</Modal>
-			)}
+			{isCategoryModalShown && <CategoryModal closeModal={() => setIsCategoryModalShown(false)} />}
 		</>
 	)
 }
