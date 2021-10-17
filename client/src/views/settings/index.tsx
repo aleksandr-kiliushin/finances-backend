@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // Action creators
 import { getCategories } from '#models/finance'
@@ -22,6 +22,7 @@ import s from './index.module.css'
 
 export const Settings = () => {
 	const dispatch = useAppDispatch()
+	const [isRecordModalShown, setIsRecordModalShown] = useState(false)
 
 	const categories = useAppSelector((state) => state.finance.categories)
 
@@ -40,7 +41,7 @@ export const Settings = () => {
 					<TableCell>Category</TableCell>
 					<TableCell>Type</TableCell>
 					<TableCell>
-						<Button>+ New</Button>
+						<Button onClick={() => setIsRecordModalShown(true)}>+ New</Button>
 					</TableCell>
 				</TableRow>
 
@@ -58,14 +59,18 @@ export const Settings = () => {
 				))}
 			</Table>
 
-			<Modal>
-				<ModalBody>heeh</ModalBody>
+			{isRecordModalShown && (
+				<Modal closeModal={() => setIsRecordModalShown(false)}>
+					<ModalBody>heeh</ModalBody>
 
-				<ModalButtonsContainer>
-					<Button>Cancel</Button>
-					<Button>Submit</Button>
-				</ModalButtonsContainer>
-			</Modal>
+					<ModalButtonsContainer>
+						<Button color="light" onClick={() => setIsRecordModalShown(false)}>
+							Cancel
+						</Button>
+						<Button>Submit</Button>
+					</ModalButtonsContainer>
+				</Modal>
+			)}
 		</>
 	)
 }

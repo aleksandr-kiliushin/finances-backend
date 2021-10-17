@@ -70,7 +70,7 @@ export const Records = () => {
 				))}
 			</Table>
 
-			<Modal>
+			<Modal closeModal={() => {}}>
 				<ModalBody>heeh</ModalBody>
 				<ModalButtonsContainer>
 					<Button>Cancel</Button>

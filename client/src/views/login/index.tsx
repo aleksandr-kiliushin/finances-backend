@@ -38,7 +38,7 @@ export const Login = () => {
 					You are logged in as <strong>{userData.username}</strong>.
 				</p>
 
-				<Button background="red" onClick={() => dispatch(logOut())}>
+				<Button color="red" onClick={() => dispatch(logOut())}>
 					Log out
 				</Button>
 			</div>

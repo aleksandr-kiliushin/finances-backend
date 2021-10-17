@@ -5,17 +5,18 @@
 	border-radius: 5px;
 }
 
-.ButtonPrimaryBackground {
+.ButtonPrimary {
 	background: var(--color-theme-1);
 	color: white;
 }
 
-.ButtonRedBackground {
+.ButtonRed {
 	background: var(--soft-red);
 	color: white;
 }
 
-.ButtonWhiteBackground {
-	background: white;
+.ButtonLight {
+	background: var(--color-theme-1-light);
+	border: 1px solid var(--color-theme-1);
 	color: var(--soft-black);
 }

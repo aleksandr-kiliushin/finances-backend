@@ -1,34 +1,29 @@
-import React, { ReactNode, SyntheticEvent } from 'react'
+import React from 'react'
 import cx from 'classnames'
 
 // Styles
 import s from './index.module.css'
 
-export const Button = ({
-	background = 'primary',
-	children,
-	isDisabled = false,
-	onClick = () => {},
-	type = 'button',
-}: IProps) => {
+// Types
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, SyntheticEvent } from 'react'
+
+export const Button = ({ children, color = 'primary', onClick = () => {} }: IProps) => {
 	const cxButton = cx({
 		[s.Button]: true,
-		[s.ButtonPrimaryBackground]: background === 'primary',
-		[s.ButtonRedBackground]: background === 'red',
-		[s.ButtonWhiteBackground]: background === 'white',
+		[s.ButtonPrimary]: color === 'primary',
+		[s.ButtonRed]: color === 'red',
+		[s.ButtonLight]: color === 'light',
 	})
 
 	return (
-		<button className={cxButton} disabled={isDisabled} onClick={onClick} type={type}>
+		<button className={cxButton} onClick={onClick}>
 			{children}
 		</button>
 	)
 }
 
-interface IProps {
-	background?: 'primary' | 'red' | 'white'
+type IProps = {
+	color?: 'light' | 'primary' | 'red'
 	children: ReactNode
-	isDisabled?: boolean
 	onClick?: (e?: SyntheticEvent) => void
-	type?: 'button' | 'reset' | 'submit'
-}
+} & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
