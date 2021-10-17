@@ -1,5 +1,8 @@
 .Button {
 	height: 35px;
+	padding: 0 10px;
+	border: none;
+	border-radius: 5px;
 }
 
 .ButtonPrimaryBackground {

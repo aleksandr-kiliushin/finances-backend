@@ -5,6 +5,10 @@ import { useForm } from 'react-hook-form'
 import { getRecords } from '#models/finance'
 
 // Components
+import { Button } from '#components/Button'
+import { Modal } from '#components/Modal'
+import { ModalBody } from '#components/Modal/ModalBody'
+import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
 import { Svg } from '#components/Svg'
 import { SwitchInput } from '#components/form-constructor/SwitchInput'
 import { Table } from '#components/Table'
@@ -34,33 +38,46 @@ export const Records = () => {
 	}, [])
 
 	return (
-		<Table>
-			<TableHeader cnTableHeader={s.TableHeader}>
-				<h3>Finance records</h3>
+		<>
+			<Table>
+				<TableHeader cnTableHeader={s.TableHeader}>
+					<h3>Finance records</h3>
 
-				<SwitchInput label="Trashed" {...register('isTrash')} />
-			</TableHeader>
+					<SwitchInput label="Trashed" {...register('isTrash')} />
+				</TableHeader>
 
-			<TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
-				<TableCell>Amount</TableCell>
-				<TableCell>Category</TableCell>
-				<TableCell>Date</TableCell>
-			</TableRow>
-
-			{records.items.map(({ amount, category, date, id }) => (
-				<TableRow cnTableRow={s.TableRow} key={id}>
-					<TableCell>{amount}</TableCell>
-					<TableCell>{category.name}</TableCell>
-					<TableCell>{date.slice(2)}</TableCell>
+				<TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
+					<TableCell>Amount</TableCell>
+					<TableCell>Category</TableCell>
+					<TableCell>Date</TableCell>
 					<TableCell>
-						<Svg name="pencil" />
-					</TableCell>
-					<TableCell>
-						<Svg name="trash-can" />
+						<Button>+ New</Button>
 					</TableCell>
 				</TableRow>
-			))}
-		</Table>
+
+				{records.items.map(({ amount, category, date, id }) => (
+					<TableRow cnTableRow={s.TableRow} key={id}>
+						<TableCell>{amount}</TableCell>
+						<TableCell>{category.name}</TableCell>
+						<TableCell>{date.slice(2)}</TableCell>
+						<TableCell>
+							<Svg name="pencil" />
+						</TableCell>
+						<TableCell>
+							<Svg name="trash-can" />
+						</TableCell>
+					</TableRow>
+				))}
+			</Table>
+
+			<Modal>
+				<ModalBody>heeh</ModalBody>
+				<ModalButtonsContainer>
+					<Button>Cancel</Button>
+					<Button>Submit</Button>
+				</ModalButtonsContainer>
+			</Modal>
+		</>
 	)
 }
 
