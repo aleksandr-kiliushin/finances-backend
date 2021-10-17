@@ -6,8 +6,13 @@ import { getCategories } from '#models/finance'
 // Components
 import { Svg } from '#components/Svg'
 import { Table } from '#components/Table'
+import { TableHeader } from '#components/Table/TableHeader'
 import { TableRow } from '#components/Table/TableRow'
 import { TableCell } from '#components/Table/TableCell'
+import { Modal } from '#components/Modal'
+import { ModalBody } from '#components/Modal/ModalBody'
+import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
+import { Button } from '#components/Button'
 
 // Utils
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
@@ -25,24 +30,42 @@ export const Settings = () => {
 	}, [])
 
 	return (
-		<Table>
-			<TableRow cnTableRow={s.TableRow} isTableHeaderRow>
-				<TableCell>Category</TableCell>
-				<TableCell>Type</TableCell>
-			</TableRow>
+		<>
+			<Table>
+				<TableHeader cnTableHeader={s.TableHeader}>
+					<h3>Finance categories</h3>
+				</TableHeader>
 
-			{categories.items.map(({ id, name, type }) => (
-				<TableRow cnTableRow={s.TableRow} key={id}>
-					<TableCell>{name}</TableCell>
-					<TableCell>{type.name}</TableCell>
+				<TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
+					<TableCell>Category</TableCell>
+					<TableCell>Type</TableCell>
 					<TableCell>
-						<Svg name="pencil" />
-					</TableCell>
-					<TableCell>
-						<Svg name="trash-can" />
+						<Button>+ New</Button>
 					</TableCell>
 				</TableRow>
-			))}
-		</Table>
+
+				{categories.items.map(({ id, name, type }) => (
+					<TableRow cnTableRow={s.TableRow} key={id}>
+						<TableCell>{name}</TableCell>
+						<TableCell>{type.name}</TableCell>
+						<TableCell>
+							<Svg name="pencil" />
+						</TableCell>
+						<TableCell>
+							<Svg name="trash-can" />
+						</TableCell>
+					</TableRow>
+				))}
+			</Table>
+
+			<Modal>
+				<ModalBody>heeh</ModalBody>
+
+				<ModalButtonsContainer>
+					<Button>Cancel</Button>
+					<Button>Submit</Button>
+				</ModalButtonsContainer>
+			</Modal>
+		</>
 	)
 }
