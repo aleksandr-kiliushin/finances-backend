@@ -57,7 +57,9 @@ export const Settings = () => {
 				))}
 			</Table>
 
-			{isCategoryModalShown && <CategoryModal closeModal={() => setIsCategoryModalShown(false)} />}
+			{isCategoryModalShown && (
+				<CategoryModal category={null} closeModal={() => setIsCategoryModalShown(false)} />
+			)}
 		</>
 	)
 }
