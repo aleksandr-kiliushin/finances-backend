@@ -6,14 +6,29 @@ import { ModalHeader } from '#components/Modal/ModalHeader'
 import { ModalBody } from '#components/Modal/ModalBody'
 import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
 import { Button } from '#components/Button'
+import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
+import { RadioGroup } from '#components/form-constructor/RadioGroup'
 
 // Types
 import { IFinanceCategory } from '#interfaces/finance'
-import { Form } from '#components/form-constructor/Form'
 
 export const CategoryModal = ({ category, closeModal }: IProps) => {
+	// const { register, handleSubmit, formState: { errors } } = useForm();
+	// const onSubmit = data => console.log(data);
+	// console.log(errors);
+
+	// return (
+	//   <form onSubmit={handleSubmit(onSubmit)}>
+
+	//     <input {...register("Type", { required: true })} type="radio" value="Expense" />
+	//     <input {...register("Type", { required: true })} type="radio" value="Income" />
+
+	//     <input type="submit" />
+	//   </form>
+	// );
+
 	return (
 		<Modal closeModal={closeModal}>
 			<ModalHeader>
@@ -26,7 +41,12 @@ export const CategoryModal = ({ category, closeModal }: IProps) => {
 						<PlainInput />
 					</FormRow>
 					<FormRow label="Type">
-						<PlainInput />
+						<RadioGroup
+							options={[
+								{ id: 1, value: 'Expense' },
+								{ id: 2, value: 'Income' },
+							]}
+						/>
 					</FormRow>
 				</Form>
 			</ModalBody>
