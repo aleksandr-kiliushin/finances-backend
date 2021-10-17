@@ -6,9 +6,12 @@ import { ModalHeader } from '#components/Modal/ModalHeader'
 import { ModalBody } from '#components/Modal/ModalBody'
 import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
 import { Button } from '#components/Button'
+import { FormRow } from '#components/form-constructor/FormRow'
+import { PlainInput } from '#components/form-constructor/PlainInput'
 
 // Types
 import { IFinanceCategory } from '#interfaces/finance'
+import { Form } from '#components/form-constructor/Form'
 
 export const CategoryModal = ({ category, closeModal }: IProps) => {
 	return (
@@ -17,7 +20,16 @@ export const CategoryModal = ({ category, closeModal }: IProps) => {
 				<h4>{!!category ? 'Edit category' : 'Create category'}</h4>
 			</ModalHeader>
 
-			<ModalBody>heeh</ModalBody>
+			<ModalBody>
+				<Form>
+					<FormRow label="Name">
+						<PlainInput />
+					</FormRow>
+					<FormRow label="Type">
+						<PlainInput />
+					</FormRow>
+				</Form>
+			</ModalBody>
 
 			<ModalButtonsContainer>
 				<Button color="light" onClick={closeModal}>

@@ -1,7 +1,10 @@
 import React, { ReactNode } from 'react'
 
+// Styles
+import s from './index.module.css'
+
 export const ModalBody = ({ children }: IProps) => {
-	return <div>{children}</div>
+	return <div className={s.ModalBody}>{children}</div>
 }
 
 interface IProps {
