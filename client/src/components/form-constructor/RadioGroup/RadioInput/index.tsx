@@ -1,26 +1,22 @@
-import React, { forwardRef } from 'react'
+export const x = 42
 
-// Styles
-import s from './index.module.css'
+// import React, { forwardRef } from 'react'
 
-// Types
-import { DetailedHTMLProps, ForwardedRef, InputHTMLAttributes } from 'react'
+// // Styles
+// import s from './index.module.css'
 
-const RadioInput_ = (
-	{ label = '', name = '', ...rest }: IProps,
-	ref: ForwardedRef<HTMLInputElement>,
-) => {
-	return (
-		<div className={s.Container}>
-			<input className={s.RadioInput} id={name} name={name} ref={ref} type="radio" {...rest} />
-		</div>
-	)
-}
+// // Types
+// import { DetailedHTMLProps, ForwardedRef, InputHTMLAttributes } from 'react'
 
-export const RadioInput = forwardRef(RadioInput_)
+// const RadioInput_ = ({ id, value = '', ...rest }: IProps, ref: ForwardedRef<HTMLInputElement>) => {
+// 	return <input className={s.RadioInput} id={id} ref={ref} type="radio" value={value} {...rest} />
+// }
 
-interface ICustomProps {
-	label?: string
-}
-type IProps = ICustomProps &
-	DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+// export const RadioInput = forwardRef(RadioInput_)
+
+// interface ICustomProps {
+// 	id: number
+// 	value?: string
+// }
+// type IProps = ICustomProps &
+// 	DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
