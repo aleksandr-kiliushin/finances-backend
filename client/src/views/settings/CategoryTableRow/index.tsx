@@ -13,9 +13,9 @@ import { CategoryModal } from '#views/settings/CategoryModal'
 import s from './index.module.css'
 
 // Types
-import { IFinanceCategory } from '#interfaces/finance'
+import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
-export const CategoryTableRow = ({ category }: IProps) => {
+export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
 	const [isCategoryEditingModalShown, setIsCategoryEditingModalShown] = useState(false)
 
 	const { id, name, type } = category
@@ -36,6 +36,7 @@ export const CategoryTableRow = ({ category }: IProps) => {
 			{isCategoryEditingModalShown && (
 				<CategoryModal
 					category={category}
+					categoryTypes={categoryTypes}
 					closeModal={() => setIsCategoryEditingModalShown(false)}
 				/>
 			)}
@@ -45,4 +46,5 @@ export const CategoryTableRow = ({ category }: IProps) => {
 
 interface IProps {
 	category: IFinanceCategory
+	categoryTypes: IFinanceCategoryType[]
 }

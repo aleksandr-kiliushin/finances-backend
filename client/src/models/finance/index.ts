@@ -58,11 +58,23 @@ const slice = createSlice({
 				status: 'success',
 			}
 		},
+		updateCategory: (state, action: PayloadAction<IFinanceCategory>) => {
+			const categoryIndex = state.categories.items.findIndex(
+				(category) => category.id === action.payload.id,
+			)
+
+			state.categories.items[categoryIndex] = action.payload
+		},
 	},
 })
 
-export const { setCategories, setCategoryTypes, setNotTrashedRecords, setTrashedRecords } =
-	slice.actions
+export const {
+	setCategories,
+	setCategoryTypes,
+	setNotTrashedRecords,
+	setTrashedRecords,
+	updateCategory,
+} = slice.actions
 export const financeReducer = slice.reducer
 
 // Thunks
@@ -87,6 +99,27 @@ export const getRecords = (): AppThunk => async (dispatch, getState) => {
 		dispatch(setTrashedRecords(records))
 	}
 }
+export const updateCategoryTc =
+	({
+		categoryId,
+		name,
+		typeId,
+	}: {
+		categoryId: IFinanceCategory['id']
+		name: IFinanceCategory['name']
+		typeId: IFinanceCategoryType['id']
+	}): AppThunk =>
+	async (dispatch) => {
+		const category = await Http.patch({
+			payload: {
+				name,
+				typeId,
+			},
+			url: 'api/finance-category/' + categoryId,
+		})
+
+		dispatch(updateCategory(category))
+	}
 
 // Types
 interface IState {

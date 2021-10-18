@@ -21,6 +21,15 @@ export class Http {
 		})
 		return await response.json()
 	}
+
+	static async patch({ payload, url }: IRequestDataWithPayload) {
+		const response = await fetch(url, {
+			...this.requestOptions,
+			body: JSON.stringify(payload),
+			method: 'PATCH',
+		})
+		return await response.json()
+	}
 }
 
 interface IRequestDataWithoutPayload {

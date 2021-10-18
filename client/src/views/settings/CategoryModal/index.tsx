@@ -1,5 +1,5 @@
 import React from 'react'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 // Components
 import { Modal } from '#components/Modal'
@@ -12,17 +12,24 @@ import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
 import { RadioGroup } from '#components/form-constructor/RadioGroup'
 
+// Utils
+import { useAppDispatch } from '#utils/hooks'
+
 // Types
 import { SubmitHandler } from 'react-hook-form'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
+import { updateCategoryTc } from '#models/finance'
 
 export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) => {
-	const { handleSubmit, register, watch } = useForm<IFormValues>()
+	const dispatch = useAppDispatch()
+	const { handleSubmit, register } = useForm<IFormValues>()
 
-	console.log(watch())
-
-	const submitCategoryForm: SubmitHandler<IFormValues> = (formValues) => {
-		console.log(formValues)
+	const submitCategoryForm: SubmitHandler<IFormValues> = ({ name, typeId }) => {
+		if (category) {
+			dispatch(updateCategoryTc({ categoryId: category.id, name, typeId }))
+		} else {
+			console.log('To do: create new category.')
+		}
 	}
 
 	return (
@@ -34,12 +41,12 @@ export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) =
 			<ModalBody>
 				<Form onSubmit={handleSubmit(submitCategoryForm)}>
 					<FormRow label="Name">
-						<PlainInput {...register('categoryName', { required: true })} />
+						<PlainInput {...register('name', { required: true })} />
 					</FormRow>
 					<FormRow label="Type">
 						<RadioGroup
 							isRequired
-							name="categoryTypeId"
+							name="typeId"
 							options={categoryTypes.map(({ id, name }) => ({ id, label: name }))}
 							register={register}
 						/>
@@ -64,6 +71,6 @@ interface IProps {
 }
 
 interface IFormValues {
-	categoryName: string
-	categoryTypeId: number
+	name: string
+	typeId: number
 }

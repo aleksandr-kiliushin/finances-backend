@@ -46,7 +46,11 @@ export const Settings = () => {
 				</TableRow>
 
 				{categories.items.map((category) => (
-					<CategoryTableRow category={category} key={category.id} />
+					<CategoryTableRow
+						category={category}
+						categoryTypes={categoryTypes.items}
+						key={category.id}
+					/>
 				))}
 			</Table>
 
