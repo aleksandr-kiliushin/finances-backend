@@ -1,13 +1,26 @@
 import React from 'react'
 
-// Components
-import { RadioInput } from './RadioInput'
+// Styles
+import s from './index.module.css'
 
-export const RadioGroup = ({ options }: IProps) => {
+// Types
+import { FieldValues, UseFormRegister } from 'react-hook-form'
+
+export const RadioGroup = ({ isRequired = false, name, options, register }: IProps) => {
 	return (
-		<div>
-			{options.map(({ id, value }) => (
-				<RadioInput key={id} />
+		<div className={s.RadioGroup}>
+			{options.map(({ id, label }) => (
+				<div key={id}>
+					<input
+						id={id.toString()}
+						type="radio"
+						value={id}
+						{...register(name, {
+							required: isRequired,
+						})}
+					/>
+					<label htmlFor={id.toString()}>{label}</label>
+				</div>
 			))}
 		</div>
 	)
@@ -15,9 +28,12 @@ export const RadioGroup = ({ options }: IProps) => {
 
 interface IRadioInputOption {
 	id: number
-	value: string
+	label: string
 }
 
 interface IProps {
+	isRequired: boolean
+	name: string
 	options: IRadioInputOption[]
+	register: UseFormRegister<FieldValues>
 }

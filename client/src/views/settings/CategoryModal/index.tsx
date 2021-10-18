@@ -1,4 +1,5 @@
 import React from 'react'
+import { Controller, useForm } from 'react-hook-form'
 
 // Components
 import { Modal } from '#components/Modal'
@@ -12,22 +13,17 @@ import { PlainInput } from '#components/form-constructor/PlainInput'
 import { RadioGroup } from '#components/form-constructor/RadioGroup'
 
 // Types
+import { SubmitHandler } from 'react-hook-form'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) => {
-	// const { register, handleSubmit, formState: { errors } } = useForm();
-	// const onSubmit = data => console.log(data);
-	// console.log(errors);
+	const { handleSubmit, register, watch } = useForm<IFormValues>()
 
-	// return (
-	//   <form onSubmit={handleSubmit(onSubmit)}>
+	console.log(watch())
 
-	//     <input {...register("Type", { required: true })} type="radio" value="Expense" />
-	//     <input {...register("Type", { required: true })} type="radio" value="Income" />
-
-	//     <input type="submit" />
-	//   </form>
-	// );
+	const submitCategoryForm: SubmitHandler<IFormValues> = (formValues) => {
+		console.log(formValues)
+	}
 
 	return (
 		<Modal closeModal={closeModal}>
@@ -36,25 +32,27 @@ export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) =
 			</ModalHeader>
 
 			<ModalBody>
-				<Form>
+				<Form onSubmit={handleSubmit(submitCategoryForm)}>
 					<FormRow label="Name">
-						<PlainInput />
+						<PlainInput {...register('categoryName', { required: true })} />
 					</FormRow>
 					<FormRow label="Type">
 						<RadioGroup
-							name="category-types"
-							options={categoryTypes.map(({ id, name }) => ({ id, value: name }))}
+							isRequired
+							name="categoryTypeId"
+							options={categoryTypes.map(({ id, name }) => ({ id, label: name }))}
+							register={register}
 						/>
 					</FormRow>
+
+					<ModalButtonsContainer>
+						<Button color="light" onClick={closeModal}>
+							Cancel
+						</Button>
+						<Button type="submit">Submit</Button>
+					</ModalButtonsContainer>
 				</Form>
 			</ModalBody>
-
-			<ModalButtonsContainer>
-				<Button color="light" onClick={closeModal}>
-					Cancel
-				</Button>
-				<Button>Submit</Button>
-			</ModalButtonsContainer>
 		</Modal>
 	)
 }
@@ -63,4 +61,9 @@ interface IProps {
 	category: IFinanceCategory | null
 	categoryTypes: IFinanceCategoryType[]
 	closeModal: () => void
+}
+
+interface IFormValues {
+	categoryName: string
+	categoryTypeId: number
 }
