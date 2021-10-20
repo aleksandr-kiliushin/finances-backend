@@ -209,12 +209,12 @@ export const updateRecordTc =
 		amount,
 		categoryId,
 		date,
-		recordId,
+		id,
 	}: {
 		amount: IFinanceRecord['amount']
 		categoryId: IFinanceCategory['id']
 		date: IFinanceRecord['date']
-		recordId: IFinanceRecord['id']
+		id: IFinanceRecord['id']
 	}): AppThunk =>
 	async (dispatch) => {
 		const record = await Http.patch({
@@ -223,7 +223,7 @@ export const updateRecordTc =
 				categoryId,
 				date,
 			},
-			url: 'api/finance-record/' + recordId,
+			url: 'api/finance-record/' + id,
 		})
 
 		dispatch(updateRecord(record))

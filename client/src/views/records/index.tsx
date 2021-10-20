@@ -56,7 +56,12 @@ export const Records = () => {
 				</TableRow>
 
 				{records.items.map((record) => (
-					<RecordTableRow categories={categories.items} key={record.id} record={record} />
+					<RecordTableRow
+						categories={categories.items}
+						isTrash={isTrash}
+						key={record.id}
+						record={record}
+					/>
 				))}
 			</Table>
 

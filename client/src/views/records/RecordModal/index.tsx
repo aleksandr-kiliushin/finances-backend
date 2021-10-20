@@ -40,7 +40,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 					amount: Number(amount),
 					categoryId: Number(categoryId),
 					date,
-					recordId: record.id,
+					id: record.id,
 				}),
 			)
 		} else {

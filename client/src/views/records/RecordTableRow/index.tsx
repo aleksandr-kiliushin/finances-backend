@@ -12,10 +12,20 @@ import s from './index.module.css'
 // Types
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const RecordTableRow = ({ categories, record }: IProps) => {
+export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
 	const [isRecordEditingModalShown, setIsRecordEditingModalShown] = useState(false)
 
 	const { amount, date, category } = record
+
+	const editOrRestoreTableCell = isTrash ? (
+		<TableCell onClick={() => setIsRecordEditingModalShown(true)}>
+			<Svg name="reply" />
+		</TableCell>
+	) : (
+		<TableCell onClick={() => setIsRecordEditingModalShown(true)}>
+			<Svg name="pencil" />
+		</TableCell>
+	)
 
 	return (
 		<>
@@ -23,9 +33,7 @@ export const RecordTableRow = ({ categories, record }: IProps) => {
 				<TableCell>{amount}</TableCell>
 				<TableCell>{category.name}</TableCell>
 				<TableCell>{date.slice(2)}</TableCell>
-				<TableCell onClick={() => setIsRecordEditingModalShown(true)}>
-					<Svg name="pencil" />
-				</TableCell>
+				{editOrRestoreTableCell}
 				<TableCell onClick={() => console.log('Record deleted!')}>
 					<Svg name="trash-can" />
 				</TableCell>
@@ -43,6 +51,7 @@ export const RecordTableRow = ({ categories, record }: IProps) => {
 }
 
 interface IProps {
-	record: IFinanceRecord
 	categories: IFinanceCategory[]
+	isTrash: boolean
+	record: IFinanceRecord
 }
