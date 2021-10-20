@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 // Action creators
-import { getCategories, getCategoryTypes } from '#models/finance'
+import { getCategories, getCategoryTypes } from '#models/finance/action-creators'
 
 // Components
 import { Table } from '#components/Table'

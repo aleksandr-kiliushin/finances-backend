@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import { getCategories, getRecords } from '#models/finance'
+import { getCategories, getRecords } from '#models/finance/action-creators'
 
 // Components
 import { Button } from '#components/Button'

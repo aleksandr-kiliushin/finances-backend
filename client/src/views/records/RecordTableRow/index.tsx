@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { deleteRecordTc, restoreRecordTc } from '#models/finance'
+import { deleteRecordTc, restoreRecordTc } from '#models/finance/action-creators'
 
 // Components
 import { Svg } from '#components/Svg'

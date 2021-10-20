@@ -1,7 +1,8 @@
 import React from 'react'
 
-// ActionCreators
-import { deleteCategoryTc } from '#models/finance'
+// Models
+import { useAppDispatch } from '#utils/hooks'
+import { deleteCategoryTc } from '#models/finance/action-creators'
 
 // Components
 import { Modal } from '#components/Modal'
@@ -9,9 +10,6 @@ import { ModalHeader } from '#components/Modal/ModalHeader'
 import { ModalBody } from '#components/Modal/ModalBody'
 import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
 import { Button } from '#components/Button'
-
-// Utils
-import { useAppDispatch } from '#utils/hooks'
 
 // Types
 import { IFinanceCategory } from '#interfaces/finance'
