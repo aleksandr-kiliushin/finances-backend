@@ -10,8 +10,8 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, SyntheticEvent } fr
 export const Button = ({ children, color = 'primary', onClick = () => {} }: IProps) => {
 	const cxButton = cx({
 		[s.Button]: true,
+		[s.ButtonDanger]: color === 'danger',
 		[s.ButtonPrimary]: color === 'primary',
-		[s.ButtonRed]: color === 'red',
 		[s.ButtonLight]: color === 'light',
 	})
 
@@ -23,7 +23,7 @@ export const Button = ({ children, color = 'primary', onClick = () => {} }: IPro
 }
 
 type IProps = {
-	color?: 'light' | 'primary' | 'red'
+	color?: 'danger' | 'light' | 'primary'
 	children: ReactNode
 	onClick?: (e?: SyntheticEvent) => void
 } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>

@@ -10,8 +10,8 @@
 	color: white;
 }
 
-.ButtonRed {
-	background: var(--soft-red);
+.ButtonDanger {
+	background: var(--soft-danger);
 	color: white;
 }
 
