@@ -25,7 +25,7 @@ export const RecordTableRow = ({ category, categoryTypes }: IProps) => {
 				<TableCell onClick={() => setIsRecordEditingModalShown(true)}>
 					<Svg name="pencil" />
 				</TableCell>
-				<TableCell onClick={() => console.log('Record deleted.')}>
+				<TableCell onClick={() => console.log('Record deleted!')}>
 					<Svg name="trash-can" />
 				</TableCell>
 			</TableRow>
