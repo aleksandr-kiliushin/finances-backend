@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // Types
 import { PayloadAction } from '@reduxjs/toolkit'
-import { AppThunk } from '#models/store'
 import { ILoadingStatus } from '#interfaces/common'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
 
@@ -15,6 +14,10 @@ const initialState: IState = {
 		status: 'idle',
 	},
 	categoryTypes: {
+		items: [],
+		status: 'idle',
+	},
+	chartRecords: {
 		items: [],
 		status: 'idle',
 	},
@@ -76,6 +79,13 @@ const slice = createSlice({
 			}
 		},
 
+		setChartRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
+			state.chartRecords = {
+				items: action.payload,
+				status: 'success',
+			}
+		},
+
 		setNotTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
 			state.records.notTrashed = {
 				items: action.payload,
@@ -123,6 +133,7 @@ export const {
 	restoreRecord,
 	setCategories,
 	setCategoryTypes,
+	setChartRecords,
 	setNotTrashedRecords,
 	setTrashedRecords,
 	updateCategory,
@@ -138,6 +149,10 @@ interface IState {
 	}
 	categoryTypes: {
 		items: IFinanceCategoryType[]
+		status: ILoadingStatus
+	}
+	chartRecords: {
+		items: IFinanceRecord[]
 		status: ILoadingStatus
 	}
 	records: {

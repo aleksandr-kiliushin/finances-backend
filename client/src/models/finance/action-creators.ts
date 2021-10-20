@@ -7,6 +7,7 @@ import {
 	restoreRecord,
 	setCategories,
 	setCategoryTypes,
+	setChartRecords,
 	setNotTrashedRecords,
 	setTrashedRecords,
 	updateCategory,
@@ -108,6 +109,14 @@ export const getCategoryTypes = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categoryTypes.status !== 'idle') return
 	const categoryTypes = await Http.get({ url: 'api/finance-category-type' })
 	dispatch(setCategoryTypes(categoryTypes))
+}
+
+export const getChartRecordsTc = (): AppThunk => async (dispatch, getState) => {
+	if (getState().finance.chartRecords.status !== 'idle') return
+	const chartRecords = await Http.get({
+		url: 'api/finance-record?isTrashed=false&orderingByDate=ASC&orderingById=ASC',
+	})
+	dispatch(setChartRecords(chartRecords))
 }
 
 export const getRecords = (): AppThunk => async (dispatch, getState) => {
