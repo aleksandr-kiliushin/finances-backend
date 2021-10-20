@@ -100,7 +100,7 @@ export const {
 export const financeReducer = slice.reducer
 
 // Thunks
-// To do: put thunk-creators to another file
+// To do: put thunk-creators to a separate file
 export const createCategoryTc =
 	({
 		name,
@@ -176,7 +176,7 @@ export const getRecords = (): AppThunk => async (dispatch, getState) => {
 
 	if (getState().finance.records.trashed.status === 'idle') {
 		const records = await Http.get({
-			url: 'api/finance-record?isTrashed=false&orderingByDate=DESC&orderingById=DESC',
+			url: 'api/finance-record?isTrashed=true&orderingByDate=DESC&orderingById=DESC',
 		})
 		dispatch(setTrashedRecords(records))
 	}
