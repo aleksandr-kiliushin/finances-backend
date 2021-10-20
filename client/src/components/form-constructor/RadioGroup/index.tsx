@@ -10,7 +10,7 @@ export const RadioGroup = ({ isRequired = false, name, options, register }: IPro
 	return (
 		<div className={s.RadioGroup}>
 			{options.map(({ id, label }) => (
-				<div key={id}>
+				<div className={s.RadioInputAndLabelContainer} key={id}>
 					<input
 						id={id.toString()}
 						type="radio"

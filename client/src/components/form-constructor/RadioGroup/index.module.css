@@ -3,3 +3,9 @@
 	flex-direction: column;
 	row-gap: 5px;
 }
+
+.RadioInputAndLabelContainer {
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+}
