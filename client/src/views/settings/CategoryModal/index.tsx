@@ -18,7 +18,7 @@ import { useAppDispatch } from '#utils/hooks'
 // Types
 import { SubmitHandler } from 'react-hook-form'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
-import { updateCategoryTc } from '#models/finance'
+import { createCategoryTc, updateCategoryTc } from '#models/finance'
 
 export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) => {
 	const dispatch = useAppDispatch()
@@ -28,8 +28,10 @@ export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) =
 		if (category) {
 			dispatch(updateCategoryTc({ categoryId: category.id, name, typeId }))
 		} else {
-			console.log('To do: create new category.')
+			dispatch(createCategoryTc({ name, typeId }))
 		}
+
+		closeModal()
 	}
 
 	return (

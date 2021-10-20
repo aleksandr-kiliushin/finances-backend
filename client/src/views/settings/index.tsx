@@ -20,7 +20,7 @@ import s from './index.module.css'
 
 export const Settings = () => {
 	const dispatch = useAppDispatch()
-	const [isCategoryCreatingModalShown, setIsCategoryCreatingModalShown] = useState(true)
+	const [isCategoryCreatingModalShown, setIsCategoryCreatingModalShown] = useState(false)
 
 	const categories = useAppSelector((state) => state.finance.categories)
 	const categoryTypes = useAppSelector((state) => state.finance.categoryTypes)

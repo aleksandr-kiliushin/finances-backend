@@ -34,6 +34,9 @@ const slice = createSlice({
 	name: 'finance',
 	initialState,
 	reducers: {
+		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
+			state.categories.items.push(action.payload)
+		},
 		setCategories: (state, action: PayloadAction<IFinanceCategory[]>) => {
 			state.categories = {
 				items: action.payload,
@@ -69,6 +72,7 @@ const slice = createSlice({
 })
 
 export const {
+	createCategory,
 	setCategories,
 	setCategoryTypes,
 	setNotTrashedRecords,
@@ -78,6 +82,25 @@ export const {
 export const financeReducer = slice.reducer
 
 // Thunks
+export const createCategoryTc =
+	({
+		name,
+		typeId,
+	}: {
+		name: IFinanceCategory['name']
+		typeId: IFinanceCategoryType['id']
+	}): AppThunk =>
+	async (dispatch) => {
+		const category = await Http.post({
+			payload: {
+				name,
+				typeId,
+			},
+			url: 'api/finance-category',
+		})
+
+		dispatch(createCategory(category))
+	}
 export const getCategories = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categories.status !== 'idle') return
 	const categories = await Http.get({ url: 'api/finance-category' })
