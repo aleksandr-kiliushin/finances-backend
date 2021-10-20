@@ -35,40 +35,68 @@ const slice = createSlice({
 	initialState,
 	reducers: {
 		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
-			state.categories.items.push(action.payload)
+			state.categories.items.unshift(action.payload)
 		},
+
 		createRecord: (state, action: PayloadAction<IFinanceRecord>) => {
-			state.records.notTrashed.items.push(action.payload)
+			state.records.notTrashed.items.unshift(action.payload)
 		},
+
 		deleteCategory: (state, action: PayloadAction<IFinanceCategory['id']>) => {
 			state.categories.items = state.categories.items.filter(
 				(category) => category.id !== action.payload,
 			)
 		},
+
+		deleteRecord: (
+			state,
+			action: PayloadAction<{ permanently: boolean; record: IFinanceRecord }>,
+		) => {
+			state.records.notTrashed.items = state.records.notTrashed.items.filter(
+				(record) => record.id !== action.payload.record.id,
+			)
+
+			if (action.payload.permanently) return
+
+			state.records.trashed.items.unshift(action.payload.record)
+		},
+
+		restoreRecord: (state, action: PayloadAction<IFinanceRecord>) => {
+			state.records.trashed.items = state.records.trashed.items.filter(
+				(record) => record.id !== action.payload.id,
+			)
+
+			state.records.notTrashed.items.unshift(action.payload)
+		},
+
 		setCategories: (state, action: PayloadAction<IFinanceCategory[]>) => {
 			state.categories = {
 				items: action.payload,
 				status: 'success',
 			}
 		},
+
 		setNotTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
 			state.records.notTrashed = {
 				items: action.payload,
 				status: 'success',
 			}
 		},
+
 		setTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
 			state.records.trashed = {
 				items: action.payload,
 				status: 'success',
 			}
 		},
+
 		setCategoryTypes: (state, action: PayloadAction<IFinanceCategoryType[]>) => {
 			state.categoryTypes = {
 				items: action.payload,
 				status: 'success',
 			}
 		},
+
 		updateCategory: (state, action: PayloadAction<IFinanceCategory>) => {
 			const categoryIndex = state.categories.items.findIndex(
 				(category) => category.id === action.payload.id,
@@ -76,6 +104,7 @@ const slice = createSlice({
 
 			state.categories.items[categoryIndex] = action.payload
 		},
+
 		updateRecord: (state, action: PayloadAction<IFinanceRecord>) => {
 			const recordIndex = state.records.notTrashed.items.findIndex(
 				(record) => record.id === action.payload.id,
@@ -90,6 +119,8 @@ export const {
 	createCategory,
 	createRecord,
 	deleteCategory,
+	deleteRecord,
+	restoreRecord,
 	setCategories,
 	setCategoryTypes,
 	setNotTrashedRecords,
@@ -154,6 +185,31 @@ export const deleteCategoryTc =
 		dispatch(deleteCategory(id))
 	}
 
+export const deleteRecordTc =
+	({
+		isTrashed,
+		recordId,
+	}: {
+		isTrashed: IFinanceRecord['isTrashed']
+		recordId: IFinanceRecord['id']
+	}): AppThunk =>
+	async (dispatch) => {
+		let record
+
+		if (isTrashed) {
+			record = await Http.delete({
+				url: 'api/finance-record/' + recordId,
+			})
+		} else {
+			record = await Http.patch({
+				payload: { isTrashed: true },
+				url: 'api/finance-record/' + recordId,
+			})
+		}
+
+		dispatch(deleteRecord({ permanently: isTrashed, record }))
+	}
+
 export const getCategories = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categories.status !== 'idle') return
 	const categories = await Http.get({ url: 'api/finance-category' })
@@ -181,6 +237,17 @@ export const getRecords = (): AppThunk => async (dispatch, getState) => {
 		dispatch(setTrashedRecords(records))
 	}
 }
+
+export const restoreRecordTc =
+	(recordId: IFinanceRecord['id']): AppThunk =>
+	async (dispatch) => {
+		const record = await Http.patch({
+			payload: { isTrashed: false },
+			url: 'api/finance-record/' + recordId,
+		})
+
+		dispatch(restoreRecord(record))
+	}
 
 export const updateCategoryTc =
 	({

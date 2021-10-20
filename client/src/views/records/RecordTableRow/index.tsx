@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 
+// Models
+import { useAppDispatch } from '#utils/hooks'
+import { deleteRecordTc, restoreRecordTc } from '#models/finance'
+
 // Components
 import { Svg } from '#components/Svg'
 import { TableRow } from '#components/Table/TableRow'
@@ -13,12 +17,14 @@ import s from './index.module.css'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
+	const dispatch = useAppDispatch()
+
 	const [isRecordEditingModalShown, setIsRecordEditingModalShown] = useState(false)
 
 	const { amount, date, category } = record
 
 	const editOrRestoreTableCell = isTrash ? (
-		<TableCell onClick={() => setIsRecordEditingModalShown(true)}>
+		<TableCell onClick={() => dispatch(restoreRecordTc(record.id))}>
 			<Svg name="reply" />
 		</TableCell>
 	) : (
@@ -34,7 +40,11 @@ export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
 				<TableCell>{category.name}</TableCell>
 				<TableCell>{date.slice(2)}</TableCell>
 				{editOrRestoreTableCell}
-				<TableCell onClick={() => console.log('Record deleted!')}>
+				<TableCell
+					onClick={() =>
+						dispatch(deleteRecordTc({ isTrashed: record.isTrashed, recordId: record.id }))
+					}
+				>
 					<Svg name="trash-can" />
 				</TableCell>
 			</TableRow>
