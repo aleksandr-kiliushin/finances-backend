@@ -21,7 +21,7 @@ import s from './index.module.css'
 export const Records = () => {
 	const dispatch = useAppDispatch()
 
-	const [isRecordCreatingModalShown, setIsRecordCreatingModalShown] = useState(false)
+	const [isRecordCreatingModalShown, setIsRecordCreatingModalShown] = useState(true)
 
 	const { register, watch } = useForm<IFormValues>()
 

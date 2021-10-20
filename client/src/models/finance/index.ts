@@ -168,12 +168,16 @@ export const getCategoryTypes = (): AppThunk => async (dispatch, getState) => {
 
 export const getRecords = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.records.notTrashed.status === 'idle') {
-		const records = await Http.get({ url: 'api/finance-record?isTrashed=false' })
+		const records = await Http.get({
+			url: 'api/finance-record?isTrashed=false&orderingByDate=DESC&orderingById=DESC',
+		})
 		dispatch(setNotTrashedRecords(records))
 	}
 
 	if (getState().finance.records.trashed.status === 'idle') {
-		const records = await Http.get({ url: 'api/finance-record?isTrashed=true' })
+		const records = await Http.get({
+			url: 'api/finance-record?isTrashed=false&orderingByDate=DESC&orderingById=DESC',
+		})
 		dispatch(setTrashedRecords(records))
 	}
 }

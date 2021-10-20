@@ -65,8 +65,14 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 
 			<ModalBody>
 				<Form onSubmit={handleSubmit(submitRecordForm)}>
-					<FormRow label="Name">
-						<PlainInput {...register('amount', { required: true })} />
+					<FormRow label="Amount">
+						<PlainInput type="number" {...register('amount', { required: true })} />
+					</FormRow>
+					<FormRow label="Category">
+						<PlainInput {...register('categoryId', { required: true })} />
+					</FormRow>
+					<FormRow label="Date">
+						<PlainInput type="date" {...register('date', { required: true })} />
 					</FormRow>
 
 					<ModalButtonsContainer>
