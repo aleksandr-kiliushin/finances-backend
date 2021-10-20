@@ -8,17 +8,16 @@ export class Http {
 		}
 	}
 
-	static async get({ url }: IRequestDataWithoutPayload) {
-		const response = await fetch(url, this.requestOptions)
+	static async delete({ url }: IRequestDataWithoutPayload) {
+		const response = await fetch(url, {
+			...this.requestOptions,
+			method: 'DELETE',
+		})
 		return await response.json()
 	}
 
-	static async post({ payload, url }: IRequestDataWithPayload) {
-		const response = await fetch(url, {
-			...this.requestOptions,
-			body: JSON.stringify(payload),
-			method: 'POST',
-		})
+	static async get({ url }: IRequestDataWithoutPayload) {
+		const response = await fetch(url, this.requestOptions)
 		return await response.json()
 	}
 
@@ -27,6 +26,15 @@ export class Http {
 			...this.requestOptions,
 			body: JSON.stringify(payload),
 			method: 'PATCH',
+		})
+		return await response.json()
+	}
+
+	static async post({ payload, url }: IRequestDataWithPayload) {
+		const response = await fetch(url, {
+			...this.requestOptions,
+			body: JSON.stringify(payload),
+			method: 'POST',
 		})
 		return await response.json()
 	}

@@ -37,6 +37,11 @@ const slice = createSlice({
 		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
 			state.categories.items.push(action.payload)
 		},
+		deleteCategory: (state, action: PayloadAction<IFinanceCategory['id']>) => {
+			state.categories.items = state.categories.items.filter(
+				(category) => category.id !== action.payload,
+			)
+		},
 		setCategories: (state, action: PayloadAction<IFinanceCategory[]>) => {
 			state.categories = {
 				items: action.payload,
@@ -73,6 +78,7 @@ const slice = createSlice({
 
 export const {
 	createCategory,
+	deleteCategory,
 	setCategories,
 	setCategoryTypes,
 	setNotTrashedRecords,
@@ -100,6 +106,15 @@ export const createCategoryTc =
 		})
 
 		dispatch(createCategory(category))
+	}
+export const deleteCategoryTc =
+	({ categoryId }: { categoryId: IFinanceCategory['id'] }): AppThunk =>
+	async (dispatch) => {
+		const { id } = await Http.delete({
+			url: 'api/finance-category/' + categoryId,
+		})
+
+		dispatch(deleteCategory(id))
 	}
 export const getCategories = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categories.status !== 'idle') return
