@@ -60,7 +60,7 @@ export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) =
 					</FormRow>
 
 					<ModalButtonsContainer>
-						<Button color="light" onClick={closeModal}>
+						<Button color="light" onClick={closeModal} type="button">
 							Cancel
 						</Button>
 						<Button type="submit">Submit</Button>

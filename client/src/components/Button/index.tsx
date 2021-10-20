@@ -5,9 +5,9 @@ import cx from 'classnames'
 import s from './index.module.css'
 
 // Types
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, SyntheticEvent } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
 
-export const Button = ({ children, color = 'primary', onClick = () => {} }: IProps) => {
+export const Button = ({ children, color = 'primary', ...rest }: IProps) => {
 	const cxButton = cx({
 		[s.Button]: true,
 		[s.ButtonDanger]: color === 'danger',
@@ -16,7 +16,7 @@ export const Button = ({ children, color = 'primary', onClick = () => {} }: IPro
 	})
 
 	return (
-		<button className={cxButton} onClick={onClick}>
+		<button className={cxButton} {...rest}>
 			{children}
 		</button>
 	)
@@ -25,5 +25,4 @@ export const Button = ({ children, color = 'primary', onClick = () => {} }: IPro
 type IProps = {
 	color?: 'danger' | 'light' | 'primary'
 	children: ReactNode
-	onClick?: (e?: SyntheticEvent) => void
 } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>

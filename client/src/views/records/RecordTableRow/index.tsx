@@ -35,7 +35,7 @@ export const RecordTableRow = ({ categories, record }: IProps) => {
 				<RecordModal
 					categories={categories}
 					closeModal={() => setIsRecordEditingModalShown(false)}
-					record={null}
+					record={record}
 				/>
 			)}
 		</>

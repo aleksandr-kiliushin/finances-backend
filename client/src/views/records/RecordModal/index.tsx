@@ -30,7 +30,9 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 		  }
 		: { date: '2021-11-01' }
 
-	const { handleSubmit, register } = useForm<IFormValues>({ defaultValues })
+	const { handleSubmit, register, watch } = useForm<IFormValues>({ defaultValues })
+
+	console.log(watch())
 
 	const submitRecordForm: SubmitHandler<IFormValues> = ({ amount, categoryId, date }) => {
 		if (record) {
@@ -68,7 +70,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 					</FormRow>
 
 					<ModalButtonsContainer>
-						<Button color="light" onClick={closeModal}>
+						<Button color="light" onClick={closeModal} type="button">
 							Cancel
 						</Button>
 						<Button type="submit">Submit</Button>
