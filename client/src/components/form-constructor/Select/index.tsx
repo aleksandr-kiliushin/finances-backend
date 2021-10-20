@@ -6,9 +6,16 @@ import sCommon from '#components/form-constructor/index.module.css'
 // Types
 import { DetailedHTMLProps, ForwardedRef, SelectHTMLAttributes } from 'react'
 
-const Select_ = ({ options, ...rest }: IProps, ref: ForwardedRef<HTMLSelectElement>) => {
+const Select_ = (
+	{ options, placeholder, ...rest }: IProps,
+	ref: ForwardedRef<HTMLSelectElement>,
+) => {
 	return (
 		<select className={sCommon.Input} ref={ref} {...rest}>
+			<option value="" disabled selected>
+				{placeholder ?? 'Select an option ...'}
+			</option>
+
 			{options.map(({ id, label }) => (
 				<option key={id} value={id}>
 					{label}
@@ -27,6 +34,7 @@ interface ISelectProps {
 interface IOption {
 	id: string
 	label: string
+	placeholder?: string
 }
 
 type IProps = ISelectProps &
