@@ -32,7 +32,10 @@ export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
 			</ModalHeader>
 
 			<ModalBody>
-				Are you sure you want to delete <code>{name}</code> category?
+				<p>
+					Are you sure you want to delete <strong>{name}</strong> category?
+				</p>
+
 				<ModalButtonsContainer>
 					<Button color="light" onClick={closeModal}>
 						Cancel
