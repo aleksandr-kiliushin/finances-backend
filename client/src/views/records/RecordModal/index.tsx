@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { createCategoryTc, updateCategoryTc } from '#models/finance'
+import { createRecordTc, updateRecordTc } from '#models/finance'
 
 // Components
 import { Modal } from '#components/Modal'
@@ -14,26 +14,42 @@ import { Button } from '#components/Button'
 import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
-import { RadioGroup } from '#components/form-constructor/RadioGroup'
 
 // Types
 import { SubmitHandler } from 'react-hook-form'
-import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
+import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const RecordModal = ({ category, categoryTypes, closeModal }: IProps) => {
+export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 	const dispatch = useAppDispatch()
 
-	const defaultValues = category
-		? { name: category.name, typeId: String(category.type.id) }
-		: { name: '', typeId: undefined }
+	const defaultValues = record
+		? {
+				amount: record.amount,
+				categoryId: String(record.category.id),
+				date: record.date,
+		  }
+		: { date: '2021-11-01' }
 
 	const { handleSubmit, register } = useForm<IFormValues>({ defaultValues })
 
-	const submitCategoryForm: SubmitHandler<IFormValues> = ({ name, typeId }) => {
-		if (category) {
-			dispatch(updateCategoryTc({ categoryId: category.id, name, typeId: Number(typeId) }))
+	const submitRecordForm: SubmitHandler<IFormValues> = ({ amount, categoryId, date }) => {
+		if (record) {
+			dispatch(
+				updateRecordTc({
+					amount,
+					categoryId: Number(categoryId),
+					date,
+					recordId: record.id,
+				}),
+			)
 		} else {
-			dispatch(createCategoryTc({ name, typeId: Number(typeId) }))
+			dispatch(
+				createRecordTc({
+					amount,
+					categoryId: Number(categoryId),
+					date,
+				}),
+			)
 		}
 
 		closeModal()
@@ -42,21 +58,13 @@ export const RecordModal = ({ category, categoryTypes, closeModal }: IProps) => 
 	return (
 		<Modal closeModal={closeModal}>
 			<ModalHeader>
-				<h4>{!!category ? 'Edit category' : 'Create category'}</h4>
+				<h4>{record ? 'Edit record' : 'Create record'}</h4>
 			</ModalHeader>
 
 			<ModalBody>
-				<Form onSubmit={handleSubmit(submitCategoryForm)}>
+				<Form onSubmit={handleSubmit(submitRecordForm)}>
 					<FormRow label="Name">
-						<PlainInput {...register('name', { required: true })} />
-					</FormRow>
-					<FormRow label="Type">
-						<RadioGroup
-							isRequired
-							name="typeId"
-							options={categoryTypes.map(({ id, name }) => ({ id, label: name }))}
-							register={register}
-						/>
+						<PlainInput {...register('amount', { required: true })} />
 					</FormRow>
 
 					<ModalButtonsContainer>
@@ -72,12 +80,13 @@ export const RecordModal = ({ category, categoryTypes, closeModal }: IProps) => 
 }
 
 interface IProps {
-	category: IFinanceCategory | null
-	categoryTypes: IFinanceCategoryType[]
+	categories: IFinanceCategory[]
 	closeModal: () => void
+	record: IFinanceRecord | null
 }
 
 interface IFormValues {
-	name: IFinanceCategory['name']
-	typeId: string
+	amount: IFinanceRecord['amount']
+	date: IFinanceRecord['date']
+	categoryId: string
 }

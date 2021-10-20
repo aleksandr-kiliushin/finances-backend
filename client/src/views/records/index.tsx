@@ -7,7 +7,6 @@ import { getCategories, getRecords } from '#models/finance'
 
 // Components
 import { Button } from '#components/Button'
-import { Svg } from '#components/Svg'
 import { SwitchInput } from '#components/form-constructor/SwitchInput'
 import { Table } from '#components/Table'
 import { TableHeader } from '#components/Table/TableHeader'
@@ -56,26 +55,16 @@ export const Records = () => {
 					</TableCell>
 				</TableRow>
 
-				{records.items.map(({ amount, category, date, id }) => (
-					<TableRow cnTableRow={s.TableRow} key={id}>
-						<TableCell>{amount}</TableCell>
-						<TableCell>{category.name}</TableCell>
-						<TableCell>{date.slice(2)}</TableCell>
-						<TableCell>
-							<Svg name="pencil" />
-						</TableCell>
-						<TableCell>
-							<Svg name="trash-can" />
-						</TableCell>
-					</TableRow>
+				{records.items.map((record) => (
+					<RecordTableRow categories={categories.items} key={record.id} record={record} />
 				))}
 			</Table>
 
 			{isRecordCreatingModalShown && (
 				<RecordModal
-					record={null}
 					categories={categories.items}
 					closeModal={() => setIsRecordCreatingModalShown(false)}
+					record={null}
 				/>
 			)}
 		</>

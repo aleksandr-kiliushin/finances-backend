@@ -4,24 +4,25 @@ import React, { useState } from 'react'
 import { Svg } from '#components/Svg'
 import { TableRow } from '#components/Table/TableRow'
 import { TableCell } from '#components/Table/TableCell'
-import { CategoryModal } from '#views/settings/CategoryModal'
+import { RecordModal } from '#views/records/RecordModal'
 
 // Styles
 import s from './index.module.css'
 
 // Types
-import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
+import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const RecordTableRow = ({ category, categoryTypes }: IProps) => {
+export const RecordTableRow = ({ categories, record }: IProps) => {
 	const [isRecordEditingModalShown, setIsRecordEditingModalShown] = useState(false)
 
-	const { name, type } = category
+	const { amount, date, category } = record
 
 	return (
 		<>
 			<TableRow cnTableRow={s.TableRow}>
-				<TableCell>{name}</TableCell>
-				<TableCell>{type.name}</TableCell>
+				<TableCell>{amount}</TableCell>
+				<TableCell>{category.name}</TableCell>
+				<TableCell>{date.slice(2)}</TableCell>
 				<TableCell onClick={() => setIsRecordEditingModalShown(true)}>
 					<Svg name="pencil" />
 				</TableCell>
@@ -31,10 +32,10 @@ export const RecordTableRow = ({ category, categoryTypes }: IProps) => {
 			</TableRow>
 
 			{isRecordEditingModalShown && (
-				<CategoryModal
-					category={category}
-					categoryTypes={categoryTypes}
+				<RecordModal
+					categories={categories}
 					closeModal={() => setIsRecordEditingModalShown(false)}
+					record={null}
 				/>
 			)}
 		</>
@@ -42,6 +43,6 @@ export const RecordTableRow = ({ category, categoryTypes }: IProps) => {
 }
 
 interface IProps {
-	category: IFinanceCategory
-	categoryTypes: IFinanceCategoryType[]
+	record: IFinanceRecord
+	categories: IFinanceCategory[]
 }

@@ -37,6 +37,9 @@ const slice = createSlice({
 		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
 			state.categories.items.push(action.payload)
 		},
+		createRecord: (state, action: PayloadAction<IFinanceRecord>) => {
+			state.records.notTrashed.items.push(action.payload)
+		},
 		deleteCategory: (state, action: PayloadAction<IFinanceCategory['id']>) => {
 			state.categories.items = state.categories.items.filter(
 				(category) => category.id !== action.payload,
@@ -73,21 +76,31 @@ const slice = createSlice({
 
 			state.categories.items[categoryIndex] = action.payload
 		},
+		updateRecord: (state, action: PayloadAction<IFinanceRecord>) => {
+			const recordIndex = state.records.notTrashed.items.findIndex(
+				(record) => record.id === action.payload.id,
+			)
+
+			state.records.notTrashed.items[recordIndex] = action.payload
+		},
 	},
 })
 
 export const {
 	createCategory,
+	createRecord,
 	deleteCategory,
 	setCategories,
 	setCategoryTypes,
 	setNotTrashedRecords,
 	setTrashedRecords,
 	updateCategory,
+	updateRecord,
 } = slice.actions
 export const financeReducer = slice.reducer
 
 // Thunks
+// To do: put thunk-creators to another file
 export const createCategoryTc =
 	({
 		name,
@@ -107,6 +120,30 @@ export const createCategoryTc =
 
 		dispatch(createCategory(category))
 	}
+
+export const createRecordTc =
+	({
+		amount,
+		categoryId,
+		date,
+	}: {
+		amount: IFinanceRecord['amount']
+		categoryId: IFinanceCategory['id']
+		date: IFinanceRecord['date']
+	}): AppThunk =>
+	async (dispatch) => {
+		const record = await Http.post({
+			payload: {
+				amount,
+				categoryId,
+				date,
+			},
+			url: 'api/finance-record',
+		})
+
+		dispatch(createRecord(record))
+	}
+
 export const deleteCategoryTc =
 	({ categoryId }: { categoryId: IFinanceCategory['id'] }): AppThunk =>
 	async (dispatch) => {
@@ -116,16 +153,19 @@ export const deleteCategoryTc =
 
 		dispatch(deleteCategory(id))
 	}
+
 export const getCategories = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categories.status !== 'idle') return
 	const categories = await Http.get({ url: 'api/finance-category' })
 	dispatch(setCategories(categories))
 }
+
 export const getCategoryTypes = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categoryTypes.status !== 'idle') return
 	const categoryTypes = await Http.get({ url: 'api/finance-category-type' })
 	dispatch(setCategoryTypes(categoryTypes))
 }
+
 export const getRecords = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.records.notTrashed.status === 'idle') {
 		const records = await Http.get({ url: 'api/finance-record?isTrashed=false' })
@@ -137,6 +177,7 @@ export const getRecords = (): AppThunk => async (dispatch, getState) => {
 		dispatch(setTrashedRecords(records))
 	}
 }
+
 export const updateCategoryTc =
 	({
 		categoryId,
@@ -157,6 +198,31 @@ export const updateCategoryTc =
 		})
 
 		dispatch(updateCategory(category))
+	}
+
+export const updateRecordTc =
+	({
+		amount,
+		categoryId,
+		date,
+		recordId,
+	}: {
+		amount: IFinanceRecord['amount']
+		categoryId: IFinanceCategory['id']
+		date: IFinanceRecord['date']
+		recordId: IFinanceRecord['id']
+	}): AppThunk =>
+	async (dispatch) => {
+		const record = await Http.patch({
+			payload: {
+				amount,
+				categoryId,
+				date,
+			},
+			url: 'api/finance-record/' + recordId,
+		})
+
+		dispatch(updateRecord(record))
 	}
 
 // Types
