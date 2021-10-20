@@ -14,6 +14,7 @@ import { Button } from '#components/Button'
 import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
+import { Select } from '#components/form-constructor/Select'
 
 // Types
 import { SubmitHandler } from 'react-hook-form'
@@ -38,7 +39,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 		if (record) {
 			dispatch(
 				updateRecordTc({
-					amount,
+					amount: Number(amount),
 					categoryId: Number(categoryId),
 					date,
 					recordId: record.id,
@@ -47,7 +48,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 		} else {
 			dispatch(
 				createRecordTc({
-					amount,
+					amount: Number(amount),
 					categoryId: Number(categoryId),
 					date,
 				}),
@@ -69,7 +70,10 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 						<PlainInput type="number" {...register('amount', { required: true })} />
 					</FormRow>
 					<FormRow label="Category">
-						<PlainInput {...register('categoryId', { required: true })} />
+						<Select
+							options={categories.map(({ id, name }) => ({ id: String(id), label: name }))}
+							{...register('categoryId')}
+						/>
 					</FormRow>
 					<FormRow label="Date">
 						<PlainInput type="date" {...register('date', { required: true })} />
