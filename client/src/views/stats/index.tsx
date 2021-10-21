@@ -33,8 +33,8 @@ export const Stats = () => {
 
 		const endDate = new Date()
 		const mapSumToDate: {
-			x: string
-			y: number
+			x: number
+			y: string
 		}[] = []
 
 		const currentDate = new Date(items[0].date)
@@ -52,8 +52,8 @@ export const Stats = () => {
 				}, currentSum)
 
 			mapSumToDate.push({
-				x: stringifiedCurrentDate,
-				y: currentSum,
+				x: currentSum,
+				y: stringifiedCurrentDate,
 			})
 
 			currentDate.setDate(currentDate.getDate() + 1)
@@ -64,10 +64,9 @@ export const Stats = () => {
 			data: {
 				datasets: [
 					{
-						borderColor: 'darkgreen',
-						borderWidth: 1,
+						borderColor: 'steelblue',
+						borderWidth: 2,
 						data: Object.values(mapSumToDate),
-						fill: true,
 						label: 'Your finance, RUB',
 						pointBorderColor: 'darkgreen',
 						pointRadius: 0,
@@ -77,7 +76,7 @@ export const Stats = () => {
 			options: {
 				maintainAspectRatio: false, // So chart takes the available height.
 				scales: {
-					x: {
+					y: {
 						ticks: {
 							callback: (tickValue) => {
 								if (typeof tickValue !== 'number') return 'error'
@@ -89,17 +88,17 @@ export const Stats = () => {
 									year: '2-digit',
 								})
 							},
-							maxRotation: 90,
-							minRotation: 90,
 						},
+						type: 'category',
 					},
-					y: {
+					x: {
 						beginAtZero: true,
+						position: 'top',
 						ticks: {
 							callback: (tickValue) =>
 								typeof tickValue === 'number' ? tickValue / 1_000_000 : 'error',
-							padding: 1,
 						},
+						type: 'linear',
 					},
 				},
 			},
