@@ -28,12 +28,13 @@
 	left: 2px;
 	height: 18px;
 	width: 18px;
-	background: var(--color-theme-1);
+	background: var(--soft-gray);
 	border-radius: 50%;
 	content: '';
 	transition: 0.4s;
 }
 
 .SwitchInput:checked + .Slider:before {
+	background: var(--color-theme-1);
 	transform: translateX(16px);
 }

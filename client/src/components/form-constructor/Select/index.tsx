@@ -11,8 +11,8 @@ const Select_ = (
 	ref: ForwardedRef<HTMLSelectElement>,
 ) => {
 	return (
-		<select className={sCommon.Input} ref={ref} {...rest}>
-			<option value="" disabled selected>
+		<select className={sCommon.Input} defaultValue="" ref={ref} {...rest}>
+			<option value="" disabled>
 				{placeholder ?? 'Select an option ...'}
 			</option>
 
