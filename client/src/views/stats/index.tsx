@@ -75,6 +75,7 @@ export const Stats = () => {
 				],
 			},
 			options: {
+				maintainAspectRatio: false, // So chart takes the available height.
 				scales: {
 					x: {
 						ticks: {
