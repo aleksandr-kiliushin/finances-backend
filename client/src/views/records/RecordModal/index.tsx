@@ -34,9 +34,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 				date: new Date().toISOString().split('T')[0],
 		  }
 
-	const { handleSubmit, register, watch } = useForm<IFormValues>({ defaultValues })
-
-	console.log(watch())
+	const { handleSubmit, register } = useForm<IFormValues>({ defaultValues })
 
 	const submitRecordForm: SubmitHandler<IFormValues> = ({ amount, categoryId, date }) => {
 		if (record) {
