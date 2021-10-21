@@ -6,4 +6,6 @@ export class GetFinanceRecordsDto {
 	isTrashed?: IFinanceRecord['isTrashed']
 	orderingByDate?: IOrdering
 	orderingById?: IOrdering
+	skip?: number
+	take?: number
 }

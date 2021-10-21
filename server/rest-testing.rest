@@ -69,7 +69,7 @@ Authorization: Bearer MY_TOKEN
 
 
 ### Finance record ############################################################
-GET http://localhost:3080/api/finance-record
+GET http://localhost:3080/api/finance-record?take=4&skip=2
 Authorization: Bearer MY_TOKEN
 
 ###

@@ -20,6 +20,8 @@ export class FinanceRecordService {
 	getFinanceRecords({
 		orderingByDate,
 		orderingById,
+		skip,
+		take,
 		...where
 	}: GetFinanceRecordsDto): Promise<FinanceRecordEntity[]> {
 		return this.financeRecordRepository.find({
@@ -28,6 +30,8 @@ export class FinanceRecordService {
 				id: orderingById,
 			},
 			relations: ['category', 'category.type'],
+			skip: skip ?? 0,
+			take: take ?? 50,
 			where,
 		})
 	}
