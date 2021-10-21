@@ -5,9 +5,6 @@ import { Chart, registerables } from 'chart.js'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getChartRecordsTc } from '#models/finance/action-creators'
 
-// Styles
-import s from './index.module.css'
-
 export const Stats = () => {
 	const dispatch = useAppDispatch()
 
@@ -110,5 +107,5 @@ export const Stats = () => {
 
 	if (chartRecords.status === 'idle') return null
 
-	return <canvas className={s.Chart} ref={canvasRef} />
+	return <canvas ref={canvasRef} />
 }
