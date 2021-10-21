@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import { getCategories, getRecords } from '#models/finance/action-creators'
+import { getCategories, getRecordsTc } from '#models/finance/action-creators'
 
 // Components
 import { Button } from '#components/Button'
@@ -14,6 +14,7 @@ import { TableRow } from '#components/Table/TableRow'
 import { TableCell } from '#components/Table/TableCell'
 import { RecordModal } from './RecordModal'
 import { RecordTableRow } from './RecordTableRow'
+import { Loader } from '#components/Loader'
 
 // Styles
 import s from './index.module.css'
@@ -32,10 +33,29 @@ export const Records = () => {
 		(state) => state.finance.records[isTrash ? 'trashed' : 'notTrashed'],
 	)
 
+	const spinner = useRef(null)
+
 	useEffect(() => {
 		dispatch(getCategories())
-		dispatch(getRecords())
 	}, [])
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(() => dispatch(getRecordsTc()), {
+			root: null, // window by default.
+			rootMargin: '0px',
+			threshold: 0.25,
+		})
+
+		if (spinner.current !== null) {
+			observer.observe(spinner.current)
+		}
+
+		return () => {
+			if (spinner.current !== null) {
+				observer.unobserve(spinner.current)
+			}
+		}
+	}, [spinner, getRecordsTc])
 
 	return (
 		<>
@@ -63,6 +83,8 @@ export const Records = () => {
 						record={record}
 					/>
 				))}
+
+				{records.status !== 'completed' && <Loader ref={spinner} />}
 			</Table>
 
 			{isRecordCreatingModalShown && (

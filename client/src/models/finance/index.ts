@@ -37,6 +37,10 @@ const slice = createSlice({
 	name: 'finance',
 	initialState,
 	reducers: {
+		addNotTrashedRecordsItems: (state, action: PayloadAction<IFinanceRecord[]>) => {
+			state.records.notTrashed.items.push(...action.payload)
+		},
+
 		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
 			state.categories.items.unshift(action.payload)
 		},
@@ -86,11 +90,8 @@ const slice = createSlice({
 			}
 		},
 
-		setNotTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
-			state.records.notTrashed = {
-				items: action.payload,
-				status: 'success',
-			}
+		setNotTrashedRecordsStatus: (state, action: PayloadAction<ILoadingStatus>) => {
+			state.records.notTrashed.status = action.payload
 		},
 
 		setTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
@@ -126,6 +127,7 @@ const slice = createSlice({
 })
 
 export const {
+	addNotTrashedRecordsItems,
 	createCategory,
 	createRecord,
 	deleteCategory,
@@ -134,7 +136,7 @@ export const {
 	setCategories,
 	setCategoryTypes,
 	setChartRecords,
-	setNotTrashedRecords,
+	setNotTrashedRecordsStatus,
 	setTrashedRecords,
 	updateCategory,
 	updateRecord,

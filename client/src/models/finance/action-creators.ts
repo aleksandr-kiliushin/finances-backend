@@ -1,5 +1,6 @@
 // Models
 import {
+	addNotTrashedRecordsItems,
 	createCategory,
 	createRecord,
 	deleteCategory,
@@ -8,7 +9,7 @@ import {
 	setCategories,
 	setCategoryTypes,
 	setChartRecords,
-	setNotTrashedRecords,
+	setNotTrashedRecordsStatus,
 	setTrashedRecords,
 	updateCategory,
 	updateRecord,
@@ -119,20 +120,19 @@ export const getChartRecordsTc = (): AppThunk => async (dispatch, getState) => {
 	dispatch(setChartRecords(chartRecords))
 }
 
-export const getRecords = (): AppThunk => async (dispatch, getState) => {
-	if (getState().finance.records.notTrashed.status === 'idle') {
-		const records = await Http.get({
-			url: 'api/finance-record?isTrashed=false&orderingByDate=DESC&orderingById=DESC',
-		})
-		dispatch(setNotTrashedRecords(records))
-	}
+export const getRecordsTc = (): AppThunk => async (dispatch, getState) => {
+	const notTrashedRecords = getState().finance.records.notTrashed
 
-	if (getState().finance.records.trashed.status === 'idle') {
-		const records = await Http.get({
-			url: 'api/finance-record?isTrashed=true&orderingByDate=DESC&orderingById=DESC',
-		})
-		dispatch(setTrashedRecords(records))
-	}
+	if (notTrashedRecords.status === 'loading') return
+
+	setNotTrashedRecordsStatus('loading')
+
+	const records = await Http.get({
+		url: `api/finance-record?isTrashed=false&orderingByDate=DESC&orderingById=DESC&skip=${notTrashedRecords.items.length}`,
+	})
+	dispatch(addNotTrashedRecordsItems(records))
+
+	setNotTrashedRecordsStatus('success')
 }
 
 export const restoreRecordTc =
