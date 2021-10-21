@@ -29,9 +29,14 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 				categoryId: String(record.category.id),
 				date: record.date,
 		  }
-		: { date: new Date().toISOString().split('T')[0] }
+		: {
+				categoryId: '',
+				date: new Date().toISOString().split('T')[0],
+		  }
 
-	const { handleSubmit, register } = useForm<IFormValues>({ defaultValues })
+	const { handleSubmit, register, watch } = useForm<IFormValues>({ defaultValues })
+
+	console.log(watch())
 
 	const submitRecordForm: SubmitHandler<IFormValues> = ({ amount, categoryId, date }) => {
 		if (record) {
@@ -71,11 +76,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 						<Select
 							options={categories.map(({ id, name }) => ({ id: String(id), label: name }))}
 							placeholder="Select a category ..."
-							{...(register('categoryId'),
-							{
-								defaultValue: record ? String(record.category.id) : '',
-								required: true,
-							})}
+							{...register('categoryId', { required: true })}
 						/>
 					</FormRow>
 					<FormRow label="Date">
