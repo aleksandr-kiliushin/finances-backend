@@ -71,7 +71,11 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 						<Select
 							options={categories.map(({ id, name }) => ({ id: String(id), label: name }))}
 							placeholder="Select a category ..."
-							{...(register('categoryId'), { required: true })}
+							{...(register('categoryId'),
+							{
+								defaultValue: record ? String(record.category.id) : '',
+								required: true,
+							})}
 						/>
 					</FormRow>
 					<FormRow label="Date">
