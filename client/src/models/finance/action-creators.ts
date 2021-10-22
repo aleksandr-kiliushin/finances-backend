@@ -129,7 +129,7 @@ export const getRecordsTc =
 		dispatch(setRecordsStatus({ isTrash, status: 'loading' }))
 
 		const records = await Http.get({
-			url: `api/finance-record?isTrashed=${isTrash}&orderingByDate=DESC&orderingById=DESC&skip=${existingRecords.items.length}`,
+			url: `api/finance-record?isTrashed=${isTrash}&orderingByDate=DESC&orderingById=DESC&skip=${existingRecords.items.length}&take=50`,
 		})
 
 		dispatch(addRecordsItems({ isTrash, items: records }))

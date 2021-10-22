@@ -31,7 +31,7 @@ export class FinanceRecordService {
 			},
 			relations: ['category', 'category.type'],
 			skip: skip ?? 0,
-			take: take ?? 50,
+			...(take ? { take } : {}),
 			where,
 		})
 	}
