@@ -21,3 +21,6 @@ start-client:
 	npm run start --prefix client
 start-server:
 	npm run start --prefix server
+
+test-client:
+	npm run test --prefix client
