@@ -24,7 +24,7 @@ export const Records = () => {
 
 	const [isRecordCreatingModalShown, setIsRecordCreatingModalShown] = useState(false)
 
-	const { register, watch } = useForm<IFormValues>()
+	const { register, watch } = useForm<IFormValues>({ defaultValues: { isTrash: false } })
 
 	const { isTrash } = watch()
 
@@ -33,7 +33,7 @@ export const Records = () => {
 		(state) => state.finance.records[isTrash ? 'trashed' : 'notTrashed'],
 	)
 
-	const spinner = useRef(null)
+	const loaderRef = useRef(null)
 
 	useEffect(() => {
 		dispatch(getCategories())
@@ -42,16 +42,16 @@ export const Records = () => {
 	useEffect(() => {
 		const observer = new IntersectionObserver(() => dispatch(getRecordsTc({ isTrash })))
 
-		if (spinner.current !== null) {
-			observer.observe(spinner.current)
+		if (loaderRef.current !== null) {
+			observer.observe(loaderRef.current)
 		}
 
 		return () => {
-			if (spinner.current !== null) {
-				observer.unobserve(spinner.current)
+			if (loaderRef.current !== null) {
+				observer.unobserve(loaderRef.current)
 			}
 		}
-	}, [spinner, getRecordsTc])
+	}, [getRecordsTc, isTrash, loaderRef])
 
 	return (
 		<>
@@ -80,7 +80,7 @@ export const Records = () => {
 					/>
 				))}
 
-				{records.status !== 'completed' && <Loader ref={spinner} />}
+				{records.status !== 'completed' && <Loader ref={loaderRef} />}
 			</Table>
 
 			{isRecordCreatingModalShown && (
