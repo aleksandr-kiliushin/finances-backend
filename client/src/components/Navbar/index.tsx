@@ -7,7 +7,7 @@ import cx from 'classnames'
 import { Svg } from '#components/Svg'
 
 // Utils
-import { useAppSelector } from '#utils/hooks'
+// import { useAppSelector } from '#utils/hooks'
 
 // Styles
 import s from './index.module.css'
@@ -18,9 +18,9 @@ import { ISvgProps } from '#components/Svg'
 export const Navbar = () => {
 	const { pathname } = useLocation()
 
-	const { isUserLoggedIn } = useAppSelector((state) => state.user)
+	// const { isUserLoggedIn } = useAppSelector((state) => state.user)
 
-	if (!isUserLoggedIn) return null
+	// if (!isUserLoggedIn) return null
 
 	const sectionsData: ISection[] = [
 		{ path: '/', svgName: 'home' },

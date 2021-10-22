@@ -38,7 +38,8 @@ export const App = () => {
 		dispatch(getCurrentUserData())
 	}, [])
 
-	const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
+	// const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
+	const cnView = s.ViewWithNavbar
 
 	if (redirectPath !== null && redirectPath !== pathname) {
 		return <Redirect to={redirectPath} />
