@@ -37,6 +37,8 @@ export const Records = () => {
 
 	useEffect(() => {
 		dispatch(getCategories())
+		dispatch(getRecordsTc({ isTrash: false }))
+		dispatch(getRecordsTc({ isTrash: true }))
 	}, [])
 
 	useEffect(() => {

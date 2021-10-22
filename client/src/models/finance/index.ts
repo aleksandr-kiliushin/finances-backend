@@ -5,9 +5,6 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { ILoadingStatus } from '#interfaces/common'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
 
-// Utils
-import { Http } from '#utils/Http'
-
 const initialState: IState = {
 	categories: {
 		items: [],
@@ -67,9 +64,9 @@ const slice = createSlice({
 			state,
 			action: PayloadAction<{ permanently: boolean; record: IFinanceRecord }>,
 		) => {
-			state.records.notTrashed.items = state.records.notTrashed.items.filter(
-				(record) => record.id !== action.payload.record.id,
-			)
+			state.records[action.payload.permanently ? 'trashed' : 'notTrashed'].items = state.records[
+				action.payload.permanently ? 'trashed' : 'notTrashed'
+			].items.filter((record) => record.id !== action.payload.record.id)
 
 			if (action.payload.permanently) return
 
