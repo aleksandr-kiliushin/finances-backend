@@ -40,11 +40,7 @@ export const Records = () => {
 	}, [])
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(() => dispatch(getRecordsTc()), {
-			root: null, // window by default.
-			rootMargin: '0px',
-			threshold: 0.25,
-		})
+		const observer = new IntersectionObserver(() => dispatch(getRecordsTc({ isTrash })))
 
 		if (spinner.current !== null) {
 			observer.observe(spinner.current)

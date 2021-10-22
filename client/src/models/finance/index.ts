@@ -37,8 +37,16 @@ const slice = createSlice({
 	name: 'finance',
 	initialState,
 	reducers: {
-		addNotTrashedRecordsItems: (state, action: PayloadAction<IFinanceRecord[]>) => {
-			state.records.notTrashed.items.push(...action.payload)
+		addRecordsItems: (
+			state,
+			action: PayloadAction<{
+				isTrash: boolean
+				items: IFinanceRecord[]
+			}>,
+		) => {
+			const { isTrash, items } = action.payload
+
+			state.records[isTrash ? 'trashed' : 'notTrashed'].items.push(...items)
 		},
 
 		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
@@ -90,15 +98,13 @@ const slice = createSlice({
 			}
 		},
 
-		setNotTrashedRecordsStatus: (state, action: PayloadAction<ILoadingStatus>) => {
-			state.records.notTrashed.status = action.payload
-		},
+		setRecordsStatus: (
+			state,
+			action: PayloadAction<{ isTrash: boolean; status: ILoadingStatus }>,
+		) => {
+			const { isTrash, status } = action.payload
 
-		setTrashedRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
-			state.records.trashed = {
-				items: action.payload,
-				status: 'success',
-			}
+			state.records[isTrash ? 'trashed' : 'notTrashed'].status = status
 		},
 
 		setCategoryTypes: (state, action: PayloadAction<IFinanceCategoryType[]>) => {
@@ -127,7 +133,7 @@ const slice = createSlice({
 })
 
 export const {
-	addNotTrashedRecordsItems,
+	addRecordsItems,
 	createCategory,
 	createRecord,
 	deleteCategory,
@@ -136,8 +142,7 @@ export const {
 	setCategories,
 	setCategoryTypes,
 	setChartRecords,
-	setNotTrashedRecordsStatus,
-	setTrashedRecords,
+	setRecordsStatus,
 	updateCategory,
 	updateRecord,
 } = slice.actions
