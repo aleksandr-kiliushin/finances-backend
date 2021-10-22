@@ -11,8 +11,8 @@ export const Button = ({ children, color = 'primary', ...rest }: IProps) => {
 	const cxButton = cx({
 		[s.Button]: true,
 		[s.ButtonDanger]: color === 'danger',
-		[s.ButtonPrimary]: color === 'primary',
 		[s.ButtonLight]: color === 'light',
+		[s.ButtonPrimary]: color === 'primary',
 	})
 
 	return (
