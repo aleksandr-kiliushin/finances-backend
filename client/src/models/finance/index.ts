@@ -143,6 +143,15 @@ export const getRecordsTc = createAsyncThunk<void, { isTrash: boolean }, { state
 	},
 )
 
+export const restoreRecordTc = createAsyncThunk(
+	'finance/restoreRecordTc',
+	async ({ recordId }: { recordId: IFinanceRecord['id'] }) =>
+		await Http.patch({
+			payload: { isTrashed: false },
+			url: `api/finance-record/${recordId}`,
+		}),
+)
+
 const slice = createSlice({
 	name: 'finance',
 	initialState,
@@ -157,14 +166,6 @@ const slice = createSlice({
 			const { isTrash, items } = action.payload
 
 			state.records[isTrash ? 'trashed' : 'notTrashed'].items.push(...items)
-		},
-
-		restoreRecord: (state, action: PayloadAction<IFinanceRecord>) => {
-			state.records.trashed.items = state.records.trashed.items.filter(
-				(record) => record.id !== action.payload.id,
-			)
-
-			state.records.notTrashed.items.unshift(action.payload)
 		},
 
 		setRecordsStatus: (
@@ -260,11 +261,18 @@ const slice = createSlice({
 
 			state.chartData = { items: action.payload, status: 'success' }
 		})
+
+		builder.addCase(restoreRecordTc.fulfilled, (state, action: PayloadAction<IFinanceRecord>) => {
+			state.records.trashed.items = state.records.trashed.items.filter(
+				(record) => record.id !== action.payload.id,
+			)
+
+			state.records.notTrashed.items.unshift(action.payload)
+		})
 	},
 })
 
-export const { addRecordsItems, restoreRecord, setRecordsStatus, updateCategory, updateRecord } =
-	slice.actions
+export const { addRecordsItems, setRecordsStatus, updateCategory, updateRecord } = slice.actions
 export const financeReducer = slice.reducer
 
 // Types

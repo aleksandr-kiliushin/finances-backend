@@ -1,5 +1,5 @@
 // Models
-import { restoreRecord, updateCategory, updateRecord } from '#models/finance'
+import { updateCategory, updateRecord } from '#models/finance'
 
 // Utils
 import { Http } from '#utils/Http'
@@ -7,17 +7,6 @@ import { Http } from '#utils/Http'
 // Types
 import { AppThunk } from '#models/store'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
-
-export const restoreRecordTc =
-	(recordId: IFinanceRecord['id']): AppThunk =>
-	async (dispatch) => {
-		const record = await Http.patch({
-			payload: { isTrashed: false },
-			url: 'api/finance-record/' + recordId,
-		})
-
-		dispatch(restoreRecord(record))
-	}
 
 export const updateCategoryTc =
 	({
