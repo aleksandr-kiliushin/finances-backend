@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { deleteRecordTc, restoreRecordTc } from '#models/finance/action-creators'
+import { deleteRecordTc } from '#models/finance'
+import { restoreRecordTc } from '#models/finance/action-creators'
 
 // Components
 import { Svg } from '#components/Svg'
@@ -40,11 +41,7 @@ export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
 				<TableCell>{category.name}</TableCell>
 				<TableCell>{date.slice(2)}</TableCell>
 				{editOrRestoreTableCell}
-				<TableCell
-					onClick={() =>
-						dispatch(deleteRecordTc({ isTrashed: record.isTrashed, recordId: record.id }))
-					}
-				>
+				<TableCell onClick={() => dispatch(deleteRecordTc(record))}>
 					<Svg name="trash-can" />
 				</TableCell>
 			</TableRow>

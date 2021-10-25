@@ -1,7 +1,6 @@
 // Models
 import {
 	addRecordsItems,
-	deleteRecord,
 	restoreRecord,
 	setCategories,
 	setCategoryTypes,
@@ -17,31 +16,6 @@ import { Http } from '#utils/Http'
 // Types
 import { AppThunk } from '#models/store'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
-
-export const deleteRecordTc =
-	({
-		isTrashed,
-		recordId,
-	}: {
-		isTrashed: IFinanceRecord['isTrashed']
-		recordId: IFinanceRecord['id']
-	}): AppThunk =>
-	async (dispatch) => {
-		let record
-
-		if (isTrashed) {
-			record = await Http.delete({
-				url: 'api/finance-record/' + recordId,
-			})
-		} else {
-			record = await Http.patch({
-				payload: { isTrashed: true },
-				url: 'api/finance-record/' + recordId,
-			})
-		}
-
-		dispatch(deleteRecord({ permanently: isTrashed, record }))
-	}
 
 export const getCategories = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.categories.status !== 'idle') return

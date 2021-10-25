@@ -35,7 +35,7 @@ const initialState: IState = {
 
 /** Thunk creators */
 export const createRecordTc = createAsyncThunk(
-	'finance/createRecord',
+	'finance/createRecordTc',
 	async ({
 		amount,
 		categoryId,
@@ -52,7 +52,7 @@ export const createRecordTc = createAsyncThunk(
 )
 
 export const createCategoryTc = createAsyncThunk(
-	'finance/createCategory',
+	'finance/createCategoryTc',
 	async ({
 		name,
 		typeId,
@@ -67,10 +67,24 @@ export const createCategoryTc = createAsyncThunk(
 )
 
 export const deleteCategoryTc = createAsyncThunk(
-	'finance/deleteCategory',
+	'finance/deleteCategoryTc',
 	async ({ categoryId }: { categoryId: IFinanceCategory['id'] }) => {
 		const { id } = await Http.delete({ url: `api/finance-category/${categoryId}` })
 		return id
+	},
+)
+
+export const deleteRecordTc = createAsyncThunk(
+	'finance/deleteRecordTc',
+	async ({ id, isTrashed }: IFinanceRecord) => {
+		const record = isTrashed
+			? await Http.delete({ url: `api/finance-record/${id}` })
+			: await Http.patch({
+					payload: { isTrashed: true },
+					url: `api/finance-record/${id}`,
+			  })
+
+		return { isPermanentDeletion: isTrashed, record }
 	},
 )
 
@@ -88,19 +102,6 @@ const slice = createSlice({
 			const { isTrash, items } = action.payload
 
 			state.records[isTrash ? 'trashed' : 'notTrashed'].items.push(...items)
-		},
-
-		deleteRecord: (
-			state,
-			action: PayloadAction<{ permanently: boolean; record: IFinanceRecord }>,
-		) => {
-			state.records[action.payload.permanently ? 'trashed' : 'notTrashed'].items = state.records[
-				action.payload.permanently ? 'trashed' : 'notTrashed'
-			].items.filter((record) => record.id !== action.payload.record.id)
-
-			if (action.payload.permanently) return
-
-			state.records.trashed.items.unshift(action.payload.record)
 		},
 
 		restoreRecord: (state, action: PayloadAction<IFinanceRecord>) => {
@@ -177,12 +178,35 @@ const slice = createSlice({
 				)
 			},
 		)
+
+		builder.addCase(
+			deleteRecordTc.fulfilled,
+			(
+				state,
+				action: PayloadAction<{
+					isPermanentDeletion: boolean
+					record: IFinanceRecord
+				}>,
+			) => {
+				const { isPermanentDeletion, record } = action.payload
+				const { id } = record
+
+				const recordsArrayType = isPermanentDeletion ? 'trashed' : 'notTrashed'
+
+				state.records[recordsArrayType].items = state.records[recordsArrayType].items.filter(
+					(record) => record.id !== id,
+				)
+
+				if (isPermanentDeletion) return
+
+				state.records.trashed.items.unshift(record)
+			},
+		)
 	},
 })
 
 export const {
 	addRecordsItems,
-	deleteRecord,
 	restoreRecord,
 	setCategories,
 	setCategoryTypes,
