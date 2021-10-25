@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // Action creators
 import { getCategoriesTc } from '#models/finance'
-import { getCategoryTypes } from '#models/finance/action-creators'
+import { getCategoryTypesTc } from '#models/finance'
 
 // Components
 import { Table } from '#components/Table'
@@ -28,7 +28,7 @@ export const Settings = () => {
 
 	useEffect(() => {
 		dispatch(getCategoriesTc())
-		dispatch(getCategoryTypes())
+		dispatch(getCategoryTypesTc())
 	}, [])
 
 	return (
