@@ -3,23 +3,23 @@ import { Chart, registerables } from 'chart.js'
 
 // Models
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import { getChartRecordsTc } from '#models/finance/action-creators'
+import { getChartDataTc } from '#models/finance'
 
 export const Stats = () => {
 	const dispatch = useAppDispatch()
 
-	const chartRecords = useAppSelector((state) => state.finance.chartRecords)
+	const chartData = useAppSelector((state) => state.finance.chartData)
 
 	const canvasRef = useRef(null)
 
 	useEffect(() => {
-		dispatch(getChartRecordsTc())
+		dispatch(getChartDataTc())
 	}, [])
 
 	useEffect(() => {
-		if (chartRecords.status === 'idle') return
+		if (chartData.status === 'idle') return
 
-		const { items } = chartRecords
+		const { items } = chartData
 
 		const canvas = canvasRef.current as HTMLCanvasElement | null
 
@@ -103,9 +103,9 @@ export const Stats = () => {
 				},
 			},
 		})
-	}, [chartRecords])
+	}, [chartData])
 
-	if (chartRecords.status === 'idle') return null
+	if (chartData.status === 'idle') return null
 
 	return <canvas ref={canvasRef} />
 }

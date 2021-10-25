@@ -1,12 +1,5 @@
 // Models
-import {
-	addRecordsItems,
-	restoreRecord,
-	setChartRecords,
-	setRecordsStatus,
-	updateCategory,
-	updateRecord,
-} from '#models/finance'
+import { restoreRecord, updateCategory, updateRecord } from '#models/finance'
 
 // Utils
 import { Http } from '#utils/Http'
@@ -14,37 +7,6 @@ import { Http } from '#utils/Http'
 // Types
 import { AppThunk } from '#models/store'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
-
-export const getChartRecordsTc = (): AppThunk => async (dispatch, getState) => {
-	if (getState().finance.chartRecords.status !== 'idle') return
-	const chartRecords = await Http.get({
-		url: 'api/finance-record?isTrashed=false&orderingByDate=ASC&orderingById=ASC',
-	})
-	dispatch(setChartRecords(chartRecords))
-}
-
-export const getRecordsTc =
-	({ isTrash }: { isTrash: boolean }): AppThunk =>
-	async (dispatch, getState) => {
-		const existingRecords = getState().finance.records[isTrash ? 'trashed' : 'notTrashed']
-
-		if (['completed', 'loading'].includes(existingRecords.status)) return
-
-		dispatch(setRecordsStatus({ isTrash, status: 'loading' }))
-
-		const records = await Http.get({
-			url: `api/finance-record?isTrashed=${isTrash}&orderingByDate=DESC&orderingById=DESC&skip=${existingRecords.items.length}&take=50`,
-		})
-
-		dispatch(addRecordsItems({ isTrash, items: records }))
-
-		dispatch(
-			setRecordsStatus({
-				isTrash,
-				status: records.length === 0 ? 'completed' : 'success',
-			}),
-		)
-	}
 
 export const restoreRecordTc =
 	(recordId: IFinanceRecord['id']): AppThunk =>

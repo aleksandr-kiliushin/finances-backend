@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 // Models
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCategoriesTc } from '#models/finance'
-import { getRecordsTc } from '#models/finance/action-creators'
+import { getRecordsTc } from '#models/finance'
 
 // Components
 import { Button } from '#components/Button'

@@ -18,7 +18,7 @@ const initialState: IState = {
 		items: [],
 		status: 'idle',
 	},
-	chartRecords: {
+	chartData: {
 		items: [],
 		status: 'idle',
 	},
@@ -108,6 +108,41 @@ export const getCategoryTypesTc = createAsyncThunk<
 	return await Http.get({ url: 'api/finance-category-type' })
 })
 
+export const getChartDataTc = createAsyncThunk<IFinanceRecord[], void, { state: RootState }>(
+	'finance/getChartDataTc',
+	async (_, { getState }) => {
+		if (getState().finance.chartData.status !== 'idle') return []
+
+		return await Http.get({
+			url: 'api/finance-record?isTrashed=false&orderingByDate=ASC&orderingById=ASC',
+		})
+	},
+)
+
+export const getRecordsTc = createAsyncThunk<void, { isTrash: boolean }, { state: RootState }>(
+	'finance/getRecordsTc',
+	async ({ isTrash }, { getState, dispatch }) => {
+		const existingRecords = getState().finance.records[isTrash ? 'trashed' : 'notTrashed']
+
+		if (['completed', 'loading'].includes(existingRecords.status)) return
+
+		dispatch(setRecordsStatus({ isTrash, status: 'loading' }))
+
+		const records = await Http.get({
+			url: `api/finance-record?isTrashed=${isTrash}&orderingByDate=DESC&orderingById=DESC&skip=${existingRecords.items.length}&take=50`,
+		})
+
+		dispatch(addRecordsItems({ isTrash, items: records }))
+
+		dispatch(
+			setRecordsStatus({
+				isTrash,
+				status: records.length === 0 ? 'completed' : 'success',
+			}),
+		)
+	},
+)
+
 const slice = createSlice({
 	name: 'finance',
 	initialState,
@@ -130,13 +165,6 @@ const slice = createSlice({
 			)
 
 			state.records.notTrashed.items.unshift(action.payload)
-		},
-
-		setChartRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
-			state.chartRecords = {
-				items: action.payload,
-				status: 'success',
-			}
 		},
 
 		setRecordsStatus: (
@@ -226,17 +254,17 @@ const slice = createSlice({
 				state.categoryTypes = { items: action.payload, status: 'success' }
 			},
 		)
+
+		builder.addCase(getChartDataTc.fulfilled, (state, action: PayloadAction<IFinanceRecord[]>) => {
+			if (action.payload.length === 0) return
+
+			state.chartData = { items: action.payload, status: 'success' }
+		})
 	},
 })
 
-export const {
-	addRecordsItems,
-	restoreRecord,
-	setChartRecords,
-	setRecordsStatus,
-	updateCategory,
-	updateRecord,
-} = slice.actions
+export const { addRecordsItems, restoreRecord, setRecordsStatus, updateCategory, updateRecord } =
+	slice.actions
 export const financeReducer = slice.reducer
 
 // Types
@@ -249,7 +277,7 @@ interface IState {
 		items: IFinanceCategoryType[]
 		status: ILoadingStatus
 	}
-	chartRecords: {
+	chartData: {
 		items: IFinanceRecord[]
 		status: ILoadingStatus
 	}
