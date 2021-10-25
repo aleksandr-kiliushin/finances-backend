@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { updateCategoryTc } from '#models/finance/action-creators'
-import { createCategoryTc } from '#models/finance'
+import { createCategoryTc, updateCategoryTc } from '#models/finance'
 
 // Components
 import { Modal } from '#components/Modal'

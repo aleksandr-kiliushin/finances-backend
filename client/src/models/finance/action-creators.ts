@@ -1,5 +1,5 @@
 // Models
-import { updateCategory, updateRecord } from '#models/finance'
+import { updateRecord } from '#models/finance'
 
 // Utils
 import { Http } from '#utils/Http'
@@ -7,28 +7,6 @@ import { Http } from '#utils/Http'
 // Types
 import { AppThunk } from '#models/store'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
-
-export const updateCategoryTc =
-	({
-		categoryId,
-		name,
-		typeId,
-	}: {
-		categoryId: IFinanceCategory['id']
-		name: IFinanceCategory['name']
-		typeId: IFinanceCategoryType['id']
-	}): AppThunk =>
-	async (dispatch) => {
-		const category = await Http.patch({
-			payload: {
-				name,
-				typeId,
-			},
-			url: 'api/finance-category/' + categoryId,
-		})
-
-		dispatch(updateCategory(category))
-	}
 
 export const updateRecordTc =
 	({

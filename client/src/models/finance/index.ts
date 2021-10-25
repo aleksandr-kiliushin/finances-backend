@@ -152,6 +152,26 @@ export const restoreRecordTc = createAsyncThunk(
 		}),
 )
 
+export const updateCategoryTc = createAsyncThunk(
+	'finance/updateCategoryTc',
+	async ({
+		categoryId,
+		name,
+		typeId,
+	}: {
+		categoryId: IFinanceCategory['id']
+		name: IFinanceCategory['name']
+		typeId: IFinanceCategoryType['id']
+	}) =>
+		await Http.patch({
+			payload: {
+				name,
+				typeId,
+			},
+			url: `api/finance-category/${categoryId}`,
+		}),
+)
+
 const slice = createSlice({
 	name: 'finance',
 	initialState,
@@ -175,14 +195,6 @@ const slice = createSlice({
 			const { isTrash, status } = action.payload
 
 			state.records[isTrash ? 'trashed' : 'notTrashed'].status = status
-		},
-
-		updateCategory: (state, action: PayloadAction<IFinanceCategory>) => {
-			const categoryIndex = state.categories.items.findIndex(
-				(category) => category.id === action.payload.id,
-			)
-
-			state.categories.items[categoryIndex] = action.payload
 		},
 
 		updateRecord: (state, action: PayloadAction<IFinanceRecord>) => {
@@ -269,10 +281,21 @@ const slice = createSlice({
 
 			state.records.notTrashed.items.unshift(action.payload)
 		})
+
+		builder.addCase(
+			updateCategoryTc.fulfilled,
+			(state, action: PayloadAction<IFinanceCategory>) => {
+				const categoryIndex = state.categories.items.findIndex(
+					(category) => category.id === action.payload.id,
+				)
+
+				state.categories.items[categoryIndex] = action.payload
+			},
+		)
 	},
 })
 
-export const { addRecordsItems, setRecordsStatus, updateCategory, updateRecord } = slice.actions
+export const { addRecordsItems, setRecordsStatus, updateRecord } = slice.actions
 export const financeReducer = slice.reducer
 
 // Types
