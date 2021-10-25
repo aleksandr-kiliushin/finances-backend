@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { createCategoryTc, updateCategoryTc } from '#models/finance/action-creators'
+import { updateCategoryTc } from '#models/finance/action-creators'
+import { createCategory } from '#models/finance'
 
 // Components
 import { Modal } from '#components/Modal'
@@ -33,7 +34,7 @@ export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) =
 		if (category) {
 			dispatch(updateCategoryTc({ categoryId: category.id, name, typeId: Number(typeId) }))
 		} else {
-			dispatch(createCategoryTc({ name, typeId: Number(typeId) }))
+			dispatch(createCategory({ name, typeId: Number(typeId) }))
 		}
 
 		closeModal()

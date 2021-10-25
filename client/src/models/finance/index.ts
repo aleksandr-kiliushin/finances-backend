@@ -33,6 +33,7 @@ const initialState: IState = {
 	},
 }
 
+/** Thunks */
 export const createRecord = createAsyncThunk(
 	'finance/createRecord',
 	async ({
@@ -45,14 +46,25 @@ export const createRecord = createAsyncThunk(
 		date: IFinanceRecord['date']
 	}) => {
 		return await Http.post({
-			payload: {
-				amount,
-				categoryId,
-				date,
-			},
+			payload: { amount, categoryId, date },
 			url: 'api/finance-record',
 		})
 	},
+)
+
+export const createCategory = createAsyncThunk(
+	'finance/createCategory',
+	async ({
+		name,
+		typeId,
+	}: {
+		name: IFinanceCategory['name']
+		typeId: IFinanceCategoryType['id']
+	}) =>
+		await Http.post({
+			payload: { name, typeId },
+			url: 'api/finance-category',
+		}),
 )
 
 const slice = createSlice({
@@ -69,10 +81,6 @@ const slice = createSlice({
 			const { isTrash, items } = action.payload
 
 			state.records[isTrash ? 'trashed' : 'notTrashed'].items.push(...items)
-		},
-
-		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
-			state.categories.items.unshift(action.payload)
 		},
 
 		deleteCategory: (state, action: PayloadAction<IFinanceCategory['id']>) => {
@@ -149,6 +157,10 @@ const slice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
+		builder.addCase(createCategory.fulfilled, (state, action: PayloadAction<IFinanceCategory>) => {
+			state.categories.items.unshift(action.payload)
+		})
+
 		builder.addCase(createRecord.fulfilled, (state, action: PayloadAction<IFinanceRecord>) => {
 			state.records.notTrashed.items.unshift(action.payload)
 		})
@@ -157,7 +169,6 @@ const slice = createSlice({
 
 export const {
 	addRecordsItems,
-	createCategory,
 	deleteCategory,
 	deleteRecord,
 	restoreRecord,

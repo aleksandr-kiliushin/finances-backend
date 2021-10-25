@@ -21,26 +21,6 @@ import { Http } from '#utils/Http'
 import { AppThunk } from '#models/store'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
 
-export const createCategoryTc =
-	({
-		name,
-		typeId,
-	}: {
-		name: IFinanceCategory['name']
-		typeId: IFinanceCategoryType['id']
-	}): AppThunk =>
-	async (dispatch) => {
-		const category = await Http.post({
-			payload: {
-				name,
-				typeId,
-			},
-			url: 'api/finance-category',
-		})
-
-		dispatch(createCategory(category))
-	}
-
 export const deleteCategoryTc =
 	({ categoryId }: { categoryId: IFinanceCategory['id'] }): AppThunk =>
 	async (dispatch) => {
