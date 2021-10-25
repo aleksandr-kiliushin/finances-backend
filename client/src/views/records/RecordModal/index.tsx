@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { updateRecordTc } from '#models/finance/action-creators'
-import { createRecordTc } from '#models/finance'
+import { createRecordTc, updateRecordTc } from '#models/finance'
 
 // Components
 import { Modal } from '#components/Modal'
