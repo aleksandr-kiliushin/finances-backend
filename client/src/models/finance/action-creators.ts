@@ -2,7 +2,6 @@
 import {
 	addRecordsItems,
 	restoreRecord,
-	setCategoryTypes,
 	setChartRecords,
 	setRecordsStatus,
 	updateCategory,
@@ -15,12 +14,6 @@ import { Http } from '#utils/Http'
 // Types
 import { AppThunk } from '#models/store'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
-
-export const getCategoryTypes = (): AppThunk => async (dispatch, getState) => {
-	if (getState().finance.categoryTypes.status !== 'idle') return
-	const categoryTypes = await Http.get({ url: 'api/finance-category-type' })
-	dispatch(setCategoryTypes(categoryTypes))
-}
 
 export const getChartRecordsTc = (): AppThunk => async (dispatch, getState) => {
 	if (getState().finance.chartRecords.status !== 'idle') return

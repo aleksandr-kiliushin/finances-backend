@@ -98,6 +98,16 @@ export const getCategoriesTc = createAsyncThunk<IFinanceCategory[], void, { stat
 	},
 )
 
+export const getCategoryTypesTc = createAsyncThunk<
+	IFinanceCategoryType[],
+	void,
+	{ state: RootState }
+>('finance/getCategoryTypesTc', async (_, { getState }) => {
+	if (getState().finance.categoryTypes.status !== 'idle') return []
+
+	return await Http.get({ url: 'api/finance-category-type' })
+})
+
 const slice = createSlice({
 	name: 'finance',
 	initialState,
@@ -136,13 +146,6 @@ const slice = createSlice({
 			const { isTrash, status } = action.payload
 
 			state.records[isTrash ? 'trashed' : 'notTrashed'].status = status
-		},
-
-		setCategoryTypes: (state, action: PayloadAction<IFinanceCategoryType[]>) => {
-			state.categoryTypes = {
-				items: action.payload,
-				status: 'success',
-			}
 		},
 
 		updateCategory: (state, action: PayloadAction<IFinanceCategory>) => {
@@ -214,13 +217,21 @@ const slice = createSlice({
 				state.categories = { items: action.payload, status: 'success' }
 			},
 		)
+
+		builder.addCase(
+			getCategoryTypesTc.fulfilled,
+			(state, action: PayloadAction<IFinanceCategoryType[]>) => {
+				if (action.payload.length === 0) return
+
+				state.categoryTypes = { items: action.payload, status: 'success' }
+			},
+		)
 	},
 })
 
 export const {
 	addRecordsItems,
 	restoreRecord,
-	setCategoryTypes,
 	setChartRecords,
 	setRecordsStatus,
 	updateCategory,
