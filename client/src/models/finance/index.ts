@@ -34,7 +34,7 @@ const initialState: IState = {
 }
 
 /** Thunks */
-export const createRecord = createAsyncThunk(
+export const createRecordTc = createAsyncThunk(
 	'finance/createRecord',
 	async ({
 		amount,
@@ -52,7 +52,7 @@ export const createRecord = createAsyncThunk(
 	},
 )
 
-export const createCategory = createAsyncThunk(
+export const createCategoryTc = createAsyncThunk(
 	'finance/createCategory',
 	async ({
 		name,
@@ -157,11 +157,14 @@ const slice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(createCategory.fulfilled, (state, action: PayloadAction<IFinanceCategory>) => {
-			state.categories.items.unshift(action.payload)
-		})
+		builder.addCase(
+			createCategoryTc.fulfilled,
+			(state, action: PayloadAction<IFinanceCategory>) => {
+				state.categories.items.unshift(action.payload)
+			},
+		)
 
-		builder.addCase(createRecord.fulfilled, (state, action: PayloadAction<IFinanceRecord>) => {
+		builder.addCase(createRecordTc.fulfilled, (state, action: PayloadAction<IFinanceRecord>) => {
 			state.records.notTrashed.items.unshift(action.payload)
 		})
 	},
