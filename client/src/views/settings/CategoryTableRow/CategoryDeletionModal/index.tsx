@@ -2,7 +2,7 @@ import React from 'react'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { deleteCategoryTc } from '#models/finance/action-creators'
+import { deleteCategoryTc } from '#models/finance'
 
 // Components
 import { Modal } from '#components/Modal'

@@ -1,9 +1,6 @@
 // Models
 import {
 	addRecordsItems,
-	createCategory,
-	createRecord,
-	deleteCategory,
 	deleteRecord,
 	restoreRecord,
 	setCategories,
@@ -20,16 +17,6 @@ import { Http } from '#utils/Http'
 // Types
 import { AppThunk } from '#models/store'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
-
-export const deleteCategoryTc =
-	({ categoryId }: { categoryId: IFinanceCategory['id'] }): AppThunk =>
-	async (dispatch) => {
-		const { id } = await Http.delete({
-			url: 'api/finance-category/' + categoryId,
-		})
-
-		dispatch(deleteCategory(id))
-	}
 
 export const deleteRecordTc =
 	({
