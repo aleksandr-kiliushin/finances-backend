@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
-import { createRecordTc, updateRecordTc } from '#models/finance/action-creators'
+import { updateRecordTc } from '#models/finance/action-creators'
+import { createRecord } from '#models/finance'
 
 // Components
 import { Modal } from '#components/Modal'
@@ -48,7 +49,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 			)
 		} else {
 			dispatch(
-				createRecordTc({
+				createRecord({
 					amount: Number(amount),
 					categoryId: Number(categoryId),
 					date,

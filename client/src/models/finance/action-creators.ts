@@ -41,29 +41,6 @@ export const createCategoryTc =
 		dispatch(createCategory(category))
 	}
 
-export const createRecordTc =
-	({
-		amount,
-		categoryId,
-		date,
-	}: {
-		amount: IFinanceRecord['amount']
-		categoryId: IFinanceCategory['id']
-		date: IFinanceRecord['date']
-	}): AppThunk =>
-	async (dispatch) => {
-		const record = await Http.post({
-			payload: {
-				amount,
-				categoryId,
-				date,
-			},
-			url: 'api/finance-record',
-		})
-
-		dispatch(createRecord(record))
-	}
-
 export const deleteCategoryTc =
 	({ categoryId }: { categoryId: IFinanceCategory['id'] }): AppThunk =>
 	async (dispatch) => {

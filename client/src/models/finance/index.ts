@@ -1,4 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
+// Utils
+import { Http } from '#utils/Http'
 
 // Types
 import { PayloadAction } from '@reduxjs/toolkit'
@@ -30,6 +33,28 @@ const initialState: IState = {
 	},
 }
 
+export const createRecord = createAsyncThunk(
+	'finance/createRecord',
+	async ({
+		amount,
+		categoryId,
+		date,
+	}: {
+		amount: IFinanceRecord['amount']
+		categoryId: IFinanceCategory['id']
+		date: IFinanceRecord['date']
+	}) => {
+		return await Http.post({
+			payload: {
+				amount,
+				categoryId,
+				date,
+			},
+			url: 'api/finance-record',
+		})
+	},
+)
+
 const slice = createSlice({
 	name: 'finance',
 	initialState,
@@ -48,10 +73,6 @@ const slice = createSlice({
 
 		createCategory: (state, action: PayloadAction<IFinanceCategory>) => {
 			state.categories.items.unshift(action.payload)
-		},
-
-		createRecord: (state, action: PayloadAction<IFinanceRecord>) => {
-			state.records.notTrashed.items.unshift(action.payload)
 		},
 
 		deleteCategory: (state, action: PayloadAction<IFinanceCategory['id']>) => {
@@ -127,12 +148,16 @@ const slice = createSlice({
 			state.records.notTrashed.items[recordIndex] = action.payload
 		},
 	},
+	extraReducers: (builder) => {
+		builder.addCase(createRecord.fulfilled, (state, action: PayloadAction<IFinanceRecord>) => {
+			state.records.notTrashed.items.unshift(action.payload)
+		})
+	},
 })
 
 export const {
 	addRecordsItems,
 	createCategory,
-	createRecord,
 	deleteCategory,
 	deleteRecord,
 	restoreRecord,
