@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form'
 
 // Models
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import { getCategories, getRecordsTc } from '#models/finance/action-creators'
+import { getCategoriesTc } from '#models/finance'
+import { getRecordsTc } from '#models/finance/action-creators'
 
 // Components
 import { Button } from '#components/Button'
@@ -36,7 +37,7 @@ export const Records = () => {
 	const loaderRef = useRef(null)
 
 	useEffect(() => {
-		dispatch(getCategories())
+		dispatch(getCategoriesTc())
 		dispatch(getRecordsTc({ isTrash: false }))
 		dispatch(getRecordsTc({ isTrash: true }))
 	}, [])

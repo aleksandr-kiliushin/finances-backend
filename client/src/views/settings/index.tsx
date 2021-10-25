@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 // Action creators
-import { getCategories, getCategoryTypes } from '#models/finance/action-creators'
+import { getCategoriesTc } from '#models/finance'
+import { getCategoryTypes } from '#models/finance/action-creators'
 
 // Components
 import { Table } from '#components/Table'
@@ -26,7 +27,7 @@ export const Settings = () => {
 	const categoryTypes = useAppSelector((state) => state.finance.categoryTypes)
 
 	useEffect(() => {
-		dispatch(getCategories())
+		dispatch(getCategoriesTc())
 		dispatch(getCategoryTypes())
 	}, [])
 

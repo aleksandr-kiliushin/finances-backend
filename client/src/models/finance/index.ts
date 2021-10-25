@@ -5,6 +5,7 @@ import { Http } from '#utils/Http'
 
 // Types
 import { PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '#models/store'
 import { ILoadingStatus } from '#interfaces/common'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
 
@@ -88,6 +89,15 @@ export const deleteRecordTc = createAsyncThunk(
 	},
 )
 
+export const getCategoriesTc = createAsyncThunk<IFinanceCategory[], void, { state: RootState }>(
+	'finance/getCategoriesTc',
+	async (_, { getState }) => {
+		if (getState().finance.categories.status !== 'idle') return []
+
+		return await Http.get({ url: 'api/finance-category' })
+	},
+)
+
 const slice = createSlice({
 	name: 'finance',
 	initialState,
@@ -110,13 +120,6 @@ const slice = createSlice({
 			)
 
 			state.records.notTrashed.items.unshift(action.payload)
-		},
-
-		setCategories: (state, action: PayloadAction<IFinanceCategory[]>) => {
-			state.categories = {
-				items: action.payload,
-				status: 'success',
-			}
 		},
 
 		setChartRecords: (state, action: PayloadAction<IFinanceRecord[]>) => {
@@ -202,13 +205,21 @@ const slice = createSlice({
 				state.records.trashed.items.unshift(record)
 			},
 		)
+
+		builder.addCase(
+			getCategoriesTc.fulfilled,
+			(state, action: PayloadAction<IFinanceCategory[]>) => {
+				if (action.payload.length === 0) return
+
+				state.categories = { items: action.payload, status: 'success' }
+			},
+		)
 	},
 })
 
 export const {
 	addRecordsItems,
 	restoreRecord,
-	setCategories,
 	setCategoryTypes,
 	setChartRecords,
 	setRecordsStatus,
