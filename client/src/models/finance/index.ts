@@ -221,6 +221,7 @@ const slice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
+		// To do: try addRecordsTc.PENDING,
 		builder.addCase(
 			createCategoryTc.fulfilled,
 			(state, action: PayloadAction<IFinanceCategory>) => {
