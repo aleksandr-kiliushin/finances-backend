@@ -9,7 +9,7 @@ import { RootState } from '#models/store'
 import { ILoadingStatus } from '#interfaces/common'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
 
-const initialState: IState = {
+export const initialState: IState = {
 	categories: {
 		items: [],
 		status: 'idle',

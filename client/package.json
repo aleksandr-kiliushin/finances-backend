@@ -47,7 +47,9 @@
 	"jest": {
 		"moduleNameMapper": {
 			"^#components(.*)$": "<rootDir>/src/components$1",
-			"\\.css$": "<rootDir>/src/__mocks__/style-mock.ts"
+			"^#models(.*)$": "<rootDir>/src/models$1",
+			"^#utils(.*)$": "<rootDir>/src/utils$1",
+			"\\.css$": "<rootDir>/src/utils/test-utils/__mocks__/style-mock.ts"
 		}
 	}
 }
