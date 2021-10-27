@@ -10,6 +10,9 @@ describe('<Login />', () => {
 	test('"Log in" button is rendered.', () => {
 		render(<Login />)
 
-		expect(screen.getByRole('button')).toBeInTheDocument()
+		const loginButton = screen.getByRole('button', { name: 'Log in' })
+
+		expect(loginButton).toBeInTheDocument()
+		expect(loginButton).toBeDisabled()
 	})
 })

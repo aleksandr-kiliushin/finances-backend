@@ -25,9 +25,13 @@ export const Login = () => {
 
 	const { isUserLoggedIn, userData } = useAppSelector((state) => state.user)
 
-	const { register, handleSubmit } = useForm<IFormValues>()
+	const {
+		formState: { isValid },
+		handleSubmit,
+		register,
+	} = useForm<IFormValues>({ mode: 'onChange' })
 
-	const submitLogin: SubmitHandler<IFormValues> = async ({ password, username }) => {
+	const submitLogin: SubmitHandler<IFormValues> = ({ password, username }) => {
 		dispatch(logIn({ password, username }))
 	}
 
@@ -58,7 +62,9 @@ export const Login = () => {
 					<PlainInput type="password" {...register('password', { required: true })} />
 				</FormRow>
 
-				<Button type="submit">Log in</Button>
+				<Button disabled={!isValid} type="submit">
+					Log in
+				</Button>
 			</Form>
 		</div>
 	)

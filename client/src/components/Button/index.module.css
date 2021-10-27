@@ -5,6 +5,10 @@
 	border-radius: 5px;
 }
 
+.Button:disabled {
+	color: var(--lightgray);
+}
+
 .ButtonPrimary {
 	background: var(--color-theme-1);
 	color: white;
