@@ -3,10 +3,12 @@ import React, { ReactNode } from 'react'
 // Styles
 import s from './index.module.css'
 
-export const FormRow = ({ children, label = '' }: IProps) => {
+export const FormRow = ({ children, label, name }: IProps) => {
 	return (
 		<div className={s.FormRow}>
-			<div className={s.Label}>{label}</div>
+			<label htmlFor={name} className={s.Label}>
+				{label}
+			</label>
 
 			{children}
 		</div>
@@ -15,5 +17,6 @@ export const FormRow = ({ children, label = '' }: IProps) => {
 
 interface IProps {
 	children: ReactNode
-	label?: ReactNode
+	label: ReactNode
+	name: string
 }

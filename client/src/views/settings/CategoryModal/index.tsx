@@ -47,10 +47,10 @@ export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) =
 
 			<ModalBody>
 				<Form onSubmit={handleSubmit(submitCategoryForm)}>
-					<FormRow label="Name">
+					<FormRow label="Name" name="name">
 						<PlainInput {...register('name', { required: true })} />
 					</FormRow>
-					<FormRow label="Type">
+					<FormRow label="Type" name="typeId">
 						<RadioGroup
 							isRequired
 							name="typeId"

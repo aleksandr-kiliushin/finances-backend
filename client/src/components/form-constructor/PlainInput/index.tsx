@@ -7,7 +7,9 @@ import sCommon from '#components/form-constructor/index.module.css'
 import { DetailedHTMLProps, ForwardedRef, InputHTMLAttributes } from 'react'
 
 const PlainInput_ = (props: IProps, ref: ForwardedRef<HTMLInputElement>) => {
-	return <input className={sCommon.Input} ref={ref} {...props} />
+	const { name } = props
+
+	return <input className={sCommon.Input} id={name} ref={ref} {...props} />
 }
 
 export const PlainInput = forwardRef(PlainInput_)

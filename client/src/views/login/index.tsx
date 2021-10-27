@@ -54,11 +54,11 @@ export const Login = () => {
 			<h1 className={s.Centered}>Welcome</h1>
 
 			<Form onSubmit={handleSubmit(submitLogin)}>
-				<FormRow label="Username">
+				<FormRow label="Username" name="username">
 					<PlainInput {...register('username', { required: true })} />
 				</FormRow>
 
-				<FormRow label="Password">
+				<FormRow label="Password" name="password">
 					<PlainInput type="password" {...register('password', { required: true })} />
 				</FormRow>
 

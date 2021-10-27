@@ -67,17 +67,17 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 
 			<ModalBody>
 				<Form onSubmit={handleSubmit(submitRecordForm)}>
-					<FormRow label="Amount">
+					<FormRow label="Amount" name="amount">
 						<PlainInput type="number" {...register('amount', { required: true })} />
 					</FormRow>
-					<FormRow label="Category">
+					<FormRow label="Category" name="categoryId">
 						<Select
 							options={categories.map(({ id, name }) => ({ id: String(id), label: name }))}
 							placeholder="Select a category ..."
 							{...register('categoryId', { required: true })}
 						/>
 					</FormRow>
-					<FormRow label="Date">
+					<FormRow label="Date" name="date">
 						<PlainInput type="date" {...register('date', { required: true })} />
 					</FormRow>
 
