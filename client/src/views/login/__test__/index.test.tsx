@@ -1,10 +1,13 @@
 /** @jest-environment jsdom */
 
 import React from 'react'
-import { act, fireEvent, render, screen } from '#utils/test-utils'
+import userEvent from '@testing-library/user-event'
 
 // Components
 import { Login } from '#views/login'
+
+// Utils
+import { act, render, screen } from '#utils/test-utils'
 
 describe('<Login />', () => {
 	test('"Log in" button is rendered and the "disabled" attribute works correctly.', async () => {
@@ -16,8 +19,8 @@ describe('<Login />', () => {
 		expect(loginButton).toBeDisabled()
 
 		await act(async () => {
-			fireEvent.input(await screen.findByLabelText('Username'), { target: { value: 'john_doe' } })
-			fireEvent.input(await screen.findByLabelText('Password'), { target: { value: 's3cret' } })
+			userEvent.type(await screen.findByLabelText('Username'), 'john_doe')
+			userEvent.type(await screen.findByLabelText('Password'), 's3cret')
 		})
 
 		expect(loginButton).toBeEnabled()
