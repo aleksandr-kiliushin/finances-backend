@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react'
 import { Provider } from 'react-redux'
 import { render, RenderOptions } from '@testing-library/react'
+import '@testing-library/jest-dom'
 
 // Models
 import { store } from '#models/store'

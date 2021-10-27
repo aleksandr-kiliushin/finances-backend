@@ -7,8 +7,9 @@ import { render, screen } from '#utils/test-utils'
 import { Login } from '#views/login'
 
 describe('<Login />', () => {
-	test('It renders.', () => {
+	test('"Log in" button is rendered.', () => {
 		render(<Login />)
-		expect(screen.getByRole('button')).toBeTruthy()
+
+		expect(screen.getByRole('button')).toBeInTheDocument()
 	})
 })
