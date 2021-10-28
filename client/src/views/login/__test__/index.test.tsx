@@ -15,8 +15,10 @@ import { userData } from './constants'
 test('<Login />', async () => {
 	render(<Login />)
 
-	const logInButton = screen.getByRole('button', { name: 'Log in' })
+	let welcomeHeader = screen.getByRole('heading', { name: 'Welcome' })
+	let logInButton = screen.getByRole('button', { name: 'Log in' })
 
+	expect(welcomeHeader).toBeInTheDocument()
 	expect(logInButton).toBeInTheDocument()
 	expect(logInButton).toBeDisabled()
 
@@ -42,8 +44,8 @@ test('<Login />', async () => {
 		await userEvent.click(logInButton)
 	})
 
+	expect(welcomeHeader).not.toBeInTheDocument()
 	expect(localStorage.authToken).toBeTruthy()
-
 	expect(logInButton).not.toBeInTheDocument()
 
 	const logOutButton = screen.getByRole('button', { name: 'Log out' })
@@ -53,4 +55,17 @@ test('<Login />', async () => {
 
 	expect(logOutButton).toBeInTheDocument()
 	expect(youAreLoggedInParagraph).toBeInTheDocument()
+
+	await act(async () => {
+		await userEvent.click(logOutButton)
+	})
+
+	expect(logOutButton).not.toBeInTheDocument()
+
+	welcomeHeader = screen.getByRole('heading', { name: 'Welcome' })
+	logInButton = screen.getByRole('button', { name: 'Log in' })
+
+	expect(welcomeHeader).toBeInTheDocument()
+	expect(logInButton).toBeInTheDocument()
+	expect(localStorage.authToken).toBe('')
 })
