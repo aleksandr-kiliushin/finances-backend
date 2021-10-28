@@ -67,5 +67,5 @@ test('<Login />', async () => {
 
 	expect(welcomeHeader).toBeInTheDocument()
 	expect(logInButton).toBeInTheDocument()
-	expect(localStorage.authToken).toBe('')
+	expect(localStorage.authToken).toBeUndefined()
 })

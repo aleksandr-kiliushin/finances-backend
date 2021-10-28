@@ -24,7 +24,7 @@ const slice = createSlice({
 	initialState,
 	reducers: {
 		logOut: (state) => {
-			localStorage.authToken = ''
+			localStorage.removeItem('authToken')
 			state.isUserLoggedIn = false
 			state.userData = initialState.userData
 		},
