@@ -24,5 +24,13 @@ describe('<Login />', () => {
 		})
 
 		expect(loginButton).toBeEnabled()
+
+		fetchMock
+			.mockResponseOnce(JSON.stringify({ authToken: 'authToken12345' }))
+			.mockResponseOnce(JSON.stringify({ id: 3, username: 'sasha' }))
+
+		await act(async () => {
+			await userEvent.click(loginButton)
+		})
 	})
 })
