@@ -33,10 +33,6 @@ test('<Login />', async () => {
 		[JSON.stringify({ authToken: 'authToken123' }), { status: 201 }],
 		[JSON.stringify(userData), { status: 200 }],
 	)
-	/* The same. */
-	// fetchMock
-	// 	.mockResponseOnce(JSON.stringify({ authToken: 'authToken123' }))
-	// 	.mockResponseOnce(JSON.stringify(userData))
 
 	expect(localStorage.authToken).toBeUndefined()
 
