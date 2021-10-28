@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import cx from 'classnames'
 
 // Models
 import { useAppDispatch } from '#utils/hooks'
@@ -34,10 +35,15 @@ export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
 		</TableCell>
 	)
 
+	const cxAmountTableCell = cx({
+		[s.ExpenseTableCell]: category.type.id === 1,
+		[s.IncomeTableCell]: category.type.id === 2,
+	})
+
 	return (
 		<>
 			<TableRow cnTableRow={s.TableRow}>
-				<TableCell>{amount}</TableCell>
+				<TableCell cnTableCell={cxAmountTableCell}>{amount}</TableCell>
 				<TableCell>{category.name}</TableCell>
 				<TableCell>{date.slice(2)}</TableCell>
 				{editOrRestoreTableCell}

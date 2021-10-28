@@ -1,4 +1,5 @@
 import React from 'react'
+import cx from 'classnames'
 
 // Styles
 import s from './index.module.css'
@@ -6,9 +7,14 @@ import s from './index.module.css'
 // Types
 import { ReactNode } from 'react'
 
-export const TableCell = ({ children, onClick = () => {} }: IProps) => {
+export const TableCell = ({ children, cnTableCell = '', onClick = () => {} }: IProps) => {
+	const cxTableCell = cx({
+		[s.TableCell]: true,
+		[cnTableCell]: !!cnTableCell,
+	})
+
 	return (
-		<div className={s.TableCell} onClick={onClick}>
+		<div className={cxTableCell} onClick={onClick}>
 			{children}
 		</div>
 	)
@@ -16,5 +22,6 @@ export const TableCell = ({ children, onClick = () => {} }: IProps) => {
 
 interface IProps {
 	children: ReactNode
+	cnTableCell?: string
 	onClick?: () => void
 }

@@ -1,3 +1,19 @@
 .TableRow {
 	grid-template-columns: 23% 29% 24% 12% 12%;
 }
+
+.ExpenseTableCell {
+	color: darkred;
+}
+
+.IncomeTableCell {
+	color: darkgreen;
+}
+
+.ExpenseTableCell::before {
+	content: '-';
+}
+
+.IncomeTableCell::before {
+	content: '+';
+}
