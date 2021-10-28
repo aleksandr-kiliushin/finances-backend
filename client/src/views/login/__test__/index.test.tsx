@@ -9,6 +9,9 @@ import { Login } from '#views/login'
 // Utils
 import { act, render, screen } from '#utils/test-utils'
 
+// Constants
+import { userData } from './constants'
+
 test('<Login />', async () => {
 	render(<Login />)
 
@@ -25,23 +28,27 @@ test('<Login />', async () => {
 	expect(logInButton).toBeEnabled()
 
 	fetchMock.mockResponses(
-		[JSON.stringify({ authToken: 'authToken12345' }), { status: 201 }],
-		[JSON.stringify({ id: 3, username: 'sasha' }), { status: 200 }],
+		[JSON.stringify({ authToken: 'authToken123' }), { status: 201 }],
+		[JSON.stringify(userData), { status: 200 }],
 	)
 	/* The same. */
 	// fetchMock
-	// 	.mockResponseOnce(JSON.stringify({ authToken: 'authToken12345' }))
-	// 	.mockResponseOnce(JSON.stringify({ id: 3, username: 'sasha' }))
+	// 	.mockResponseOnce(JSON.stringify({ authToken: 'authToken123' }))
+	// 	.mockResponseOnce(JSON.stringify(userData))
+
+	expect(localStorage.authToken).toBeUndefined()
 
 	await act(async () => {
 		await userEvent.click(logInButton)
 	})
 
+	expect(localStorage.authToken).toBeTruthy()
+
 	expect(logInButton).not.toBeInTheDocument()
 
 	const logOutButton = screen.getByRole('button', { name: 'Log out' })
 	const youAreLoggedInParagraph = screen.getByText(
-		(_, node) => node?.textContent === 'You are logged in as sasha.',
+		(_, node) => node?.textContent === `You are logged in as ${userData.username}.`,
 	)
 
 	expect(logOutButton).toBeInTheDocument()
