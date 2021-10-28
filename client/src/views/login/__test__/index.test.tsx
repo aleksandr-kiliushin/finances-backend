@@ -13,17 +13,17 @@ describe('<Login />', () => {
 	test('"Log in" button is rendered and the "disabled" attribute works correctly.', async () => {
 		render(<Login />)
 
-		const loginButton = screen.getByRole('button', { name: 'Log in' })
+		const logInButton = screen.getByRole('button', { name: 'Log in' })
 
-		expect(loginButton).toBeInTheDocument()
-		expect(loginButton).toBeDisabled()
+		expect(logInButton).toBeInTheDocument()
+		expect(logInButton).toBeDisabled()
 
 		await act(async () => {
 			userEvent.type(await screen.findByLabelText('Username'), 'john_doe')
 			userEvent.type(await screen.findByLabelText('Password'), 's3cret')
 		})
 
-		expect(loginButton).toBeEnabled()
+		expect(logInButton).toBeEnabled()
 
 		// fetchMock
 		// 	.mockResponseOnce(JSON.stringify({ authToken: 'authToken12345' }))
@@ -34,7 +34,17 @@ describe('<Login />', () => {
 		)
 
 		await act(async () => {
-			await userEvent.click(loginButton)
+			await userEvent.click(logInButton)
 		})
+
+		expect(logInButton).not.toBeInTheDocument()
+
+		const logOutButton = screen.getByRole('button', { name: 'Log out' })
+		const youAreLoggedInParagraph = screen.getByText(
+			(_, node) => node?.textContent === 'You are logged in as sasha.',
+		)
+
+		expect(logOutButton).toBeInTheDocument()
+		expect(youAreLoggedInParagraph).toBeInTheDocument()
 	})
 })
