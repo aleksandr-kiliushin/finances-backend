@@ -11,7 +11,7 @@ build-server:
 dev-client:
 	npm run dev --prefix client
 dev-db:
-	docker start finance-dev-db-server
+	docker start finance-dev-db
 dev-db-download:
 	bash ./db.sh
 dev-server:

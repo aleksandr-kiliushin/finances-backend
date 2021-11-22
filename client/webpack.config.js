@@ -5,9 +5,9 @@ const { SourceMapDevToolPlugin } = require('webpack')
 module.exports = {
 	devServer: {
 		historyApiFallback: true,
-		port: 3000,
+		port: 3000, // To do: Get from env variable.
 		proxy: {
-			'/api': 'http://localhost:3080',
+			'/api': 'http://localhost:3080', // To do: Get from env variable.
 		},
 	},
 	devtool: 'source-map',
