@@ -1,40 +1,10 @@
-# node_modules
-*/node_modules
-
-# local env files
+# Common. #####################################################################
+**/.DS_Store
+**/node_modules
 **/*.env
 
-
-
 # client/ #####################################################################
-
-# compiled output
 client/dist
 
-
-
 # server/ #####################################################################
-
-# compiled output
 server/dist
-
-# logs
-server/logs
-server/*.log
-server/npm-debug.log*
-
-# tests
-server/coverage
-server/.nyc_output
-
-# temporary files
-temp/
-
-
-
-# client-OLD/ #################################################################
-# compiled and static output
-client-OLD/.next/
-client-OLD/out/
-# production
-client-OLD/build
