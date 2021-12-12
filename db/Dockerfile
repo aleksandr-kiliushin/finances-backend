@@ -1,13 +1,14 @@
 FROM postgres:13.3
 
+
 # Создание директории приложения
 # WORKDIR /db
 
 # RUN cat /db/dev.env
 
-RUN echo $REMOTE_DB_NAME
+# RUN echo $REMOTE_DB_NAME
 
-CMD ["echo", "$REMOTE_DB_NAME"]
+# CMD ["echo", "$REMOTE_DB_NAME"]
 
 # RUN echo $REMOTE_DB_NAME
 
@@ -16,7 +17,7 @@ CMD ["echo", "$REMOTE_DB_NAME"]
 
 # CMD ["npm", "run", "start", "--prefix", "/app/server"]
 
-# EXPOSE 3080
+EXPOSE 5432
 
 
 

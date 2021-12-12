@@ -6,6 +6,13 @@ services:
       context: .
       dockerfile: ./db/Dockerfile
     container_name: db
+    environment:
+      LOCAL_SERVER: finance-dev-db
+      LOCAL_PW: 123
+      LOCAL_DB: finance
+      REMOTE_API_KEY: dbebd4e0-86b3-4bb0-9026-8354c3346f9b
+      REMOTE_DB_NAME: xwyksyfg
+    # image: postgres:13.3
     ports:
       - 5432:5432
     restart: on-failure
