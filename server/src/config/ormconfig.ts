@@ -1,18 +1,18 @@
-import * as path from 'path'
-import * as dotenv from 'dotenv'
+// import * as path from 'path'
+// import * as dotenv from 'dotenv'
 
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 
-dotenv.config({ path: path.join(__dirname, '..', '..', '..', 'config', process.env.MODE + '.env') })
+// dotenv.config({ path: path.join(__dirname, '..', '..', '..', 'config', process.env.MODE + '.env') })
 
 const ormConfigDev: TypeOrmModuleOptions = {
 	cli: { migrationsDir: 'src/migration' },
-	database: 'finance',
+	database: process.env.LOCAL_DB_NAME,
 	entities: ['dist/**/*.entity{.js,.ts}'],
 	host: '127.0.0.1',
 	migrations: ['src/migration/*.ts'],
 	migrationsTableName: 'migration',
-	password: '123',
+	password: process.env.POSTGRES_PASSWORD,
 	port: 5432,
 	ssl: false,
 	synchronize: true, //should set "false" for production.

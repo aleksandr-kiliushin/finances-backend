@@ -22,23 +22,23 @@ sleep 3;
 echo "updating packages";
 echo "apt-get update" | docker exec -i $LOCAL_SERVER bash;
 
-echo "installing curl, lzop";
-echo "apt-get install -y curl lzop" | docker exec -i $LOCAL_SERVER bash;
+echo "installing curl, jq, lzop";
+echo "apt-get install -y curl jq lzop" | docker exec -i $LOCAL_SERVER bash;
 
 echo "getting dump list from remote server to the host machine";
-curl -u :$REMOTE_API_KEY --output temp/dumps.json https://api.elephantsql.com/api/backup?db=$REMOTE_DB_NAME;
+curl -u :$REMOTE_API_KEY --output /temp/dumps.json https://api.elephantsql.com/api/backup?db=$REMOTE_DB_NAME;
 
 echo "waiting 3 second for downloading";
 sleep 3;
 
 # get maximum date from an array of objects.
-dump_url=$(jq 'max_by(.backup_date) | .url' temp/dumps.json);
+DUMP_URL=$(jq 'max_by(.backup_date) | .url' /temp/dumps.json -r);
 
 echo "creating 'db' directory in the container"
 echo "mkdir /db" | docker exec -i $LOCAL_SERVER bash;
 
 echo "downloading the last dump"
-echo "curl $dump_url --output /db/dump.lzo" | docker exec -i $LOCAL_SERVER bash;
+echo "curl $DUMP_URL --output /db/dump.lzo" | docker exec -i $LOCAL_SERVER bash;
 
 echo "waiting 3 second for downloading";
 sleep 3;

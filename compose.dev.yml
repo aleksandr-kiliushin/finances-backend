@@ -3,38 +3,33 @@ version: '3.9'
 services:
   db:
     build:
-      context: .
-      dockerfile: ./db/Dockerfile
-    container_name: db
+      args:
+        - REMOTE_API_KEY=dbebd4e0-86b3-4bb0-9026-8354c3346f9b
+        - REMOTE_DB_NAME=xwyksyfg
+      context: ./db
+      dockerfile: ./Dockerfile.dev
+    container_name: finance-db
     environment:
-      LOCAL_SERVER: finance-dev-db
-      LOCAL_PW: 123
-      LOCAL_DB: finance
-      REMOTE_API_KEY: dbebd4e0-86b3-4bb0-9026-8354c3346f9b
-      REMOTE_DB_NAME: xwyksyfg
-    # image: postgres:13.3
+      - POSTGRES_PASSWORD=123
+      - REMOTE_API_KEY=dbebd4e0-86b3-4bb0-9026-8354c3346f9b
+      - REMOTE_DB_NAME=xwyksyfg
     ports:
       - 5432:5432
-    restart: on-failure
-
-  # client:
-  #   build:
-  #     context: .
-  #     dockerfile: ./client/Dockerfile.client
-  #   container_name: client
-  #   depends_on:
-  #     - server
-  #   ports:
-  #     - 3000:3000
-  #   restart: on-failure
+    restart: always
 
   # server:
   #   build:
   #     context: .
-  #     dockerfile: ./server/Dockerfile.server
-  #   container_name: server
+  #     dockerfile: ./server/Dockerfile.dev
+  #   container_name: finance-server
   #   depends_on:
   #     - db
+  #   environment:
+  #     - BACKEND_PORT=3080
+  #     - JWT_SECRET=secret
+  #     - LOCAL_DB_NAME=finance
+  #     - MODE=dev
+  #     - POSTGRES_PASSWORD=123
   #   ports:
   #     - 3080:3080
   #   restart: on-failure

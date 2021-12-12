@@ -1,0 +1,8 @@
+docker exec -it finance-db /bin/sh
+
+curl -u :$REMOTE_API_KEY --output /db/dumps.json https://api.elephantsql.com/api/backup?db=$REMOTE_DB_NAME &&\
+DUMP_URL=$(jq 'max_by(.backup_date) | .url' /db/dumps.json -r) &&\
+curl $DUMP_URL --output /db/dump.lzo
+psql -U postgres
+CREATE DATABASE finance ENCODING 'UTF-8'
+lzop -cd /db/dump.lzo | psql -U postgres finance

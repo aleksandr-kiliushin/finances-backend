@@ -1,0 +1,10 @@
+FROM node:14
+
+COPY ./server/package.json /app/server/package.json
+RUN npm i --prefix /app/server
+
+COPY ./server /app/server
+
+CMD ["npm", "run", "dev", "--prefix", "/app/server"]
+
+EXPOSE 3080

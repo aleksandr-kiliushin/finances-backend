@@ -4,7 +4,7 @@ stop-app:
 	docker stop logsapp
 
 dev:
-	docker-compose -f compose.dev.yml --env-file ./config/dev.env up
+	docker-compose -f compose.dev.yml up
 
 build-client:
 	npm run build --prefix client
