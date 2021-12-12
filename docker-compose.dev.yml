@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./db/Dockerfile
+    container_name: db
+    ports:
+      - 5432:5432
+    restart: on-failure
+
+  # client:
+  #   build:
+  #     context: .
+  #     dockerfile: ./client/Dockerfile.client
+  #   container_name: client
+  #   depends_on:
+  #     - server
+  #   ports:
+  #     - 3000:3000
+  #   restart: on-failure
+
+  # server:
+  #   build:
+  #     context: .
+  #     dockerfile: ./server/Dockerfile.server
+  #   container_name: server
+  #   depends_on:
+  #     - db
+  #   ports:
+  #     - 3080:3080
+  #   restart: on-failure

@@ -1,7 +1,10 @@
 start-app:
-	docker-compose --env-file ./config/prod.env up 
+	docker-compose --env-file ./config/prod.env up
 stop-app:
 	docker stop logsapp
+
+dev:
+	docker-compose -f docker-compose.dev.yml --env-file ./config/dev.env up
 
 build-client:
 	npm run build --prefix client
@@ -11,9 +14,7 @@ build-server:
 dev-client:
 	npm run dev --prefix client
 dev-db:
-	docker start finance-dev-db
-dev-db-download:
-	bash ./db.sh
+	docker-compose -f ./db/docker-compose.yml --env-file ./config/dev.env up
 dev-server:
 	npm run dev --prefix server
 
