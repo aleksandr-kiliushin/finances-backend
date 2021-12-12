@@ -3,6 +3,11 @@ version: '3.9'
 services:
   db:
     build:
+      args:
+        - LOCAL_DB_NAME=finance
+        - POSTGRES_PASSWORD=123
+        - REMOTE_API_KEY=dbebd4e0-86b3-4bb0-9026-8354c3346f9b
+        - REMOTE_DB_NAME=xwyksyfg
       context: .
       dockerfile: ./db/Dockerfile.dev
     container_name: finance-db

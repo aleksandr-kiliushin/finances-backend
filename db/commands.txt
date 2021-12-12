@@ -1,0 +1,2 @@
+psql -U postgres -c "CREATE DATABASE $LOCAL_DB_NAME ENCODING 'UTF-8';" &&\
+lzop -cd /app/dumps/dump.lzo | psql -U postgres $LOCAL_DB_NAME
