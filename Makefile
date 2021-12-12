@@ -3,6 +3,9 @@ start-app:
 stop-app:
 	docker stop logsapp
 
+dev:
+	docker-compose -f ./compose.dev.yml up
+
 build-client:
 	npm run build --prefix client
 build-server:
@@ -10,8 +13,6 @@ build-server:
 
 dev-client:
 	npm run dev --prefix client
-dev-db:
-	docker-compose -f ./compose.dev.yml
 dev-server:
 	npm run dev --prefix server
 

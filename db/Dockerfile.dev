@@ -3,19 +3,8 @@ FROM postgres:13.3
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install -y curl jq lzop
 
-RUN mkdir /db
+COPY ./db/init.sh /app
 
-ENTRYPOINT "curl -u :$REMOTE_API_KEY --output /db/dumps.json https://api.elephantsql.com/api/backup?db=$REMOTE_DB_NAME &&\
-sleep 3 &&\
-DUMP_URL=$(jq 'max_by(.backup_date) | .url' /db/dumps.json -r) &&\
-curl DUMP_URL --output /db/dump.lzo &&\
-sleep 3 &&\
-CREATE DATABASE finance ENCODING 'UTF-8'; | psql -U postgres &&\
-lzop -cd /db/dump.lzo | psql -U postgres finance"
-# RUN curl -u :$REMOTE_API_KEY --output /db/dumps.json https://api.elephantsql.com/api/backup?db=$REMOTE_DB_NAME
-# RUN curl $(jq 'max_by(.backup_date) | .url' /db/dumps.json -r) --output /db/dump.lzo
+# CMD ["bash", "/app/init.sh"]
 
 EXPOSE 5432
-
-# docker exec -it finance-app_db_1 /bin/sh
-# CREATE DATABASE finance ENCODING 'UTF-8';
