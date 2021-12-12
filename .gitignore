@@ -3,3 +3,4 @@
 **/*.env
 client/dist
 server/dist
+dumps
