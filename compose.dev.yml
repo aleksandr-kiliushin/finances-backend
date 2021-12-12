@@ -18,3 +18,20 @@ services:
     ports:
       - 5432:5432
     restart: always
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile.dev
+    container_name: finance-backend
+    depends_on:
+      - db
+    environment:
+      - BACKEND_PORT=3080
+      - JWT_SECRET=secret
+      - LOCAL_DB_NAME=finance
+      - MODE=dev
+      - POSTGRES_PASSWORD=123
+    ports:
+      - 3080:3080
+    restart: on-failure

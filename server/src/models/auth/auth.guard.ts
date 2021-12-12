@@ -1,12 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken'
-import * as path from 'path'
-import * as dotenv from 'dotenv'
 
 // Types
 import { CanActivate, ExecutionContext } from '@nestjs/common'
-
-dotenv.config({ path: path.join(__dirname, '..', '..', '..', '..', 'config', 'prod.env') })
 
 @Injectable()
 export class AuthGuard implements CanActivate {
