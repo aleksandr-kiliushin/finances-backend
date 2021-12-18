@@ -1,9 +1,4 @@
-FROM postgres:13.3
-
-ARG REMOTE_API_KEY
-ARG REMOTE_DB_NAME
-ENV REMOTE_API_KEY=$REMOTE_API_KEY
-ENV REMOTE_DB_NAME=$REMOTE_DB_NAME
+FROM postgres:14.1
 
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install -y curl jq lzop
@@ -11,8 +6,6 @@ RUN apt-get install -y curl jq lzop
 RUN mkdir /app
 RUN mkdir /app/dumps
 
-COPY ./db/init.sh /app
-
-RUN bash /app/init.sh
+COPY ./db/init.sh /app/init.sh
 
 EXPOSE 5432
