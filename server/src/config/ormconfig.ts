@@ -4,17 +4,18 @@ const ormConfigDev: TypeOrmModuleOptions = {
 	cli: { migrationsDir: 'src/migration' },
 	database: process.env.LOCAL_DB_NAME,
 	entities: ['dist/**/*.entity{.js,.ts}'],
-	host: '127.0.0.1',
+	host: 'db', // Service name of DB in compose.dev.yml.
 	migrations: ['src/migration/*.ts'],
 	migrationsTableName: 'migration',
 	password: process.env.POSTGRES_PASSWORD,
 	port: 5432,
 	ssl: false,
-	synchronize: true, //should set "false" for production.
+	synchronize: true,
 	type: 'postgres',
 	username: 'postgres',
 }
 
+// ToDo: create production ORM config.
 // const ormConfigProd: TypeOrmModuleOptions = {
 // 	cli: { migrationsDir: 'src/migration' },
 // 	database: process.env.DB_NAME,
@@ -25,7 +26,7 @@ const ormConfigDev: TypeOrmModuleOptions = {
 // 	password: process.env.DB_PASSWORD,
 // 	port: 5432,
 // 	ssl: false,
-// 	synchronize: false, // should be "false" for production.
+// 	synchronize: false, // Should be "false" for production.
 // 	type: 'postgres',
 // 	username: process.env.DB_USERNAME,
 // }
