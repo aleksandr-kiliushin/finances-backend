@@ -13,6 +13,9 @@ services:
     ports:
       - '3080:3080'
     restart: always
+    volumes:
+      - ./backend:/app # Named volume for all files.
+      - /app/node_modules # Anonymous volume for node_modules only to fix issue with bcrypt.
 
   frontend:
     build:
@@ -26,6 +29,8 @@ services:
     ports:
       - '3000:3000'
     restart: always
+    volumes:
+      - ./frontend:/app
 
   db:
     build:

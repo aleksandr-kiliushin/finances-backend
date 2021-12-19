@@ -1,9 +1,14 @@
 FROM node:14
 
 COPY ./backend/package.json /app/package.json
+COPY ./backend/package-lock.json /app/package-lock.json
+
 RUN npm i --prefix /app
 
-COPY ./backend /app
+# RUN apt-get install make gcc g++ python -y &&\
+#   npm i --prefix /app &&\
+#   npm rebuild bcrypt --build-from-source --prefix /app &&\
+#   apt-get remove make gcc g++ python -y
 
 CMD ["npm", "run", "dev", "--prefix", "/app"]
 
