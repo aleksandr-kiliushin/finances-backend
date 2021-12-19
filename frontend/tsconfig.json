@@ -12,7 +12,7 @@
 		"noEmit": true,
 		"paths": {
 			"#components/*": ["src/components/*"],
-			"#interfaces/*": ["../server/src/interfaces/*"],
+			"#interfaces/*": ["../backend/src/interfaces/*"],
 			"#models/*": ["src/models/*"],
 			"#utils/*": ["src/utils/*"],
 			"#views/*": ["src/views/*"]

@@ -1,0 +1,10 @@
+FROM node:14
+
+COPY ./backend/package.json /app/package.json
+RUN npm i --prefix /app
+
+COPY ./backend /app
+
+CMD ["npm", "run", "dev", "--prefix", "/app"]
+
+EXPOSE 3080

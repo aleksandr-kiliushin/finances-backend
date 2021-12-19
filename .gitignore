@@ -1,6 +1,5 @@
 **/.DS_Store
 **/node_modules
 **/*.env
-client/dist
-server/dist
-dumps
+backend/dist
+frontend/dist

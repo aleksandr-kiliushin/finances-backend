@@ -1,9 +1,9 @@
 FROM node:14
 
-COPY ./client/package.json /app/package.json
+COPY ./frontend/package.json /app/package.json
 RUN npm i --prefix /app
 
-COPY ./client /app
+COPY ./frontend /app
 
 CMD ["npm", "run", "dev", "--prefix", "/app"]
 

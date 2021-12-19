@@ -4,30 +4,30 @@ services:
   reverse-proxy:
     container_name: reverse-proxy
     depends_on:
-      - client
-      - server
+      - backend
+      - frontend
     image: nginx:latest
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
 
-  client:
+  frontend:
     build:
       context: .
-      dockerfile: ./client/Dockerfile.client
-    container_name: client
+      dockerfile: ./frontend/Dockerfile.prod
+    container_name: frontend
     depends_on:
-      - server
+      - backend
     ports:
       - 3000:3000
     restart: on-failure
 
-  server:
+  backend:
     build:
       context: .
-      dockerfile: ./server/Dockerfile.server
-    container_name: server
+      dockerfile: ./backend/Dockerfile.prod
+    container_name: backend
     ports:
       - 3080:3080
     restart: on-failure
