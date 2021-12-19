@@ -13,12 +13,12 @@ import { App } from './views'
 import './index.css'
 
 ReactDOM.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<Provider store={store}>
-				<App />
-			</Provider>
-		</BrowserRouter>
-	</React.StrictMode>,
-	document.querySelector('#root'),
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.querySelector('#root'),
 )
