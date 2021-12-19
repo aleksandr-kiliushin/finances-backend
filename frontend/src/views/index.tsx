@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Routes, useLocation } from 'react-router'
-import { Navigate, Route } from 'react-router-dom'
+import { Redirect, Switch, useLocation } from 'react-router'
+import { Route } from 'react-router-dom'
 
 // Action creators
 import { setRedirectPath } from '#models/common'
@@ -25,7 +25,8 @@ export const App = () => {
 	const { pathname } = useLocation()
 
 	const redirectPath = useAppSelector((state) => state.common.redirectPath)
-	const { isUserLoggedIn } = useAppSelector((state) => state.user) // ToDo: Check what it is.
+	// ToDo: Check what is it used for.
+	// const { isUserLoggedIn } = useAppSelector((state) => state.user)
 
 	useEffect(() => {
 		if (redirectPath !== null) {
@@ -42,13 +43,13 @@ export const App = () => {
 	const cnView = s.ViewWithNavbar
 
 	if (redirectPath !== null && redirectPath !== pathname) {
-		return <Navigate to={redirectPath} />
+		return <Redirect to={redirectPath} />
 	}
 
 	return (
 		<div className={s.Layout}>
 			<main className={cnView}>
-				<Routes>
+				<Switch>
 					<Route path="/login">
 						<Login />
 					</Route>
@@ -64,7 +65,7 @@ export const App = () => {
 					<Route path="/">
 						<Home />
 					</Route>
-				</Routes>
+				</Switch>
 			</main>
 
 			<Navbar />
