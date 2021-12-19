@@ -1,10 +1,10 @@
 .FormRow {
-	display: flex;
-	flex-direction: column;
-	row-gap: 5px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
 }
 
 .Label {
-	color: var(--gray);
-	font-size: 1rem;
+  color: var(--gray);
+  font-size: 1rem;
 }

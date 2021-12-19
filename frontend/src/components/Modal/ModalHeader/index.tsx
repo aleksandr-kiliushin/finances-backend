@@ -1,18 +1,15 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import cx from 'classnames'
 
-// Types
-import { ReactNode } from 'react'
-
 export const ModalHeader = ({ children, cnModalHeader = '' }: IProps) => {
-	const cxModalHeader = cx({
-		[cnModalHeader]: !!cnModalHeader,
-	})
+  const cxModalHeader = cx({
+    [cnModalHeader]: !!cnModalHeader,
+  })
 
-	return <div className={cxModalHeader}>{children}</div>
+  return <div className={cxModalHeader}>{children}</div>
 }
 
 interface IProps {
-	children: ReactNode
-	cnModalHeader?: string
+  children: ReactNode
+  cnModalHeader?: string
 }

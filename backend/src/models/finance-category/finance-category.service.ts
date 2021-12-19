@@ -8,71 +8,71 @@ import { FinanceCategoryEntity } from './entities/finance-category.entity'
 
 @Injectable()
 export class FinanceCategoryService {
-	constructor(
-		@InjectRepository(FinanceCategoryEntity)
-		private financeCategoryRepository: Repository<FinanceCategoryEntity>,
+  constructor(
+    @InjectRepository(FinanceCategoryEntity)
+    private financeCategoryRepository: Repository<FinanceCategoryEntity>,
 
-		private financeCategoryTypeService: FinanceCategoryTypeService,
-	) {}
+    private financeCategoryTypeService: FinanceCategoryTypeService,
+  ) {}
 
-	getFinanceCategories(query: { ids: string }): Promise<FinanceCategoryEntity[]> {
-		const { ids } = query
-		const where = {
-			...(ids && { id: In(ids.split(',')) }),
-		}
-		return this.financeCategoryRepository.find({
-			order: {
-				type: 'ASC',
-				id: 'ASC',
-			},
-			relations: ['type'],
-			where,
-		})
-	}
+  getFinanceCategories(query: { ids: string }): Promise<FinanceCategoryEntity[]> {
+    const { ids } = query
+    const where = {
+      ...(ids && { id: In(ids.split(',')) }),
+    }
+    return this.financeCategoryRepository.find({
+      order: {
+        type: 'ASC',
+        id: 'ASC',
+      },
+      relations: ['type'],
+      where,
+    })
+  }
 
-	getFinanceCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
-		return this.financeCategoryRepository.findOneOrFail(id, {
-			relations: ['type'],
-		})
-	}
+  getFinanceCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
+    return this.financeCategoryRepository.findOneOrFail(id, {
+      relations: ['type'],
+    })
+  }
 
-	async createFinanceCategory(
-		createFinanceCategoryDto: CreateFinanceCategoryDto,
-	): Promise<FinanceCategoryEntity> {
-		const { typeId, name } = createFinanceCategoryDto
+  async createFinanceCategory(
+    createFinanceCategoryDto: CreateFinanceCategoryDto,
+  ): Promise<FinanceCategoryEntity> {
+    const { typeId, name } = createFinanceCategoryDto
 
-		const type = await this.financeCategoryTypeService.getFinanceCategoryType(typeId)
+    const type = await this.financeCategoryTypeService.getFinanceCategoryType(typeId)
 
-		const category = this.financeCategoryRepository.create({ name, type })
+    const category = this.financeCategoryRepository.create({ name, type })
 
-		return this.financeCategoryRepository.save(category)
-	}
+    return this.financeCategoryRepository.save(category)
+  }
 
-	async updateFinanceCategory(
-		id: FinanceCategoryEntity['id'],
-		updateFinanceCategoryDto: UpdateFinanceCategoryDto,
-	): Promise<FinanceCategoryEntity> {
-		const { typeId, name } = updateFinanceCategoryDto
+  async updateFinanceCategory(
+    id: FinanceCategoryEntity['id'],
+    updateFinanceCategoryDto: UpdateFinanceCategoryDto,
+  ): Promise<FinanceCategoryEntity> {
+    const { typeId, name } = updateFinanceCategoryDto
 
-		const category = await this.getFinanceCategory(id)
+    const category = await this.getFinanceCategory(id)
 
-		if (typeId) {
-			const type = await this.financeCategoryTypeService.getFinanceCategoryType(typeId)
-			category.type = type
-		}
+    if (typeId) {
+      const type = await this.financeCategoryTypeService.getFinanceCategoryType(typeId)
+      category.type = type
+    }
 
-		if (name) {
-			category.name = name
-		}
+    if (name) {
+      category.name = name
+    }
 
-		return this.financeCategoryRepository.save(category)
-	}
+    return this.financeCategoryRepository.save(category)
+  }
 
-	async deleteFinanceCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
-		const category = await this.getFinanceCategory(id)
+  async deleteFinanceCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
+    const category = await this.getFinanceCategory(id)
 
-		await this.financeCategoryRepository.delete(id)
+    await this.financeCategoryRepository.delete(id)
 
-		return category
-	}
+    return category
+  }
 }

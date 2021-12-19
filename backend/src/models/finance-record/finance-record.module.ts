@@ -7,8 +7,8 @@ import { FinanceRecordController } from './finance-record.controller'
 import { FinanceRecordEntity } from './entities/finance-record.entity'
 
 @Module({
-	controllers: [FinanceRecordController],
-	imports: [TypeOrmModule.forFeature([FinanceRecordEntity]), FinanceCategoryModule],
-	providers: [FinanceRecordController, FinanceRecordService],
+  controllers: [FinanceRecordController],
+  imports: [TypeOrmModule.forFeature([FinanceRecordEntity]), FinanceCategoryModule],
+  providers: [FinanceRecordController, FinanceRecordService],
 })
 export class FinanceRecordModule {}

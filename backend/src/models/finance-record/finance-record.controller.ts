@@ -8,33 +8,33 @@ import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 @Controller('finance-record')
 @UseGuards(AuthGuard)
 export class FinanceRecordController {
-	constructor(private readonly financeRecordService: FinanceRecordService) {}
+  constructor(private readonly financeRecordService: FinanceRecordService) {}
 
-	@Get()
-	getFinanceRecords(@Query() query: any) {
-		return this.financeRecordService.getFinanceRecords(query)
-	}
+  @Get()
+  getFinanceRecords(@Query() query: any) {
+    return this.financeRecordService.getFinanceRecords(query)
+  }
 
-	@Get(':id')
-	getFinanceRecord(@Param('id') id: string) {
-		return this.financeRecordService.getFinanceRecord(+id)
-	}
+  @Get(':id')
+  getFinanceRecord(@Param('id') id: string) {
+    return this.financeRecordService.getFinanceRecord(+id)
+  }
 
-	@Post()
-	createFinanceRecord(@Body() createFinanceRecordDto: CreateFinanceRecordDto) {
-		return this.financeRecordService.createFinanceRecord(createFinanceRecordDto)
-	}
+  @Post()
+  createFinanceRecord(@Body() createFinanceRecordDto: CreateFinanceRecordDto) {
+    return this.financeRecordService.createFinanceRecord(createFinanceRecordDto)
+  }
 
-	@Patch(':id')
-	updateFinanceRecord(
-		@Param('id') id: string,
-		@Body() updateFinanceRecordDto: UpdateFinanceRecordDto,
-	) {
-		return this.financeRecordService.updateFinanceRecord(+id, updateFinanceRecordDto)
-	}
+  @Patch(':id')
+  updateFinanceRecord(
+    @Param('id') id: string,
+    @Body() updateFinanceRecordDto: UpdateFinanceRecordDto,
+  ) {
+    return this.financeRecordService.updateFinanceRecord(+id, updateFinanceRecordDto)
+  }
 
-	@Delete(':id')
-	deleteFinanceRecord(@Param('id') id: string) {
-		return this.financeRecordService.deleteFinanceRecord(+id)
-	}
+  @Delete(':id')
+  deleteFinanceRecord(@Param('id') id: string) {
+    return this.financeRecordService.deleteFinanceRecord(+id)
+  }
 }

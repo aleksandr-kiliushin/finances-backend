@@ -5,8 +5,8 @@ import { AuthService } from './auth.service'
 import { UserModule } from '#models/user/user.module'
 
 @Module({
-	imports: [UserModule],
-	providers: [AuthController, AuthService],
-	controllers: [AuthController],
+  imports: [UserModule],
+  providers: [AuthController, AuthService],
+  controllers: [AuthController],
 })
 export class AuthModule {}

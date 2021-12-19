@@ -1,27 +1,23 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import cx from 'classnames'
 
-// Styles
 import s from './index.module.css'
 
-// Types
-import { ReactNode } from 'react'
-
 export const TableCell = ({ children, cnTableCell = '', onClick = () => {} }: IProps) => {
-	const cxTableCell = cx({
-		[s.TableCell]: true,
-		[cnTableCell]: !!cnTableCell,
-	})
+  const cxTableCell = cx({
+    [s.TableCell]: true,
+    [cnTableCell]: !!cnTableCell,
+  })
 
-	return (
-		<div className={cxTableCell} onClick={onClick}>
-			{children}
-		</div>
-	)
+  return (
+    <div className={cxTableCell} onClick={onClick}>
+      {children}
+    </div>
+  )
 }
 
 interface IProps {
-	children: ReactNode
-	cnTableCell?: string
-	onClick?: () => void
+  children: ReactNode
+  cnTableCell?: string
+  onClick?: () => void
 }

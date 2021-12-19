@@ -10,13 +10,13 @@ import { FinanceCategoryTypeModule } from '#models/finance-category-type/finance
 import { UserModule } from './models/user/user.module'
 
 @Module({
-	imports: [
-		TypeOrmModule.forRoot(ormconfig),
-		AuthModule,
-		FinanceCategoryModule,
-		FinanceCategoryTypeModule,
-		FinanceRecordModule,
-		UserModule,
-	],
+  imports: [
+    TypeOrmModule.forRoot(ormconfig),
+    AuthModule,
+    FinanceCategoryModule,
+    FinanceCategoryTypeModule,
+    FinanceRecordModule,
+    UserModule,
+  ],
 })
 export class AppModule {}

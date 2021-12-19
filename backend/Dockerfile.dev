@@ -5,11 +5,6 @@ COPY ./backend/package-lock.json /app/package-lock.json
 
 RUN npm i --prefix /app
 
-# RUN apt-get install make gcc g++ python -y &&\
-#   npm i --prefix /app &&\
-#   npm rebuild bcrypt --build-from-source --prefix /app &&\
-#   apt-get remove make gcc g++ python -y
-
 CMD ["npm", "run", "dev", "--prefix", "/app"]
 
 EXPOSE 3080

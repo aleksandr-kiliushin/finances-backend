@@ -1,28 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { ReactNode, SyntheticEvent } from 'react'
 
-// Styles
 import s from './index.module.css'
 
-// Types
-import { ReactNode, SyntheticEvent } from 'react'
-
 export const Modal = ({ children, closeModal }: IProps) => {
-	const onScreenClick = (e: SyntheticEvent<HTMLDivElement>) => {
-		const isUnderlayClicked = (e.target as HTMLDivElement).matches('.' + s.ModalUnderlay)
+  const onScreenClick = (e: SyntheticEvent<HTMLDivElement>) => {
+    const isUnderlayClicked = (e.target as HTMLDivElement).matches('.' + s.ModalUnderlay)
 
-		if (!isUnderlayClicked) return
+    if (!isUnderlayClicked) return
 
-		closeModal()
-	}
+    closeModal()
+  }
 
-	return (
-		<div className={s.ModalUnderlay} onClick={onScreenClick}>
-			<div className={s.Modal}>{children}</div>
-		</div>
-	)
+  return (
+    <div className={s.ModalUnderlay} onClick={onScreenClick}>
+      <div className={s.Modal}>{children}</div>
+    </div>
+  )
 }
 
 interface IProps {
-	children: ReactNode
-	closeModal: () => void
+  children: ReactNode
+  closeModal: () => void
 }

@@ -5,9 +5,9 @@ import { FinanceCategoryTypeController } from './finance-category-type.controlle
 import { FinanceCategoryTypeEntity } from './entities/finance-category-type.entity'
 
 @Module({
-	exports: [FinanceCategoryTypeService],
-	imports: [TypeOrmModule.forFeature([FinanceCategoryTypeEntity])],
-	providers: [FinanceCategoryTypeController, FinanceCategoryTypeService], // Try to delete.
-	controllers: [FinanceCategoryTypeController], // Try to delete.
+  exports: [FinanceCategoryTypeService],
+  imports: [TypeOrmModule.forFeature([FinanceCategoryTypeEntity])],
+  providers: [FinanceCategoryTypeController, FinanceCategoryTypeService], // Try to delete.
+  controllers: [FinanceCategoryTypeController], // Try to delete.
 })
 export class FinanceCategoryTypeModule {}

@@ -3,13 +3,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-// Models
 import { store } from '#models/store'
-
-// Components
 import { App } from './views'
-
-// Styles
 import './index.css'
 
 ReactDOM.render(

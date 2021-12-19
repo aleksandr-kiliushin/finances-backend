@@ -10,72 +10,72 @@ import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
 
 @Injectable()
 export class FinanceRecordService {
-	constructor(
-		@InjectRepository(FinanceRecordEntity)
-		private financeRecordRepository: Repository<FinanceRecordEntity>,
+  constructor(
+    @InjectRepository(FinanceRecordEntity)
+    private financeRecordRepository: Repository<FinanceRecordEntity>,
 
-		private financeCategoryService: FinanceCategoryService,
-	) {}
+    private financeCategoryService: FinanceCategoryService,
+  ) {}
 
-	getFinanceRecords({
-		orderingByDate,
-		orderingById,
-		skip,
-		take,
-		...where
-	}: GetFinanceRecordsDto): Promise<FinanceRecordEntity[]> {
-		return this.financeRecordRepository.find({
-			order: {
-				date: orderingByDate,
-				id: orderingById,
-			},
-			relations: ['category', 'category.type'],
-			skip: skip ?? 0,
-			...(take ? { take } : {}),
-			where,
-		})
-	}
+  getFinanceRecords({
+    orderingByDate,
+    orderingById,
+    skip,
+    take,
+    ...where
+  }: GetFinanceRecordsDto): Promise<FinanceRecordEntity[]> {
+    return this.financeRecordRepository.find({
+      order: {
+        date: orderingByDate,
+        id: orderingById,
+      },
+      relations: ['category', 'category.type'],
+      skip: skip ?? 0,
+      ...(take ? { take } : {}),
+      where,
+    })
+  }
 
-	getFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-		return this.financeRecordRepository.findOneOrFail(id, {
-			relations: ['category', 'category.type'],
-		})
-	}
+  getFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+    return this.financeRecordRepository.findOneOrFail(id, {
+      relations: ['category', 'category.type'],
+    })
+  }
 
-	async createFinanceRecord(
-		createFinanceRecordDto: CreateFinanceRecordDto,
-	): Promise<FinanceRecordEntity> {
-		const { categoryId } = createFinanceRecordDto
+  async createFinanceRecord(
+    createFinanceRecordDto: CreateFinanceRecordDto,
+  ): Promise<FinanceRecordEntity> {
+    const { categoryId } = createFinanceRecordDto
 
-		const record = this.financeRecordRepository.create(createFinanceRecordDto)
+    const record = this.financeRecordRepository.create(createFinanceRecordDto)
 
-		record.category = await this.financeCategoryService.getFinanceCategory(categoryId)
+    record.category = await this.financeCategoryService.getFinanceCategory(categoryId)
 
-		return this.financeRecordRepository.save(record)
-	}
+    return this.financeRecordRepository.save(record)
+  }
 
-	async updateFinanceRecord(
-		id: FinanceRecordEntity['id'],
-		updateFinanceRecordDto: UpdateFinanceRecordDto,
-	): Promise<FinanceRecordEntity> {
-		const { categoryId, ...rest } = updateFinanceRecordDto
+  async updateFinanceRecord(
+    id: FinanceRecordEntity['id'],
+    updateFinanceRecordDto: UpdateFinanceRecordDto,
+  ): Promise<FinanceRecordEntity> {
+    const { categoryId, ...rest } = updateFinanceRecordDto
 
-		const record = await this.getFinanceRecord(id)
+    const record = await this.getFinanceRecord(id)
 
-		const updatedRecord = { ...record, ...rest }
+    const updatedRecord = { ...record, ...rest }
 
-		if (categoryId) {
-			updatedRecord.category = await this.financeCategoryService.getFinanceCategory(categoryId)
-		}
+    if (categoryId) {
+      updatedRecord.category = await this.financeCategoryService.getFinanceCategory(categoryId)
+    }
 
-		return this.financeRecordRepository.save(updatedRecord)
-	}
+    return this.financeRecordRepository.save(updatedRecord)
+  }
 
-	async deleteFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-		const record = await this.getFinanceRecord(id)
+  async deleteFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+    const record = await this.getFinanceRecord(id)
 
-		await this.financeRecordRepository.delete(id)
+    await this.financeRecordRepository.delete(id)
 
-		return record
-	}
+    return record
+  }
 }

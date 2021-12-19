@@ -8,33 +8,33 @@ import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
 @Controller('finance-category')
 @UseGuards(AuthGuard)
 export class FinanceCategoryController {
-	constructor(private financeCategoryService: FinanceCategoryService) {}
+  constructor(private financeCategoryService: FinanceCategoryService) {}
 
-	@Get()
-	getFinanceCategories(@Query() query: any) {
-		return this.financeCategoryService.getFinanceCategories(query)
-	}
+  @Get()
+  getFinanceCategories(@Query() query: any) {
+    return this.financeCategoryService.getFinanceCategories(query)
+  }
 
-	@Get(':id')
-	getFinanceCategory(@Param('id') id: string) {
-		return this.financeCategoryService.getFinanceCategory(+id)
-	}
+  @Get(':id')
+  getFinanceCategory(@Param('id') id: string) {
+    return this.financeCategoryService.getFinanceCategory(+id)
+  }
 
-	@Post()
-	createFinanceCategory(@Body() createFinanceCategoryDto: CreateFinanceCategoryDto) {
-		return this.financeCategoryService.createFinanceCategory(createFinanceCategoryDto)
-	}
+  @Post()
+  createFinanceCategory(@Body() createFinanceCategoryDto: CreateFinanceCategoryDto) {
+    return this.financeCategoryService.createFinanceCategory(createFinanceCategoryDto)
+  }
 
-	@Patch(':id')
-	updateFinanceCategory(
-		@Param('id') id: string,
-		@Body() updateFinanceCategoryDto: UpdateFinanceCategoryDto,
-	) {
-		return this.financeCategoryService.updateFinanceCategory(+id, updateFinanceCategoryDto)
-	}
+  @Patch(':id')
+  updateFinanceCategory(
+    @Param('id') id: string,
+    @Body() updateFinanceCategoryDto: UpdateFinanceCategoryDto,
+  ) {
+    return this.financeCategoryService.updateFinanceCategory(+id, updateFinanceCategoryDto)
+  }
 
-	@Delete(':id')
-	deleteFinanceCategory(@Param('id') id: string) {
-		return this.financeCategoryService.deleteFinanceCategory(+id)
-	}
+  @Delete(':id')
+  deleteFinanceCategory(@Param('id') id: string) {
+    return this.financeCategoryService.deleteFinanceCategory(+id)
+  }
 }
