@@ -1,5 +1,7 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { Typography } from '@mui/material'
 
 import { logIn, logOut } from '#models/user'
 import { Form } from '#components/form-constructor/Form'
@@ -7,8 +9,16 @@ import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
 import { Button } from '#components/Button'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import s from './index.module.css'
 import { IUser } from '#interfaces/user'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 25px;
+  height: 100%;
+  padding: 3rem;
+`
 
 export const Login = () => {
   const dispatch = useAppDispatch()
@@ -27,21 +37,23 @@ export const Login = () => {
 
   if (isUserLoggedIn) {
     return (
-      <div className={s.Container}>
-        <p className={s.Centered}>
-          You are logged in as <strong>{userData.username}</strong>.
-        </p>
+      <Container>
+        <Typography textAlign="center">
+          You are logged in as <b>{userData.username}</b>.
+        </Typography>
 
         <Button color="danger" onClick={() => dispatch(logOut())}>
           Log out
         </Button>
-      </div>
+      </Container>
     )
   }
 
   return (
-    <div className={s.Container}>
-      <h1 className={s.Centered}>Welcome</h1>
+    <Container>
+      <Typography variant="h1" textAlign="center">
+        Welcome
+      </Typography>
 
       <Form onSubmit={handleSubmit(submitLogin)}>
         <FormRow label="Username" name="username">
@@ -56,7 +68,7 @@ export const Login = () => {
           Log in
         </Button>
       </Form>
-    </div>
+    </Container>
   )
 }
 
