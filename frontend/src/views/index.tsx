@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Redirect, Switch, useLocation } from 'react-router'
-import { Route } from 'react-router-dom'
+import { Routes, useLocation } from 'react-router'
+import { Navigate, Route } from 'react-router-dom'
 
 // Action creators
 import { setRedirectPath } from '#models/common'
@@ -42,13 +42,13 @@ export const App = () => {
 	const cnView = s.ViewWithNavbar
 
 	if (redirectPath !== null && redirectPath !== pathname) {
-		return <Redirect to={redirectPath} />
+		return <Navigate to={redirectPath} />
 	}
 
 	return (
 		<div className={s.Layout}>
 			<main className={cnView}>
-				<Switch>
+				<Routes>
 					<Route path="/login">
 						<Login />
 					</Route>
@@ -64,7 +64,7 @@ export const App = () => {
 					<Route path="/">
 						<Home />
 					</Route>
-				</Switch>
+				</Routes>
 			</main>
 
 			<Navbar />
