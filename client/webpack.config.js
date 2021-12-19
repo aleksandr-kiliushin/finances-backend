@@ -5,9 +5,10 @@ const { SourceMapDevToolPlugin } = require('webpack')
 module.exports = {
 	devServer: {
 		historyApiFallback: true,
-		port: 3000, // To do: Get from env variable.
+		port: process.env.FRONTEND_PORT,
 		proxy: {
-			'/api': 'http://localhost:3080', // To do: Get from env variable.
+			// http://[Service name of backend in compose.dev.yml]:[backend port].
+			'/api': `http://backend:${process.env.BACKEND_PORT}`,
 		},
 	},
 	devtool: 'source-map',

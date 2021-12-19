@@ -2,12 +2,12 @@
 
 # After the DB container has started, run this script to initialize DB.
 
+# Variant 1:
+# From your host machine execute: echo "bash /app/init.sh" | docker exec -i finance-db bash;
+
 # Variant 2:
 # From your host machine execute: docker exec -it finance-db /bin/sh
 # Inside the DB container execute: bash /app/init.sh
-
-# Variant 1:
-# From your host machine execute: echo "bash /app/init.sh" | docker exec -i finance-db bash;
 
 # Loading dump list from remote server to the host machine.
 curl -u :$REMOTE_API_KEY --output app/dumps/dumps.json https://api.elephantsql.com/api/backup?db=$REMOTE_DB_NAME;
