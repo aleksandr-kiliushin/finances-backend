@@ -25,7 +25,7 @@ export const App = () => {
 	const { pathname } = useLocation()
 
 	const redirectPath = useAppSelector((state) => state.common.redirectPath)
-	const { isUserLoggedIn } = useAppSelector((state) => state.user)
+	const { isUserLoggedIn } = useAppSelector((state) => state.user) // ToDo: Check what it is.
 
 	useEffect(() => {
 		if (redirectPath !== null) {
