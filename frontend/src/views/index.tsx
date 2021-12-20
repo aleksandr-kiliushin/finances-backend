@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Redirect, Switch, useLocation } from 'react-router'
+import { css } from '@emotion/react'
 import { Route } from 'react-router-dom'
 
 import { setRedirectPath } from '#models/common'
@@ -10,7 +11,6 @@ import { Records } from './records'
 import { Settings } from './settings'
 import { Stats } from './stats'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import s from './index.module.css'
 import { getCurrentUserData } from '#models/user'
 
 export const App = () => {
@@ -18,8 +18,6 @@ export const App = () => {
   const { pathname } = useLocation()
 
   const redirectPath = useAppSelector((state) => state.common.redirectPath)
-  // ToDo: Check what is it used for.
-  // const { isUserLoggedIn } = useAppSelector((state) => state.user)
 
   useEffect(() => {
     if (redirectPath !== null) {
@@ -27,21 +25,27 @@ export const App = () => {
     }
   }, [redirectPath])
 
-  /** Initialize app. */
   useEffect(() => {
     dispatch(getCurrentUserData())
   }, [])
-
-  // const cnView = isUserLoggedIn ? s.ViewWithNavbar : s.ViewWithoutNavbar
-  const cnView = s.ViewWithNavbar
 
   if (redirectPath !== null && redirectPath !== pathname) {
     return <Redirect to={redirectPath} />
   }
 
   return (
-    <div className={s.Layout}>
-      <main className={cnView}>
+    <div
+      css={css`
+        height: 100vh;
+        width: 100vw;
+      `}
+    >
+      <main
+        css={css`
+          height: calc(100vh - var(--navbar-height));
+          overflow-y: scroll;
+        `}
+      >
         <Switch>
           <Route path="/login">
             <Login />
@@ -65,3 +69,12 @@ export const App = () => {
     </div>
   )
 }
+
+// .ViewWithNavbar {
+//   height: calc(100vh - var(--navbar-height));
+//   overflow-y: scroll;
+// }
+
+// .ViewWithoutNavbar {
+//   height: 100vh;
+// }

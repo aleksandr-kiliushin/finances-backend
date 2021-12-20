@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 export const Table = ({ children }: IProps) => {
   return <div>{children}</div>

@@ -1,5 +1,6 @@
+import { css } from '@emotion/react'
+
 // import { Notification } from './Notification'
-import s from './index.module.css'
 
 export const NotificationList = () => {
   const notifications: [] = []
@@ -7,7 +8,17 @@ export const NotificationList = () => {
   if (notifications.length === 0) return null
 
   return (
-    <div className={s.NotificationList}>
+    <div
+      css={css`
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5rem;
+        width: calc(100vw - 1rem);
+        margin: 0.5rem;
+      `}
+    >
       {/* {notifications.map((notification) => {
 				return <Notification key={notification.id} notificationData={notification} />
 			})} */}

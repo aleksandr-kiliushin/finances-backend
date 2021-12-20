@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { css } from '@emotion/react'
 
 import { getCategoriesTc } from '#models/finance'
 import { getCategoryTypesTc } from '#models/finance'
@@ -10,7 +11,6 @@ import { Button } from '#components/Button'
 import { CategoryModal } from './CategoryModal'
 import { CategoryTableRow } from './CategoryTableRow'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import s from './index.module.css'
 
 export const Settings = () => {
   const dispatch = useAppDispatch()
@@ -27,11 +27,20 @@ export const Settings = () => {
   return (
     <>
       <Table>
-        <TableHeader cnTableHeader={s.TableHeader}>
+        <TableHeader
+          tableHeaderCustomCss={css`
+            grid-template-columns: 38% 38% 24%;
+          `}
+        >
           <h3>Finance categories</h3>
         </TableHeader>
 
-        <TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
+        <TableRow
+          tableRowCustomCss={css`
+            grid-template-columns: 38% 38% 12% 12%;
+          `}
+          isTableHeaderRow
+        >
           <TableCell>Category</TableCell>
           <TableCell>Type</TableCell>
           <TableCell>

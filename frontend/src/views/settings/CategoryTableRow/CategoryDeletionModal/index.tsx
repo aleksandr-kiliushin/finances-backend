@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { useAppDispatch } from '#utils/hooks'
 import { deleteCategoryTc } from '#models/finance'
 import { Modal } from '#components/Modal'

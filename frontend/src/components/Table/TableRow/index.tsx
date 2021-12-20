@@ -1,20 +1,26 @@
-import React, { ReactNode } from 'react'
-import cx from 'classnames'
+import { ReactNode } from 'react'
+import { css, SerializedStyles } from '@emotion/react'
 
-import s from './index.module.css'
-
-export const TableRow = ({ children, cnTableRow = '', isTableHeaderRow = false }: IProps) => {
-  const cxTableHeaderRow = cx({
-    [s.TableRow]: true,
-    [s.TableHeaderRow]: isTableHeaderRow,
-    [cnTableRow]: !!cnTableRow,
-  })
-
-  return <div className={cxTableHeaderRow}>{children}</div>
+export const TableRow = ({ children, tableRowCustomCss, isTableHeaderRow = false }: IProps) => {
+  return (
+    <div
+      css={css`
+        display: grid;
+        height: 40px;
+        margin-top: -1px;
+        border-bottom: 1px solid var(--color-theme-1);
+        border-top: 1px solid var(--color-theme-1);
+        ${isTableHeaderRow && `font-weight: 500;`}
+        ${tableRowCustomCss}
+      `}
+    >
+      {children}
+    </div>
+  )
 }
 
 interface IProps {
   children: ReactNode
-  cnTableRow?: string
   isTableHeaderRow?: boolean
+  tableRowCustomCss?: SerializedStyles
 }

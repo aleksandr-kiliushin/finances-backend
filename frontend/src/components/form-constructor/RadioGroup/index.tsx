@@ -1,13 +1,10 @@
-import React from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
-
-import s from './index.module.css'
 
 export const RadioGroup = ({ isRequired = false, name, options, register }: IProps) => {
   return (
-    <div className={s.RadioGroup}>
+    <div className="{s.RadioGroup}">
       {options.map(({ id, label }) => (
-        <div className={s.RadioInputAndLabelContainer} key={id}>
+        <div className="{s.RadioInputAndLabelContainer}" key={id}>
           <input
             id={id.toString()}
             type="radio"
@@ -34,3 +31,15 @@ interface IProps {
   options: IRadioInputOption[]
   register: UseFormRegister<FieldValues>
 }
+
+// .RadioGroup {
+//   display: flex;
+//   flex-direction: column;
+//   row-gap: 5px;
+// }
+
+// .RadioInputAndLabelContainer {
+//   display: flex;
+//   align-items: center;
+//   column-gap: 5px;
+// }

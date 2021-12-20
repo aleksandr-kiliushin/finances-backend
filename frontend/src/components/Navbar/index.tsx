@@ -1,18 +1,11 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router'
-import cx from 'classnames'
+import { css } from '@emotion/react'
 
 import { Svg, ISvgProps } from '#components/Svg'
-// import { useAppSelector } from '#utils/hooks'
-import s from './index.module.css'
 
 export const Navbar = () => {
   const { pathname } = useLocation()
-
-  // const { isUserLoggedIn } = useAppSelector((state) => state.user)
-
-  // if (!isUserLoggedIn) return null
 
   const sectionsData: ISection[] = [
     { path: '/', svgName: 'home' },
@@ -23,15 +16,35 @@ export const Navbar = () => {
   ]
 
   const sectionsDataForLayout = sectionsData.map(({ path, svgName }) => ({
-    className: cx({ [s.SectionLink]: true, [s.ActiveSectionLink]: pathname === path }),
     path,
     svgName,
   }))
 
   return (
-    <nav className={s.Navbar}>
-      {sectionsDataForLayout.map(({ path, className, svgName }) => (
-        <Link className={className} key={path} to={path}>
+    <nav
+      css={css`
+        position: fixed;
+        bottom: 0;
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: space-around;
+        height: var(--navbar-height);
+        width: 100%;
+        background: var(--color-theme-1);
+      `}
+    >
+      {sectionsDataForLayout.map(({ path, svgName }) => (
+        <Link
+          css={css`
+            height: ${pathname === path ? '55px' : '40px'};
+            width: ${pathname === path ? '55px' : '40px'};
+            fill: ${pathname === path ? 'white' : 'lightgray'};
+            transition: height 0.15s, width 0.15s, fill 0.15s;
+          `}
+          key={path}
+          to={path}
+        >
           <Svg name={svgName} />
         </Link>
       ))}

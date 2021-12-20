@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import cx from 'classnames'
+import { useState } from 'react'
+import { css } from '@emotion/react'
 
 import { useAppDispatch } from '#utils/hooks'
 import { deleteRecordTc } from '#models/finance'
@@ -8,7 +8,6 @@ import { Svg } from '#components/Svg'
 import { TableRow } from '#components/Table/TableRow'
 import { TableCell } from '#components/Table/TableCell'
 import { RecordModal } from '#views/records/RecordModal'
-import s from './index.module.css'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
@@ -28,15 +27,32 @@ export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
     </TableCell>
   )
 
-  const cxAmountTableCell = cx({
-    [s.ExpenseTableCell]: category.type.id === 1,
-    [s.IncomeTableCell]: category.type.id === 2,
-  })
+  const mapCategoryTypeIdToColor = new Map([
+    [1, 'darkred'],
+    [2, 'darkgreen'],
+  ])
+  const mapCategoryTypeIdToPseudoElementContent = new Map([
+    [1, '-'],
+    [2, '+'],
+  ])
 
   return (
     <>
-      <TableRow cnTableRow={s.TableRow}>
-        <TableCell cnTableCell={cxAmountTableCell}>{amount}</TableCell>
+      <TableRow
+        tableRowCustomCss={css`
+          grid-template-columns: 23% 29% 24% 12% 12%;
+        `}
+      >
+        <TableCell
+          tableCellCustomCss={css`
+            color: ${mapCategoryTypeIdToColor.get(category.type.id)};
+            &::before {
+              content: '${mapCategoryTypeIdToPseudoElementContent.get(category.type.id)}';
+            }
+          `}
+        >
+          {amount}
+        </TableCell>
         <TableCell>{category.name}</TableCell>
         <TableCell>{date.slice(2)}</TableCell>
         {editOrRestoreTableCell}

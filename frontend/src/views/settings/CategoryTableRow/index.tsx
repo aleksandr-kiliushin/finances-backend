@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { css } from '@emotion/react'
 
 import { Svg } from '#components/Svg'
 import { TableRow } from '#components/Table/TableRow'
 import { TableCell } from '#components/Table/TableCell'
 import { CategoryDeletionModal } from './CategoryDeletionModal'
 import { CategoryModal } from '#views/settings/CategoryModal'
-import s from './index.module.css'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
@@ -16,7 +16,11 @@ export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
 
   return (
     <>
-      <TableRow cnTableRow={s.TableRow}>
+      <TableRow
+        tableRowCustomCss={css`
+          grid-template-columns: 38% 38% 12% 12%;
+        `}
+      >
         <TableCell>{name}</TableCell>
         <TableCell>{type.name}</TableCell>
         <TableCell onClick={() => setIsCategoryEditingModalShown(true)}>

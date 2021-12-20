@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { css } from '@emotion/react'
 import { useForm } from 'react-hook-form'
 
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
@@ -13,7 +14,6 @@ import { TableCell } from '#components/Table/TableCell'
 import { RecordModal } from './RecordModal'
 import { RecordTableRow } from './RecordTableRow'
 import { Loader } from '#components/Loader'
-import s from './index.module.css'
 
 export const Records = () => {
   const dispatch = useAppDispatch()
@@ -54,13 +54,24 @@ export const Records = () => {
   return (
     <>
       <Table>
-        <TableHeader cnTableHeader={s.TableHeader}>
+        <TableHeader
+          tableHeaderCustomCss={css`
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          `}
+        >
           <h3>Finance records</h3>
 
           <SwitchInput label="Trashed" {...register('isTrash')} />
         </TableHeader>
 
-        <TableRow cnTableRow={s.TableHeaderRow} isTableHeaderRow>
+        <TableRow
+          tableRowCustomCss={css`
+            grid-template-columns: 23% 29% 24% 24%;
+          `}
+          isTableHeaderRow
+        >
           <TableCell>Amount</TableCell>
           <TableCell>Category</TableCell>
           <TableCell>Date</TableCell>

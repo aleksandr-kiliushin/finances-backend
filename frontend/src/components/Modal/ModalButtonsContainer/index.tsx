@@ -1,9 +1,18 @@
-import React, { ReactNode } from 'react'
-
-import s from './index.module.css'
+import { ReactNode } from 'react'
+import { css } from '@emotion/react'
 
 export const ModalButtonsContainer = ({ children }: IProps) => {
-  return <div className={s.ModalButtonsContainer}>{children}</div>
+  return (
+    <div
+      css={css`
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1rem;
+      `}
+    >
+      {children}
+    </div>
+  )
 }
 
 interface IProps {

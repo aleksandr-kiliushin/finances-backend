@@ -1,13 +1,11 @@
-import React, { DetailedHTMLProps, forwardRef, ForwardedRef, SelectHTMLAttributes } from 'react'
-
-import sCommon from '#components/form-constructor/index.module.css'
+import { DetailedHTMLProps, forwardRef, ForwardedRef, SelectHTMLAttributes } from 'react'
 
 const Select_ = (
   { options, placeholder, ...rest }: IProps,
   ref: ForwardedRef<HTMLSelectElement>,
 ) => {
   return (
-    <select className={sCommon.Input} ref={ref} {...rest}>
+    <select className="{sCommon.Input}" ref={ref} {...rest}>
       <option value="" disabled>
         {placeholder ?? 'Select an option ...'}
       </option>

@@ -1,15 +1,12 @@
-import React, { ReactNode } from 'react'
-import cx from 'classnames'
+import { ReactNode } from 'react'
+import { SerializedStyles } from '@emotion/react'
 
-export const ModalHeader = ({ children, cnModalHeader = '' }: IProps) => {
-  const cxModalHeader = cx({
-    [cnModalHeader]: !!cnModalHeader,
-  })
-
-  return <div className={cxModalHeader}>{children}</div>
+export const ModalHeader = ({ children, modalHeaderCustomCss }: IProps) => {
+  return <div css={modalHeaderCustomCss}>{children}</div>
 }
 
 interface IProps {
   children: ReactNode
   cnModalHeader?: string
+  modalHeaderCustomCss?: SerializedStyles
 }

@@ -1,24 +1,40 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
-import cx from 'classnames'
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
+import { css, SerializedStyles } from '@emotion/react'
 
-import s from './index.module.css'
-
-export const Button = ({ children, color = 'primary', ...rest }: IProps) => {
-  const cxButton = cx({
-    [s.Button]: true,
-    [s.ButtonDanger]: color === 'danger',
-    [s.ButtonLight]: color === 'light',
-    [s.ButtonPrimary]: color === 'primary',
-  })
+export const Button = ({ color = 'primary', customButtonCss, ...rest }: IProps) => {
+  const mapButtonTypeToBackgroundColor = {
+    danger: 'var(--color-theme-1)',
+    light: 'var(--soft-danger)',
+    primary: 'var(--color-theme-1-light)',
+  }
+  const mapButtonTypeToColor = {
+    danger: 'white',
+    light: 'white',
+    primary: 'var(--soft-black)',
+  }
 
   return (
-    <button className={cxButton} {...rest}>
-      {children}
-    </button>
+    <button
+      css={css`
+        height: 35px;
+        padding: 0 10px;
+        background-color: ${mapButtonTypeToBackgroundColor[color]};
+        border: none;
+        border-radius: 5px;
+        color: ${mapButtonTypeToColor[color]};
+        &:disabled {
+          color: var(--lightgray);
+        }
+        border: ${color === 'light' ? '1px solid var(--color-theme-1)' : 'none'};
+        ${customButtonCss}
+      `}
+      {...rest}
+    />
   )
 }
 
 type IProps = {
-  color?: 'danger' | 'light' | 'primary'
   children: ReactNode
+  color?: 'danger' | 'light' | 'primary'
+  customButtonCss?: SerializedStyles
 } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>

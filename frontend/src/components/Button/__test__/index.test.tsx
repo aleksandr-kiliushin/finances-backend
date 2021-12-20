@@ -1,6 +1,5 @@
 /** @jest-environment jsdom */
 
-import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 
 import { Button } from '#components/Button'

@@ -1,7 +1,13 @@
-import React, { forwardRef, ForwardedRef } from 'react'
-
-import s from './index.module.css'
+import { forwardRef, ForwardedRef } from 'react'
+import { css } from '@emotion/react'
 
 export const Loader = forwardRef((props: {}, ref: ForwardedRef<HTMLDivElement>) => {
-  return <div className={s.Loader} ref={ref} />
+  return (
+    <div
+      css={css`
+        height: 20px;
+      `}
+      ref={ref}
+    />
+  )
 })

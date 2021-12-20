@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Svg = ({ name, className = '' }: ISvgProps) => {
   const { height, paths: paths, width } = svgs[name]
 

@@ -1,7 +1,5 @@
 /** @jest-environment jsdom */
 
-import React from 'react'
-
 import { Settings } from '#views/settings'
 import { render, screen } from '#utils/test-utils'
 import { categories, categoryTypes } from './constants'

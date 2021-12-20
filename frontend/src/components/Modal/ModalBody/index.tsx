@@ -1,9 +1,18 @@
-import React, { ReactNode } from 'react'
-
-import s from './index.module.css'
+import { ReactNode } from 'react'
+import { css } from '@emotion/react'
 
 export const ModalBody = ({ children }: IProps) => {
-  return <div className={s.ModalBody}>{children}</div>
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+      `}
+    >
+      {children}
+    </div>
+  )
 }
 
 interface IProps {

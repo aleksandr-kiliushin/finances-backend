@@ -1,6 +1,5 @@
 /** @jest-environment jsdom */
 
-import React from 'react'
 import userEvent from '@testing-library/user-event'
 
 import { Login } from '#views/login'

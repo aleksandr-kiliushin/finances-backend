@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -41,7 +40,6 @@ export const Login = () => {
         <p
           css={css`
             text-align: center;
-            background-color: red;
           `}
         >
           You are logged in as <b>{userData.username}</b>.
@@ -56,7 +54,13 @@ export const Login = () => {
 
   return (
     <Container>
-      {/* <h1 css={css({ textAlign: 'center' })}>Welcome</h1> */}
+      <h1
+        css={css`
+          text-align: center;
+        `}
+      >
+        Welcome
+      </h1>
 
       <Form onSubmit={handleSubmit(submitLogin)}>
         <FormRow label="Username" name="username">

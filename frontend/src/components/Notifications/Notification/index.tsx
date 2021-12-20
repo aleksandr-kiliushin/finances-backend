@@ -1,18 +1,29 @@
-import cx from 'classnames'
-
-import s from './index.module.css'
+import { css } from '@emotion/react'
 
 export const Notification = ({ notificationData }: IProps) => {
   const { message, title, type } = notificationData
 
-  const cxNotification = cx({
-    [s.Notification]: true,
-    [s.NotificationError]: type === 'error',
-    [s.NotificationSuccess]: type === 'success',
-  })
+  const mapNotificationTypeToBackgroundColor = {
+    error: 'lightsalmon',
+    success: 'rgb(182, 218, 128)',
+  }
 
   return (
-    <div className={cxNotification}>
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        padding: 1rem;
+        background-color: ${mapNotificationTypeToBackgroundColor[type]};
+        border: 1px solid var(--soft-black);
+
+        h4,
+        p {
+          margin: 0;
+        }
+      `}
+    >
       <h4>{title}</h4>
       <p>{message}</p>
     </div>
