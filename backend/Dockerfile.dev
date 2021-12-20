@@ -1,7 +1,6 @@
 FROM node:14
 
-COPY ./backend/package.json /app/package.json
-COPY ./backend/package-lock.json /app/package-lock.json
+COPY ./backend/package*.json /app/
 
 RUN npm i --prefix /app
 

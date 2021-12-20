@@ -1,7 +1,6 @@
 FROM node:14
 
-COPY ./frontend/package.json /app/package.json
-COPY ./frontend/package-lock.json /app/package-lock.json
+COPY ./frontend/package*.json /app/
 RUN npm i --prefix /app
 
 CMD ["npm", "run", "dev", "--prefix", "/app"]
