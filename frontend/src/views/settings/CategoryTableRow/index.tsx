@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { css } from '@emotion/react'
 
 import { Svg } from '#components/Svg'
@@ -15,7 +15,7 @@ export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
   const { name, type } = category
 
   return (
-    <>
+    <Fragment>
       <TableRow
         tableRowCustomCss={css`
           grid-template-columns: 38% 38% 12% 12%;
@@ -45,7 +45,7 @@ export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
           closeModal={() => setIsCategoryDeletionModalShown(false)}
         />
       )}
-    </>
+    </Fragment>
   )
 }
 

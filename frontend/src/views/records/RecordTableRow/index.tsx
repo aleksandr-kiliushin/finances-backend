@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { css } from '@emotion/react'
 
 import { useAppDispatch } from '#utils/hooks'
@@ -37,7 +37,7 @@ export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
   ])
 
   return (
-    <>
+    <Fragment>
       <TableRow
         tableRowCustomCss={css`
           grid-template-columns: 23% 29% 24% 12% 12%;
@@ -68,7 +68,7 @@ export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
           record={record}
         />
       )}
-    </>
+    </Fragment>
   )
 }
 

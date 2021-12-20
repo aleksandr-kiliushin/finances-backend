@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { css } from '@emotion/react'
 
 import { getCategoriesTc } from '#models/finance'
@@ -25,7 +25,7 @@ export const Settings = () => {
   }, [])
 
   return (
-    <>
+    <Fragment>
       <Table>
         <TableHeader
           tableHeaderCustomCss={css`
@@ -64,6 +64,6 @@ export const Settings = () => {
           closeModal={() => setIsCategoryCreatingModalShown(false)}
         />
       )}
-    </>
+    </Fragment>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { css } from '@emotion/react'
 import { useForm } from 'react-hook-form'
 
@@ -52,7 +52,7 @@ export const Records = () => {
   }, [getRecordsTc, isTrash, loaderRef])
 
   return (
-    <>
+    <Fragment>
       <Table>
         <TableHeader
           tableHeaderCustomCss={css`
@@ -99,7 +99,7 @@ export const Records = () => {
           record={null}
         />
       )}
-    </>
+    </Fragment>
   )
 }
 
