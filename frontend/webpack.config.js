@@ -21,20 +21,6 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
-      {
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[local]__[hash:base64:5]',
-              },
-            },
-          },
-        ],
-      },
     ],
   },
   output: {
@@ -44,7 +30,7 @@ module.exports = {
     sourceMapFilename: '[name].js.map',
   },
   resolve: {
-    extensions: ['.css', '.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '#components': path.resolve(process.cwd(), 'src/components'),
       '#interfaces/*': path.resolve(process.cwd(), '../server/src/interfaces/'),
