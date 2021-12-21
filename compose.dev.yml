@@ -31,7 +31,6 @@ services:
     restart: on-failure
     volumes:
       - ./frontend:/app
-      - /app/node_modules
 
   db:
     build:
