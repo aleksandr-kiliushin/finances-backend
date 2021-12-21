@@ -15,6 +15,7 @@
       "#components/*": ["src/components/*"],
       "#interfaces/*": ["../backend/src/interfaces/*"],
       "#models/*": ["src/models/*"],
+      "#src/*": ["src/*"],
       "#utils/*": ["src/utils/*"],
       "#views/*": ["src/views/*"]
     },

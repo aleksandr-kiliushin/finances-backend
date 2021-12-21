@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { Route } from 'react-router-dom'
 
 import { setRedirectPath } from '#models/common'
-import { Navbar } from '#components/Navbar'
+import Navbar from '#components/Navbar'
 import { Home } from './home'
 import { Login } from './login'
 import { Records } from './records'
@@ -42,7 +42,7 @@ export const App = () => {
     >
       <main
         css={css`
-          height: calc(100vh - var(--navbar-height));
+          height: calc(100vh - 60px);
           overflow-y: scroll;
         `}
       >
@@ -69,12 +69,3 @@ export const App = () => {
     </div>
   )
 }
-
-// .ViewWithNavbar {
-//   height: calc(100vh - var(--navbar-height));
-//   overflow-y: scroll;
-// }
-
-// .ViewWithoutNavbar {
-//   height: 100vh;
-// }

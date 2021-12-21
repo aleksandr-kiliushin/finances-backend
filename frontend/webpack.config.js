@@ -35,8 +35,9 @@ module.exports = {
       '#components': path.resolve(process.cwd(), 'src/components'),
       '#interfaces/*': path.resolve(process.cwd(), '../server/src/interfaces/'),
       '#models': path.resolve(process.cwd(), 'src/models'),
-      '#views': path.resolve(process.cwd(), 'src/views'),
+      '#src': path.resolve(process.cwd(), 'src'),
       '#utils': path.resolve(process.cwd(), 'src/utils'),
+      '#views': path.resolve(process.cwd(), 'src/views'),
     },
   },
   plugins: [

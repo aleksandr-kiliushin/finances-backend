@@ -6,7 +6,7 @@ import { Global } from '@emotion/react'
 
 import { store } from '#models/store'
 import { App } from './views'
-import globalStyles from './global-styles'
+import globalStyles from './style'
 
 ReactDOM.render(
   <StrictMode>

@@ -1,22 +1,12 @@
 import { css } from '@emotion/react'
 
-const globalStyles = css`
-  :root {
-    --color-theme-1: steelblue;
-    --color-theme-1-light: linear-gradient(
-      90deg,
-      var(--color-theme-1) -500%,
-      white 50%,
-      var(--color-theme-1) 600%
-    );
-    --gray: #555;
-    --lightgray: lightgray;
-    --navbar-height: 70px;
-    --soft-black: #111;
-    --soft-danger: indianred;
-    --soft-gray: #777;
-  }
+export enum Color {
+  Secondary = '#6b7b8c',
+  Primary = '#3b4d61',
+  Theme = '#ef9d10',
+}
 
+const globalStyles = css`
   html,
   body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
@@ -27,8 +17,6 @@ const globalStyles = css`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--soft-black);
-    font-size: 1.1rem;
   }
 
   svg {

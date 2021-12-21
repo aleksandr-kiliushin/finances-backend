@@ -1,20 +1,27 @@
-import { Link } from 'react-router-dom'
-import Box from '@mui/material/Box'
+import { Link, useLocation } from 'react-router-dom'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 
 import { navigationItem } from './helpers'
+import { bottomNavigationActionSx, bottomNavigationSx } from './style'
 
-export const Navbar = () => {
+const Navbar = () => {
+  const { pathname } = useLocation()
+
   return (
-    <Box>
-      <BottomNavigation>
-        {navigationItem.map(({ icon, path }) => (
-          <Link key={path} to={path}>
-            <BottomNavigationAction icon={icon} value={path} />
-          </Link>
-        ))}
-      </BottomNavigation>
-    </Box>
+    <BottomNavigation sx={bottomNavigationSx} value={pathname}>
+      {navigationItem.map(({ icon, path }) => (
+        <BottomNavigationAction
+          component={Link}
+          icon={icon}
+          key={path}
+          sx={bottomNavigationActionSx}
+          to={path}
+          value={path}
+        />
+      ))}
+    </BottomNavigation>
   )
 }
+
+export default Navbar
