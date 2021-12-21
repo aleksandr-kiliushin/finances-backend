@@ -1,11 +1,12 @@
 import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
 
 import { useAppDispatch } from '#utils/hooks'
 import { deleteCategoryTc } from '#models/finance'
-import { Modal } from '#components/Modal'
-import { ModalHeader } from '#components/Modal/ModalHeader'
-import { ModalBody } from '#components/Modal/ModalBody'
-import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
 import { IFinanceCategory } from '#interfaces/finance'
 
 export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
@@ -18,22 +19,18 @@ export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
   }
 
   return (
-    <Modal closeModal={closeModal}>
-      <ModalHeader>
-        <h4>Delete category</h4>
-      </ModalHeader>
-
-      <ModalBody>
-        <p>
+    <Dialog open onClose={closeModal}>
+      <DialogTitle>Delete category</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
           Are you sure you want to delete <strong>{name}</strong> category?
-        </p>
-
-        <ModalButtonsContainer>
-          <Button onClick={closeModal}>Cancel</Button>
-          <Button onClick={submitCategoryDeletion}>Delete</Button>
-        </ModalButtonsContainer>
-      </ModalBody>
-    </Modal>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={closeModal}>Cancel</Button>
+        <Button onClick={submitCategoryDeletion}>Delete</Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 

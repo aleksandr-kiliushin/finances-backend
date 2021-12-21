@@ -1,12 +1,12 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
 
 import { useAppDispatch } from '#utils/hooks'
 import { createRecordTc, updateRecordTc } from '#models/finance'
-import { Modal } from '#components/Modal'
-import { ModalHeader } from '#components/Modal/ModalHeader'
-import { ModalBody } from '#components/Modal/ModalBody'
-import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
 import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
@@ -53,13 +53,10 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
   }
 
   return (
-    <Modal closeModal={closeModal}>
-      <ModalHeader>
-        <h4>{record ? 'Edit record' : 'Create record'}</h4>
-      </ModalHeader>
-
-      <ModalBody>
-        <Form onSubmit={handleSubmit(submitRecordForm)}>
+    <Dialog open onClose={closeModal}>
+      <DialogTitle>Add record</DialogTitle>
+      <Form onSubmit={handleSubmit(submitRecordForm)}>
+        <DialogContent>
           <FormRow label="Amount" name="amount">
             <PlainInput type="number" {...register('amount', { required: true })} />
           </FormRow>
@@ -73,14 +70,13 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
           <FormRow label="Date" name="date">
             <PlainInput type="date" {...register('date', { required: true })} />
           </FormRow>
-
-          <ModalButtonsContainer>
-            <Button onClick={closeModal}>Cancel</Button>
-            <Button type="submit">Submit</Button>
-          </ModalButtonsContainer>
-        </Form>
-      </ModalBody>
-    </Modal>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeModal}>Cancel</Button>
+          <Button type="submit">Submit</Button>
+        </DialogActions>
+      </Form>
+    </Dialog>
   )
 }
 
