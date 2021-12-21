@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
+import Button from '@mui/material/Button'
 
 import { useAppDispatch } from '#utils/hooks'
 import { createCategoryTc, updateCategoryTc } from '#models/finance'
@@ -6,7 +7,6 @@ import { Modal } from '#components/Modal'
 import { ModalHeader } from '#components/Modal/ModalHeader'
 import { ModalBody } from '#components/Modal/ModalBody'
 import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
-import { Button } from '#components/Button'
 import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
@@ -53,9 +53,7 @@ export const CategoryModal = ({ category, categoryTypes, closeModal }: IProps) =
           </FormRow>
 
           <ModalButtonsContainer>
-            <Button color="light" onClick={closeModal} type="button">
-              Cancel
-            </Button>
+            <Button onClick={closeModal}>Cancel</Button>
             <Button type="submit">Submit</Button>
           </ModalButtonsContainer>
         </Form>

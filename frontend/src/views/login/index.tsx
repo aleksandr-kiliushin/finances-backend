@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import Button from '@mui/material/Button'
 
 import { logIn, logOut } from '#models/user'
 import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
-import { Button } from '#components/Button'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { IUser } from '#interfaces/user'
 
@@ -45,9 +45,7 @@ export const Login = () => {
           You are logged in as <b>{userData.username}</b>.
         </p>
 
-        <Button color="danger" onClick={() => dispatch(logOut())}>
-          Log out
-        </Button>
+        <Button onClick={() => dispatch(logOut())}>Log out</Button>
       </Container>
     )
   }

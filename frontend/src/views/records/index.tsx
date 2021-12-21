@@ -1,11 +1,11 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { css } from '@emotion/react'
 import { useForm } from 'react-hook-form'
+import Button from '@mui/material/Button'
 
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCategoriesTc } from '#models/finance'
 import { getRecordsTc } from '#models/finance'
-import { Button } from '#components/Button'
 import { SwitchInput } from '#components/form-constructor/SwitchInput'
 import { Table } from '#components/Table'
 import { TableHeader } from '#components/Table/TableHeader'

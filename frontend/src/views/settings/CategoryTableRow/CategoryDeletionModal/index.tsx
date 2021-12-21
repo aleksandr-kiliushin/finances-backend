@@ -1,10 +1,11 @@
+import Button from '@mui/material/Button'
+
 import { useAppDispatch } from '#utils/hooks'
 import { deleteCategoryTc } from '#models/finance'
 import { Modal } from '#components/Modal'
 import { ModalHeader } from '#components/Modal/ModalHeader'
 import { ModalBody } from '#components/Modal/ModalBody'
 import { ModalButtonsContainer } from '#components/Modal/ModalButtonsContainer'
-import { Button } from '#components/Button'
 import { IFinanceCategory } from '#interfaces/finance'
 
 export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
@@ -28,9 +29,7 @@ export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
         </p>
 
         <ModalButtonsContainer>
-          <Button color="light" onClick={closeModal}>
-            Cancel
-          </Button>
+          <Button onClick={closeModal}>Cancel</Button>
           <Button onClick={submitCategoryDeletion}>Delete</Button>
         </ModalButtonsContainer>
       </ModalBody>
