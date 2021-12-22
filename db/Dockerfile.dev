@@ -6,6 +6,6 @@ RUN apt-get install -y curl jq lzop
 RUN mkdir /app
 RUN mkdir /app/dumps
 
-COPY ./db/init.sh /app/init.sh
+COPY ./init.sh /app/init.sh
 
 EXPOSE 5432

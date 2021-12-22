@@ -1,9 +1,11 @@
-FROM node:14
+FROM node:16
 
-COPY ./backend/package*.json /app/
+WORKDIR /app
 
-RUN npm i --prefix /app
+COPY ./package*.json .
 
-CMD ["npm", "run", "dev", "--prefix", "/app"]
+RUN npm install
+
+CMD ["npm", "run", "dev"]
 
 EXPOSE 3080

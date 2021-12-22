@@ -3,8 +3,8 @@ version: '3.9'
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./backend/Dockerfile.dev
+      context: ./backend
+      dockerfile: ./Dockerfile.dev
     container_name: finance-backend
     depends_on:
       - db
@@ -19,8 +19,8 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: ./frontend/Dockerfile.dev
+      context: ./frontend
+      dockerfile: ./Dockerfile.dev
     container_name: finance-frontend
     depends_on:
       - backend
@@ -34,8 +34,8 @@ services:
 
   db:
     build:
-      context: .
-      dockerfile: ./db/Dockerfile.dev
+      context: ./db
+      dockerfile: ./Dockerfile.dev
     container_name: finance-db
     env_file:
       - ./config/dev.env
