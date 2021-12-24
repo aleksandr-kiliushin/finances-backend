@@ -1,29 +1,35 @@
 import { SxProps, Theme } from '@mui/material/styles'
 
-import Color from '#styles/colors'
-
-export const bottomNavigationSx: SxProps<Theme> = {
+export const bottomNavigationSx: SxProps<Theme> = ({ palette }) => ({
   height: '60px',
-  boxShadow: `0px -30px 30px ${Color.Secondary}20`,
-  backgroundColor: Color.Theme,
-}
+  boxShadow: `0px -30px 30px ${palette.background.paper}40`,
+  backgroundColor: palette.background.paper,
+  borderTop: `1px solid ${palette.text.primary}`,
+})
 
-export const bottomNavigationActionSx: SxProps<Theme> = {
+export const bottomNavigationActionSx: SxProps<Theme> = ({ palette }) => ({
   maxWidth: '100%',
   padding: '8px',
   '& .MuiSvgIcon-root': {
     height: '1.5rem',
     width: '1.5rem',
-    fill: Color.Secondary,
+    fill: palette.text.secondary,
     transition: 'height 0.2s linear, width 0.2s linear, fill 0.2s linear',
   },
   '&.Mui-selected .MuiSvgIcon-root': {
     height: '2.2rem',
     width: '2.2rem',
-    fill: Color.Primary,
+    fill: palette.text.primary,
   },
   '&:hover .MuiSvgIcon-root': {
-    fill: Color.Primary,
+    fill: palette.text.primary,
     transition: 'fill 0.2s linear',
   },
-}
+})
+
+// const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
+//   color: theme.status.danger,
+//   '&.Mui-checked': {
+//     color: theme.status.danger,
+//   },
+// }));
