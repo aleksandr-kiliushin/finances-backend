@@ -13,7 +13,7 @@ import { Stats } from './stats'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCurrentUserData } from '#models/user'
 
-export const App = () => {
+const App = () => {
   const dispatch = useAppDispatch()
   const { pathname } = useLocation()
 
@@ -69,3 +69,5 @@ export const App = () => {
     </div>
   )
 }
+
+export default App

@@ -4,7 +4,7 @@ import { commonReducer } from './common'
 import { financeReducer } from './finance'
 import { userReducer } from './user'
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     common: commonReducer,
     finance: financeReducer,
@@ -20,3 +20,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >
+
+export default store

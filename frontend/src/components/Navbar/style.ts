@@ -1,6 +1,6 @@
 import { SxProps, Theme } from '@mui/material/styles'
 
-import { Color } from '#src/style'
+import Color from '#styles/colors'
 
 export const bottomNavigationSx: SxProps<Theme> = {
   height: '60px',

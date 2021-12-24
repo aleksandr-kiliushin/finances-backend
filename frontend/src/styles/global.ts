@@ -1,12 +1,6 @@
 import { css } from '@emotion/react'
 
-export enum Color {
-  Secondary = '#6b7b8c',
-  Primary = '#3b4d61',
-  Theme = '#ef9d10',
-}
-
-const globalStyles = css`
+export const globalStyles = css`
   html,
   body {
     margin: 0;

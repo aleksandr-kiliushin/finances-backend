@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 import { logIn, logOut } from '#models/user'
 import { Form } from '#components/form-constructor/Form'
@@ -37,13 +37,9 @@ export const Login = () => {
   if (isUserLoggedIn) {
     return (
       <Container>
-        <p
-          css={css`
-            text-align: center;
-          `}
-        >
+        <Typography textAlign="center">
           You are logged in as <b>{userData.username}</b>.
-        </p>
+        </Typography>
 
         <Button onClick={() => dispatch(logOut())}>Log out</Button>
       </Container>
@@ -52,13 +48,9 @@ export const Login = () => {
 
   return (
     <Container>
-      <h1
-        css={css`
-          text-align: center;
-        `}
-      >
+      <Typography variant="h1" textAlign="center">
         Welcome
-      </h1>
+      </Typography>
 
       <Form onSubmit={handleSubmit(submitLogin)}>
         <FormRow label="Username" name="username">

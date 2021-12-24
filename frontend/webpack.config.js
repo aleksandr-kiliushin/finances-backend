@@ -36,6 +36,7 @@ module.exports = {
       '#interfaces/*': path.resolve(process.cwd(), '../server/src/interfaces/'),
       '#models': path.resolve(process.cwd(), 'src/models'),
       '#src': path.resolve(process.cwd(), 'src'),
+      '#styles': path.resolve(process.cwd(), 'src/styles'),
       '#utils': path.resolve(process.cwd(), 'src/utils'),
       '#views': path.resolve(process.cwd(), 'src/views'),
     },

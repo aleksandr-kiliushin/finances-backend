@@ -16,7 +16,9 @@
       "#interfaces/*": ["../backend/src/interfaces/*"],
       "#models/*": ["src/models/*"],
       "#src/*": ["src/*"],
+      "#styles/*": ["src/styles/*"],
       "#utils/*": ["src/utils/*"],
+      "#views": ["src/views"],
       "#views/*": ["src/views/*"]
     },
     "resolveJsonModule": true,
