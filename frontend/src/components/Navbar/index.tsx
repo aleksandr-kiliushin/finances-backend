@@ -3,7 +3,7 @@ import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 
 import { navigationItem } from './helpers'
-import { bottomNavigationActionSx, bottomNavigationSx } from './style'
+import { bottomNavigationActionSx, bottomNavigationSx } from './styles'
 
 const Navbar = () => {
   const { pathname } = useLocation()

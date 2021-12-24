@@ -1,4 +1,3 @@
-import styled from '@emotion/styled'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -10,14 +9,7 @@ import { PlainInput } from '#components/form-constructor/PlainInput'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { IUser } from '#interfaces/user'
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 25px;
-  height: 100%;
-  padding: 3rem;
-`
+import { Container } from './components'
 
 export const Login = () => {
   const dispatch = useAppDispatch()
@@ -28,9 +20,9 @@ export const Login = () => {
     formState: { isValid },
     handleSubmit,
     register,
-  } = useForm<IFormValues>({ mode: 'onChange' })
+  } = useForm<FormValues>({ mode: 'onChange' })
 
-  const submitLogin: SubmitHandler<IFormValues> = ({ password, username }) => {
+  const submitLogin: SubmitHandler<FormValues> = ({ password, username }) => {
     dispatch(logIn({ password, username }))
   }
 
@@ -40,7 +32,6 @@ export const Login = () => {
         <Typography textAlign="center">
           You are logged in as <b>{userData.username}</b>.
         </Typography>
-
         <Button onClick={() => dispatch(logOut())}>Log out</Button>
       </Container>
     )
@@ -48,19 +39,16 @@ export const Login = () => {
 
   return (
     <Container>
-      <Typography variant="h1" textAlign="center">
+      <Typography textAlign="center" variant="h1">
         Welcome
       </Typography>
-
       <Form onSubmit={handleSubmit(submitLogin)}>
         <FormRow label="Username" name="username">
           <PlainInput {...register('username', { required: true })} />
         </FormRow>
-
         <FormRow label="Password" name="password">
           <PlainInput type="password" {...register('password', { required: true })} />
         </FormRow>
-
         <Button disabled={!isValid} type="submit">
           Log in
         </Button>
@@ -69,4 +57,4 @@ export const Login = () => {
   )
 }
 
-type IFormValues = Pick<IUser, 'password' | 'username'>
+type FormValues = Pick<IUser, 'password' | 'username'>
