@@ -12,12 +12,19 @@ export const bottomNavigationActionSx: SxProps<Theme> = {
   maxWidth: 'revert',
   padding: '8px',
   '& .MuiSvgIcon-root': {
+    height: '1.5rem',
+    width: '1.5rem',
     fill: Color.Secondary,
   },
   '&.Mui-selected .MuiSvgIcon-root': {
-    height: '2rem',
-    width: '2rem',
+    height: '2.2rem',
+    width: '2.2rem',
     transition: 'height 0.2s, width 0.2s',
     fill: Color.Primary,
+  },
+  '&:hover': {
+    '& .MuiSvgIcon-root': {
+      fill: Color.Primary,
+    },
   },
 }
