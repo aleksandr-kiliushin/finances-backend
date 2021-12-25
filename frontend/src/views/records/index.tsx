@@ -2,20 +2,24 @@ import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { css } from '@emotion/react'
 import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCategoriesTc } from '#models/finance'
 import { getRecordsTc } from '#models/finance'
-import { Table } from '#components/Table'
-import { TableHeader } from '#components/Table/TableHeader'
-import { TableRow } from '#components/Table/TableRow'
-import { TableCell } from '#components/Table/TableCell'
-import { RecordModal } from './RecordModal'
-import { RecordTableRow } from './RecordTableRow'
 import { Loader } from '#components/Loader'
+
+import RecordFormModal from './RecordFormModal'
+import RecordTableRow from './RecordTableRow'
 
 export const Records = () => {
   const dispatch = useAppDispatch()
@@ -58,61 +62,71 @@ export const Records = () => {
     push(`/records?isTrash=${event.target.checked}`)
   }
 
+  const openRecordCreationModal = () => {
+    setIsRecordCreatingModalShown(true)
+  }
+
   return (
     <Fragment>
-      <Table>
-        <TableHeader
-          css={css`
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          `}
-        >
-          <Typography variant="h1">Finance records</Typography>
-          <FormControlLabel
-            control={<Switch defaultChecked={false} onChange={onIsTrashClick} />}
-            label="Trash"
-            labelPlacement="start"
-          />
-        </TableHeader>
-        <TableRow
-          tableRowCustomCss={css({ gridTemplateColumns: '23% 29% 24% 24%' })}
-          isTableHeaderRow
-        >
-          <TableCell>Amount</TableCell>
-          <TableCell>Category</TableCell>
-          <TableCell>Date</TableCell>
-          <TableCell>
-            {isTrash ? null : (
-              <Button onClick={() => setIsRecordCreatingModalShown(true)} variant="outlined">
-                + New
-              </Button>
-            )}
-          </TableCell>
-        </TableRow>
-        {records.items.map((record) => (
-          <RecordTableRow
-            categories={categories.items}
-            isTrash={isTrash}
-            key={record.id}
-            record={record}
-          />
-        ))}
+      <Box
+        css={css`
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 100vw;
+        `}
+      >
+        <Typography variant="h1">Finance records</Typography>
+        <FormControlLabel
+          control={<Switch checked={isTrash} onChange={onIsTrashClick} />}
+          label="Trash"
+          labelPlacement="start"
+          sx={{ margin: 0 }}
+        />
+      </Box>
+      <TableContainer>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell variant="head" width="23%">
+                Amount
+              </TableCell>
+              <TableCell variant="head" width="29%">
+                Category
+              </TableCell>
+              <TableCell variant="head" width="24%">
+                Date
+              </TableCell>
+              <TableCell colSpan={2} width="24%">
+                {isTrash ? null : (
+                  <Button onClick={openRecordCreationModal} variant="outlined">
+                    + New
+                  </Button>
+                )}
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {records.items.map((record) => (
+              <RecordTableRow
+                categories={categories.items}
+                isTrash={isTrash}
+                key={record.id}
+                record={record}
+              />
+            ))}
+            {records.status === 'completed' ? null : <Loader Component={'tr'} ref={loaderRef} />}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-        {records.status !== 'completed' && <Loader ref={loaderRef} />}
-      </Table>
-
-      {isRecordCreatingModalShown && (
-        <RecordModal
+      {isRecordCreatingModalShown ? (
+        <RecordFormModal
           categories={categories.items}
           closeModal={() => setIsRecordCreatingModalShown(false)}
           record={null}
         />
-      )}
+      ) : null}
     </Fragment>
   )
-}
-
-interface IFormValues {
-  isTrash: boolean
 }

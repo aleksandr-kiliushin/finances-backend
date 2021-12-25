@@ -1,32 +1,36 @@
 import { Fragment, useState } from 'react'
 import { css } from '@emotion/react'
+import TableCell from '@mui/material/TableCell'
+import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch } from '#utils/hooks'
 import { deleteRecordTc } from '#models/finance'
 import { restoreRecordTc } from '#models/finance'
 import { Svg } from '#components/Svg'
-import { TableRow } from '#components/Table/TableRow'
-import { TableCell } from '#components/Table/TableCell'
-import { RecordModal } from '#views/records/RecordModal'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
-export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
-  const dispatch = useAppDispatch()
+import RecordFormModal from './RecordFormModal'
 
+const RecordTableRow = ({ categories, isTrash, record }: Props) => {
+  const dispatch = useAppDispatch()
   const [isRecordEditingModalShown, setIsRecordEditingModalShown] = useState(false)
 
   const { amount, date, category } = record
 
-  const editOrRestoreTableCell = isTrash ? (
-    <TableCell onClick={() => dispatch(restoreRecordTc({ recordId: record.id }))}>
-      <Svg name="reply" />
-    </TableCell>
-  ) : (
-    <TableCell onClick={() => setIsRecordEditingModalShown(true)}>
-      <Svg name="pencil" />
-    </TableCell>
-  )
-
+  const mapIsTrashToActionCell = new Map([
+    [
+      false,
+      <TableCell onClick={() => setIsRecordEditingModalShown(true)} width="12%">
+        <Svg name="pencil" />
+      </TableCell>,
+    ],
+    [
+      true,
+      <TableCell onClick={() => dispatch(restoreRecordTc({ recordId: record.id }))} width="12%">
+        <Svg name="reply" />
+      </TableCell>,
+    ],
+  ])
   const mapCategoryTypeIdToColor = new Map([
     [1, 'darkred'],
     [2, 'darkgreen'],
@@ -38,42 +42,40 @@ export const RecordTableRow = ({ categories, isTrash, record }: IProps) => {
 
   return (
     <Fragment>
-      <TableRow
-        tableRowCustomCss={css`
-          grid-template-columns: 23% 29% 24% 12% 12%;
-        `}
-      >
+      <TableRow>
         <TableCell
-          tableCellCustomCss={css`
+          css={css`
             color: ${mapCategoryTypeIdToColor.get(category.type.id)};
             &::before {
               content: '${mapCategoryTypeIdToPseudoElementContent.get(category.type.id)}';
             }
           `}
+          width="23%"
         >
           {amount}
         </TableCell>
-        <TableCell>{category.name}</TableCell>
-        <TableCell>{date.slice(2)}</TableCell>
-        {editOrRestoreTableCell}
-        <TableCell onClick={() => dispatch(deleteRecordTc(record))}>
+        <TableCell width="29%">{category.name}</TableCell>
+        <TableCell width="24%">{date.slice(2)}</TableCell>
+        {mapIsTrashToActionCell.get(isTrash)}
+        <TableCell onClick={() => dispatch(deleteRecordTc(record))} width="12%">
           <Svg name="trash-can" />
         </TableCell>
       </TableRow>
-
-      {isRecordEditingModalShown && (
-        <RecordModal
+      {isRecordEditingModalShown ? (
+        <RecordFormModal
           categories={categories}
           closeModal={() => setIsRecordEditingModalShown(false)}
           record={record}
         />
-      )}
+      ) : null}
     </Fragment>
   )
 }
 
-interface IProps {
+interface Props {
   categories: IFinanceCategory[]
   isTrash: boolean
   record: IFinanceRecord
 }
+
+export default RecordTableRow

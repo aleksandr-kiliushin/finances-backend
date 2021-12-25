@@ -18,7 +18,7 @@ import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 import { FormField, FormValues } from './form-helpers'
 
-export const RecordModal = ({ categories, closeModal, record }: IProps) => {
+const RecordFormModal = ({ categories, closeModal, record }: Props) => {
   const dispatch = useAppDispatch()
 
   const defaultValues = record
@@ -97,8 +97,10 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
   )
 }
 
-interface IProps {
+interface Props {
   categories: IFinanceCategory[]
   closeModal: () => void
   record: IFinanceRecord | null
 }
+
+export default RecordFormModal
