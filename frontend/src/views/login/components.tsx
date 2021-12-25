@@ -4,7 +4,10 @@ export const Container = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 25px;
+  row-gap: 1rem;
   height: 100%;
   padding: 3rem;
+  @media (max-width: 360px) {
+    padding: 2rem;
+  }
 `

@@ -1,11 +1,32 @@
 import { createTheme } from '@mui/material'
 
 const theme = createTheme({
-  palette: {
-    // background: {
-    //   default: '#fff3e4',
-    //   paper: '#eed6c4',
-    // },
+  // palette: {
+  //   background: {
+  //     default: '#fff3e4',
+  //     paper: '#eed6c4',
+  //   },
+  // },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        sizeLarge: {
+          padding: '12px 20px',
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '.MuiInputBase-input': {
+            padding: '8px 12px',
+          },
+          '.MuiInputLabel-root:not(.Mui-focused):not(.MuiFormLabel-filled)': {
+            top: '-8px',
+          },
+        },
+      },
+    },
   },
   typography: {
     allVariants: {

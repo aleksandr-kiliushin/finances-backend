@@ -1,11 +1,10 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
 import Form from '#components/form-constructor/Form'
 import { logIn, logOut } from '#models/user'
-import { FormRow } from '#components/form-constructor/FormRow'
-import { PlainInput } from '#components/form-constructor/PlainInput'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 
 import { Container } from './components'
@@ -32,7 +31,9 @@ export const Login = () => {
         <Typography textAlign="center">
           You are logged in as <b>{userData.username}</b>.
         </Typography>
-        <Button onClick={() => dispatch(logOut())}>Log out</Button>
+        <Button onClick={() => dispatch(logOut())} size="large" variant="outlined">
+          Log out
+        </Button>
       </Container>
     )
   }
@@ -43,13 +44,13 @@ export const Login = () => {
         Welcome
       </Typography>
       <Form onSubmit={onSubmit}>
-        <FormRow label="Username" name={FormField.Username}>
-          <PlainInput {...register(FormField.Username, { required: true })} />
-        </FormRow>
-        <FormRow label="Password" name={FormField.Password}>
-          <PlainInput type="password" {...register(FormField.Password, { required: true })} />
-        </FormRow>
-        <Button disabled={!isValid} type="submit">
+        <TextField label="Username" {...register(FormField.Username, { required: true })} />
+        <TextField
+          label="Password"
+          type="password"
+          {...register(FormField.Password, { required: true })}
+        />
+        <Button disabled={!isValid} size="large" type="submit" variant="contained">
           Log in
         </Button>
       </Form>

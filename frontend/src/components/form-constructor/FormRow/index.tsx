@@ -1,30 +1,18 @@
 import { ReactNode } from 'react'
+import FormLabel from '@mui/material/FormLabel'
 
-export const FormRow = ({ children, label, name }: IProps) => {
+export const FormRow = ({ children, label, name }: Props) => {
   return (
-    <div className="{s.FormRow}">
-      <label htmlFor={name} className="{s.Label}">
-        {label}
-      </label>
+    <div>
+      <FormLabel htmlFor={name}>{label}</FormLabel>
 
       {children}
     </div>
   )
 }
 
-interface IProps {
+interface Props {
   children: ReactNode
   label: ReactNode
   name: string
 }
-
-// .FormRow {
-//   display: flex;
-//   flex-direction: column;
-//   row-gap: 5px;
-// }
-
-// .Label {
-//   color: var(--gray);
-//   font-size: 1rem;
-// }

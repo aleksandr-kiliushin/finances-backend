@@ -1,8 +1,12 @@
+import { Fragment } from 'react'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+
 export const Home = () => {
   return (
-    <div>
-      <h1>Home page</h1>
-      <p>
+    <Fragment>
+      <Typography variant="h1">Home page</Typography>
+      <Typography>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum atque, ex similique veritatis
         laborum necessitatibus in incidunt quisquam excepturi officiis facere laboriosam dolores.
         Dolore voluptatum itaque iusto sint earum voluptates laborum ducimus sunt magni sit.
@@ -12,8 +16,8 @@ export const Home = () => {
         ipsum dolore dignissimos quod. Modi, hic qui! Tempora incidunt neque nisi culpa mollitia
         nulla laborum deleniti libero consequatur repudiandae voluptatum laboriosam, quam impedit,
         sapiente sit temporibus rerum assumenda? Reprehenderit, pariatur. Tempora, nemo?
-      </p>
-      <button>hehe</button>
-    </div>
+      </Typography>
+      <Button variant="outlined">hehe</Button>
+    </Fragment>
   )
 }

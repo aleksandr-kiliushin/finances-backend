@@ -9,6 +9,7 @@ export const bottomNavigationSx: SxProps<Theme> = ({ palette }) => ({
 
 export const bottomNavigationActionSx: SxProps<Theme> = ({ palette }) => ({
   maxWidth: '100%',
+  minWidth: '40px',
   padding: '8px',
   '& .MuiSvgIcon-root': {
     height: '1.5rem',
