@@ -100,7 +100,7 @@ export const Records = () => {
               <TableCell colSpan={2} width="24%">
                 {isTrash ? null : (
                   <Button onClick={openRecordCreationModal} variant="outlined">
-                    + New
+                    +New
                   </Button>
                 )}
               </TableCell>

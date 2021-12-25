@@ -47,7 +47,7 @@ export const Settings = () => {
               </TableCell>
               <TableCell colSpan={2} width="24%">
                 <Button onClick={showCategoryFormModal} variant="outlined">
-                  + New
+                  +New
                 </Button>
               </TableCell>
             </TableRow>
