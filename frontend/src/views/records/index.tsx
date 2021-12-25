@@ -55,7 +55,7 @@ export const Records = () => {
     <Fragment>
       <Table>
         <TableHeader
-          tableHeaderCustomCss={css`
+          css={css`
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -76,7 +76,9 @@ export const Records = () => {
           <TableCell>Category</TableCell>
           <TableCell>Date</TableCell>
           <TableCell>
-            <Button onClick={() => setIsRecordCreatingModalShown(true)}>+ New</Button>
+            <Button onClick={() => setIsRecordCreatingModalShown(true)} variant="outlined">
+              + New
+            </Button>
           </TableCell>
         </TableRow>
 

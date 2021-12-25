@@ -27,24 +27,22 @@ export const Settings = () => {
   return (
     <Fragment>
       <Table>
-        <TableHeader
-          tableHeaderCustomCss={css`
-            grid-template-columns: 38% 38% 24%;
-          `}
-        >
+        <TableHeader>
           <h3>Finance categories</h3>
         </TableHeader>
 
         <TableRow
           tableRowCustomCss={css`
-            grid-template-columns: 38% 38% 12% 12%;
+            grid-template-columns: 38% 38% 24%;
           `}
           isTableHeaderRow
         >
           <TableCell>Category</TableCell>
           <TableCell>Type</TableCell>
           <TableCell>
-            <Button onClick={() => setIsCategoryCreatingModalShown(true)}>+ New</Button>
+            <Button onClick={() => setIsCategoryCreatingModalShown(true)} variant="outlined">
+              + New
+            </Button>
           </TableCell>
         </TableRow>
 
