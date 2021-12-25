@@ -29,6 +29,14 @@ const theme = createTheme({
         head: {
           fontWeight: 'bold',
         },
+        root: {
+          '&:not(:first-of-type)': {
+            paddingLeft: '4px',
+          },
+          '&:not(:last-of-type)': {
+            paddingRight: '4px',
+          },
+        },
       },
     },
   },
