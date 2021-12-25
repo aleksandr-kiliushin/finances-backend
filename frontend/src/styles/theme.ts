@@ -3,12 +3,6 @@ import { createTheme } from '@mui/material'
 import { breakpoints, mediaQuery } from './media-queries'
 
 const theme = createTheme({
-  // palette: {
-  //   background: {
-  //     default: '#fff3e4',
-  //     paper: '#eed6c4',
-  //   },
-  // },
   breakpoints,
   components: {
     MuiButton: {
@@ -27,6 +21,13 @@ const theme = createTheme({
           '.MuiInputLabel-root:not(.Mui-focused):not(.MuiFormLabel-filled)': {
             top: '-8px',
           },
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        head: {
+          fontWeight: 'bold',
         },
       },
     },

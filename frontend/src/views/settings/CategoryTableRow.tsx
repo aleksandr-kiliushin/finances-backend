@@ -1,14 +1,14 @@
 import { Fragment, useState } from 'react'
-import { css } from '@emotion/react'
+import TableCell from '@mui/material/TableCell'
+import TableRow from '@mui/material/TableRow'
 
 import { Svg } from '#components/Svg'
-import { TableRow } from '#components/Table/TableRow'
-import { TableCell } from '#components/Table/TableCell'
-import { CategoryDeletionModal } from './CategoryDeletionModal'
-import { CategoryModal } from '#views/settings/CategoryModal'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
-export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
+import CategoryDeletionModal from './CategoryDeletionModal'
+import CategoryFormModal from './CategoryFormModal'
+
+const CategoryTableRow = ({ category, categoryTypes }: Props) => {
   const [isCategoryEditingModalShown, setIsCategoryEditingModalShown] = useState(false)
   const [isCategoryDeletionModalShown, setIsCategoryDeletionModalShown] = useState(false)
 
@@ -16,29 +16,23 @@ export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
 
   return (
     <Fragment>
-      <TableRow
-        tableRowCustomCss={css`
-          grid-template-columns: 38% 38% 12% 12%;
-        `}
-      >
-        <TableCell>{name}</TableCell>
-        <TableCell>{type.name}</TableCell>
-        <TableCell onClick={() => setIsCategoryEditingModalShown(true)}>
+      <TableRow>
+        <TableCell width="38%">{name}</TableCell>
+        <TableCell width="38%">{type.name}</TableCell>
+        <TableCell onClick={() => setIsCategoryEditingModalShown(true)} width="12%">
           <Svg name="pencil" />
         </TableCell>
-        <TableCell onClick={() => setIsCategoryDeletionModalShown(true)}>
+        <TableCell onClick={() => setIsCategoryDeletionModalShown(true)} width="12%">
           <Svg name="trash-can" />
         </TableCell>
       </TableRow>
-
       {isCategoryEditingModalShown && (
-        <CategoryModal
+        <CategoryFormModal
           category={category}
           categoryTypes={categoryTypes}
           closeModal={() => setIsCategoryEditingModalShown(false)}
         />
       )}
-
       {isCategoryDeletionModalShown && (
         <CategoryDeletionModal
           category={category}
@@ -49,7 +43,9 @@ export const CategoryTableRow = ({ category, categoryTypes }: IProps) => {
   )
 }
 
-interface IProps {
+interface Props {
   category: IFinanceCategory
   categoryTypes: IFinanceCategoryType[]
 }
+
+export default CategoryTableRow

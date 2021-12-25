@@ -15,7 +15,7 @@ import { createCategoryTc, updateCategoryTc } from '#models/finance'
 
 import { FormField, FormValues } from './form-helpers'
 
-export const CategoryModal = ({ category, categoryTypes, closeModal }: Props) => {
+const CategoryFormModal = ({ category, categoryTypes, closeModal }: Props) => {
   const dispatch = useAppDispatch()
 
   const defaultValues = category
@@ -68,3 +68,5 @@ interface Props {
   categoryTypes: IFinanceCategoryType[]
   closeModal: () => void
 }
+
+export default CategoryFormModal

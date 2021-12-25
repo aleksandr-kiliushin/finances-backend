@@ -9,7 +9,7 @@ import { useAppDispatch } from '#utils/hooks'
 import { deleteCategoryTc } from '#models/finance'
 import { IFinanceCategory } from '#interfaces/finance'
 
-export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
+const CategoryDeletionModal = ({ category, closeModal }: Props) => {
   const dispatch = useAppDispatch()
 
   const { id, name } = category
@@ -19,11 +19,11 @@ export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
   }
 
   return (
-    <Dialog open onClose={closeModal}>
+    <Dialog onClose={closeModal} open>
       <DialogTitle>Delete category</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Are you sure you want to delete <strong>{name}</strong> category?
+          Are you sure you want to delete <b>{name}</b> category?
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -34,7 +34,9 @@ export const CategoryDeletionModal = ({ category, closeModal }: IProps) => {
   )
 }
 
-interface IProps {
+interface Props {
   category: IFinanceCategory
   closeModal: () => void
 }
+
+export default CategoryDeletionModal
