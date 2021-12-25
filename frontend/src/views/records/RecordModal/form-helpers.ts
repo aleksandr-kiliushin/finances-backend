@@ -7,7 +7,7 @@ export enum FormField {
 }
 
 export interface FormValues {
-  [FormField.Amount]: IFinanceRecord['amount']
-  [FormField.CategoryId]: string
+  [FormField.Amount]: IFinanceRecord['amount'] | null
+  [FormField.CategoryId]: IFinanceRecord['category']['id'] | null
   [FormField.Date]: IFinanceRecord['date']
 }

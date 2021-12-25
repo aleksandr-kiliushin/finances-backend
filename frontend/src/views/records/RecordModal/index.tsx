@@ -24,30 +24,37 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
   const defaultValues = record
     ? {
         amount: record.amount,
-        categoryId: String(record.category.id),
+        categoryId: record.category.id,
         date: record.date,
       }
     : {
-        amount: undefined,
-        categoryId: undefined,
+        amount: null,
+        categoryId: null,
         date: format(new Date(), 'yyyy-MM-dd'),
       }
 
-  const { handleSubmit, register } = useForm<FormValues>({ defaultValues })
+  const { handleSubmit, register, watch } = useForm<FormValues>({ defaultValues })
 
   const submitRecordForm = handleSubmit(({ amount, categoryId, date }) => {
+    if (amount === null) return
+    if (categoryId === null) return
+
     const payload = {
-      amount: Number(amount),
-      categoryId: Number(categoryId),
+      amount,
+      categoryId,
       date,
     }
+
     if (record) {
       dispatch(updateRecordTc({ ...payload, id: record.id }))
     } else {
       dispatch(createRecordTc(payload))
     }
+
     closeModal()
   })
+
+  console.log(watch())
 
   return (
     <Dialog onClose={closeModal} open>
@@ -59,17 +66,17 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
               fullWidth
               label="Amount"
               type="number"
-              {...register(FormField.Amount, { required: true })}
+              {...register(FormField.Amount, { required: true, valueAsNumber: true })}
             />
             <FormControl fullWidth>
               <InputLabel>Category</InputLabel>
-              <Select label="Category">
+              <Select
+                defaultValue=""
+                label="Category"
+                {...register(FormField.CategoryId, { required: true })}
+              >
                 {categories.map(({ name, id }) => (
-                  <MenuItem
-                    key={id}
-                    value={id}
-                    {...register(FormField.CategoryId, { required: true })}
-                  >
+                  <MenuItem key={id} value={id}>
                     {name}
                   </MenuItem>
                 ))}
