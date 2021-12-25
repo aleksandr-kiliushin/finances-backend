@@ -2,14 +2,14 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
+import Form from '#components/form-constructor/Form'
 import { logIn, logOut } from '#models/user'
-import { Form } from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import { IUser } from '#interfaces/user'
 
 import { Container } from './components'
+import { FormField, FormValues } from './form-helpers'
 
 export const Login = () => {
   const dispatch = useAppDispatch()
@@ -22,9 +22,9 @@ export const Login = () => {
     register,
   } = useForm<FormValues>({ mode: 'onChange' })
 
-  const submitLogin: SubmitHandler<FormValues> = ({ password, username }) => {
+  const onSubmit = handleSubmit(({ password, username }) => {
     dispatch(logIn({ password, username }))
-  }
+  })
 
   if (isUserLoggedIn) {
     return (
@@ -42,12 +42,12 @@ export const Login = () => {
       <Typography textAlign="center" variant="h1">
         Welcome
       </Typography>
-      <Form onSubmit={handleSubmit(submitLogin)}>
-        <FormRow label="Username" name="username">
-          <PlainInput {...register('username', { required: true })} />
+      <Form onSubmit={onSubmit}>
+        <FormRow label="Username" name={FormField.Username}>
+          <PlainInput {...register(FormField.Username, { required: true })} />
         </FormRow>
-        <FormRow label="Password" name="password">
-          <PlainInput type="password" {...register('password', { required: true })} />
+        <FormRow label="Password" name={FormField.Password}>
+          <PlainInput type="password" {...register(FormField.Password, { required: true })} />
         </FormRow>
         <Button disabled={!isValid} type="submit">
           Log in
@@ -56,5 +56,3 @@ export const Login = () => {
     </Container>
   )
 }
-
-type FormValues = Pick<IUser, 'password' | 'username'>

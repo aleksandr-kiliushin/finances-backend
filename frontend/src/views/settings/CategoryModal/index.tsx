@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 
 import { useAppDispatch } from '#utils/hooks'
 import { createCategoryTc, updateCategoryTc } from '#models/finance'
-import { Form } from '#components/form-constructor/Form'
+import Form from '#components/form-constructor/Form'
 import { FormRow } from '#components/form-constructor/FormRow'
 import { PlainInput } from '#components/form-constructor/PlainInput'
 import { RadioGroup } from '#components/form-constructor/RadioGroup'

@@ -1,17 +1,9 @@
-import { DetailedHTMLProps, FormHTMLAttributes } from 'react'
+import styled from '@mui/material/styles/styled'
 
-export const Form = ({ children, ...rest }: IProps) => {
-  return (
-    <form className="{s.Form}" {...rest}>
-      {children}
-    </form>
-  )
-}
+const Form = styled('form')`
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+`
 
-type IProps = DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
-
-// .Form {
-//   display: flex;
-//   flex-direction: column;
-//   row-gap: 15px;
-// }
+export default Form
