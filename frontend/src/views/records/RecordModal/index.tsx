@@ -33,7 +33,7 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
         date: format(new Date(), 'yyyy-MM-dd'),
       }
 
-  const { handleSubmit, register, watch } = useForm<FormValues>({ defaultValues })
+  const { handleSubmit, register } = useForm<FormValues>({ defaultValues })
 
   const submitRecordForm = handleSubmit(({ amount, categoryId, date }) => {
     if (amount === null) return
@@ -53,8 +53,6 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
 
     closeModal()
   })
-
-  console.log(watch())
 
   return (
     <Dialog onClose={closeModal} open>
