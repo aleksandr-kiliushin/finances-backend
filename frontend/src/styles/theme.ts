@@ -8,7 +8,10 @@ const theme = createTheme({
     // },
   },
   typography: {
-    fontFamily: 'monospace',
+    allVariants: {
+      fontFamily: 'monospace',
+      lineHeight: '1',
+    },
     h1: {
       fontSize: '3.6rem',
     },

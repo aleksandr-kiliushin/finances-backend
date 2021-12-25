@@ -3,7 +3,7 @@ import { SxProps, Theme } from '@mui/material/styles'
 export const bottomNavigationSx: SxProps<Theme> = ({ palette }) => ({
   height: '60px',
   boxShadow: `0px -30px 30px ${palette.primary.light}10`,
-  backgroundColor: palette.background.default,
+  // backgroundColor: palette.background.default,
   borderTop: `1px solid ${palette.primary.light}`,
 })
 
