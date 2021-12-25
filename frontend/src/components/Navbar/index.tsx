@@ -10,13 +10,14 @@ const Navbar = () => {
 
   return (
     <BottomNavigation sx={bottomNavigationSx} value={getActiveNavigationIndex(pathname)}>
-      {navigationItem.map(({ icon, path }) => (
+      {navigationItem.map(({ icon, id, path }) => (
         <BottomNavigationAction
           component={Link}
           icon={icon}
           key={path}
           sx={bottomNavigationActionSx}
           to={path}
+          value={id}
         />
       ))}
     </BottomNavigation>

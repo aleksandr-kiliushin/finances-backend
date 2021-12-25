@@ -34,12 +34,9 @@ const slice = createSlice({
 export const { logOut, setCurrentUserData, setIsUserLoggedIn } = slice.actions
 export const userReducer = slice.reducer
 
-// Thunks
 export const getCurrentUserData = (): AppThunk => async (dispatch) => {
   const currentUserData = await Http.get({ url: 'api/user/me' })
-
   delete currentUserData.password
-
   dispatch(setCurrentUserData(currentUserData))
 }
 

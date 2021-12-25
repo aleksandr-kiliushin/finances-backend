@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { Container } from './components'
 import { FormField, FormValues } from './form-helpers'
 
-export const Login = () => {
+const Auth = () => {
   const dispatch = useAppDispatch()
 
   const { isUserLoggedIn, userData } = useAppSelector((state) => state.user)
@@ -59,3 +59,5 @@ export const Login = () => {
     </Container>
   )
 }
+
+export default Auth

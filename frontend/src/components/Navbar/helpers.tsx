@@ -6,23 +6,23 @@ import PersonIcon from '@mui/icons-material/Person'
 import SettingsIcon from '@mui/icons-material/Settings'
 
 export const navigationItem: Section[] = [
-  { icon: <HomeIcon />, path: '/' },
-  { icon: <ListIcon />, path: '/records?isTrash=false' },
-  { icon: <BarChartIcon />, path: '/stats' },
-  { icon: <SettingsIcon />, path: '/settings' },
-  { icon: <PersonIcon />, path: '/login' },
+  { icon: <HomeIcon />, id: 'home', path: '/' },
+  { icon: <ListIcon />, id: 'records', path: '/records?isTrash=false' },
+  { icon: <BarChartIcon />, id: 'stats', path: '/stats' },
+  { icon: <SettingsIcon />, id: 'settings', path: '/settings' },
+  { icon: <PersonIcon />, id: 'auth', path: '/auth' },
 ]
 
-export const getActiveNavigationIndex = (pathname: string) => {
-  if (/^\/$/.test(pathname)) return 0
-  if (/^\/records/.test(pathname)) return 1
-  if (/^\/stats/.test(pathname)) return 2
-  if (/^\/settings/.test(pathname)) return 3
-  if (/^\/login/.test(pathname)) return 4
-  return -1
+export const getActiveNavigationIndex = (pathname: string): string | undefined => {
+  if (/^\/$/.test(pathname)) return 'home'
+  if (/^\/records/.test(pathname)) return 'records'
+  if (/^\/stats/.test(pathname)) return 'stats'
+  if (/^\/settings/.test(pathname)) return 'settings'
+  if (/^\/auth/.test(pathname)) return 'auth'
 }
 
 interface Section {
   icon: ReactElement
+  id: string
   path: string
 }

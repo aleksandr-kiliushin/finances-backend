@@ -4,9 +4,9 @@ import { css } from '@emotion/react'
 import { Route } from 'react-router-dom'
 
 import { setRedirectPath } from '#models/common'
+import Auth from './auth'
 import Navbar from '#components/Navbar'
 import { Home } from './home'
-import { Login } from './login'
 import { Records } from './records'
 import { Settings } from './settings'
 import { Stats } from './stats'
@@ -52,8 +52,8 @@ const App = () => {
         `}
       >
         <Switch>
-          <Route path="/login">
-            <Login />
+          <Route path="/auth">
+            <Auth />
           </Route>
           <Route path="/records">
             <Records />

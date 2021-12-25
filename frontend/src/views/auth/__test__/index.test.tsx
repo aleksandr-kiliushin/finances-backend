@@ -1,13 +1,14 @@
 /** @jest-environment jsdom */
+// TODO: Check if it works without @jest-... comment.
 
 import userEvent from '@testing-library/user-event'
 
-import { Login } from '#views/login'
+import Auth from '#views/auth'
 import { act, render, screen } from '#utils/test-utils'
 import { userData } from './constants'
 
-test('<Login />', async () => {
-  render(<Login />)
+test('<Auth />', async () => {
+  render(<Auth />)
 
   let welcomeHeader = screen.getByRole('heading', { name: 'Welcome' })
   let logInButton = screen.getByRole('button', { name: 'Log in' })
