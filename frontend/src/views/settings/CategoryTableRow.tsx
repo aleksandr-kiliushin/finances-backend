@@ -1,8 +1,9 @@
 import { Fragment, useState } from 'react'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { Svg } from '#components/Svg'
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
 
 import CategoryDeletionModal from './CategoryDeletionModal'
@@ -20,10 +21,10 @@ const CategoryTableRow = ({ category, categoryTypes }: Props) => {
         <TableCell width="38%">{name}</TableCell>
         <TableCell width="38%">{type.name}</TableCell>
         <TableCell onClick={() => setIsCategoryEditingModalShown(true)} width="12%">
-          <Svg name="pencil" />
+          <EditOutlinedIcon />
         </TableCell>
         <TableCell onClick={() => setIsCategoryDeletionModalShown(true)} width="12%">
-          <Svg name="trash-can" />
+          <DeleteOutlineIcon />
         </TableCell>
       </TableRow>
       {isCategoryEditingModalShown && (

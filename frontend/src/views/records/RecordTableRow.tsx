@@ -1,12 +1,14 @@
 import { Fragment, useState } from 'react'
 import { css } from '@emotion/react'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import RestoreIcon from '@mui/icons-material/Restore'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch } from '#utils/hooks'
 import { deleteRecordTc } from '#models/finance'
 import { restoreRecordTc } from '#models/finance'
-import { Svg } from '#components/Svg'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 import RecordFormModal from './RecordFormModal'
@@ -21,13 +23,13 @@ const RecordTableRow = ({ categories, isTrash, record }: Props) => {
     [
       false,
       <TableCell onClick={() => setIsRecordEditingModalShown(true)} width="12%">
-        <Svg name="pencil" />
+        <EditOutlinedIcon />
       </TableCell>,
     ],
     [
       true,
       <TableCell onClick={() => dispatch(restoreRecordTc({ recordId: record.id }))} width="12%">
-        <Svg name="reply" />
+        <RestoreIcon />
       </TableCell>,
     ],
   ])
@@ -58,7 +60,7 @@ const RecordTableRow = ({ categories, isTrash, record }: Props) => {
         <TableCell width="24%">{date.slice(2)}</TableCell>
         {mapIsTrashToActionCell.get(isTrash)}
         <TableCell onClick={() => dispatch(deleteRecordTc(record))} width="12%">
-          <Svg name="trash-can" />
+          <DeleteOutlineIcon />
         </TableCell>
       </TableRow>
       {isRecordEditingModalShown ? (
