@@ -1,12 +1,14 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import { css } from '@emotion/react'
-import { useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
+import Typography from '@mui/material/Typography'
 
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCategoriesTc } from '#models/finance'
 import { getRecordsTc } from '#models/finance'
-import { SwitchInput } from '#components/form-constructor/SwitchInput'
 import { Table } from '#components/Table'
 import { TableHeader } from '#components/Table/TableHeader'
 import { TableRow } from '#components/Table/TableRow'
@@ -17,12 +19,13 @@ import { Loader } from '#components/Loader'
 
 export const Records = () => {
   const dispatch = useAppDispatch()
+  const { search } = useLocation()
+  const { push } = useHistory()
+
+  const query = new URLSearchParams(search)
+  const isTrash = query.get('isTrash') === 'true'
 
   const [isRecordCreatingModalShown, setIsRecordCreatingModalShown] = useState(false)
-
-  const { register, watch } = useForm<IFormValues>({ defaultValues: { isTrash: false } })
-
-  const { isTrash } = watch()
 
   const categories = useAppSelector((state) => state.finance.categories)
   const records = useAppSelector(
@@ -51,6 +54,10 @@ export const Records = () => {
     }
   }, [getRecordsTc, isTrash, loaderRef])
 
+  const onIsTrashClick = (event: ChangeEvent<HTMLInputElement>) => {
+    push(`/records?isTrash=${event.target.checked}`)
+  }
+
   return (
     <Fragment>
       <Table>
@@ -61,27 +68,28 @@ export const Records = () => {
             justify-content: space-between;
           `}
         >
-          <h3>Finance records</h3>
-
-          <SwitchInput label="Trashed" {...register('isTrash')} />
+          <Typography variant="h1">Finance records</Typography>
+          <FormControlLabel
+            control={<Switch defaultChecked={false} onChange={onIsTrashClick} />}
+            label="Trash"
+            labelPlacement="start"
+          />
         </TableHeader>
-
         <TableRow
-          tableRowCustomCss={css`
-            grid-template-columns: 23% 29% 24% 24%;
-          `}
+          tableRowCustomCss={css({ gridTemplateColumns: '23% 29% 24% 24%' })}
           isTableHeaderRow
         >
           <TableCell>Amount</TableCell>
           <TableCell>Category</TableCell>
           <TableCell>Date</TableCell>
           <TableCell>
-            <Button onClick={() => setIsRecordCreatingModalShown(true)} variant="outlined">
-              + New
-            </Button>
+            {isTrash ? null : (
+              <Button onClick={() => setIsRecordCreatingModalShown(true)} variant="outlined">
+                + New
+              </Button>
+            )}
           </TableCell>
         </TableRow>
-
         {records.items.map((record) => (
           <RecordTableRow
             categories={categories.items}

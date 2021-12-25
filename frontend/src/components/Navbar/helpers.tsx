@@ -7,7 +7,7 @@ import SettingsIcon from '@mui/icons-material/Settings'
 
 export const navigationItem: Section[] = [
   { icon: <HomeIcon />, path: '/' },
-  { icon: <ListIcon />, path: '/records' },
+  { icon: <ListIcon />, path: '/records?isTrash=false' },
   { icon: <BarChartIcon />, path: '/stats' },
   { icon: <SettingsIcon />, path: '/settings' },
   { icon: <PersonIcon />, path: '/login' },

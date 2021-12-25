@@ -5,7 +5,11 @@ import Typography from '@mui/material/Typography'
 export const Home = () => {
   return (
     <Fragment>
-      <Typography variant="h1">Home page</Typography>
+      <Typography variant="h1">Home page h1</Typography>
+      <Typography variant="h2">Home page h2</Typography>
+      <Typography variant="h3">Home page h3</Typography>
+      <Typography variant="h4">Home page h4</Typography>
+      <Typography variant="body1">Home page body1</Typography>
       <Typography>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum atque, ex similique veritatis
         laborum necessitatibus in incidunt quisquam excepturi officiis facere laboriosam dolores.

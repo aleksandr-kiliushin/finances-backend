@@ -1,5 +1,7 @@
 import { createTheme } from '@mui/material'
 
+import { breakpoints, mediaQuery } from './media-queries'
+
 const theme = createTheme({
   // palette: {
   //   background: {
@@ -7,6 +9,7 @@ const theme = createTheme({
   //     paper: '#eed6c4',
   //   },
   // },
+  breakpoints,
   components: {
     MuiButton: {
       styleOverrides: {
@@ -33,17 +36,69 @@ const theme = createTheme({
       fontFamily: 'monospace',
       lineHeight: '1',
     },
+    body1: {
+      fontSize: '1.1rem',
+    },
     h1: {
-      fontSize: '3.6rem',
+      fontFamily: 'monospace',
+      fontSize: '2.9rem',
+      [mediaQuery.below.lg]: {
+        fontSize: '2.8rem',
+      },
+      [mediaQuery.below.md]: {
+        fontSize: '2.7rem',
+      },
+      [mediaQuery.below.sm]: {
+        fontSize: '2.6rem',
+      },
+      [mediaQuery.below.xs]: {
+        fontSize: '2.5rem',
+      },
     },
     h2: {
-      fontSize: '3rem',
+      fontSize: '2.5rem',
+      [mediaQuery.below.lg]: {
+        fontSize: '2.4rem',
+      },
+      [mediaQuery.below.md]: {
+        fontSize: '2.3rem',
+      },
+      [mediaQuery.below.sm]: {
+        fontSize: '2.2rem',
+      },
+      [mediaQuery.below.xs]: {
+        fontSize: '2.1rem',
+      },
     },
     h3: {
-      fontSize: '2.4rem',
+      fontSize: '2.1rem',
+      [mediaQuery.below.lg]: {
+        fontSize: '2rem',
+      },
+      [mediaQuery.below.md]: {
+        fontSize: '1.9rem',
+      },
+      [mediaQuery.below.sm]: {
+        fontSize: '1.8rem',
+      },
+      [mediaQuery.below.xs]: {
+        fontSize: '1.7rem',
+      },
     },
     h4: {
-      fontSize: '1.8rem',
+      fontSize: '1.7rem',
+      [mediaQuery.below.lg]: {
+        fontSize: '1.6rem',
+      },
+      [mediaQuery.below.md]: {
+        fontSize: '1.5rem',
+      },
+      [mediaQuery.below.sm]: {
+        fontSize: '1.4rem',
+      },
+      [mediaQuery.below.xs]: {
+        fontSize: '1.3rem',
+      },
     },
   },
 })

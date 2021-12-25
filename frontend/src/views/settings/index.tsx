@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { css } from '@emotion/react'
 import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 import { getCategoriesTc } from '#models/finance'
 import { getCategoryTypesTc } from '#models/finance'
@@ -26,9 +27,10 @@ export const Settings = () => {
 
   return (
     <Fragment>
+      <Typography variant="h1">Settings</Typography>
       <Table>
         <TableHeader>
-          <h3>Finance categories</h3>
+          <Typography variant="h2">Finance categories</Typography>
         </TableHeader>
 
         <TableRow
