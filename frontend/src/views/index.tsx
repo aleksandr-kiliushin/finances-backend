@@ -13,6 +13,8 @@ import { Stats } from './stats'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCurrentUserData } from '#models/user'
 
+import { mediaQuery } from '#src/styles/media-queries'
+
 const App = () => {
   const dispatch = useAppDispatch()
   const { pathname } = useLocation()
@@ -44,6 +46,9 @@ const App = () => {
         css={css`
           height: calc(100vh - 60px);
           overflow-y: scroll;
+          ${mediaQuery.below.sm} {
+            height: calc(100vh - 50px);
+          }
         `}
       >
         <Switch>

@@ -1,10 +1,15 @@
 import { SxProps, Theme } from '@mui/material/styles'
 
+import { mediaQuery } from '#styles/media-queries'
+
 export const bottomNavigationSx: SxProps<Theme> = ({ palette }) => ({
   height: '60px',
   boxShadow: `0px -30px 30px ${palette.primary.light}10`,
   // backgroundColor: palette.background.default,
   borderTop: `1px solid ${palette.primary.light}`,
+  [mediaQuery.below.sm]: {
+    height: '48px',
+  },
 })
 
 export const bottomNavigationActionSx: SxProps<Theme> = ({ palette }) => ({
