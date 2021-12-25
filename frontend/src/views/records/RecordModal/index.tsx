@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { format } from 'date-fns'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -10,12 +11,12 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 
+import RowGroup from '#components/RowGroup'
 import { useAppDispatch } from '#utils/hooks'
 import { createRecordTc, updateRecordTc } from '#models/finance'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
 
 import { FormField, FormValues } from './form-helpers'
-import RowGroup from '#components/RowGroup'
 
 export const RecordModal = ({ categories, closeModal, record }: IProps) => {
   const dispatch = useAppDispatch()
@@ -29,37 +30,28 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
     : {
         amount: undefined,
         categoryId: undefined,
-        date: new Date().toISOString().split('T')[0],
+        date: format(new Date(), 'yyyy-MM-dd'),
       }
 
   const { handleSubmit, register } = useForm<FormValues>({ defaultValues })
 
   const submitRecordForm = handleSubmit(({ amount, categoryId, date }) => {
-    if (record) {
-      dispatch(
-        updateRecordTc({
-          amount: Number(amount),
-          categoryId: Number(categoryId),
-          date,
-          id: record.id,
-        }),
-      )
-    } else {
-      dispatch(
-        createRecordTc({
-          amount: Number(amount),
-          categoryId: Number(categoryId),
-          date,
-        }),
-      )
+    const payload = {
+      amount: Number(amount),
+      categoryId: Number(categoryId),
+      date,
     }
-
+    if (record) {
+      dispatch(updateRecordTc({ ...payload, id: record.id }))
+    } else {
+      dispatch(createRecordTc(payload))
+    }
     closeModal()
   })
 
   return (
     <Dialog onClose={closeModal} open>
-      <DialogTitle>Add record</DialogTitle>
+      <DialogTitle>Add a record</DialogTitle>
       <form onSubmit={submitRecordForm}>
         <DialogContent>
           <RowGroup>
