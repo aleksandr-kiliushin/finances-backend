@@ -2,14 +2,14 @@ import { Link, useLocation } from 'react-router-dom'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 
-import { navigationItem } from './helpers'
+import { getActiveNavigationIndex, navigationItem } from './helpers'
 import { bottomNavigationActionSx, bottomNavigationSx } from './styles'
 
 const Navbar = () => {
   const { pathname } = useLocation()
 
   return (
-    <BottomNavigation sx={bottomNavigationSx} value={pathname}>
+    <BottomNavigation sx={bottomNavigationSx} value={getActiveNavigationIndex(pathname)}>
       {navigationItem.map(({ icon, path }) => (
         <BottomNavigationAction
           component={Link}
@@ -17,7 +17,6 @@ const Navbar = () => {
           key={path}
           sx={bottomNavigationActionSx}
           to={path}
-          value={path}
         />
       ))}
     </BottomNavigation>
