@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { setRedirectPath } from '#models/common'
-import { Http } from '#utils/Http'
+import Http from '#utils/Http'
 import { AppThunk } from '#models/store'
 import { IUser } from '#interfaces/user'
 
-const initialState: IState = {
+const initialState: State = {
   isUserLoggedIn: !!localStorage.authToken,
   userData: {
     id: 0,
@@ -22,10 +22,10 @@ const slice = createSlice({
       state.isUserLoggedIn = false
       state.userData = initialState.userData
     },
-    setIsUserLoggedIn: (state, action: PayloadAction<IState['isUserLoggedIn']>) => {
+    setIsUserLoggedIn: (state, action: PayloadAction<State['isUserLoggedIn']>) => {
       state.isUserLoggedIn = action.payload
     },
-    setCurrentUserData: (state, action: PayloadAction<IState['userData']>) => {
+    setCurrentUserData: (state, action: PayloadAction<State['userData']>) => {
       state.userData = action.payload
     },
   },
@@ -62,7 +62,7 @@ export const logIn =
     dispatch(setRedirectPath('/'))
   }
 
-interface IState {
+interface State {
   isUserLoggedIn: boolean
   userData: Pick<IUser, 'id' | 'username'>
 }

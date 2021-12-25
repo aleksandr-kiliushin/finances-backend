@@ -4,7 +4,7 @@ import { render, RenderOptions } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import fetchMock from 'jest-fetch-mock'
 
-import { store } from '#models/store'
+import store from '#models/store'
 
 const AllTheProviders: FC = ({ children }) => {
   return <Provider store={store}>{children}</Provider>

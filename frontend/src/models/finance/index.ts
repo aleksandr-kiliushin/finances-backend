@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Http } from '#utils/Http'
+import Http from '#utils/Http'
 import { RootState } from '#models/store'
 import { ILoadingStatus } from '#interfaces/common'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
 
-export const initialState: IState = {
+export const initialState: State = {
   categories: {
     items: [],
     status: 'idle',
@@ -317,7 +317,7 @@ const slice = createSlice({
 export const { addRecordsItems, setRecordsStatus } = slice.actions
 export const financeReducer = slice.reducer
 
-interface IState {
+interface State {
   categories: {
     items: IFinanceCategory[]
     status: ILoadingStatus

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: IState = {
+const initialState: State = {
   redirectPath: null,
 }
 
@@ -8,7 +8,7 @@ const slice = createSlice({
   name: 'common',
   initialState,
   reducers: {
-    setRedirectPath: (state, action: PayloadAction<IState['redirectPath']>) => {
+    setRedirectPath: (state, action: PayloadAction<State['redirectPath']>) => {
       state.redirectPath = action.payload
     },
   },
@@ -17,6 +17,6 @@ const slice = createSlice({
 export const { setRedirectPath } = slice.actions
 export const commonReducer = slice.reducer
 
-interface IState {
+interface State {
   redirectPath: null | string
 }

@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
-export const Home = () => {
+const Home = () => {
   return (
     <Fragment>
       <Typography variant="h1">Home page h1</Typography>
@@ -25,3 +25,5 @@ export const Home = () => {
     </Fragment>
   )
 }
+
+export default Home

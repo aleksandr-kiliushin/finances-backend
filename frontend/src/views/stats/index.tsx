@@ -4,7 +4,7 @@ import { Chart, registerables } from 'chart.js'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getChartDataTc } from '#models/finance'
 
-export const Stats = () => {
+const Stats = () => {
   const dispatch = useAppDispatch()
 
   const chartData = useAppSelector((state) => state.finance.chartData)
@@ -186,3 +186,5 @@ export const Stats = () => {
 
   return <canvas ref={canvasRef} />
 }
+
+export default Stats

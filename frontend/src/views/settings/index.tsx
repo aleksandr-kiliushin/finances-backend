@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import CategoryFormModal from './CategoryFormModal'
 import CategoryTableRow from './CategoryTableRow'
 
-export const Settings = () => {
+const Settings = () => {
   const dispatch = useAppDispatch()
   const [isCategoryCreatingModalShown, setIsCategoryCreatingModalShown] = useState(false)
 
@@ -73,3 +73,5 @@ export const Settings = () => {
     </Fragment>
   )
 }
+
+export default Settings

@@ -1,4 +1,4 @@
-export class Http {
+class Http {
   private static get requestOptions() {
     return {
       headers: {
@@ -7,21 +7,18 @@ export class Http {
       },
     }
   }
-
-  static async delete({ url }: IRequestDataWithoutPayload) {
+  static async delete({ url }: RequestDataWithoutPayload) {
     const response = await fetch(url, {
       ...this.requestOptions,
       method: 'DELETE',
     })
     return await response.json()
   }
-
-  static async get({ url }: IRequestDataWithoutPayload) {
+  static async get({ url }: RequestDataWithoutPayload) {
     const response = await fetch(url, this.requestOptions)
     return await response.json()
   }
-
-  static async patch({ payload, url }: IRequestDataWithPayload) {
+  static async patch({ payload, url }: RequestDataWithPayload) {
     const response = await fetch(url, {
       ...this.requestOptions,
       body: JSON.stringify(payload),
@@ -29,8 +26,7 @@ export class Http {
     })
     return await response.json()
   }
-
-  static async post({ payload, url }: IRequestDataWithPayload) {
+  static async post({ payload, url }: RequestDataWithPayload) {
     const response = await fetch(url, {
       ...this.requestOptions,
       body: JSON.stringify(payload),
@@ -40,10 +36,11 @@ export class Http {
   }
 }
 
-interface IRequestDataWithoutPayload {
+interface RequestDataWithoutPayload {
   url: string
 }
-
-interface IRequestDataWithPayload extends IRequestDataWithoutPayload {
+interface RequestDataWithPayload extends RequestDataWithoutPayload {
   payload: Record<string, unknown>
 }
+
+export default Http

@@ -13,15 +13,15 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 
+import Loader from '#components/Loader'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCategoriesTc } from '#models/finance'
 import { getRecordsTc } from '#models/finance'
-import { Loader } from '#components/Loader'
 
 import RecordFormModal from './RecordFormModal'
 import RecordTableRow from './RecordTableRow'
 
-export const Records = () => {
+const Records = () => {
   const dispatch = useAppDispatch()
   const { search } = useLocation()
   const { push } = useHistory()
@@ -130,3 +130,5 @@ export const Records = () => {
     </Fragment>
   )
 }
+
+export default Records

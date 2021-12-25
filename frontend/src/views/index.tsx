@@ -3,17 +3,16 @@ import { Redirect, Switch, useLocation } from 'react-router'
 import { css } from '@emotion/react'
 import { Route } from 'react-router-dom'
 
-import { setRedirectPath } from '#models/common'
-import Auth from './auth'
+import Auth from '#views/auth'
+import Home from '#views/home'
 import Navbar from '#components/Navbar'
-import { Home } from './home'
-import { Records } from './records'
-import { Settings } from './settings'
-import { Stats } from './stats'
+import Records from '#views/records'
+import Settings from '#views/settings'
+import Stats from '#views/stats'
+import { setRedirectPath } from '#models/common'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getCurrentUserData } from '#models/user'
-
-import { mediaQuery } from '#src/styles/media-queries'
+import { mediaQuery } from '#styles/media-queries'
 
 const App = () => {
   const dispatch = useAppDispatch()

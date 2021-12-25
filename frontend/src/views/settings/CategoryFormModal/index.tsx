@@ -22,7 +22,7 @@ const CategoryFormModal = ({ category, categoryTypes, closeModal }: Props) => {
     ? { name: category.name, typeId: category.type.id }
     : { name: undefined, typeId: undefined }
 
-  const { handleSubmit, register, watch } = useForm<FormValues>({ defaultValues })
+  const { handleSubmit, register } = useForm<FormValues>({ defaultValues })
 
   const submitCategoryForm = handleSubmit(({ name, typeId }) => {
     if (category) {
@@ -33,8 +33,6 @@ const CategoryFormModal = ({ category, categoryTypes, closeModal }: Props) => {
 
     closeModal()
   })
-
-  console.log(watch())
 
   return (
     <Dialog open onClose={closeModal}>
