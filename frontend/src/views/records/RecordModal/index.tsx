@@ -1,17 +1,21 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from '#utils/hooks'
 import { createRecordTc, updateRecordTc } from '#models/finance'
-import Form from '#components/form-constructor/Form'
-import { FormRow } from '#components/form-constructor/FormRow'
-import { PlainInput } from '#components/form-constructor/PlainInput'
-import { Select } from '#components/form-constructor/Select'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
+
+import { FormField, FormValues } from './form-helpers'
+import RowGroup from '#components/RowGroup'
 
 export const RecordModal = ({ categories, closeModal, record }: IProps) => {
   const dispatch = useAppDispatch()
@@ -23,13 +27,14 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
         date: record.date,
       }
     : {
-        categoryId: '',
+        amount: undefined,
+        categoryId: undefined,
         date: new Date().toISOString().split('T')[0],
       }
 
-  const { handleSubmit, register } = useForm<IFormValues>({ defaultValues })
+  const { handleSubmit, register } = useForm<FormValues>({ defaultValues })
 
-  const submitRecordForm: SubmitHandler<IFormValues> = ({ amount, categoryId, date }) => {
+  const submitRecordForm = handleSubmit(({ amount, categoryId, date }) => {
     if (record) {
       dispatch(
         updateRecordTc({
@@ -50,32 +55,47 @@ export const RecordModal = ({ categories, closeModal, record }: IProps) => {
     }
 
     closeModal()
-  }
+  })
 
   return (
-    <Dialog open onClose={closeModal}>
+    <Dialog onClose={closeModal} open>
       <DialogTitle>Add record</DialogTitle>
-      <Form onSubmit={handleSubmit(submitRecordForm)}>
+      <form onSubmit={submitRecordForm}>
         <DialogContent>
-          <FormRow label="Amount" name="amount">
-            <PlainInput type="number" {...register('amount', { required: true })} />
-          </FormRow>
-          <FormRow label="Category" name="categoryId">
-            <Select
-              options={categories.map(({ id, name }) => ({ id: String(id), label: name }))}
-              placeholder="Select a category ..."
-              {...register('categoryId', { required: true })}
+          <RowGroup>
+            <TextField
+              fullWidth
+              label="Amount"
+              type="number"
+              {...register(FormField.Amount, { required: true })}
             />
-          </FormRow>
-          <FormRow label="Date" name="date">
-            <PlainInput type="date" {...register('date', { required: true })} />
-          </FormRow>
+            <FormControl fullWidth>
+              <InputLabel>Category</InputLabel>
+              <Select label="Category">
+                {categories.map(({ name, id }) => (
+                  <MenuItem
+                    key={id}
+                    value={id}
+                    {...register(FormField.CategoryId, { required: true })}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <TextField
+              fullWidth
+              label="Date"
+              type="date"
+              {...register(FormField.Date, { required: true })}
+            />
+          </RowGroup>
         </DialogContent>
         <DialogActions>
           <Button onClick={closeModal}>Cancel</Button>
           <Button type="submit">Submit</Button>
         </DialogActions>
-      </Form>
+      </form>
     </Dialog>
   )
 }
@@ -84,10 +104,4 @@ interface IProps {
   categories: IFinanceCategory[]
   closeModal: () => void
   record: IFinanceRecord | null
-}
-
-interface IFormValues {
-  amount: IFinanceRecord['amount']
-  date: IFinanceRecord['date']
-  categoryId: string
 }

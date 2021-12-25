@@ -7,7 +7,4 @@ export const Container = styled('div')`
   row-gap: 1rem;
   height: 100%;
   padding: 3rem;
-  @media (max-width: 360px) {
-    padding: 2rem;
-  }
 `

@@ -15,7 +15,7 @@ const theme = createTheme({
         },
       },
     },
-    MuiTextField: {
+    MuiFormControl: {
       styleOverrides: {
         root: {
           '.MuiInputBase-input': {

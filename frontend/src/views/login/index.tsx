@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import Form from '#components/form-constructor/Form'
+import RowGroup from '#components/RowGroup'
 import { logIn, logOut } from '#models/user'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 
@@ -43,17 +43,19 @@ export const Login = () => {
       <Typography textAlign="center" variant="h1">
         Welcome
       </Typography>
-      <Form onSubmit={onSubmit}>
-        <TextField label="Username" {...register(FormField.Username, { required: true })} />
-        <TextField
-          label="Password"
-          type="password"
-          {...register(FormField.Password, { required: true })}
-        />
-        <Button disabled={!isValid} size="large" type="submit" variant="contained">
-          Log in
-        </Button>
-      </Form>
+      <form onSubmit={onSubmit}>
+        <RowGroup>
+          <TextField label="Username" {...register(FormField.Username, { required: true })} />
+          <TextField
+            label="Password"
+            type="password"
+            {...register(FormField.Password, { required: true })}
+          />
+          <Button disabled={!isValid} size="large" type="submit" variant="contained">
+            Log in
+          </Button>
+        </RowGroup>
+      </form>
     </Container>
   )
 }
