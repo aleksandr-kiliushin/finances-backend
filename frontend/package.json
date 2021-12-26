@@ -54,14 +54,5 @@
     "webpack": "5.65.0",
     "webpack-cli": "4.9.1",
     "webpack-dev-server": "4.6.0"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.css$": "<rootDir>/src/utils/test-utils/__mocks__/style-mock.ts",
-      "^#components(.*)$": "<rootDir>/src/components$1",
-      "^#models(.*)$": "<rootDir>/src/models$1",
-      "^#utils(.*)$": "<rootDir>/src/utils$1",
-      "^#views(.*)$": "<rootDir>/src/views$1"
-    }
   }
 }
