@@ -9,10 +9,10 @@
 # From your host machine execute: docker exec -it finance-db /bin/sh
 # Inside the DB container execute: bash /app/init.sh
 
-# Loading dump list from remote server to the host machine.
+# Loading dump list from remote server to the container.
 curl -u :$REMOTE_API_KEY --output app/dumps/dumps.json https://api.elephantsql.com/api/backup?db=$REMOTE_DB_NAME;
 
-# Get the latest date from an array of objects.
+# Get the latest date from the dumps array.
 DUMP_URL=$(jq 'max_by(.backup_date) | .url' app/dumps/dumps.json -r);
 
 # Downloading the last dump.
