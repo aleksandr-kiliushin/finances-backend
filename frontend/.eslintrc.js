@@ -19,5 +19,22 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
-  rules: {},
+  rules: {
+    'arrow-parens': 2,
+    camelcase: 2,
+    'no-console': 2,
+    'no-duplicate-imports': 2,
+    'no-tabs': 2,
+    'sort-keys': ['warn', 'asc', { caseSensitive: true, minKeys: 2, natural: false }],
+    // 'sort-imports': [
+    //   'error',
+    //   {
+    //     allowSeparatedGroups: true,
+    //     ignoreCase: false,
+    //     ignoreDeclarationSort: false,
+    //     ignoreMemberSort: false,
+    //     memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+    //   },
+    // ],
+  },
 }
