@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Redirect, Switch, useLocation } from 'react-router'
+import { Navigate, Routes, useLocation } from 'react-router'
 import { css } from '@emotion/react'
 import { Route } from 'react-router-dom'
 
@@ -31,7 +31,7 @@ const App = () => {
   }, [])
 
   if (redirectPath !== null && redirectPath !== pathname) {
-    return <Redirect to={redirectPath} />
+    return <Navigate to={redirectPath} />
   }
 
   return (
@@ -50,23 +50,13 @@ const App = () => {
           }
         `}
       >
-        <Switch>
-          <Route path="/auth">
-            <Auth />
-          </Route>
-          <Route path="/records">
-            <Records />
-          </Route>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/stats">
-            <Stats />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route element={<Home />} path="/" />
+          <Route element={<Auth />} path="/auth" />
+          <Route element={<Records />} path="/records" />
+          <Route element={<Settings />} path="/settings" />
+          <Route element={<Stats />} path="/stats" />
+        </Routes>
       </main>
 
       <Navbar />

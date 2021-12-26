@@ -1,5 +1,5 @@
 import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { css } from '@emotion/react'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
@@ -24,7 +24,7 @@ import RecordTableRow from './RecordTableRow'
 const Records = () => {
   const dispatch = useAppDispatch()
   const { search } = useLocation()
-  const { push } = useHistory()
+  const navigate = useNavigate()
 
   const query = new URLSearchParams(search)
   const isTrash = query.get('isTrash') === 'true'
@@ -59,7 +59,7 @@ const Records = () => {
   }, [getRecordsTc, isTrash, loaderRef])
 
   const onIsTrashClick = (event: ChangeEvent<HTMLInputElement>) => {
-    push(`/records?isTrash=${event.target.checked}`)
+    navigate(`/records?isTrash=${event.target.checked}`)
   }
 
   const openRecordCreationModal = () => {
