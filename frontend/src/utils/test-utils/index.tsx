@@ -1,8 +1,8 @@
+import '@testing-library/jest-dom'
+import { RenderOptions, render } from '@testing-library/react'
+import fetchMock from 'jest-fetch-mock'
 import { FC, ReactElement } from 'react'
 import { Provider } from 'react-redux'
-import { render, RenderOptions } from '@testing-library/react'
-import '@testing-library/jest-dom'
-import fetchMock from 'jest-fetch-mock'
 
 import store from '#models/store'
 

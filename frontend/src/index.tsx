@@ -1,14 +1,14 @@
+import { Global } from '@emotion/react'
+import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { Global } from '@emotion/react'
-import ThemeProvider from '@mui/material/styles/ThemeProvider'
 
-import App from '#views'
-import globalStyles from '#styles/global'
 import store from '#models/store'
+import globalStyles from '#styles/global'
 import theme from '#styles/theme'
+import App from '#views'
 
 ReactDOM.render(
   <StrictMode>

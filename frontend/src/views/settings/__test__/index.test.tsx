@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
-
-import { Settings } from '#views/settings'
 import { render, screen } from '#utils/test-utils'
+import Settings from '#views/settings'
+
 import { categories, categoryTypes } from './constants'
 
 test('<Settings />', async () => {

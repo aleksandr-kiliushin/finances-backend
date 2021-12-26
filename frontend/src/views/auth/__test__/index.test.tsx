@@ -1,10 +1,10 @@
 /** @jest-environment jsdom */
 // TODO: Check if it works without @jest-... comment.
-
 import userEvent from '@testing-library/user-event'
 
-import Auth from '#views/auth'
 import { act, render, screen } from '#utils/test-utils'
+import Auth from '#views/auth'
+
 import { userData } from './constants'
 
 test('<Auth />', async () => {

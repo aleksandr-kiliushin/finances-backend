@@ -1,4 +1,3 @@
-import React from 'react'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import HomeIcon from '@mui/icons-material/Home'
 import ListIcon from '@mui/icons-material/List'

@@ -1,6 +1,6 @@
-import { Fragment } from 'react'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
+import { Fragment } from 'react'
 
 const Home = () => {
   return (

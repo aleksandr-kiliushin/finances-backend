@@ -1,18 +1,18 @@
+import { css } from '@emotion/react'
 import { useEffect } from 'react'
 import { Navigate, Routes, useLocation } from 'react-router'
-import { css } from '@emotion/react'
 import { Route } from 'react-router-dom'
 
+import Navbar from '#components/Navbar'
+import { setRedirectPath } from '#models/common'
+import { getCurrentUserData } from '#models/user'
+import { mediaQuery } from '#styles/media-queries'
+import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import Auth from '#views/auth'
 import Home from '#views/home'
-import Navbar from '#components/Navbar'
 import Records from '#views/records'
 import Settings from '#views/settings'
 import Stats from '#views/stats'
-import { setRedirectPath } from '#models/common'
-import { useAppDispatch, useAppSelector } from '#utils/hooks'
-import { getCurrentUserData } from '#models/user'
-import { mediaQuery } from '#styles/media-queries'
 
 const App = () => {
   const dispatch = useAppDispatch()

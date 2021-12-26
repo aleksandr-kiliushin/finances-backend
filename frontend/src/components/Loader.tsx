@@ -1,7 +1,7 @@
-import { ElementType, forwardRef, ForwardedRef } from 'react'
 import { css } from '@emotion/react'
+import { ElementType, ForwardedRef, forwardRef } from 'react'
 
-const Loader = forwardRef(({ Component }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+const _Loader = ({ Component }: Props, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <Component
       css={css`
@@ -10,7 +10,9 @@ const Loader = forwardRef(({ Component }: Props, ref: ForwardedRef<HTMLDivElemen
       ref={ref}
     />
   )
-})
+}
+
+const Loader = forwardRef(_Loader)
 
 interface Props {
   Component: ElementType

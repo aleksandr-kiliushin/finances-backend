@@ -25,7 +25,7 @@ module.exports = {
     'no-console': 2,
     'no-duplicate-imports': 2,
     'no-tabs': 2,
-    'sort-keys': ['warn', 'asc', { caseSensitive: true, minKeys: 2, natural: false }],
+    // 'sort-keys': ['warn', 'asc', { caseSensitive: true, minKeys: 2, natural: false }],
     // 'sort-imports': [
     //   'error',
     //   {

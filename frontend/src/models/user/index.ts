@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { setRedirectPath } from '#models/common'
-import Http from '#utils/Http'
-import { AppThunk } from '#models/store'
 import { IUser } from '#interfaces/user'
+import { setRedirectPath } from '#models/common'
+import { AppThunk } from '#models/store'
+import Http from '#utils/Http'
 
 const initialState: State = {
   isUserLoggedIn: !!localStorage.authToken,

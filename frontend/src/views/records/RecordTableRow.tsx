@@ -1,15 +1,14 @@
-import { Fragment, useState } from 'react'
 import { css } from '@emotion/react'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import RestoreIcon from '@mui/icons-material/Restore'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
+import { Fragment, useState } from 'react'
 
-import { useAppDispatch } from '#utils/hooks'
-import { deleteRecordTc } from '#models/finance'
-import { restoreRecordTc } from '#models/finance'
 import { IFinanceCategory, IFinanceRecord } from '#interfaces/finance'
+import { deleteRecordTc, restoreRecordTc } from '#models/finance'
+import { useAppDispatch } from '#utils/hooks'
 
 import RecordFormModal from './RecordFormModal'
 
@@ -22,12 +21,14 @@ const RecordTableRow = ({ categories, isTrash, record }: Props) => {
   const mapIsTrashToActionCell = new Map([
     [
       false,
+      // eslint-disable-next-line react/jsx-key
       <TableCell onClick={() => setIsRecordEditingModalShown(true)} width="12%">
         <EditOutlinedIcon />
       </TableCell>,
     ],
     [
       true,
+      // eslint-disable-next-line react/jsx-key
       <TableCell onClick={() => dispatch(restoreRecordTc({ recordId: record.id }))} width="12%">
         <RestoreIcon />
       </TableCell>,

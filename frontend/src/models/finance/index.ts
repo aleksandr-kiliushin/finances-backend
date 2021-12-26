@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import Http from '#utils/Http'
-import { RootState } from '#models/store'
 import { ILoadingStatus } from '#interfaces/common'
 import { IFinanceCategory, IFinanceCategoryType, IFinanceRecord } from '#interfaces/finance'
+import { RootState } from '#models/store'
+import Http from '#utils/Http'
 
 export const initialState: State = {
   categories: {

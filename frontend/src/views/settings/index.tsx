@@ -1,4 +1,3 @@
-import { Fragment, useEffect, useState } from 'react'
 import Button from '@mui/material/Button'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -7,9 +6,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
+import { Fragment, useEffect, useState } from 'react'
 
-import { getCategoriesTc } from '#models/finance'
-import { getCategoryTypesTc } from '#models/finance'
+import { getCategoriesTc, getCategoryTypesTc } from '#models/finance'
 import { useAppDispatch, useAppSelector } from '#utils/hooks'
 
 import CategoryFormModal from './CategoryFormModal'

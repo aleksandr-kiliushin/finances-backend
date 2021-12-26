@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react'
 import { Chart, registerables } from 'chart.js'
+import { useEffect, useRef } from 'react'
 
-import { useAppDispatch, useAppSelector } from '#utils/hooks'
 import { getChartDataTc } from '#models/finance'
+import { useAppDispatch, useAppSelector } from '#utils/hooks'
 
 const Stats = () => {
   const dispatch = useAppDispatch()

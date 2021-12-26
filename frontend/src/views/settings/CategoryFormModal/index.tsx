@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -8,10 +7,11 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import TextField from '@mui/material/TextField'
+import { useForm } from 'react-hook-form'
 
 import { IFinanceCategory, IFinanceCategoryType } from '#interfaces/finance'
-import { useAppDispatch } from '#utils/hooks'
 import { createCategoryTc, updateCategoryTc } from '#models/finance'
+import { useAppDispatch } from '#utils/hooks'
 
 import { FormField, FormValues } from './form-helpers'
 
@@ -36,7 +36,7 @@ const CategoryFormModal = ({ category, categoryTypes, closeModal }: Props) => {
 
   return (
     <Dialog open onClose={closeModal}>
-      <DialogTitle>{Boolean(category) ? 'Edit category' : 'Create category'}</DialogTitle>
+      <DialogTitle>{category ? 'Edit category' : 'Create category'}</DialogTitle>
       <form onSubmit={submitCategoryForm}>
         <DialogContent>
           <TextField label="Name" {...register(FormField.Name, { required: true })} />

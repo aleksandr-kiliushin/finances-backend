@@ -5,9 +5,9 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 
-import { useAppDispatch } from '#utils/hooks'
-import { deleteCategoryTc } from '#models/finance'
 import { IFinanceCategory } from '#interfaces/finance'
+import { deleteCategoryTc } from '#models/finance'
+import { useAppDispatch } from '#utils/hooks'
 
 const CategoryDeletionModal = ({ category, closeModal }: Props) => {
   const dispatch = useAppDispatch()
