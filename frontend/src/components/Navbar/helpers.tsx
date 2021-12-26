@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import React from 'react'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import HomeIcon from '@mui/icons-material/Home'
 import ListIcon from '@mui/icons-material/List'
@@ -22,7 +22,7 @@ export const getActiveNavigationIndex = (pathname: string): string | undefined =
 }
 
 interface Section {
-  icon: ReactElement
+  icon: React.ReactElement
   id: string
   path: string
 }
