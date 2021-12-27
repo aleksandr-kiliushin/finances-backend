@@ -1,6 +1,7 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const { SourceMapDevToolPlugin } = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
   devServer: {
@@ -42,11 +43,11 @@ module.exports = {
     },
   },
   plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map[query]',
+    }),
     new HTMLWebpackPlugin({
       template: 'public/index.html',
-    }),
-    new SourceMapDevToolPlugin({
-      filename: '[file].map[query]',
     }),
   ],
 }
