@@ -19,7 +19,7 @@ DUMP_URL=$(jq 'max_by(.backup_date) | .url' /var/app/dumps/dumps.json -r);
 curl $DUMP_URL --output /var/app/dumps/dump.lzo
 
 # Create a new clear DB for out app.
-psql -U postgres -c "CREATE DATABASE finances ENCODING 'UTF-8';";
+psql -U $DB_USERNAME -c "CREATE DATABASE $DB_NAME ENCODING 'UTF-8';";
 
 # Restore DB from the downloaded dump.
-lzop -cd /var/app/dumps/dump.lzo | psql -U postgres finances;
+lzop -cd /var/app/dumps/dump.lzo | psql -U $DB_USERNAME $DB_NAME;
