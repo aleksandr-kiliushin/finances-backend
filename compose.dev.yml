@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./prod.env
+      - ./dev.env
     ports:
       - 3080:3080
     restart: on-failure
@@ -23,7 +23,7 @@ services:
       dockerfile: ./Dockerfile.dev
     container_name: finances-db
     env_file:
-      - ./prod.env
+      - ./dev.env
     ports:
       - 5432:5432
     restart: on-failure
