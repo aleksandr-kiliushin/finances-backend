@@ -1,4 +1,4 @@
-### Finance category type
+### Finance category type #####################################################
 GET http://localhost:3080/api/finance-category-type
 Authorization: Bearer MY_TOKEN
 
@@ -69,7 +69,7 @@ Authorization: Bearer MY_TOKEN
 
 
 ### Finance record ############################################################
-GET http://localhost:3080/api/finance-record?take=4&skip=2
+GET http://localhost:3080/api/finance-record?take=4&skip=200
 Authorization: Bearer MY_TOKEN
 
 ###
@@ -123,8 +123,8 @@ Authorization: Bearer MY_TOKEN
 Content-Type: application/json
 
 {
-	"username": "slava",
-	"password": "slava228"
+	"username": "johndoe",
+	"password": "pass123"
 }
 
 ###
@@ -133,8 +133,8 @@ Authorization: Bearer MY_TOKEN
 Content-Type: application/json
 
 {
-	"username": "slava1",
-	"password": "slava228"
+	"username": "johndoe",
+	"password": "pass123"
 }
 
 ###
@@ -148,6 +148,6 @@ POST http://localhost:3080/api/login/
 Content-Type: application/json
 
 {
-	"username": "my_username",
-	"password": "my_password"
+	"username": "username",
+	"password": "password"
 }
