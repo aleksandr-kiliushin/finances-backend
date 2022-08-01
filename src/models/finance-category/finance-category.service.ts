@@ -22,8 +22,8 @@ export class FinanceCategoryService {
     }
     return this.financeCategoryRepository.find({
       order: {
-        type: 'ASC',
         id: 'ASC',
+        name: 'ASC',
       },
       relations: ['type'],
       where,
@@ -31,8 +31,9 @@ export class FinanceCategoryService {
   }
 
   getFinanceCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
-    return this.financeCategoryRepository.findOneOrFail(id, {
+    return this.financeCategoryRepository.findOneOrFail({
       relations: ['type'],
+      where: { id },
     })
   }
 

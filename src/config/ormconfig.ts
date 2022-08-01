@@ -1,7 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 
 const ormConfig: TypeOrmModuleOptions = {
-  cli: { migrationsDir: 'src/migration' },
   database: process.env.DATABASE_NAME,
   entities: ['dist/**/*.entity{.js,.ts}'],
   host: process.env.DATABASE_HOST, // Name of database service in compose.dev.yml.

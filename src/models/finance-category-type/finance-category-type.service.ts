@@ -22,7 +22,7 @@ export class FinanceCategoryTypeService {
   }
 
   getFinanceCategoryType(id: FinanceCategoryTypeEntity['id']): Promise<FinanceCategoryTypeEntity> {
-    return this.financeCategoryTypeRepository.findOneOrFail(id)
+    return this.financeCategoryTypeRepository.findOneOrFail({ where: { id } })
   }
 
   createFinanceCategoryType(
@@ -38,7 +38,9 @@ export class FinanceCategoryTypeService {
     updateFinanceCategoryTypeDto: UpdateFinanceCategoryTypeDto,
   ): Promise<FinanceCategoryTypeEntity> {
     const { name } = updateFinanceCategoryTypeDto
-    const financeCategoryType = await this.financeCategoryTypeRepository.findOneOrFail({ id })
+    const financeCategoryType = await this.financeCategoryTypeRepository.findOneOrFail({
+      where: { id },
+    })
     if (name) {
       financeCategoryType.name = name
     }
@@ -48,7 +50,9 @@ export class FinanceCategoryTypeService {
   async deleteFinanceCategoryType(
     id: FinanceCategoryTypeEntity['id'],
   ): Promise<FinanceCategoryTypeEntity> {
-    const financeCategoryType = await this.financeCategoryTypeRepository.findOneOrFail({ id })
+    const financeCategoryType = await this.financeCategoryTypeRepository.findOneOrFail({
+      where: { id },
+    })
 
     await this.financeCategoryTypeRepository.delete({ id })
 

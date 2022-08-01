@@ -37,8 +37,9 @@ export class FinanceRecordService {
   }
 
   getFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
-    return this.financeRecordRepository.findOneOrFail(id, {
+    return this.financeRecordRepository.findOneOrFail({
       relations: ['category', 'category.type'],
+      where: { id },
     })
   }
 
