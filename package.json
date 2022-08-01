@@ -1,9 +1,9 @@
 {
-  "name": "finances-backend",
+  "name": "personal-app-server",
   "version": "0.0.1",
   "description": "",
-  "author": "",
-  "private": true,
+  "author": "aleksandr-kiliushin",
+  "private": false,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
