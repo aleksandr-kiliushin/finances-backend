@@ -1,2 +1,2 @@
-Inside DB container: `psql finances postgres`
+Inside database container: `psql personal-app postgres`
 select \* from finance_category;

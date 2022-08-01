@@ -1,13 +1,13 @@
 version: '3.9'
 
 services:
-  backend:
+  server:
     build:
       context: ./
       dockerfile: ./Dockerfile.dev
-    container_name: finances-backend
+    container_name: personal-app-server
     depends_on:
-      - db
+      - database
     env_file:
       - ./dev.env
     ports:
@@ -17,11 +17,11 @@ services:
       - ./:/var/app # Named volume for all files.
       - /var/app/node_modules # Anonymous volume for node_modules only to fix issue with bcrypt.
 
-  db:
+  database:
     build:
-      context: ./db
+      context: ./database
       dockerfile: ./Dockerfile.dev
-    container_name: finances-db
+    container_name: personal-app-database
     env_file:
       - ./dev.env
     ports:
