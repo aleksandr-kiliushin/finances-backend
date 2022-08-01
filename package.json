@@ -43,6 +43,7 @@
     "build": "nest build",
     "check-types:watch": "tsc --noEmit --watch",
     "dev": "nest start --watch",
+    "prettier": "prettier --write '**/*.ts'",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",

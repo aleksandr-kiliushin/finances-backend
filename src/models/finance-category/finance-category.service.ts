@@ -1,10 +1,10 @@
-import { FinanceCategoryTypeService } from '#models/finance-category-type/finance-category-type.service'
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { In, Repository } from 'typeorm'
-import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
-import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
-import { FinanceCategoryEntity } from './entities/finance-category.entity'
+import { FinanceCategoryTypeService } from "#models/finance-category-type/finance-category-type.service"
+import { Injectable } from "@nestjs/common"
+import { InjectRepository } from "@nestjs/typeorm"
+import { In, Repository } from "typeorm"
+import { CreateFinanceCategoryDto } from "./dto/create-finance-category.dto"
+import { UpdateFinanceCategoryDto } from "./dto/update-finance-category.dto"
+import { FinanceCategoryEntity } from "./entities/finance-category.entity"
 
 @Injectable()
 export class FinanceCategoryService {
@@ -12,34 +12,32 @@ export class FinanceCategoryService {
     @InjectRepository(FinanceCategoryEntity)
     private financeCategoryRepository: Repository<FinanceCategoryEntity>,
 
-    private financeCategoryTypeService: FinanceCategoryTypeService,
+    private financeCategoryTypeService: FinanceCategoryTypeService
   ) {}
 
   getFinanceCategories(query: { ids: string }): Promise<FinanceCategoryEntity[]> {
     const { ids } = query
     const where = {
-      ...(ids && { id: In(ids.split(',')) }),
+      ...(ids && { id: In(ids.split(",")) }),
     }
     return this.financeCategoryRepository.find({
       order: {
-        id: 'ASC',
-        name: 'ASC',
+        id: "ASC",
+        name: "ASC",
       },
-      relations: ['type'],
+      relations: ["type"],
       where,
     })
   }
 
-  getFinanceCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
+  getFinanceCategory(id: FinanceCategoryEntity["id"]): Promise<FinanceCategoryEntity> {
     return this.financeCategoryRepository.findOneOrFail({
-      relations: ['type'],
+      relations: ["type"],
       where: { id },
     })
   }
 
-  async createFinanceCategory(
-    createFinanceCategoryDto: CreateFinanceCategoryDto,
-  ): Promise<FinanceCategoryEntity> {
+  async createFinanceCategory(createFinanceCategoryDto: CreateFinanceCategoryDto): Promise<FinanceCategoryEntity> {
     const { typeId, name } = createFinanceCategoryDto
 
     const type = await this.financeCategoryTypeService.getFinanceCategoryType(typeId)
@@ -50,8 +48,8 @@ export class FinanceCategoryService {
   }
 
   async updateFinanceCategory(
-    id: FinanceCategoryEntity['id'],
-    updateFinanceCategoryDto: UpdateFinanceCategoryDto,
+    id: FinanceCategoryEntity["id"],
+    updateFinanceCategoryDto: UpdateFinanceCategoryDto
   ): Promise<FinanceCategoryEntity> {
     const { typeId, name } = updateFinanceCategoryDto
 
@@ -69,7 +67,7 @@ export class FinanceCategoryService {
     return this.financeCategoryRepository.save(category)
   }
 
-  async deleteFinanceCategory(id: FinanceCategoryEntity['id']): Promise<FinanceCategoryEntity> {
+  async deleteFinanceCategory(id: FinanceCategoryEntity["id"]): Promise<FinanceCategoryEntity> {
     const category = await this.getFinanceCategory(id)
 
     await this.financeCategoryRepository.delete(id)

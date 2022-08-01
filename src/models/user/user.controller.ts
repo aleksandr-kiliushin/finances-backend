@@ -1,10 +1,10 @@
-import { Controller, Get, Query, Request, UseGuards } from '@nestjs/common'
+import { Controller, Get, Query, Request, UseGuards } from "@nestjs/common"
 
-import { UserService } from './user.service'
-import { GetUserDto } from './dto/get-user.dto'
-import { AuthGuard } from '#models/auth/auth.guard'
+import { UserService } from "./user.service"
+import { GetUserDto } from "./dto/get-user.dto"
+import { AuthGuard } from "#models/auth/auth.guard"
 
-@Controller('user')
+@Controller("user")
 @UseGuards(AuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -38,10 +38,10 @@ export class UserController {
   // 	return this.userService.getUser({ id })
   // }
 
-  @Get('me')
+  @Get("me")
   getCurrentUserData(
     @Request()
-    req: any,
+    req: any
   ) {
     return this.userService.getUser({ id: req.userId })
   }

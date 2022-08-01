@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Injectable } from "@nestjs/common"
+import { InjectRepository } from "@nestjs/typeorm"
+import { Repository } from "typeorm"
 
-import { FinanceCategoryService } from '#models/finance-category/finance-category.service'
-import { FinanceRecordEntity } from './entities/finance-record.entity'
-import { GetFinanceRecordsDto } from './dto/get-finance-records.dto'
-import { CreateFinanceRecordDto } from './dto/create-finance-record.dto'
-import { UpdateFinanceRecordDto } from './dto/update-finance-record.dto'
+import { FinanceCategoryService } from "#models/finance-category/finance-category.service"
+import { FinanceRecordEntity } from "./entities/finance-record.entity"
+import { GetFinanceRecordsDto } from "./dto/get-finance-records.dto"
+import { CreateFinanceRecordDto } from "./dto/create-finance-record.dto"
+import { UpdateFinanceRecordDto } from "./dto/update-finance-record.dto"
 
 @Injectable()
 export class FinanceRecordService {
@@ -14,7 +14,7 @@ export class FinanceRecordService {
     @InjectRepository(FinanceRecordEntity)
     private financeRecordRepository: Repository<FinanceRecordEntity>,
 
-    private financeCategoryService: FinanceCategoryService,
+    private financeCategoryService: FinanceCategoryService
   ) {}
 
   getFinanceRecords({
@@ -29,23 +29,21 @@ export class FinanceRecordService {
         date: orderingByDate,
         id: orderingById,
       },
-      relations: ['category', 'category.type'],
+      relations: ["category", "category.type"],
       skip: skip ?? 0,
       ...(take ? { take } : {}),
       where,
     })
   }
 
-  getFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+  getFinanceRecord(id: FinanceRecordEntity["id"]): Promise<FinanceRecordEntity> {
     return this.financeRecordRepository.findOneOrFail({
-      relations: ['category', 'category.type'],
+      relations: ["category", "category.type"],
       where: { id },
     })
   }
 
-  async createFinanceRecord(
-    createFinanceRecordDto: CreateFinanceRecordDto,
-  ): Promise<FinanceRecordEntity> {
+  async createFinanceRecord(createFinanceRecordDto: CreateFinanceRecordDto): Promise<FinanceRecordEntity> {
     const { categoryId } = createFinanceRecordDto
 
     const record = this.financeRecordRepository.create(createFinanceRecordDto)
@@ -56,8 +54,8 @@ export class FinanceRecordService {
   }
 
   async updateFinanceRecord(
-    id: FinanceRecordEntity['id'],
-    updateFinanceRecordDto: UpdateFinanceRecordDto,
+    id: FinanceRecordEntity["id"],
+    updateFinanceRecordDto: UpdateFinanceRecordDto
   ): Promise<FinanceRecordEntity> {
     const { categoryId, ...rest } = updateFinanceRecordDto
 
@@ -72,7 +70,7 @@ export class FinanceRecordService {
     return this.financeRecordRepository.save(updatedRecord)
   }
 
-  async deleteFinanceRecord(id: FinanceRecordEntity['id']): Promise<FinanceRecordEntity> {
+  async deleteFinanceRecord(id: FinanceRecordEntity["id"]): Promise<FinanceRecordEntity> {
     const record = await this.getFinanceRecord(id)
 
     await this.financeRecordRepository.delete(id)

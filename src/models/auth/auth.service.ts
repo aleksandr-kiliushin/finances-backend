@@ -1,10 +1,10 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common'
-import * as jwt from 'jsonwebtoken'
-import * as bcrypt from 'bcrypt'
+import { Injectable, UnauthorizedException } from "@nestjs/common"
+import * as jwt from "jsonwebtoken"
+import * as bcrypt from "bcrypt"
 
-import { UserService } from '#models/user/user.service'
-import { UserEntity } from '#models/user/entities/user.entity'
-import { LoginDto } from './dto/login.dto'
+import { UserService } from "#models/user/user.service"
+import { UserEntity } from "#models/user/entities/user.entity"
+import { LoginDto } from "./dto/login.dto"
 
 @Injectable()
 export class AuthService {
@@ -23,7 +23,7 @@ export class AuthService {
 
     return {
       authToken: jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, {
-        expiresIn: '10d',
+        expiresIn: "10d",
       }),
     }
   }

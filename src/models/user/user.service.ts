@@ -1,18 +1,18 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Injectable, NotFoundException } from "@nestjs/common"
+import { InjectRepository } from "@nestjs/typeorm"
+import { Repository } from "typeorm"
 // import * as bcrypt from 'bcrypt'
 
-import { UserEntity } from './entities/user.entity'
+import { UserEntity } from "./entities/user.entity"
 // import { CreateUserDto } from './dto/create-user.dto'
-import { GetUserDto } from './dto/get-user.dto'
+import { GetUserDto } from "./dto/get-user.dto"
 // import { UpdateUserDto } from './dto/update-user.dto'
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
+    private userRepository: Repository<UserEntity>
   ) {}
 
   async getUser(query: GetUserDto): Promise<UserEntity | UserEntity[]> {
@@ -22,7 +22,7 @@ export class UserService {
 
     const user = (await this.userRepository.findOne({ where: query })) as UserEntity
 
-    if (!user) throw new NotFoundException('User not found.')
+    if (!user) throw new NotFoundException("User not found.")
 
     return user
   }

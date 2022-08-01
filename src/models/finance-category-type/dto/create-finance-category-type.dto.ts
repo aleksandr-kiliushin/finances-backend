@@ -1,5 +1,5 @@
-import { IFinanceCategoryType } from '#interfaces/finance'
+import { IFinanceCategoryType } from "#interfaces/finance"
 
 export class CreateFinanceCategoryTypeDto {
-  name: IFinanceCategoryType['name']
+  name: IFinanceCategoryType["name"]
 }

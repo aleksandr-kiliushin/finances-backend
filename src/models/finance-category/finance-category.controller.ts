@@ -1,11 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from "@nestjs/common"
 
-import { AuthGuard } from '#models/auth/auth.guard'
-import { FinanceCategoryService } from './finance-category.service'
-import { CreateFinanceCategoryDto } from './dto/create-finance-category.dto'
-import { UpdateFinanceCategoryDto } from './dto/update-finance-category.dto'
+import { AuthGuard } from "#models/auth/auth.guard"
+import { FinanceCategoryService } from "./finance-category.service"
+import { CreateFinanceCategoryDto } from "./dto/create-finance-category.dto"
+import { UpdateFinanceCategoryDto } from "./dto/update-finance-category.dto"
 
-@Controller('finance-category')
+@Controller("finance-category")
 @UseGuards(AuthGuard)
 export class FinanceCategoryController {
   constructor(private financeCategoryService: FinanceCategoryService) {}
@@ -15,8 +15,8 @@ export class FinanceCategoryController {
     return this.financeCategoryService.getFinanceCategories(query)
   }
 
-  @Get(':id')
-  getFinanceCategory(@Param('id') id: string) {
+  @Get(":id")
+  getFinanceCategory(@Param("id") id: string) {
     return this.financeCategoryService.getFinanceCategory(+id)
   }
 
@@ -25,16 +25,13 @@ export class FinanceCategoryController {
     return this.financeCategoryService.createFinanceCategory(createFinanceCategoryDto)
   }
 
-  @Patch(':id')
-  updateFinanceCategory(
-    @Param('id') id: string,
-    @Body() updateFinanceCategoryDto: UpdateFinanceCategoryDto,
-  ) {
+  @Patch(":id")
+  updateFinanceCategory(@Param("id") id: string, @Body() updateFinanceCategoryDto: UpdateFinanceCategoryDto) {
     return this.financeCategoryService.updateFinanceCategory(+id, updateFinanceCategoryDto)
   }
 
-  @Delete(':id')
-  deleteFinanceCategory(@Param('id') id: string) {
+  @Delete(":id")
+  deleteFinanceCategory(@Param("id") id: string) {
     return this.financeCategoryService.deleteFinanceCategory(+id)
   }
 }
