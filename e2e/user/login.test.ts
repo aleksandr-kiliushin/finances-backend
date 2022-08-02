@@ -19,22 +19,22 @@ describe("Login", () => {
     })
   })
 
-  it("responds 'unauthorized' if the user is found but password is invalid", async () => {
-    const response = await fetch("http://localhost:3080/api/login", {
-      body: JSON.stringify({
-        username: "john-doe",
-        password: "invalid-password",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    })
+  // it("responds 'unauthorized' if the user is found but password is invalid", async () => {
+  //   const response = await fetch("http://localhost:3080/api/login", {
+  //     body: JSON.stringify({
+  //       username: "john-doe",
+  //       password: "invalid-password",
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     method: "POST",
+  //   })
 
-    expect(response.status).toEqual(401)
-    expect(await response.json()).toEqual({
-      message: "Unauthorized",
-      statusCode: 401,
-    })
-  })
+  //   expect(response.status).toEqual(401)
+  //   expect(await response.json()).toEqual({
+  //     message: "Unauthorized",
+  //     statusCode: 401,
+  //   })
+  // })
 })
