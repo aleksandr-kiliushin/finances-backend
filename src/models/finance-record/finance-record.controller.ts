@@ -11,6 +11,7 @@ export class FinanceRecordController {
   constructor(private readonly financeRecordService: FinanceRecordService) {}
 
   @Get()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getFinanceRecords(@Query() query: any) {
     return this.financeRecordService.getFinanceRecords(query)
   }

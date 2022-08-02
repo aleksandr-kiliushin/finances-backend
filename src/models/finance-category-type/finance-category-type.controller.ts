@@ -12,6 +12,7 @@ export class FinanceCategoryTypeController {
   constructor(private readonly financeCategoryTypeService: FinanceCategoryTypeService) {}
 
   @Get()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getFinanceCategoryTypes(@Query() query: any) {
     return this.financeCategoryTypeService.getFinanceCategoryTypes(query)
   }

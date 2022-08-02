@@ -6,3 +6,6 @@ download-and-init-dev-db:
 
 remove-api-image:
 	docker rm personal-app-api && docker rmi personal-app-server_api
+
+remove-database-image:
+	docker rm personal-app-database && docker rmi personal-app-server_database

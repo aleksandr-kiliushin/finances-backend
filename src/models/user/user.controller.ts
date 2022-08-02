@@ -41,7 +41,7 @@ export class UserController {
   @Get("me")
   getCurrentUserData(
     @Request()
-    req: any
+    req: any // eslint-disable-line @typescript-eslint/no-explicit-any
   ) {
     return this.userService.getUser({ id: req.userId })
   }
