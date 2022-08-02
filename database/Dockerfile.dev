@@ -5,7 +5,7 @@ RUN apt-get install -y curl jq lzop
 
 RUN mkdir /var/app/dumps -p
 
-COPY ./download-and-init-dev-db.sh /var/app/download-and-init-dev-db.sh
+COPY ./download-and-init-databases.sh /var/app/download-and-init-databases.sh
 COPY ./truncate-all-tables.sh /var/app/truncate-all-tables.sh
 
 EXPOSE 5432
