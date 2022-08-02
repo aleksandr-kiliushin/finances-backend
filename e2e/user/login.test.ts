@@ -10,8 +10,9 @@ describe("Login", () => {
       },
       method: "POST",
     })
-    const responseData = await response.json()
-    expect(responseData).toEqual({
+
+    expect(response.status).toEqual(404)
+    expect(await response.json()).toEqual({
       error: "Not Found",
       message: "User not found.",
       statusCode: 404,
