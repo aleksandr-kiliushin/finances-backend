@@ -2,8 +2,8 @@ describe("Login", () => {
   it("responds that user is not found", async () => {
     const response = await fetch("http://localhost:3080/api/login", {
       body: JSON.stringify({
-        username: "sasha",
-        password: "s3cret",
+        username: "nonexistent-username",
+        password: "some-password",
       }),
       headers: {
         "Content-Type": "application/json",
@@ -16,6 +16,25 @@ describe("Login", () => {
       error: "Not Found",
       message: "User not found.",
       statusCode: 404,
+    })
+  })
+
+  it("responds 'unauthorized' if the user is found but password is invalid", async () => {
+    const response = await fetch("http://localhost:3080/api/login", {
+      body: JSON.stringify({
+        username: "john-doe",
+        password: "invalid-password",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    })
+
+    expect(response.status).toEqual(401)
+    expect(await response.json()).toEqual({
+      message: "Unauthorized",
+      statusCode: 401,
     })
   })
 })
