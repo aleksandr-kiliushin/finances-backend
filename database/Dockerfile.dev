@@ -5,6 +5,6 @@ RUN apt-get install -y curl jq lzop
 
 RUN mkdir /var/app/dumps -p
 
-COPY ./init.sh /var/app/init.sh
+COPY ./download-and-init-dev-db.sh /var/app/download-and-init-dev-db.sh
 
 EXPOSE 5432

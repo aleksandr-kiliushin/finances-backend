@@ -1,5 +1,8 @@
 dev:
-	docker rm personal-app-api && docker rmi personal-app-server_api && docker-compose -f ./compose.dev.yml up
+	docker-compose -f ./compose.dev.yml up
 
-init-database:
-	echo "bash /var/app/init.sh" | docker exec -i personal-app-database bash;
+download-and-init-dev-db:
+	echo "bash /var/app/download-and-init-dev-db.sh" | docker exec -i personal-app-database bash;
+
+remove-api-image:
+	docker rm personal-app-api && docker rmi personal-app-server_api
