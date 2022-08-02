@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "declaration": true,
-    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
-    "outDir": "./dist",
     "incremental": true,
-    "baseUrl": ".",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true,
     "paths": {
       "#interfaces/*": ["src/interfaces/*"],
       "#models/*": ["src/models/*"]
-    }
+    },
+    "target": "es2017"
   }
 }
