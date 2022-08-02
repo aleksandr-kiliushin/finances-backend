@@ -5,7 +5,6 @@ RUN apt-get install -y curl jq lzop
 
 RUN mkdir /var/app/dumps -p
 
-COPY ./download-and-prepare-databases.sh /var/app/download-and-prepare-databases.sh
-COPY ./truncate-all-tables.sh /var/app/truncate-all-tables.sh
+COPY ./download-and-prepare-db-templates.sh /var/app/download-and-prepare-db-templates.sh
 
 EXPOSE 5432
