@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "incremental": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "paths": {
+      "#interfaces/*": ["src/interfaces/*"],
+      "#models/*": ["src/models/*"]
+    },
+    "target": "es2017"
+  },
+  "include": ["./**/*.ts"] // Only this option differs from the main `tsconfig.json` and includes all project files. So that eslint does not claim in e2e/ dir files.
+}
