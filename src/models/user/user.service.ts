@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
-// import * as bcrypt from 'bcrypt'
+import * as bcrypt from "bcrypt"
 
 import { UserEntity } from "./entities/user.entity"
-// import { CreateUserDto } from './dto/create-user.dto'
+import { CreateUserDto } from "./dto/create-user.dto"
 import { GetUserDto } from "./dto/get-user.dto"
 // import { UpdateUserDto } from './dto/update-user.dto'
 
@@ -27,19 +27,19 @@ export class UserService {
     return user
   }
 
-  // async createUser(createUserInput: CreateUserDto): Promise<UserEntity> {
-  // 	const { password, username } = createUserInput
+  async createUser(createUserInput: CreateUserDto): Promise<UserEntity> {
+    const { password, username } = createUserInput
 
-  // 	const salt = await bcrypt.genSalt()
-  // 	const hashedPassword = await bcrypt.hash(password, salt)
+    const salt = await bcrypt.genSalt()
+    const hashedPassword = await bcrypt.hash(password, salt)
 
-  // 	const user = this.userRepository.create({
-  // 		password: hashedPassword,
-  // 		username,
-  // 	})
+    const user = this.userRepository.create({
+      password: hashedPassword,
+      username,
+    })
 
-  // 	return this.userRepository.save(user)
-  // }
+    return this.userRepository.save(user)
+  }
 
   // async updateUser(id: UserEntity['id'], updateUserDto: UpdateUserDto): Promise<UserEntity> {
   // 	const { password, username } = updateUserDto

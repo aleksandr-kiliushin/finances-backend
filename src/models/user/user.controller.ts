@@ -1,23 +1,24 @@
-import { Controller, Get, Query, Request, UseGuards } from "@nestjs/common"
+import { Body, Controller, Get, Post, Query, Request, UseGuards } from "@nestjs/common"
 
 import { UserService } from "./user.service"
 import { GetUserDto } from "./dto/get-user.dto"
 import { AuthGuard } from "#models/auth/auth.guard"
+import { CreateUserDto } from "./dto/create-user.dto"
 
 @Controller("user")
-@UseGuards(AuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
+  @UseGuards(AuthGuard)
   getUser(@Query() query: GetUserDto) {
     return this.userService.getUser(query)
   }
 
-  // @Post()
-  // createUser(@Body() createUserDto: CreateUserDto) {
-  // 	return this.userService.createUser(createUserDto)
-  // }
+  @Post()
+  createUser(@Body() createUserDto: CreateUserDto) {
+    return this.userService.createUser(createUserDto)
+  }
 
   // @Patch(':id')
   // updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -39,6 +40,7 @@ export class UserController {
   // }
 
   @Get("me")
+  @UseGuards(AuthGuard)
   getCurrentUserData(
     @Request()
     req: any // eslint-disable-line @typescript-eslint/no-explicit-any
