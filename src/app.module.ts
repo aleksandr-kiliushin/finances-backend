@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
 
-import ormconfig from "src/config/ormconfig"
+import { ormConfig } from "./config/ormConfig"
 
 import { AuthModule } from "#models/auth/auth.module"
 import { FinanceCategoryModule } from "#models/finance-category/finance-category.module"
@@ -11,7 +11,7 @@ import { UserModule } from "./models/user/user.module"
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(ormconfig),
+    TypeOrmModule.forRoot(ormConfig),
     AuthModule,
     FinanceCategoryModule,
     FinanceCategoryTypeModule,
